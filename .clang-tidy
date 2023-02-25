@@ -10,7 +10,9 @@ Checks: "*,
         -readability-else-after-return,
         -readability-static-accessed-through-instance,
         -readability-avoid-const-params-in-decls,
+        -readability-function-cognitive-complexity,
         -cppcoreguidelines-non-private-member-variables-in-classes,
+        -cppcoreguidelines-owning-memory,
         -misc-non-private-member-variables-in-classes,
 "
 WarningsAsErrors: '*'

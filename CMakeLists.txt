@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Unit testing
+###############################################################################
 enable_testing()
 include(CTest)
 
@@ -17,11 +19,19 @@ add_executable(utils_test_exe
 add_test(utils_test utils_test_exe)
 target_include_directories(utils_test_exe PRIVATE external)
 
+add_executable(deque_test_exe
+    src/doctest_main.cpp
+    src/core/deque.test.cpp
+)
+add_test(deque_test deque_test_exe)
+target_include_directories(deque_test_exe PRIVATE external)
+
 add_custom_command(
-    TARGET utils_test_exe
+    TARGET deque_test_exe
     POST_BUILD
     COMMAND ctest --output-on-failure
 )
+###############################################################################
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
