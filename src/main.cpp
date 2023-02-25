@@ -1,5 +1,3 @@
 #include <iostream>
 
-int main() {
-    std::cout << "hi\n";
-}
+int main() { std::cout << "hi\n"; }
