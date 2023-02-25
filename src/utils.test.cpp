@@ -1,8 +1,5 @@
-#define CATCH_CONFIG_MAIN
 #include "utils.hpp"
 
-#include <catch2/catch_test_macros.hpp>
+#include "doctest.h"
 
-TEST_CASE("Check the return value of returnOne", "[return_one]") {
-    REQUIRE(returnOne() == 1);
-}
+TEST_CASE("returnOne should return one") { CHECK(returnOne() == 1); }

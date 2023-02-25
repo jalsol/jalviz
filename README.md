@@ -1,1 +1,1 @@
-# cs162-test
+# CS162 Project: VisuAlgo clone
