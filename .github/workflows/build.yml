@@ -1,0 +1,22 @@
+name: build
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt install cmake
+          sudo apt install clang-format
+          sudo apt install clang-tidy
+      - name: Run CMake
+        run: cmake -S. -Bbuild -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+      - name: Run clang-tidy
+        run: clang-tidy src/* -p build/
+      - name: Run clang-format
+        run: clang-format --dry-run --Werror src/*
+      - name: Run Make
+        run: make -Cbuild
+
