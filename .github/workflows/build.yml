@@ -14,9 +14,9 @@ jobs:
       - name: Run CMake
         run: cmake -S. -Bbuild
       - name: Run clang-tidy
-        run: clang-tidy src/* -p build/
+        run: clang-tidy src/**/*.*pp -p build/
       - name: Run clang-format
-        run: clang-format --dry-run --Werror src/*
+        run: clang-format --dry-run --Werror src/**/*.*pp
       - name: Run Make
         run: make -Cbuild
 

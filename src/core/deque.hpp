@@ -1,9 +1,9 @@
-#ifndef _CORE_DEQUE_HPP_
-#define _CORE_DEQUE_HPP_
+#ifndef CORE_DEQUE_HPP_
+#define CORE_DEQUE_HPP_
 
-#include <memory>
 #include <cstddef>
 #include <initializer_list>
+#include <memory>
 
 template<typename T>
 class Deque {
@@ -24,6 +24,7 @@ private:
     void init_first_element(const T& elem);
     void clean_up();
     void copy_data(const Deque& rhs);
+
 public:
     Deque() = default;
     Deque(std::initializer_list<T> init_list);
@@ -68,11 +69,8 @@ Deque<T>& Deque<T>::operator=(const Deque& rhs) {
 }
 
 template<typename T>
-Deque<T>::Deque(Deque&& rhs) noexcept {
-    m_head = rhs.m_head;
-    m_tail = rhs.m_tail;
-    m_size = rhs.m_size;
-
+Deque<T>::Deque(Deque&& rhs) noexcept
+    : m_head{rhs.m_head}, m_tail{rhs.m_tail}, m_size{rhs.m_size} {
     rhs.m_head = nullptr;
     rhs.m_tail = nullptr;
     rhs.m_size = 0;
@@ -198,4 +196,4 @@ void Deque<T>::pop_front() {
     --m_size;
 }
 
-#endif // _CORE_DEQUE_HPP_
+#endif  // CORE_DEQUE_HPP_
