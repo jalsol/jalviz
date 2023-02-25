@@ -7,11 +7,12 @@ template<typename T>
 class Deque : public BaseDeque<T> {
 private:
     using Base = BaseDeque<T>;
+
 public:
     using Base::Base;
 
-    using Base::size;
     using Base::empty;
+    using Base::size;
 
     using Base::push_back;
     using Base::push_front;
@@ -23,5 +24,4 @@ public:
     using Base::pop_front;
 };
 
-
-#endif // CORE_DEQUE_HPP_
+#endif  // CORE_DEQUE_HPP_
