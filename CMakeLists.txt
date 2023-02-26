@@ -16,15 +16,27 @@ add_executable(core_deque_test_exe
     src/core/deque.test.cpp
 )
 
-target_include_directories(core_deque_test_exe PRIVATE external)
+add_executable(core_doubly_linked_list_test_exe
+    src/doctest_main.cpp
+    src/core/doubly_linked_list.test.cpp
+)
 
-target_link_libraries(core_deque_test_exe PRIVATE -fsanitize=address,undefined,leak)
+target_include_directories(core_deque_test_exe PRIVATE external)
+target_include_directories(core_doubly_linked_list_test_exe PRIVATE external)
+
+target_link_libraries(core_deque_test_exe PRIVATE -fsanitize=address,undefined,leak -g)
+target_link_libraries(core_doubly_linked_list_test_exe PRIVATE -fsanitize=address,undefined,leak -g)
 
 add_test(core_deque_test core_deque_test_exe)
+add_test(core_doubly_linked_list_test core_doubly_linked_list_test_exe)
 
 add_custom_target(run_deque_test ALL
     COMMAND ctest --output-on-failure
     DEPENDS core_deque_test_exe)
+
+add_custom_target(run_doubly_linked_list_test ALL
+    COMMAND ctest --output-on-failure
+    DEPENDS core_doubly_linked_list_test_exe)
 ###############################################################################
 
 add_executable(${PROJECT_NAME}

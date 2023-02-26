@@ -1,12 +1,14 @@
-#ifndef CORE_BASE_DEQUE_HPP_
-#define CORE_BASE_DEQUE_HPP_
+#ifndef CORE_BASE_LIST_HPP_
+#define CORE_BASE_LIST_HPP_
 
 #include <cstddef>
 #include <initializer_list>
 #include <memory>
 
+namespace core {
+
 template<typename T>
-class BaseDeque {
+class BaseList {
 protected:
     struct Node;
     using Node_ptr = Node*;
@@ -23,19 +25,7 @@ protected:
 
     void init_first_element(const T& elem);
     void clean_up();
-    void copy_data(const BaseDeque& rhs);
-
-public:
-    BaseDeque() = default;
-    BaseDeque(std::initializer_list<T> init_list);
-    BaseDeque(const BaseDeque& rhs);
-    BaseDeque& operator=(const BaseDeque& rhs);
-    BaseDeque(BaseDeque&& rhs) noexcept;
-    BaseDeque& operator=(BaseDeque&& rhs) noexcept;
-    ~BaseDeque();
-
-    [[nodiscard]] bool empty() const;
-    [[nodiscard]] std::size_t size() const;
+    void copy_data(const BaseList& rhs);
 
     void push_back(const T& elem);
     void push_front(const T& elem);
@@ -45,22 +35,34 @@ public:
 
     void pop_front();
     void pop_back();
+
+public:
+    BaseList() = default;
+    BaseList(std::initializer_list<T> init_list);
+    BaseList(const BaseList& rhs);
+    BaseList& operator=(const BaseList& rhs);
+    BaseList(BaseList&& rhs) noexcept;
+    BaseList& operator=(BaseList&& rhs) noexcept;
+    ~BaseList();
+
+    [[nodiscard]] bool empty() const;
+    [[nodiscard]] std::size_t size() const;
 };
 
 template<typename T>
-BaseDeque<T>::BaseDeque(const BaseDeque& rhs) {
+BaseList<T>::BaseList(const BaseList& rhs) {
     copy_data(rhs);
 }
 
 template<typename T>
-BaseDeque<T>::BaseDeque(std::initializer_list<T> init_list) {
+BaseList<T>::BaseList(std::initializer_list<T> init_list) {
     for (const auto& elem : init_list) {
         push_back(elem);
     }
 }
 
 template<typename T>
-BaseDeque<T>& BaseDeque<T>::operator=(const BaseDeque& rhs) {
+BaseList<T>& BaseList<T>::operator=(const BaseList& rhs) {
     if (this != &rhs) {
         copy_data(rhs);
     }
@@ -69,7 +71,7 @@ BaseDeque<T>& BaseDeque<T>::operator=(const BaseDeque& rhs) {
 }
 
 template<typename T>
-BaseDeque<T>::BaseDeque(BaseDeque&& rhs) noexcept
+BaseList<T>::BaseList(BaseList&& rhs) noexcept
     : m_head{rhs.m_head}, m_tail{rhs.m_tail}, m_size{rhs.m_size} {
     rhs.m_head = nullptr;
     rhs.m_tail = nullptr;
@@ -77,7 +79,7 @@ BaseDeque<T>::BaseDeque(BaseDeque&& rhs) noexcept
 }
 
 template<typename T>
-BaseDeque<T>& BaseDeque<T>::operator=(BaseDeque&& rhs) noexcept {
+BaseList<T>& BaseList<T>::operator=(BaseList&& rhs) noexcept {
     if (this != &rhs) {
         clean_up();
 
@@ -94,30 +96,30 @@ BaseDeque<T>& BaseDeque<T>::operator=(BaseDeque&& rhs) noexcept {
 }
 
 template<typename T>
-BaseDeque<T>::~BaseDeque() {
+BaseList<T>::~BaseList() {
     clean_up();
 }
 
 template<typename T>
-bool BaseDeque<T>::empty() const {
+bool BaseList<T>::empty() const {
     return m_size == 0;
 }
 
 template<typename T>
-std::size_t BaseDeque<T>::size() const {
+std::size_t BaseList<T>::size() const {
     return m_size;
 }
 
 template<typename T>
-void BaseDeque<T>::init_first_element(const T& elem) {
+void BaseList<T>::init_first_element(const T& elem) {
     m_head = new Node{elem, nullptr, nullptr};
     m_tail = m_head;
     m_size = 1;
 }
 
 template<typename T>
-void BaseDeque<T>::clean_up() {
-    Node_ptr ptr = nullptr;
+void BaseList<T>::clean_up() {
+    Node_ptr ptr{nullptr};
 
     while (m_head != nullptr) {
         ptr = m_head->next;
@@ -130,14 +132,14 @@ void BaseDeque<T>::clean_up() {
 }
 
 template<typename T>
-void BaseDeque<T>::copy_data(const BaseDeque& rhs) {
+void BaseList<T>::copy_data(const BaseList& rhs) {
     for (Node_ptr ptr = rhs.m_head; ptr != nullptr; ptr = ptr->next) {
         push_back(ptr->data);
     }
 }
 
 template<typename T>
-void BaseDeque<T>::push_back(const T& elem) {
+void BaseList<T>::push_back(const T& elem) {
     if (empty()) {
         init_first_element(elem);
         return;
@@ -149,7 +151,7 @@ void BaseDeque<T>::push_back(const T& elem) {
 }
 
 template<typename T>
-void BaseDeque<T>::push_front(const T& elem) {
+void BaseList<T>::push_front(const T& elem) {
     if (empty()) {
         init_first_element(elem);
         return;
@@ -161,17 +163,17 @@ void BaseDeque<T>::push_front(const T& elem) {
 }
 
 template<typename T>
-T& BaseDeque<T>::back() const {
+T& BaseList<T>::back() const {
     return m_tail->data;
 }
 
 template<typename T>
-T& BaseDeque<T>::front() const {
+T& BaseList<T>::front() const {
     return m_head->data;
 }
 
 template<typename T>
-void BaseDeque<T>::pop_back() {
+void BaseList<T>::pop_back() {
     if (size() <= 1) {
         clean_up();
         return;
@@ -184,7 +186,7 @@ void BaseDeque<T>::pop_back() {
 }
 
 template<typename T>
-void BaseDeque<T>::pop_front() {
+void BaseList<T>::pop_front() {
     if (size() <= 1) {
         clean_up();
         return;
@@ -196,4 +198,6 @@ void BaseDeque<T>::pop_front() {
     --m_size;
 }
 
-#endif  // CORE_DEQUE_HPP_
+}  // namespace core
+
+#endif  // CORE_BASE_LIST_HPP_

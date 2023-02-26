@@ -1,12 +1,14 @@
 #ifndef CORE_DEQUE_HPP_
 #define CORE_DEQUE_HPP_
 
-#include "base_deque.hpp"
+#include "base_list.hpp"
+
+namespace core {
 
 template<typename T>
-class Deque : public BaseDeque<T> {
+class Deque : public BaseList<T> {
 private:
-    using Base = BaseDeque<T>;
+    using Base = BaseList<T>;
 
 public:
     using Base::Base;
@@ -23,5 +25,7 @@ public:
     using Base::pop_back;
     using Base::pop_front;
 };
+
+}  // namespace core
 
 #endif  // CORE_DEQUE_HPP_
