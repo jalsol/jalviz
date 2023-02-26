@@ -13,10 +13,14 @@ private:
     using Base = BaseList<T>;
     using Node = typename Base::Node;
     using Node_ptr = Node*;
+    using cNode_ptr = const Node*;
 
     using Base::m_head;
     using Base::m_size;
     using Base::m_tail;
+
+    Node_ptr internal_search(const T& elem);
+    Node_ptr internal_find(std::size_t index);
 
 public:
     using Base::Base;
@@ -26,12 +30,16 @@ public:
 
     Node_ptr search(const T& elem);
     Node_ptr find(std::size_t index);
+
+    cNode_ptr search(const T& elem) const;
+    cNode_ptr find(std::size_t index) const;
+
     Node_ptr insert(std::size_t index, const T& elem);
     Node_ptr remove(std::size_t index);
 };
 
 template<typename T>
-typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::search(
+typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::internal_search(
     const T& elem) {
     Node_ptr ptr{m_head};
 
@@ -47,7 +55,7 @@ typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::search(
 }
 
 template<typename T>
-typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::find(
+typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::internal_find(
     std::size_t index) {
     Node_ptr ptr{m_head};
     std::size_t pos = 0;
@@ -58,6 +66,30 @@ typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::find(
     }
 
     return ptr;
+}
+
+template<typename T>
+typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::search(
+    const T& elem) {
+    return internal_search(elem);
+}
+
+template<typename T>
+typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::find(
+    std::size_t index) {
+    return internal_find(index);
+}
+
+template<typename T>
+typename DoublyLinkedList<T>::cNode_ptr DoublyLinkedList<T>::search(
+    const T& elem) const {
+    return internal_search(elem);
+}
+
+template<typename T>
+typename DoublyLinkedList<T>::cNode_ptr DoublyLinkedList<T>::find(
+    std::size_t index) const {
+    return internal_find(index);
 }
 
 template<typename T>
