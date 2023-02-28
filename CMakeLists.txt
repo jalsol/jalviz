@@ -81,7 +81,7 @@ add_executable(${PROJECT_NAME}
     src/raygui_main.cpp
 
     src/scene/menu_scene.cpp
-    # src/scene/stack_scene.cpp
+    src/scene/stack_scene.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
