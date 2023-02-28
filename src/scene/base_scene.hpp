@@ -1,8 +1,6 @@
 #ifndef SCENE_BASE_SCENE_HPP_
 #define SCENE_BASE_SCENE_HPP_
 
-#include "core/stack.hpp"
-
 namespace scene {
 
 template<typename T>
