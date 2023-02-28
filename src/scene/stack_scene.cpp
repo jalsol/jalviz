@@ -72,7 +72,7 @@ bool StackScene::render_go_button() const {
 }
 
 void StackScene::render_text_input() {
-    (void)GuiTextBox(Rectangle{static_cast<float>(options_head),
+    GuiTextBox(Rectangle{static_cast<float>(options_head),
                                constants::scene_height - button_size.y,
                                button_size.x, button_size.y},
                      static_cast<char*>(m_text_input), button_size.y, true);
