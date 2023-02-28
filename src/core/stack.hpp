@@ -7,8 +7,10 @@ namespace core {
 
 template<typename T>
 class Stack : public BaseList<T> {
-private:
+protected:
     using Base = BaseList<T>;
+    using Base::m_head;
+    using Base::m_tail;
 
 public:
     using Base::Base;
@@ -24,17 +26,17 @@ public:
 
 template<typename T>
 T& Stack<T>::top() const {
-    return Base::back();
+    return Base::front();
 }
 
 template<typename T>
 void Stack<T>::push(const T& elem) {
-    Base::push_back(elem);
+    Base::push_front(elem);
 }
 
 template<typename T>
 void Stack<T>::pop() {
-    Base::pop_back();
+    Base::pop_front();
 }
 
 }  // namespace core
