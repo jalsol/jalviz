@@ -4,7 +4,6 @@
 
 #include "constants.hpp"
 #include "raygui.h"
-#include "raylib-cpp.hpp"
 #include "utils.hpp"
 
 namespace scene {
