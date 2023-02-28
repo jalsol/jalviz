@@ -11,12 +11,13 @@ jobs:
           sudo apt install cmake
           sudo apt install clang-format
           sudo apt install clang-tidy
-      - name: Run CMake
-        run: cmake -S. -Bbuild
-      - name: Run clang-tidy
-        run: clang-tidy src/**/*.*pp -p build/
+          sudo apt install xorg-dev libglu1-mesa-dev
       - name: Run clang-format
         run: clang-format --dry-run --Werror src/**/*.*pp
+      - name: Run CMake
+        run: cmake -S. -Bbuild
       - name: Run Make
         run: make -Cbuild
+      - name: Run clang-tidy
+        run: clang-tidy src/**/*.*pp -p build/
 
