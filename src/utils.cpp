@@ -1,5 +1,8 @@
 #include "utils.hpp"
 
+#include <cstring>
+
+#include "gui/node.hpp"
 #include "raylib.h"
 
 namespace utils {
@@ -20,6 +23,34 @@ Vector2 MeasureText(const char* text, float font_size, float spacing) {
         LoadFontEx("data/open_sans.ttf", default_font_size, nullptr, 0);
 
     return MeasureTextEx(font, text, font_size, spacing);
+}
+
+core::Deque<int> str_extract_data(
+    char str[constants::text_buffer_size]) {  // NOLINT
+    char* save_ptr = nullptr;
+    char* token = strtok_r(str, ",", &save_ptr);
+
+    if (token == nullptr) {
+        return {0};
+    }
+
+    core::Deque<int> ret;
+
+    constexpr int base = 10;
+    int num = static_cast<int>(std::strtol(token, nullptr, base));
+    ret.push_back(num);
+
+    while (true) {
+        token = strtok_r(nullptr, ",", &save_ptr);
+        if (token == nullptr) {
+            break;
+        }
+
+        num = static_cast<int>(std::strtol(token, nullptr, base));
+        ret.push_back(num);
+    }
+
+    return ret;
 }
 
 }  // namespace utils

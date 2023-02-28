@@ -1,8 +1,11 @@
 #ifndef UTILS_HPP_
 #define UTILS_HPP_
 
+#include <cstring>
 #include <random>
 
+#include "constants.hpp"
+#include "core/deque.hpp"
 #include "raylib.h"
 
 namespace utils {
@@ -19,6 +22,9 @@ T get_random(T low, T high) {
     static std::uniform_int_distribution<T> dist{low, high};
     return dist(prng);
 }
+
+core::Deque<int> str_extract_data(
+    char str[constants::text_buffer_size]);  // NOLINT
 
 }  // namespace utils
 

@@ -42,7 +42,7 @@ void StackScene::render_inputs() {
                 case 0:
                     break;
                 case 1: {
-                    (void)render_text_input();
+                    render_text_input();
                 } break;
                 case 2: {
                 } break;
@@ -52,7 +52,7 @@ void StackScene::render_inputs() {
         } break;
 
         case 1: {
-            (void)render_text_input();
+            render_text_input();
         } break;
         case 2:
         case 3:
@@ -96,7 +96,17 @@ void StackScene::interact() {
                 case 0: {
                     interact_random();
                 } break;
-                case 1:
+                case 1: {
+                    core::Deque<int> nums =
+                        utils::str_extract_data(m_text_input);  // NOLINT
+                    m_text_input[0] = '\0';
+
+                    m_stack = gui::Stack<int>();
+                    while (!nums.empty()) {
+                        m_stack.push(gui::Node<int>{nums.back()});
+                        nums.pop_back();
+                    }
+                } break;
                 case 2: {
                 } break;
                 default:
@@ -106,11 +116,11 @@ void StackScene::interact() {
 
         case 1: {
             if (m_go && m_stack.size() < max_size) {
-                constexpr int base = 10;
-                int num = static_cast<int>(std::strtol(
-                    static_cast<char*>(m_text_input), nullptr, base));
-                m_stack.push(gui::Node<int>{num});
+                int num =
+                    utils::str_extract_data(m_text_input).front();  // NOLINT
                 m_text_input[0] = '\0';
+
+                m_stack.push(gui::Node<int>{num});
             }
         } break;
 

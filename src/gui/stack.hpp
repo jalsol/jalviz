@@ -13,7 +13,7 @@
 namespace gui {
 
 template<typename T>
-class Stack : public internal::Base<T>, public core::Stack<Node<T>> {
+class Stack : public core::Stack<Node<T>>, public internal::Base<T> {
 private:
     using Base = core::Stack<Node<T>>;
 
