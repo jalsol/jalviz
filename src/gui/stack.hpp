@@ -19,7 +19,7 @@ private:
 
     static constexpr Vector2 m_head_pos{
         constants::scene_width / 2.0F - Node<T>::m_radius / 2.0F,
-        Node<T>::m_radius * 4};
+        constants::navbar_height + Node<T>::m_radius * 2.0F};
 
     using Base::m_head;
     using Base::m_tail;
@@ -90,9 +90,9 @@ void Stack<T>::update() {
     std::size_t pos = 0;
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
-        ++pos;
         ptr->data.set_target_pos(
-            {m_head_pos.x, m_head_pos.y * static_cast<float>(pos)});
+            {m_head_pos.x, m_head_pos.y + 4 * Node<T>::m_radius * pos});
+        ++pos;
     }
 }
 
