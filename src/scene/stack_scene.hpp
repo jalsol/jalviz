@@ -52,7 +52,7 @@ private:
     void render_file_input();
 
     void interact_random();
-    void interact_import(int amount_to_take);
+    void interact_import(bool clear, int amount_to_take);
     void interact_file_import();
 
 public:

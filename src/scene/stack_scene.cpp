@@ -125,7 +125,7 @@ void StackScene::interact() {
                 } break;
 
                 case 1: {
-                    interact_import(max_size);
+                    interact_import(true, max_size);
                 } break;
 
                 case 2: {
@@ -139,7 +139,7 @@ void StackScene::interact() {
 
         case 1: {
             if (m_go && m_stack.size() < max_size) {
-                interact_import(1);
+                interact_import(false, 1);
             }
         } break;
 
@@ -165,17 +165,20 @@ void StackScene::interact_random() {
     }
 }
 
-void StackScene::interact_import(int amount_to_take) {
+void StackScene::interact_import(bool clear, int amount_to_take) {
     core::Deque<int> nums = utils::str_extract_data(m_text_input);  // NOLINT
     m_text_input[0] = '\0';
 
-    m_stack = gui::Stack<int>();
+    if (clear) {
+        m_stack = gui::Stack<int>();
+    }
 
-    while (!nums.empty() && m_stack.size() < amount_to_take) {
+    while (!nums.empty() && amount_to_take > 0) {
         if (utils::val_in_range(nums.back())) {
             m_stack.push(nums.back());
         }
         nums.pop_back();
+        --amount_to_take;
     }
 }
 
@@ -192,7 +195,7 @@ void StackScene::interact_file_import() {
     std::ifstream ifs(file_name);
     ifs >> m_text_input;
 
-    interact_import(max_size);
+    interact_import(true, max_size);
 
     m_file_dialog_state.SelectFilePressed = false;
 }
