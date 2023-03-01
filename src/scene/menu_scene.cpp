@@ -5,6 +5,7 @@
 #include "constants.hpp"
 #include "raygui.h"
 #include "utils.hpp"
+#include "scene_registry.hpp"
 
 namespace scene {
 
@@ -83,9 +84,10 @@ void MenuScene::render() {
 }
 
 void MenuScene::interact() {
+    scene::SceneRegistry& registry = scene::SceneRegistry::get_instance();
+
     if (m_start) {
-        std::cout << "waddup mah nigga\n";
-        m_start = false;
+        registry.set_scene(Stack);
     } else if (m_quit) {
         std::cout << "aww man\n";
         m_quit = false;

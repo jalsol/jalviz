@@ -13,8 +13,8 @@ public:
 
     virtual ~BaseScene() = default;
 
-    virtual void render() = 0;
-    virtual void interact() = 0;
+    virtual void render() {}
+    virtual void interact() {};
 };
 
 }  // namespace scene::internal
