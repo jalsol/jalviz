@@ -22,6 +22,7 @@ private:
     SceneRegistry();
 
     bool m_should_close{};
+    int m_current_scene{};
 
 public:
     SceneRegistry(const SceneRegistry&) = delete;
@@ -33,6 +34,7 @@ public:
     static SceneRegistry& get_instance();
 
     void set_scene(int scene_type);
+    int get_scene() const;
     void render();
     void interact();
     bool should_close() const;

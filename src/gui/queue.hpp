@@ -18,7 +18,9 @@ private:
     using Base = core::Queue<Node<T>>;
 
     static constexpr Vector2 m_head_pos{
-        constants::scene_width / 2.0F - 15 * Node<T>::m_radius,
+        constants::sidebar_width +
+            (constants::scene_width - constants::sidebar_width) / 2.0F -
+            15 * Node<T>::m_radius,
         constants::scene_height / 2.0F};
 
     using Base::m_head;

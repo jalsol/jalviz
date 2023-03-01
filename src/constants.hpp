@@ -7,7 +7,7 @@ constexpr int scene_width = 1366;
 constexpr int scene_height = 768;
 constexpr int frames_per_second = 30;
 
-constexpr int navbar_height = 64;
+constexpr int sidebar_width = 256;
 constexpr int ani_speed = 8;
 
 constexpr int text_buffer_size = 512;

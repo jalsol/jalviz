@@ -88,8 +88,10 @@ void MenuScene::interact() {
 
     if (m_start) {
         registry.set_scene(Stack);
+        m_start = false;
     } else if (m_quit) {
         registry.close_window();
+        m_quit = false;
     }
 }
 

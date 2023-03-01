@@ -18,8 +18,10 @@ private:
     using Base = core::Stack<Node<T>>;
 
     static constexpr Vector2 m_head_pos{
-        constants::scene_width / 2.0F - Node<T>::m_radius / 2.0F,
-        constants::navbar_height + Node<T>::m_radius * 2.0F};
+        constants::sidebar_width +
+            (constants::scene_width - constants::sidebar_width) / 2.0F -
+            Node<T>::m_radius / 2.0F,
+        Node<T>::m_radius * 2.0F};
 
     using Base::m_head;
     using Base::m_tail;

@@ -14,6 +14,8 @@ SceneRegistry& SceneRegistry::get_instance() {
 }
 
 void SceneRegistry::set_scene(int scene_type) {
+    m_current_scene = scene_type;
+
     switch (scene_type) {
         case Menu: {
             scene_ptr = &MenuScene::get_instance();
@@ -31,6 +33,8 @@ void SceneRegistry::set_scene(int scene_type) {
             __builtin_unreachable();
     }
 }
+
+int SceneRegistry::get_scene() const { return m_current_scene; }
 
 void SceneRegistry::render() { scene_ptr->render(); }
 

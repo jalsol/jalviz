@@ -19,7 +19,7 @@ QueueScene& QueueScene::get_instance() {
 }
 
 void QueueScene::render_options() {
-    options_head = 0;
+    options_head = 2 * constants::sidebar_width;
 
     Rectangle mode_button_shape{static_cast<float>(options_head),
                                 constants::scene_height - button_size.y,

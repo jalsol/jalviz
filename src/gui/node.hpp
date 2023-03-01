@@ -16,7 +16,11 @@ class Node {
 private:
     T m_value{};
 
-    Vector2 m_current_pos{};
+    Vector2 m_current_pos{constants::sidebar_width +
+                              static_cast<float>(constants::scene_width -
+                                                 constants::sidebar_width) /
+                                  2,
+                          0};
     Vector2 m_target_pos{};
 
     bool m_is_outdated{false};
