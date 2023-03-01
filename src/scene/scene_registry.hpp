@@ -35,7 +35,6 @@ public:
     void interact();
 };
 
-} // namespace scene
-
+}  // namespace scene
 
 #endif  // SCENE_SCENE_REGISTRY_HPP_

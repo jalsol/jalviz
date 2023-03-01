@@ -1,13 +1,12 @@
 #include "scene_registry.hpp"
+
 #include "menu_scene.hpp"
-#include "stack_scene.hpp"
 #include "queue_scene.hpp"
+#include "stack_scene.hpp"
 
 namespace scene {
 
-SceneRegistry::SceneRegistry() {
-    set_scene(Menu);
-}
+SceneRegistry::SceneRegistry() { set_scene(Menu); }
 
 SceneRegistry& SceneRegistry::get_instance() {
     static SceneRegistry registry;
@@ -33,12 +32,8 @@ void SceneRegistry::set_scene(int scene_type) {
     }
 }
 
-void SceneRegistry::render() {
-    scene_ptr->render();
-}
+void SceneRegistry::render() { scene_ptr->render(); }
 
-void SceneRegistry::interact() {
-    scene_ptr->interact();
-}
+void SceneRegistry::interact() { scene_ptr->interact(); }
 
-} // namespace scene
+}  // namespace scene
