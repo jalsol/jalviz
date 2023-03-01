@@ -24,10 +24,6 @@ private:
     using Base::m_head;
     using Base::m_tail;
 
-    // using Base::top;
-    // using Base::push;
-    // using Base::pop;
-
     void render_link(Vector2 src, Vector2 dest) override;
 
 public:
@@ -36,29 +32,22 @@ public:
     using Base::empty;
     using Base::size;
 
-    // T& top() const;
-
-    // void push(const T& elem);
-    // void pop();
+    void push(const T& elem);
+    void pop();
 
     void update() override;
     void render() override;
 };
 
-// template<typename T>
-// T& Stack<T>::top() const {
-//     return Base::top();
-// }
+template<typename T>
+void Stack<T>::push(const T& elem) {
+    Base::push(Node<T>{elem});
+}
 
-// template<typename T>
-// void Stack<T>::push(const T& elem) {
-//     Base::push(elem);
-// }
-
-// template<typename T>
-// void Stack<T>::pop() {
-//     Base::pop();
-// }
+template<typename T>
+void Stack<T>::pop() {
+    Base::pop();
+}
 
 template<typename T>
 void Stack<T>::render_link(Vector2 src, Vector2 dest) {

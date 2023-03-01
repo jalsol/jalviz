@@ -161,8 +161,7 @@ void StackScene::interact_random() {
     m_stack = gui::Stack<int>();
 
     for (auto i = 0; i < size; ++i) {
-        m_stack.push(gui::Node<int>{
-            utils::get_random(constants::min_val, constants::max_val)});
+        m_stack.push(utils::get_random(constants::min_val, constants::max_val));
     }
 }
 
@@ -174,7 +173,7 @@ void StackScene::interact_import(int amount_to_take) {
 
     while (!nums.empty() && m_stack.size() < amount_to_take) {
         if (utils::val_in_range(nums.back())) {
-            m_stack.push(gui::Node<int>{nums.back()});
+            m_stack.push(nums.back());
         }
         nums.pop_back();
     }
