@@ -68,7 +68,7 @@ include_directories(src)
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/utils.cpp
-    src/raygui_main.cpp
+    src/raygui_impl.cpp
 
     src/scene/menu_scene.cpp
     src/scene/stack_scene.cpp
