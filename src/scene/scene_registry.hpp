@@ -21,6 +21,8 @@ private:
     internal::BaseScene* scene_ptr{nullptr};
     SceneRegistry();
 
+    bool m_should_close{};
+
 public:
     SceneRegistry(const SceneRegistry&) = delete;
     SceneRegistry(SceneRegistry&&) = delete;
@@ -33,6 +35,8 @@ public:
     void set_scene(int scene_type);
     void render();
     void interact();
+    bool should_close() const;
+    void close_window();
 };
 
 }  // namespace scene

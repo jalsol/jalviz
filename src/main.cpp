@@ -11,7 +11,13 @@ int main() {
 
     scene::SceneRegistry& registry = scene::SceneRegistry::get_instance();
 
-    while (!WindowShouldClose()) {
+    while (true) {
+        bool should_close = registry.should_close() || WindowShouldClose();
+
+        if (should_close) {
+            break;
+        }
+
         registry.interact();
 
         BeginDrawing();
@@ -25,6 +31,8 @@ int main() {
         }
         EndDrawing();
     }
+
+    CloseWindow();
 
     return 0;
 }

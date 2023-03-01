@@ -36,4 +36,8 @@ void SceneRegistry::render() { scene_ptr->render(); }
 
 void SceneRegistry::interact() { scene_ptr->interact(); }
 
+bool SceneRegistry::should_close() const { return m_should_close; }
+
+void SceneRegistry::close_window() { m_should_close = true; }
+
 }  // namespace scene

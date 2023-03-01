@@ -89,8 +89,7 @@ void MenuScene::interact() {
     if (m_start) {
         registry.set_scene(Stack);
     } else if (m_quit) {
-        std::cout << "aww man\n";
-        m_quit = false;
+        registry.close_window();
     }
 }
 
