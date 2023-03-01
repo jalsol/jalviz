@@ -11,29 +11,25 @@
 
 namespace scene {
 
-class StackScene : public BaseScene<gui::Stack<int>> {
+class StackScene : public internal::BaseScene {
 private:
     static constexpr std::size_t max_size = 8;
+    static constexpr int num_modes = 3;
+    static constexpr const char* mode_labels =
+        "Mode: Create;Mode: Push;Mode: Pop";
+    static constexpr std::array<const char*, num_modes> action_labels = {
+        "Action: Random;Action: Input;Action: File",
+        "",
+        "",
+    };
+    static constexpr int head_offset = 20;
+    static constexpr Vector2 button_size{200, 50};
 
     gui::Stack<int> m_stack{
         gui::Node<int>{1},
         gui::Node<int>{2},
         gui::Node<int>{3},
     };
-
-    static constexpr int num_modes = 3;
-
-    static constexpr const char* mode_labels =
-        "Mode: Create;Mode: Push;Mode: Pop";
-
-    static constexpr std::array<const char*, num_modes> action_labels = {
-        "Action: Random;Action: Input;Action: File",
-        "",
-        "",
-    };
-
-    static constexpr int head_offset = 20;
-    static constexpr Vector2 button_size{200, 50};
 
     int options_head{};
 
@@ -47,6 +43,8 @@ private:
         InitGuiFileDialog(GetWorkingDirectory())};
     char m_file_input[constants::text_buffer_size] = "";  // NOLINT
 
+    StackScene() = default;
+
     void render_options();
     void render_inputs();
     [[nodiscard]] bool render_go_button() const;
@@ -58,6 +56,14 @@ private:
     void interact_file_import();
 
 public:
+    StackScene(const StackScene&) = delete;
+    StackScene(StackScene&&) = delete;
+    StackScene& operator=(const StackScene&) = delete;
+    StackScene& operator=(StackScene&&) = delete;
+    ~StackScene() override = default;
+
+    static StackScene& get_instance();
+
     void render() override;
     void interact() override;
 };

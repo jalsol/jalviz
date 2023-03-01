@@ -13,6 +13,11 @@
 
 namespace scene {
 
+StackScene& StackScene::get_instance() {
+    static StackScene scene;
+    return scene;
+}
+
 void StackScene::render_options() {
     options_head = 0;
 

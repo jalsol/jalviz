@@ -8,6 +8,11 @@
 
 namespace scene {
 
+MenuScene& MenuScene::get_instance() {
+    static MenuScene scene;
+    return scene;
+}
+
 void MenuScene::render() {
     // Menu text
     constexpr int menu_font_size = 60;

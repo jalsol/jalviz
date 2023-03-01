@@ -10,7 +10,7 @@ int main() {
 
     GuiLoadStyle("./data/bluish_open_sans.rgs");
 
-    scene::StackScene scene;
+    scene::StackScene& scene = scene::StackScene::get_instance();
 
     while (!WindowShouldClose()) {
         scene.interact();
