@@ -6,6 +6,8 @@
 #include "base_scene.hpp"
 #include "core/stack.hpp"
 #include "gui/stack.hpp"
+#include "gui_file_dialog.h"
+#include "raygui.h"
 
 namespace scene {
 
@@ -19,14 +21,13 @@ private:
         gui::Node<int>{3},
     };
 
-    static constexpr int num_modes = 4;
+    static constexpr int num_modes = 3;
 
     static constexpr const char* mode_labels =
-        "Mode: Create;Mode: Push;Mode: Pop;Mode: Peek";
+        "Mode: Create;Mode: Push;Mode: Pop";
 
     static constexpr std::array<const char*, num_modes> action_labels = {
         "Action: Random;Action: Input;Action: File",
-        "",
         "",
         "",
     };
@@ -42,12 +43,19 @@ private:
     bool m_go{};
     char m_text_input[constants::text_buffer_size] = "";  // NOLINT
 
+    GuiFileDialogState m_file_dialog_state{
+        InitGuiFileDialog(GetWorkingDirectory())};
+    char m_file_input[constants::text_buffer_size] = "";  // NOLINT
+
     void render_options();
     void render_inputs();
     [[nodiscard]] bool render_go_button() const;
     void render_text_input();
+    void render_file_input();
 
     void interact_random();
+    void interact_import(int amount_to_take);
+    void interact_file_import();
 
 public:
     void render() override;

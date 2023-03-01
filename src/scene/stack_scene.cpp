@@ -3,7 +3,10 @@
 #include <cstddef>
 #include <cstdlib>
 #include <cstring>
+#include <fstream>
 #include <iostream>
+#include <limits>
+#include <string>
 
 #include "constants.hpp"
 #include "raygui.h"
@@ -45,6 +48,7 @@ void StackScene::render_inputs() {
                     render_text_input();
                 } break;
                 case 2: {
+                    render_file_input();
                 } break;
                 default:
                     __builtin_unreachable();
@@ -54,8 +58,8 @@ void StackScene::render_inputs() {
         case 1: {
             render_text_input();
         } break;
+
         case 2:
-        case 3:
             break;
         default:
             __builtin_unreachable();
@@ -80,6 +84,24 @@ void StackScene::render_text_input() {
     options_head += (button_size.x + head_offset);
 }
 
+void StackScene::render_file_input() {
+    if (m_file_dialog_state.windowActive) {
+        GuiLock();
+    }
+
+    if (GuiButton(Rectangle{static_cast<float>(options_head),
+                            constants::scene_height - button_size.y,
+                            button_size.x, button_size.y},
+                  GuiIconText(ICON_FILE_OPEN, "Select file"))) {
+        m_file_dialog_state.windowActive = true;
+    }
+
+    options_head += (button_size.x + head_offset);
+
+    GuiUnlock();
+    GuiFileDialog(&m_file_dialog_state);
+}
+
 void StackScene::render() {
     m_stack.render();
     render_options();
@@ -96,19 +118,15 @@ void StackScene::interact() {
                 case 0: {
                     interact_random();
                 } break;
-                case 1: {
-                    core::Deque<int> nums =
-                        utils::str_extract_data(m_text_input);  // NOLINT
-                    m_text_input[0] = '\0';
 
-                    m_stack = gui::Stack<int>();
-                    while (!nums.empty()) {
-                        m_stack.push(gui::Node<int>{nums.back()});
-                        nums.pop_back();
-                    }
+                case 1: {
+                    interact_import(max_size);
                 } break;
+
                 case 2: {
+                    interact_file_import();
                 } break;
+
                 default:
                     __builtin_unreachable();
             }
@@ -116,11 +134,7 @@ void StackScene::interact() {
 
         case 1: {
             if (m_go && m_stack.size() < max_size) {
-                int num =
-                    utils::str_extract_data(m_text_input).front();  // NOLINT
-                m_text_input[0] = '\0';
-
-                m_stack.push(gui::Node<int>{num});
+                interact_import(1);
             }
         } break;
 
@@ -129,8 +143,7 @@ void StackScene::interact() {
                 m_stack.pop();
             }
         } break;
-        case 3:
-            break;
+
         default:
             __builtin_unreachable();
     }
@@ -146,6 +159,38 @@ void StackScene::interact_random() {
         m_stack.push(gui::Node<int>{
             utils::get_random(constants::min_val, constants::max_val)});
     }
+}
+
+void StackScene::interact_import(int amount_to_take) {
+    core::Deque<int> nums = utils::str_extract_data(m_text_input);  // NOLINT
+    m_text_input[0] = '\0';
+
+    m_stack = gui::Stack<int>();
+
+    while (!nums.empty() && m_stack.size() < amount_to_take) {
+        if (utils::val_in_range(nums.back())) {
+            m_stack.push(gui::Node<int>{nums.back()});
+        }
+        nums.pop_back();
+    }
+}
+
+void StackScene::interact_file_import() {
+    if (!m_file_dialog_state.SelectFilePressed) {
+        return;
+    }
+
+    std::string file_name;
+    file_name += static_cast<char*>(m_file_dialog_state.dirPathText);
+    file_name += '/';
+    file_name += static_cast<char*>(m_file_dialog_state.fileNameText);
+
+    std::ifstream ifs(file_name);
+    ifs >> m_text_input;
+
+    interact_import(max_size);
+
+    m_file_dialog_state.SelectFilePressed = false;
 }
 
 }  // namespace scene

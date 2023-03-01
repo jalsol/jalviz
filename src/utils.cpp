@@ -53,4 +53,8 @@ core::Deque<int> str_extract_data(
     return ret;
 }
 
+bool val_in_range(int num) {
+    return constants::min_val <= num && num <= constants::max_val;
+}
+
 }  // namespace utils

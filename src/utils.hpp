@@ -26,6 +26,8 @@ T get_random(T low, T high) {
 core::Deque<int> str_extract_data(
     char str[constants::text_buffer_size]);  // NOLINT
 
+bool val_in_range(int num);
+
 }  // namespace utils
 
 #endif  // UTILS_HPP_
