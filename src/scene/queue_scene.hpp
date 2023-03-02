@@ -16,10 +16,19 @@ private:
     static constexpr std::size_t max_size = 8;
     static constexpr int num_modes = 3;
     static constexpr const char* mode_labels =
-        "Mode: Create;Mode: Push;Mode: Pop";
+        "Mode: Create;"
+        "Mode: Push;"
+        "Mode: Pop";
     static constexpr std::array<const char*, num_modes> action_labels = {
-        "Action: Random;Action: Input;Action: File",
+        // Mode: Create
+        "Action: Random;"
+        "Action: Input;"
+        "Action: File",
+
+        // Mode: Push
         "",
+
+        // Mode: Pop
         "",
     };
     static constexpr int head_offset = 20;

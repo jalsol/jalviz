@@ -22,12 +22,11 @@ private:
                                   2,
                           0};
     Vector2 m_target_pos{};
-
     bool m_is_outdated{false};
+    static constexpr float eps = 1e-3;
 
 public:
-    static constexpr int m_radius = 20;
-    static constexpr float m_eps = 1e-3;
+    static constexpr int radius = 20;
 
     explicit Node(const T& value);
 
@@ -47,11 +46,11 @@ void Node<T>::render() {
         float diff_x = m_target_pos.x - m_current_pos.x;
         float diff_y = m_target_pos.y - m_current_pos.y;
 
-        if (std::fabs(diff_x) < m_eps) {
+        if (std::fabs(diff_x) < eps) {
             diff_x = 0;
         }
 
-        if (std::fabs(diff_y) < m_eps) {
+        if (std::fabs(diff_y) < eps) {
             diff_y = 0;
         }
 
@@ -75,7 +74,7 @@ void Node<T>::render() {
     const Vector2 label_pos{m_current_pos.x - label_size.x / 2,
                             m_current_pos.y - label_size.y / 2};
 
-    DrawCircleV(m_current_pos, m_radius, BLACK);
+    DrawCircleV(m_current_pos, radius, BLACK);
     utils::DrawText(label.c_str(), label_pos, WHITE, label_font_size,
                     label_font_spacing);
 }

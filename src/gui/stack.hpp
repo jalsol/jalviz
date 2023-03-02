@@ -17,11 +17,11 @@ class Stack : public core::Stack<Node<T>>, public internal::Base<T> {
 private:
     using Base = core::Stack<Node<T>>;
 
-    static constexpr Vector2 m_head_pos{
+    static constexpr Vector2 head_pos{
         constants::sidebar_width +
             (constants::scene_width - constants::sidebar_width) / 2.0F -
-            Node<T>::m_radius / 2.0F,
-        Node<T>::m_radius * 2.0F};
+            Node<T>::radius / 2.0F,
+        Node<T>::radius * 2.0F};
 
     using Base::m_head;
     using Base::m_tail;
@@ -53,7 +53,7 @@ void Stack<T>::pop() {
 
 template<typename T>
 void Stack<T>::render_link(Vector2 src, Vector2 dest) {
-    constexpr int radius = Node<T>::m_radius;
+    constexpr int radius = Node<T>::radius;
     constexpr float scaled_len = radius / 8.0F;
 
     // straight line
@@ -93,7 +93,7 @@ void Stack<T>::update() {
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
         ptr->data.set_target_pos(
-            {m_head_pos.x, m_head_pos.y + 4 * Node<T>::m_radius * pos});
+            {head_pos.x, head_pos.y + 4 * Node<T>::radius * pos});
         ++pos;
     }
 }

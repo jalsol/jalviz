@@ -17,10 +17,10 @@ class Queue : public core::Queue<Node<T>>, public internal::Base<T> {
 private:
     using Base = core::Queue<Node<T>>;
 
-    static constexpr Vector2 m_head_pos{
+    static constexpr Vector2 head_pos{
         constants::sidebar_width +
             (constants::scene_width - constants::sidebar_width) / 2.0F -
-            15 * Node<T>::m_radius,
+            15 * Node<T>::radius,
         constants::scene_height / 2.0F};
 
     using Base::m_head;
@@ -53,7 +53,7 @@ void Queue<T>::pop() {
 
 template<typename T>
 void Queue<T>::render_link(Vector2 src, Vector2 dest) {
-    constexpr int radius = Node<T>::m_radius;
+    constexpr int radius = Node<T>::radius;
     constexpr float scaled_len = radius / 8.0F;
 
     // straight line
@@ -93,7 +93,7 @@ void Queue<T>::update() {
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
         ptr->data.set_target_pos(
-            {m_head_pos.x + 4 * Node<T>::m_radius * pos, m_head_pos.y});
+            {head_pos.x + 4 * Node<T>::radius * pos, head_pos.y});
         ++pos;
     }
 }
