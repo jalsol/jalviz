@@ -28,7 +28,7 @@ private:
 
 public:
     void render();
-    void interact();
+    void interact() const;
 };
 
 }  // namespace component
