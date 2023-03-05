@@ -49,8 +49,14 @@ add_executable(core_doubly_linked_list_test_exe
 target_include_directories(core_deque_test_exe PRIVATE external)
 target_include_directories(core_doubly_linked_list_test_exe PRIVATE external)
 
-target_link_libraries(core_deque_test_exe PRIVATE -fsanitize=address,undefined,leak -g)
-target_link_libraries(core_doubly_linked_list_test_exe PRIVATE -fsanitize=address,undefined,leak -g)
+if(NOT MSVC)
+    target_link_libraries(core_deque_test_exe PRIVATE
+        -fsanitize=address,undefined,leak -g
+    )
+    target_link_libraries(core_doubly_linked_list_test_exe PRIVATE
+        -fsanitize=address,undefined,leak -g
+    )
+endif()
 
 add_test(core_deque_test core_deque_test_exe)
 add_test(core_doubly_linked_list_test core_doubly_linked_list_test_exe)
