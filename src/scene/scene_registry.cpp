@@ -1,10 +1,9 @@
 #include "scene_registry.hpp"
 
-#include "utils.hpp"
-
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
 #include "stack_scene.hpp"
+#include "utils.hpp"
 
 namespace scene {
 

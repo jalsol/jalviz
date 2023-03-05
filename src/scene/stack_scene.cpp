@@ -9,8 +9,8 @@
 #include <string>
 
 #include "constants.hpp"
-#include "utils.hpp"
 #include "raygui.h"
+#include "utils.hpp"
 
 namespace scene {
 
