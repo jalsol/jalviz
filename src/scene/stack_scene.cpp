@@ -9,6 +9,7 @@
 #include <string>
 
 #include "constants.hpp"
+#include "utils.hpp"
 #include "raygui.h"
 
 namespace scene {
@@ -56,7 +57,7 @@ void StackScene::render_inputs() {
                     render_file_input();
                 } break;
                 default:
-                    __builtin_unreachable();
+                    utils::unreachable();
             }
         } break;
 
@@ -67,7 +68,7 @@ void StackScene::render_inputs() {
         case 2:
             break;
         default:
-            __builtin_unreachable();
+            utils::unreachable();
     }
 
     m_go |= render_go_button();
@@ -133,7 +134,7 @@ void StackScene::interact() {
                 } break;
 
                 default:
-                    __builtin_unreachable();
+                    utils::unreachable();
             }
         } break;
 
@@ -150,7 +151,7 @@ void StackScene::interact() {
         } break;
 
         default:
-            __builtin_unreachable();
+            utils::unreachable();
     }
 
     m_go = false;

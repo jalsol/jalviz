@@ -57,4 +57,12 @@ bool val_in_range(int num) {
     return constants::min_val <= num && num <= constants::max_val;
 }
 
+void unreachable() {
+#if defined(_MSC_VER)
+    __assume(0);
+#else
+    __builtin_unreachable();
+#endif
+}
+
 }  // namespace utils

@@ -28,6 +28,8 @@ core::Deque<int> str_extract_data(
 
 bool val_in_range(int num);
 
+void unreachable();
+
 }  // namespace utils
 
 #endif  // UTILS_HPP_

@@ -1,5 +1,7 @@
 #include "scene_registry.hpp"
 
+#include "utils.hpp"
+
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
 #include "stack_scene.hpp"
@@ -30,7 +32,7 @@ void SceneRegistry::set_scene(int scene_type) {
         } break;
 
         default:
-            __builtin_unreachable();
+            utils::unreachable();
     }
 }
 
