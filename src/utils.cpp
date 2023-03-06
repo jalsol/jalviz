@@ -28,7 +28,7 @@ Vector2 MeasureText(const char* text, float font_size, float spacing) {
 core::Deque<int> str_extract_data(
     char str[constants::text_buffer_size]) {  // NOLINT
     char* save_ptr = nullptr;
-    char* token = strtok_r(str, ",", &save_ptr);
+    char* token = utils::strtok(str, ",", &save_ptr);
 
     if (token == nullptr) {
         return {0};
@@ -41,7 +41,7 @@ core::Deque<int> str_extract_data(
     ret.push_back(num);
 
     while (true) {
-        token = strtok_r(nullptr, ",", &save_ptr);
+        token = utils::strtok(nullptr, ",", &save_ptr);
         if (token == nullptr) {
             break;
         }
@@ -62,6 +62,15 @@ void unreachable() {
     __assume(0);
 #else
     __builtin_unreachable();
+#endif
+}
+
+char* strtok(char* str, const char* delim, char** save_ptr) {
+    return
+#if defined(_MSC_VER)
+        strtok_s(str, delim, save_ptr);
+#else
+        strtok_r(str, delim, save_ptr);
 #endif
 }
 

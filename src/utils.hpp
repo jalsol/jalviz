@@ -30,6 +30,8 @@ bool val_in_range(int num);
 
 void unreachable();
 
+char* strtok(char* str, const char* delim, char** save_ptr);
+
 }  // namespace utils
 
 #endif  // UTILS_HPP_

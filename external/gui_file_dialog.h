@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   FileDialog v1.2 - Modal file dialog to open/save files
+*   FileDialog v1.2 (modified by jalsol) - Modal file dialog to open/save files
 *
 *   MODULE USAGE:
 *       #define GUI_FILE_DIALOG_IMPLEMENTATION
@@ -168,7 +168,7 @@ GuiFileDialogState InitGuiFileDialog(const char *initPath)
     GuiFileDialogState state = { 0 };
 
     // Init window data
-    state.windowBounds = (Rectangle){ GetScreenWidth()/2 - 800/2, GetScreenHeight()/2 - 600/2, 800, 600 };
+    state.windowBounds = (Rectangle){ GetScreenWidth()/2.0F - 800/2.0F, GetScreenHeight()/2.0F - 600/2.0F, 800, 600 };
     state.windowActive = false;
     state.supportDrag = true;
     state.dragMode = false;
