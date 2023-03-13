@@ -62,11 +62,11 @@ add_test(core_deque_test core_deque_test_exe)
 add_test(core_doubly_linked_list_test core_doubly_linked_list_test_exe)
 
 add_custom_target(run_deque_test ALL
-    COMMAND ctest --output-on-failure
+    COMMAND ctest --output-on-failure --test-dir ..
     DEPENDS core_deque_test_exe)
 
 add_custom_target(run_doubly_linked_list_test ALL
-    COMMAND ctest --output-on-failure
+    COMMAND ctest --output-on-failure --test-dir ..
     DEPENDS core_doubly_linked_list_test_exe)
 ###############################################################################
 
