@@ -1,5 +1,5 @@
-#ifndef GUI_BASE_HPP_
-#define GUI_BASE_HPP_
+#ifndef GUI_BASE_GUI_HPP_
+#define GUI_BASE_GUI_HPP_
 
 #include "raylib.h"
 
@@ -16,4 +16,4 @@ public:
 
 }  // namespace gui::internal
 
-#endif  // GUI_BASE_HPP_
+#endif  // GUI_BASE_GUI_HPP_

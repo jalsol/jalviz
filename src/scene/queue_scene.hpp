@@ -5,7 +5,7 @@
 
 #include "base_scene.hpp"
 #include "core/queue.hpp"
-#include "gui/queue.hpp"
+#include "gui/queue_gui.hpp"
 #include "gui_file_dialog.h"
 #include "raygui.h"
 

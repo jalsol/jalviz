@@ -5,7 +5,7 @@
 
 #include "base_scene.hpp"
 #include "core/stack.hpp"
-#include "gui/stack.hpp"
+#include "gui/stack_gui.hpp"
 #include "gui_file_dialog.h"
 #include "raygui.h"
 

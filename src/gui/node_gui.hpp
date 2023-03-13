@@ -1,5 +1,5 @@
-#ifndef GUI_NODE_HPP_
-#define GUI_NODE_HPP_
+#ifndef GUI_NODE_GUI_HPP_
+#define GUI_NODE_GUI_HPP_
 
 #include <array>
 #include <cmath>
@@ -102,4 +102,4 @@ bool Node<T>::check_outdated() const {
 
 }  // namespace gui
 
-#endif  // GUI_NODE_HPP_
+#endif  // GUI_NODE_GUI_HPP_

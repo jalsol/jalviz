@@ -1,13 +1,13 @@
-#ifndef GUI_QUEUE_HPP_
-#define GUI_QUEUE_HPP_
+#ifndef GUI_QUEUE_GUI_HPP_
+#define GUI_QUEUE_GUI_HPP_
 
 #include <cstddef>
 #include <iostream>
 
-#include "base.hpp"
+#include "base_gui.hpp"
 #include "constants.hpp"
 #include "core/queue.hpp"
-#include "node.hpp"
+#include "node_gui.hpp"
 #include "raylib.h"
 
 namespace gui {
@@ -100,4 +100,4 @@ void Queue<T>::update() {
 
 }  // namespace gui
 
-#endif  // GUI_QUEUE_HPP_
+#endif  // GUI_QUEUE_GUI_HPP_

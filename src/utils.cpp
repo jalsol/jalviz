@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-#include "gui/node.hpp"
+#include "gui/node_gui.hpp"
 #include "raylib.h"
 
 namespace utils {
