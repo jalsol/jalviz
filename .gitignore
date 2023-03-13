@@ -6,3 +6,5 @@
 *.exe
 *.out
 build/
+*_exe
+visualgo_cpp
