@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Dependencies
 ###############################################################################
@@ -62,11 +61,11 @@ add_test(core_deque_test core_deque_test_exe)
 add_test(core_doubly_linked_list_test core_doubly_linked_list_test_exe)
 
 add_custom_target(run_deque_test ALL
-    COMMAND ctest --output-on-failure --test-dir ..
+    COMMAND ctest --output-on-failure
     DEPENDS core_deque_test_exe)
 
 add_custom_target(run_doubly_linked_list_test ALL
-    COMMAND ctest --output-on-failure --test-dir ..
+    COMMAND ctest --output-on-failure
     DEPENDS core_doubly_linked_list_test_exe)
 ###############################################################################
 
@@ -88,3 +87,8 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} raylib)
 
 target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC external)
+
+add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${PROJECT_NAME}> ${CMAKE_CURRENT_SOURCE_DIR})
