@@ -3,8 +3,8 @@
 
 #include <array>
 #include <cmath>
-#include <string>
 #include <iostream>
+#include <string>
 
 #include "constants.hpp"
 #include "raylib.h"
@@ -25,7 +25,12 @@ private:
 
 public:
     static constexpr int side = 20;
-    static constexpr Vector2 init_pos{constants::sidebar_width + static_cast<float>(constants::scene_width - constants::sidebar_width) / 2, 0};
+    static constexpr Vector2 init_pos{
+        constants::sidebar_width +
+            static_cast<float>(constants::scene_width -
+                               constants::sidebar_width) /
+                2,
+        0};
 
     GuiElement() = default;
     GuiElement(const T& value, std::size_t index);
@@ -85,8 +90,8 @@ void GuiElement<T>::render() {
     const Vector2 index_pos{m_current_pos.x - index_size.x / 2,
                             m_current_pos.y - 2 * side - index_size.y / 2};
 
-    DrawRectangle(m_current_pos.x - side, // NOLINT
-                  m_current_pos.y - side, // NOLINT
+    DrawRectangle(m_current_pos.x - side,  // NOLINT
+                  m_current_pos.y - side,  // NOLINT
                   2 * side, 2 * side, BLACK);
 
     utils::DrawText(label.c_str(), label_pos, WHITE, label_font_size,
