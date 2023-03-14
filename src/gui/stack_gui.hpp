@@ -13,15 +13,15 @@
 namespace gui {
 
 template<typename T>
-class Stack : public core::Stack<Node<T>>, public internal::Base<T> {
+class Stack : public core::Stack<GuiNode<T>>, public internal::Base {
 private:
-    using Base = core::Stack<Node<T>>;
+    using Base = core::Stack<GuiNode<T>>;
 
     static constexpr Vector2 head_pos{
         constants::sidebar_width +
             (constants::scene_width - constants::sidebar_width) / 2.0F -
-            Node<T>::radius / 2.0F,
-        Node<T>::radius * 2.0F};
+            GuiNode<T>::radius / 2.0F,
+        GuiNode<T>::radius * 2.0F};
 
     using Base::m_head;
     using Base::m_tail;
@@ -43,7 +43,7 @@ public:
 
 template<typename T>
 void Stack<T>::push(const T& elem) {
-    Base::push(Node<T>{elem});
+    Base::push(GuiNode<T>{elem});
 }
 
 template<typename T>
@@ -53,7 +53,7 @@ void Stack<T>::pop() {
 
 template<typename T>
 void Stack<T>::render_link(Vector2 src, Vector2 dest) {
-    constexpr int radius = Node<T>::radius;
+    constexpr int radius = GuiNode<T>::radius;
     constexpr float scaled_len = radius / 8.0F;
 
     // straight line
@@ -93,7 +93,7 @@ void Stack<T>::update() {
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
         ptr->data.set_target_pos(
-            {head_pos.x, head_pos.y + 4 * Node<T>::radius * pos});
+            {head_pos.x, head_pos.y + 4 * GuiNode<T>::radius * pos});
         ++pos;
     }
 }

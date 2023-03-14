@@ -35,9 +35,9 @@ private:
     static constexpr Vector2 button_size{200, 50};
 
     gui::Stack<int> m_stack{
-        gui::Node<int>{1},
-        gui::Node<int>{2},
-        gui::Node<int>{3},
+        gui::GuiNode<int>{1},
+        gui::GuiNode<int>{2},
+        gui::GuiNode<int>{3},
     };
 
     int options_head{};

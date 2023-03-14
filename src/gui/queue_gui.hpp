@@ -13,14 +13,14 @@
 namespace gui {
 
 template<typename T>
-class Queue : public core::Queue<Node<T>>, public internal::Base<T> {
+class GuiQueue : public core::Queue<GuiNode<T>>, public internal::Base {
 private:
-    using Base = core::Queue<Node<T>>;
+    using Base = core::Queue<GuiNode<T>>;
 
     static constexpr Vector2 head_pos{
         constants::sidebar_width +
             (constants::scene_width - constants::sidebar_width) / 2.0F -
-            15 * Node<T>::radius,
+            15 * GuiNode<T>::radius,
         constants::scene_height / 2.0F};
 
     using Base::m_head;
@@ -42,18 +42,18 @@ public:
 };
 
 template<typename T>
-void Queue<T>::push(const T& elem) {
-    Base::push(Node<T>{elem});
+void GuiQueue<T>::push(const T& elem) {
+    Base::push(GuiNode<T>{elem});
 }
 
 template<typename T>
-void Queue<T>::pop() {
+void GuiQueue<T>::pop() {
     Base::pop();
 }
 
 template<typename T>
-void Queue<T>::render_link(Vector2 src, Vector2 dest) {
-    constexpr int radius = Node<T>::radius;
+void GuiQueue<T>::render_link(Vector2 src, Vector2 dest) {
+    constexpr int radius = GuiNode<T>::radius;
     constexpr float scaled_len = radius / 8.0F;
 
     // straight line
@@ -72,7 +72,7 @@ void Queue<T>::render_link(Vector2 src, Vector2 dest) {
 }
 
 template<typename T>
-void Queue<T>::render() {
+void GuiQueue<T>::render() {
     update();
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
@@ -86,14 +86,14 @@ void Queue<T>::render() {
 }
 
 template<typename T>
-void Queue<T>::update() {
+void GuiQueue<T>::update() {
     // TODO: if not outdated then return
 
     std::size_t pos = 0;
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
         ptr->data.set_target_pos(
-            {head_pos.x + 4 * Node<T>::radius * pos, head_pos.y});
+            {head_pos.x + 4 * GuiNode<T>::radius * pos, head_pos.y});
         ++pos;
     }
 }

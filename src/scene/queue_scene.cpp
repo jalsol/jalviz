@@ -159,7 +159,7 @@ void QueueScene::interact() {
 
 void QueueScene::interact_random() {
     std::size_t size = utils::get_random(std::size_t{1}, max_size);
-    m_queue = gui::Queue<int>();
+    m_queue = gui::GuiQueue<int>();
 
     for (auto i = 0; i < size; ++i) {
         m_queue.push(utils::get_random(constants::min_val, constants::max_val));
@@ -171,7 +171,7 @@ void QueueScene::interact_import(bool clear, int amount_to_take) {
     m_text_input[0] = '\0';
 
     if (clear) {
-        m_queue = gui::Queue<int>();
+        m_queue = gui::GuiQueue<int>();
     }
 
     while (!nums.empty() && amount_to_take > 0) {
