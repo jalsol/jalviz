@@ -7,9 +7,9 @@ namespace scene {
 
 enum SceneId {
     Menu,
-    StaticArray,
+    Array,
     DynamicArray,
-    SinglyLinkedList,
+    LinkedList,
     DoublyLinkedList,
     CircularLinkedList,
     Stack,

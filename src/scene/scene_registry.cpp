@@ -1,5 +1,6 @@
 #include "scene_registry.hpp"
 
+#include "array_scene.hpp"
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
 #include "stack_scene.hpp"
@@ -20,6 +21,10 @@ void SceneRegistry::set_scene(int scene_type) {
     switch (scene_type) {
         case Menu: {
             scene_ptr = &MenuScene::get_instance();
+        } break;
+
+        case Array: {
+            scene_ptr = &ArrayScene::get_instance();
         } break;
 
         case Stack: {

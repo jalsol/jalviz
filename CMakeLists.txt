@@ -77,6 +77,7 @@ add_executable(${PROJECT_NAME}
     src/raygui_impl.cpp
 
     src/scene/menu_scene.cpp
+    src/scene/array_scene.cpp
     src/scene/stack_scene.cpp
     src/scene/queue_scene.cpp
     src/scene/scene_registry.cpp
