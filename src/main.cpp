@@ -1,9 +1,9 @@
+#include <iostream>
+
 #include "component/sidebar.hpp"
 #include "constants.hpp"
 #include "raygui.h"
 #include "scene/scene_registry.hpp"
-
-#include <iostream>
 
 int main() {
     InitWindow(constants::scene_width, constants::scene_height,
