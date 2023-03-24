@@ -87,7 +87,7 @@ void MenuScene::interact() {
     scene::SceneRegistry& registry = scene::SceneRegistry::get_instance();
 
     if (m_start) {
-        registry.set_scene(Stack);
+        registry.set_scene(Array);
         m_start = false;
     } else if (m_quit) {
         registry.close_window();

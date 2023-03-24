@@ -95,10 +95,18 @@ void ArrayScene::render_file_input() {
         GuiLock();
     }
 
+    const char* const file_name = 
+        static_cast<char*>(m_file_dialog_state.fileNameText);
+
+    const char* const text =
+        (m_file_dialog_state.SelectFilePressed)
+            ? file_name
+            : "Select file";
+
     if (GuiButton(Rectangle{static_cast<float>(options_head),
                             constants::scene_height - button_size.y,
                             button_size.x, button_size.y},
-                  GuiIconText(ICON_FILE_OPEN, "Select file"))) {
+                  GuiIconText(ICON_FILE_OPEN, text))) {
         m_file_dialog_state.windowActive = true;
     }
 
