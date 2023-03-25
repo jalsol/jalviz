@@ -83,6 +83,8 @@ add_executable(${PROJECT_NAME}
     src/scene/scene_registry.cpp
 
     src/component/sidebar.cpp
+    src/component/text_input.cpp
+    src/component/file_dialog.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} raylib)
