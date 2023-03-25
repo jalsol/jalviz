@@ -51,10 +51,10 @@ void QueueScene::render_inputs() {
                 case 0:
                     break;
                 case 1: {
-                    render_text_input();
+                    m_text_input.render(options_head, head_offset);
                 } break;
                 case 2: {
-                    render_file_input();
+                    m_file_dialog.render(options_head, head_offset);
                 } break;
                 default:
                     utils::unreachable();
@@ -62,7 +62,7 @@ void QueueScene::render_inputs() {
         } break;
 
         case 1: {
-            render_text_input();
+            m_text_input.render(options_head, head_offset);
         } break;
 
         case 2:
@@ -79,39 +79,6 @@ bool QueueScene::render_go_button() const {
                                constants::scene_height - button_size.y,
                                button_size.y, button_size.y},
                      "Go");
-}
-
-void QueueScene::render_text_input() {
-    GuiTextBox(Rectangle{static_cast<float>(options_head),
-                         constants::scene_height - button_size.y, button_size.x,
-                         button_size.y},
-               static_cast<char*>(m_text_input), button_size.y, true);
-
-    options_head += (button_size.x + head_offset);
-}
-
-void QueueScene::render_file_input() {
-    if (m_file_dialog_state.windowActive) {
-        GuiLock();
-    }
-
-    const char* const file_name =
-        static_cast<char*>(m_file_dialog_state.fileNameText);
-
-    const char* const text =
-        (m_file_dialog_state.SelectFilePressed) ? file_name : "Select file";
-
-    if (GuiButton(Rectangle{static_cast<float>(options_head),
-                            constants::scene_height - button_size.y,
-                            button_size.x, button_size.y},
-                  GuiIconText(ICON_FILE_OPEN, text))) {
-        m_file_dialog_state.windowActive = true;
-    }
-
-    options_head += (button_size.x + head_offset);
-
-    GuiUnlock();
-    GuiFileDialog(&m_file_dialog_state);
 }
 
 void QueueScene::render() {
@@ -132,7 +99,8 @@ void QueueScene::interact() {
                 } break;
 
                 case 1: {
-                    interact_import(true, max_size);
+                    interact_import(m_text_input.extract_values(), true,
+                                    max_size);
                 } break;
 
                 case 2: {
@@ -146,7 +114,7 @@ void QueueScene::interact() {
 
         case 1: {
             if (m_go && m_queue.size() < max_size) {
-                interact_import(false, 1);
+                interact_import(m_text_input.extract_values(), false, 1);
             }
         } break;
 
@@ -172,10 +140,8 @@ void QueueScene::interact_random() {
     }
 }
 
-void QueueScene::interact_import(bool clear, int amount_to_take) {
-    core::Deque<int> nums = utils::str_extract_data(m_text_input);  // NOLINT
-    m_text_input[0] = '\0';
-
+void QueueScene::interact_import(core::Deque<int> nums, bool clear,
+                                 int amount_to_take) {
     if (clear) {
         m_queue = gui::GuiQueue<int>();
     }
@@ -190,21 +156,13 @@ void QueueScene::interact_import(bool clear, int amount_to_take) {
 }
 
 void QueueScene::interact_file_import() {
-    if (!m_file_dialog_state.SelectFilePressed) {
+    if (!m_file_dialog.is_pressed()) {
         return;
     }
 
-    std::string file_name;
-    file_name += static_cast<char*>(m_file_dialog_state.dirPathText);
-    file_name += '/';
-    file_name += static_cast<char*>(m_file_dialog_state.fileNameText);
+    interact_import(m_file_dialog.extract_values(), true, max_size);
 
-    std::ifstream ifs(file_name);
-    ifs >> m_text_input;
-
-    interact_import(true, max_size);
-
-    m_file_dialog_state.SelectFilePressed = false;
+    m_file_dialog.reset_pressed();
 }
 
 }  // namespace scene

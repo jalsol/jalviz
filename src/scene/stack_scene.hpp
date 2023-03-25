@@ -4,9 +4,10 @@
 #include <array>
 
 #include "base_scene.hpp"
+#include "component/file_dialog.hpp"
+#include "component/text_input.hpp"
 #include "core/stack.hpp"
 #include "gui/stack_gui.hpp"
-#include "gui_file_dialog.h"
 #include "raygui.h"
 
 namespace scene {
@@ -40,28 +41,23 @@ private:
         gui::GuiNode<int>{3},
     };
 
-    int options_head{};
+    float options_head{};
 
     int m_mode_selection{};
     std::array<int, num_modes> m_action_selection{};
 
     bool m_go{};
-    char m_text_input[constants::text_buffer_size] = "";  // NOLINT
-
-    GuiFileDialogState m_file_dialog_state{
-        InitGuiFileDialog(GetWorkingDirectory())};
-    char m_file_input[constants::text_buffer_size] = "";  // NOLINT
+    component::TextInput m_text_input;
+    component::FileDialog m_file_dialog;
 
     StackScene() = default;
 
     void render_options();
     void render_inputs();
     [[nodiscard]] bool render_go_button() const;
-    void render_text_input();
-    void render_file_input();
 
     void interact_random();
-    void interact_import(bool clear, int amount_to_take);
+    void interact_import(core::Deque<int> nums, bool clear, int amount_to_take);
     void interact_file_import();
 
 public:
