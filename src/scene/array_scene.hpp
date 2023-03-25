@@ -50,6 +50,8 @@ private:
         InitGuiFileDialog(GetWorkingDirectory())};
     char m_file_input[constants::text_buffer_size] = "";  // NOLINT
 
+    char m_index_input[constants::text_buffer_size] = "";  // NOLINT
+
     ArrayScene() = default;
 
     void render_options();
@@ -57,10 +59,12 @@ private:
     [[nodiscard]] bool render_go_button() const;
     void render_text_input();
     void render_file_input();
+    void render_index_input();
 
     void interact_random();
     void interact_import();
     void interact_file_import();
+    void interact_update();
 
 public:
     ArrayScene(const ArrayScene&) = delete;

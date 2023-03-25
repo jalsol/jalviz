@@ -62,6 +62,7 @@ void ArrayScene::render_inputs() {
         } break;
 
         case 1: {
+            render_index_input();
             render_text_input();
         } break;
 
@@ -82,10 +83,25 @@ bool ArrayScene::render_go_button() const {
 }
 
 void ArrayScene::render_text_input() {
-    GuiTextBox(Rectangle{static_cast<float>(options_head),
-                         constants::scene_height - button_size.y, button_size.x,
-                         button_size.y},
-               static_cast<char*>(m_text_input), button_size.y, true);
+    static bool locked = false;
+    if (GuiTextBox(Rectangle{static_cast<float>(options_head),
+                             constants::scene_height - button_size.y,
+                             button_size.x, button_size.y},
+                   static_cast<char*>(m_text_input), button_size.y, locked)) {
+        locked ^= 1;
+    }
+
+    options_head += (button_size.x + head_offset);
+}
+
+void ArrayScene::render_index_input() {
+    static bool locked = false;
+    if (GuiTextBox(Rectangle{static_cast<float>(options_head),
+                             constants::scene_height - button_size.y,
+                             button_size.x, button_size.y},
+                   static_cast<char*>(m_index_input), button_size.y, locked)) {
+        locked ^= 1;
+    }
 
     options_head += (button_size.x + head_offset);
 }
@@ -132,7 +148,7 @@ void ArrayScene::interact() {
                 } break;
 
                 case 1: {
-                    interact_import();
+                    interact_update();
                 } break;
 
                 case 2: {
@@ -145,9 +161,7 @@ void ArrayScene::interact() {
         } break;
 
         case 1: {
-            // if (m_go && m_array.size() < max_size) {
-            //     interact_import(false, 1);
-            // }
+            interact_update();
         } break;
 
         case 2: {
@@ -185,6 +199,18 @@ void ArrayScene::interact_import() {
 
     for (; i < max_size; ++i) {
         m_array[i] = 0;
+    }
+}
+
+void ArrayScene::interact_update() {
+    int value = utils::str_extract_data(m_text_input).front();  // NOLINT
+    m_text_input[0] = '\0';
+
+    int index = utils::str_extract_data(m_index_input).front();  // NOLINT
+    m_index_input[0] = '\0';
+
+    if (0 <= index && index < max_size && utils::val_in_range(value)) {
+        m_array[index] = value;
     }
 }
 
