@@ -133,7 +133,7 @@ void StackScene::interact() {
 
 void StackScene::interact_random() {
     std::size_t size = utils::get_random(std::size_t{1}, max_size);
-    m_stack = gui::Stack<int>();
+    m_stack = gui::GuiStack<int>();
 
     for (auto i = 0; i < size; ++i) {
         m_stack.push(utils::get_random(constants::min_val, constants::max_val));
@@ -143,7 +143,7 @@ void StackScene::interact_random() {
 void StackScene::interact_import(core::Deque<int> nums, bool clear,
                                  int amount_to_take) {
     if (clear) {
-        m_stack = gui::Stack<int>();
+        m_stack = gui::GuiStack<int>();
     }
 
     while (!nums.empty() && amount_to_take > 0) {

@@ -13,7 +13,7 @@
 namespace gui {
 
 template<typename T>
-class Stack : public core::Stack<GuiNode<T>>, public internal::Base {
+class GuiStack : public core::Stack<GuiNode<T>>, public internal::Base {
 private:
     using Base = core::Stack<GuiNode<T>>;
 
@@ -42,17 +42,17 @@ public:
 };
 
 template<typename T>
-void Stack<T>::push(const T& elem) {
+void GuiStack<T>::push(const T& elem) {
     Base::push(GuiNode<T>{elem});
 }
 
 template<typename T>
-void Stack<T>::pop() {
+void GuiStack<T>::pop() {
     Base::pop();
 }
 
 template<typename T>
-void Stack<T>::render_link(Vector2 src, Vector2 dest) {
+void GuiStack<T>::render_link(Vector2 src, Vector2 dest) {
     constexpr int radius = GuiNode<T>::radius;
     constexpr float scaled_len = radius / 8.0F;
 
@@ -72,7 +72,7 @@ void Stack<T>::render_link(Vector2 src, Vector2 dest) {
 }
 
 template<typename T>
-void Stack<T>::render() {
+void GuiStack<T>::render() {
     update();
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
@@ -86,7 +86,7 @@ void Stack<T>::render() {
 }
 
 template<typename T>
-void Stack<T>::update() {
+void GuiStack<T>::update() {
     // TODO: if not outdated then return
 
     std::size_t pos = 0;

@@ -35,7 +35,7 @@ private:
     static constexpr int head_offset = 20;
     static constexpr Vector2 button_size{200, 50};
 
-    gui::Stack<int> m_stack{
+    gui::GuiStack<int> m_stack{
         gui::GuiNode<int>{1},
         gui::GuiNode<int>{2},
         gui::GuiNode<int>{3},
