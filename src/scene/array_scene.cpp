@@ -19,35 +19,12 @@ ArrayScene& ArrayScene::get_instance() {
     return scene;
 }
 
-void ArrayScene::render_options() {
-    options_head = 2 * constants::sidebar_width;
-
-    Rectangle mode_button_shape{static_cast<float>(options_head),
-                                constants::scene_height - button_size.y,
-                                button_size.x, button_size.y};
-    options_head += (button_size.x + head_offset);
-
-    m_mode_selection =
-        GuiComboBox(mode_button_shape, mode_labels, m_mode_selection);
-
-    if (std::strlen(action_labels.at(m_mode_selection)) != 0) {
-        Rectangle action_button_shape{static_cast<float>(options_head),
-                                      constants::scene_height - button_size.y,
-                                      button_size.x, button_size.y};
-        options_head += (button_size.x + head_offset);
-
-        m_action_selection.at(m_mode_selection) =
-            GuiComboBox(action_button_shape, action_labels.at(m_mode_selection),
-                        m_action_selection.at(m_mode_selection));
-    }
-
-    render_inputs();
-}
-
 void ArrayScene::render_inputs() {
-    switch (m_mode_selection) {
+    int& mode = scene_options.mode_selection;
+
+    switch (mode) {
         case 0: {
-            switch (m_action_selection.at(m_mode_selection)) {
+            switch (scene_options.action_selection.at(mode)) {
                 case 0:
                     break;
                 case 1: {
@@ -75,16 +52,9 @@ void ArrayScene::render_inputs() {
     m_go |= render_go_button();
 }
 
-bool ArrayScene::render_go_button() const {
-    return GuiButton(Rectangle{static_cast<float>(options_head),
-                               constants::scene_height - button_size.y,
-                               button_size.y, button_size.y},
-                     "Go");
-}
-
 void ArrayScene::render() {
     m_array.render();
-    render_options();
+    render_options(scene_options);
 }
 
 void ArrayScene::interact() {
@@ -92,9 +62,11 @@ void ArrayScene::interact() {
         return;
     }
 
-    switch (m_mode_selection) {
+    int& mode = scene_options.mode_selection;
+
+    switch (mode) {
         case 0: {
-            switch (m_action_selection.at(m_mode_selection)) {
+            switch (scene_options.action_selection.at(mode)) {
                 case 0: {
                     interact_random();
                 } break;

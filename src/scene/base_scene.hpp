@@ -1,9 +1,21 @@
 #ifndef SCENE_BASE_SCENE_HPP_
 #define SCENE_BASE_SCENE_HPP_
 
+#include "raylib.h"
+#include "scene_options.hpp"
+
 namespace scene::internal {
 
 class BaseScene {
+protected:
+    static constexpr Vector2 button_size{200, 50};
+    static constexpr int head_offset = 20;
+    float options_head{};
+
+    virtual bool render_go_button() const;
+    virtual void render_options(SceneOptions& scene_config);
+    virtual void render_inputs(){};
+
 public:
     BaseScene() = default;
     BaseScene(const BaseScene&) = delete;

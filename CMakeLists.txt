@@ -76,11 +76,13 @@ add_executable(${PROJECT_NAME}
     src/utils.cpp
     src/raygui_impl.cpp
 
+    src/scene/base_scene.cpp
     src/scene/menu_scene.cpp
     src/scene/array_scene.cpp
     src/scene/stack_scene.cpp
     src/scene/queue_scene.cpp
     src/scene/scene_registry.cpp
+    src/scene/scene_options.cpp
 
     src/component/sidebar.cpp
     src/component/text_input.cpp

@@ -19,35 +19,12 @@ QueueScene& QueueScene::get_instance() {
     return scene;
 }
 
-void QueueScene::render_options() {
-    options_head = 2 * constants::sidebar_width;
-
-    Rectangle mode_button_shape{static_cast<float>(options_head),
-                                constants::scene_height - button_size.y,
-                                button_size.x, button_size.y};
-    options_head += (button_size.x + head_offset);
-
-    m_mode_selection =
-        GuiComboBox(mode_button_shape, mode_labels, m_mode_selection);
-
-    if (std::strlen(action_labels.at(m_mode_selection)) != 0) {
-        Rectangle action_button_shape{static_cast<float>(options_head),
-                                      constants::scene_height - button_size.y,
-                                      button_size.x, button_size.y};
-        options_head += (button_size.x + head_offset);
-
-        m_action_selection.at(m_mode_selection) =
-            GuiComboBox(action_button_shape, action_labels.at(m_mode_selection),
-                        m_action_selection.at(m_mode_selection));
-    }
-
-    render_inputs();
-}
-
 void QueueScene::render_inputs() {
-    switch (m_mode_selection) {
+    int& mode = scene_options.mode_selection;
+
+    switch (mode) {
         case 0: {
-            switch (m_action_selection.at(m_mode_selection)) {
+            switch (scene_options.action_selection.at(mode)) {
                 case 0:
                     break;
                 case 1: {
@@ -74,16 +51,9 @@ void QueueScene::render_inputs() {
     m_go |= render_go_button();
 }
 
-bool QueueScene::render_go_button() const {
-    return GuiButton(Rectangle{static_cast<float>(options_head),
-                               constants::scene_height - button_size.y,
-                               button_size.y, button_size.y},
-                     "Go");
-}
-
 void QueueScene::render() {
     m_queue.render();
-    render_options();
+    render_options(scene_options);
 }
 
 void QueueScene::interact() {
@@ -91,16 +61,18 @@ void QueueScene::interact() {
         return;
     }
 
-    switch (m_mode_selection) {
+    int& mode = scene_options.mode_selection;
+
+    switch (mode) {
         case 0: {
-            switch (m_action_selection.at(m_mode_selection)) {
+            switch (scene_options.action_selection.at(mode)) {
                 case 0: {
                     interact_random();
                 } break;
 
                 case 1: {
                     interact_import(m_text_input.extract_values(), true,
-                                    max_size);
+                                    scene_options.max_size);
                 } break;
 
                 case 2: {
@@ -113,7 +85,7 @@ void QueueScene::interact() {
         } break;
 
         case 1: {
-            if (m_go && m_queue.size() < max_size) {
+            if (m_go && m_queue.size() < scene_options.max_size) {
                 interact_import(m_text_input.extract_values(), false, 1);
             }
         } break;
@@ -132,7 +104,8 @@ void QueueScene::interact() {
 }
 
 void QueueScene::interact_random() {
-    std::size_t size = utils::get_random(std::size_t{1}, max_size);
+    std::size_t size =
+        utils::get_random(std::size_t{1}, scene_options.max_size);
     m_queue = gui::GuiQueue<int>();
 
     for (auto i = 0; i < size; ++i) {
@@ -141,7 +114,7 @@ void QueueScene::interact_random() {
 }
 
 void QueueScene::interact_import(core::Deque<int> nums, bool clear,
-                                 int amount_to_take) {
+                                 std::size_t amount_to_take) {
     if (clear) {
         m_queue = gui::GuiQueue<int>();
     }
@@ -160,7 +133,8 @@ void QueueScene::interact_file_import() {
         return;
     }
 
-    interact_import(m_file_dialog.extract_values(), true, max_size);
+    interact_import(m_file_dialog.extract_values(), true,
+                    scene_options.max_size);
 
     m_file_dialog.reset_pressed();
 }

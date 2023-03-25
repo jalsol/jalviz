@@ -14,26 +14,39 @@ namespace scene {
 
 class QueueScene : public internal::BaseScene {
 private:
-    static constexpr std::size_t max_size = 8;
-    static constexpr int num_modes = 3;
-    static constexpr const char* mode_labels =
+    internal::SceneOptions scene_options{
+        // max_size
+        8,  // NOLINT
+
+        // mode_labels
         "Mode: Create;"
         "Mode: Push;"
-        "Mode: Pop";
-    static constexpr std::array<const char*, num_modes> action_labels = {
-        // Mode: Create
-        "Action: Random;"
-        "Action: Input;"
-        "Action: File",
+        "Mode: Pop",
 
-        // Mode: Push
-        "",
+        // mode_selection
+        0,
 
-        // Mode: Pop
-        "",
+        // action_labels
+        {
+            // Mode: Create
+            "Action: Random;"
+            "Action: Input;"
+            "Action: File",
+
+            // Mode: Push
+            "",
+
+            // Mode: Pop
+            "",
+        },
+
+        // action_selection
+        std::vector<int>(3),
     };
-    static constexpr int head_offset = 20;
-    static constexpr Vector2 button_size{200, 50};
+
+    using internal::BaseScene::button_size;
+    using internal::BaseScene::head_offset;
+    using internal::BaseScene::options_head;
 
     gui::GuiQueue<int> m_queue{
         gui::GuiNode<int>{1},
@@ -41,25 +54,22 @@ private:
         gui::GuiNode<int>{3},
     };
 
-    float options_head{};
-
-    int m_mode_selection{};
-    std::array<int, num_modes> m_action_selection{};
-
     bool m_go{};
     component::TextInput m_text_input;
     component::FileDialog m_file_dialog;
 
     QueueScene() = default;
 
-    void render_options();
-    void render_inputs();
-    [[nodiscard]] bool render_go_button() const;
-    void render_text_input();
-    void render_file_input();
+    using internal::BaseScene::render_go_button;
+    using internal::BaseScene::render_options;
+    void render_inputs() override;
+
+    //     void render_text_input();
+    //     void render_file_input();
 
     void interact_random();
-    void interact_import(core::Deque<int> nums, bool clear, int amount_to_take);
+    void interact_import(core::Deque<int> nums, bool clear,
+                         std::size_t amount_to_take);
     void interact_file_import();
 
 public:
