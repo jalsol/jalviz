@@ -87,6 +87,7 @@ add_executable(${PROJECT_NAME}
     src/component/sidebar.cpp
     src/component/text_input.cpp
     src/component/file_dialog.cpp
+    src/component/sequence_controller.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} raylib)

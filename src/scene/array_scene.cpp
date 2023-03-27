@@ -58,23 +58,32 @@ void ArrayScene::render() {
     core::Deque<gui::GuiArray<int, max_size>> sequence = m_sequence;
     ++m_anim_counter;
 
-    int frame_idx = m_anim_counter * 2 / constants::frames_per_second;
+    int frame_idx = m_sequence_controller.get_run_all()
+                        ? m_anim_counter * 2 / constants::frames_per_second
+                        : m_sequence_controller.get_progress_value();
 
-    while (!sequence.empty() && frame_idx > 0) {
+    for (int i = 0; !sequence.empty() && i < frame_idx; ++i) {
         sequence.pop_front();
-        --frame_idx;
+        m_sequence_controller.set_progress_value(i + 1);
     }
 
     if (!sequence.empty()) {
         sequence.front().render();
-    } else {
+    } else {  // end of sequence
         m_array.render();
+        m_sequence_controller.set_run_all(false);
     }
 
+    m_sequence_controller.render();
     render_options(scene_options);
 }
 
 void ArrayScene::interact() {
+    if (m_sequence_controller.interact()) {
+        m_anim_counter = 0;
+        return;
+    }
+
     if (!m_go) {
         return;
     }
@@ -163,6 +172,8 @@ void ArrayScene::interact_update() {
         m_array.set_color(index, BLACK);
 
         m_anim_counter = 0;
+        m_sequence_controller.set_max_value((int)m_sequence.size());
+        m_sequence_controller.set_run_all(true);
     }
 }
 
@@ -183,10 +194,10 @@ void ArrayScene::interact_search() {
         m_sequence.pop_back();
     }
 
-    for (std::size_t i = 0; i < max_size; ++i) {
-        // initial state
-        m_sequence.push_back(m_array);
+    // initial state
+    m_sequence.push_back(m_array);
 
+    for (std::size_t i = 0; i < max_size; ++i) {
         m_array.set_color(i, ORANGE);
         m_sequence.push_back(m_array);
 
@@ -202,6 +213,8 @@ void ArrayScene::interact_search() {
     }
 
     m_anim_counter = 0;
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_run_all(true);
 }
 
 }  // namespace scene

@@ -6,6 +6,7 @@
 
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
+#include "component/sequence_controller.hpp"
 #include "component/text_input.hpp"
 #include "constants.hpp"
 #include "gui/array_gui.hpp"
@@ -60,6 +61,7 @@ private:
     component::TextInput m_text_input;
     component::TextInput m_index_input;
     component::FileDialog m_file_dialog;
+    component::SequenceController m_sequence_controller;
 
     ArrayScene() = default;
 
