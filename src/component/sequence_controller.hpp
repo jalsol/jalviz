@@ -8,12 +8,18 @@ namespace component {
 class SequenceController {
 private:
     static constexpr Vector2 button_size{25, 25};
+    static constexpr int speed_scale = 4;
+
     bool m_replay{};
-    bool m_prev{};
-    bool m_next{};
+    bool m_prev_frame{};
+    bool m_next_frame{};
     int m_progress_value{};
     int m_num_steps{};
     bool m_run_all{};
+
+    bool m_prev_speed{};
+    bool m_next_speed{};
+    int m_speed{speed_scale};
 
 public:
     void render();
@@ -25,6 +31,7 @@ public:
 
     bool get_run_all() const;
     int get_progress_value() const;
+    float get_speed_scale() const;
 };
 
 }  // namespace component

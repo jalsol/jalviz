@@ -59,7 +59,9 @@ void ArrayScene::render() {
     ++m_anim_counter;
 
     int frame_idx = m_sequence_controller.get_run_all()
-                        ? m_anim_counter * 2 / constants::frames_per_second
+                        ? m_anim_counter * 2.0F *
+                              m_sequence_controller.get_speed_scale() /
+                              constants::frames_per_second
                         : m_sequence_controller.get_progress_value();
 
     for (int i = 0; !sequence.empty() && i < frame_idx; ++i) {
