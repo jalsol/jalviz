@@ -22,6 +22,7 @@ private:
     Vector2 m_target_pos{};
     bool m_is_outdated{false};
     static constexpr float eps = 1e-3;
+    Color m_color{BLACK};
 
 public:
     static constexpr int side = 20;
@@ -37,6 +38,7 @@ public:
 
     void render();
     void set_target_pos(Vector2 pos);
+    void set_color(Color color);
     [[nodiscard]] Vector2 get_target_pos() const;
     [[nodiscard]] Vector2 get_current_pos() const;
     [[nodiscard]] bool check_outdated() const;
@@ -92,7 +94,7 @@ void GuiElement<T>::render() {
 
     DrawRectangle(m_current_pos.x - side,  // NOLINT
                   m_current_pos.y - side,  // NOLINT
-                  2 * side, 2 * side, BLACK);
+                  2 * side, 2 * side, m_color);
 
     utils::DrawText(label.c_str(), label_pos, WHITE, label_font_size,
                     label_font_spacing);
@@ -105,6 +107,11 @@ template<typename T>
 void GuiElement<T>::set_target_pos(Vector2 pos) {
     m_target_pos = pos;
     m_is_outdated = true;
+}
+
+template<typename T>
+void GuiElement<T>::set_color(Color color) {
+    m_color = color;
 }
 
 template<typename T>

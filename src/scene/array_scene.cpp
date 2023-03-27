@@ -43,8 +43,10 @@ void ArrayScene::render_inputs() {
             m_text_input.render(options_head, head_offset);
         } break;
 
-        case 2:
-            break;
+        case 2: {
+            m_text_input.render(options_head, head_offset);
+        } break;
+
         default:
             utils::unreachable();
     }
@@ -53,7 +55,22 @@ void ArrayScene::render_inputs() {
 }
 
 void ArrayScene::render() {
-    m_array.render();
+    core::Deque<gui::GuiArray<int, max_size>> sequence = m_sequence;
+    ++m_anim_counter;
+
+    int frame_idx = m_anim_counter * 2 / constants::frames_per_second;
+
+    while (!sequence.empty() && frame_idx > 0) {
+        sequence.pop_front();
+        --frame_idx;
+    }
+
+    if (!sequence.empty()) {
+        sequence.front().render();
+    } else {
+        m_array.render();
+    }
+
     render_options(scene_options);
 }
 
@@ -89,9 +106,7 @@ void ArrayScene::interact() {
         } break;
 
         case 2: {
-            // if (m_go && !m_array.empty()) {
-            //     m_array.pop();
-            // }
+            interact_search();
         } break;
 
         default:
@@ -128,7 +143,26 @@ void ArrayScene::interact_update() {
     int value = m_text_input.extract_values().front();
 
     if (0 <= index && index < max_size && utils::val_in_range(value)) {
+        while (!m_sequence.empty()) {
+            m_sequence.pop_back();
+        }
+
+        // initial state (before update)
+        m_sequence.push_back(m_array);
+
+        // highlight
+        m_array.set_color(index, ORANGE);
+        m_sequence.push_back(m_array);
+
+        // update
         m_array[index] = value;
+        m_array.set_color(index, GREEN);
+        m_sequence.push_back(m_array);
+
+        // undo highlight
+        m_array.set_color(index, BLACK);
+
+        m_anim_counter = 0;
     }
 }
 
@@ -140,6 +174,34 @@ void ArrayScene::interact_file_import() {
     interact_import(m_file_dialog.extract_values());
 
     m_file_dialog.reset_pressed();
+}
+
+void ArrayScene::interact_search() {
+    int value = m_text_input.extract_values().front();
+
+    while (!m_sequence.empty()) {
+        m_sequence.pop_back();
+    }
+
+    for (std::size_t i = 0; i < max_size; ++i) {
+        // initial state
+        m_sequence.push_back(m_array);
+
+        m_array.set_color(i, ORANGE);
+        m_sequence.push_back(m_array);
+
+        if (m_array[i] == value) {
+            m_array.set_color(i, GREEN);
+            m_sequence.push_back(m_array);
+            m_array.set_color(i, BLACK);
+            break;
+        }
+
+        m_array.set_color(i, BLACK);
+        m_sequence.push_back(m_array);
+    }
+
+    m_anim_counter = 0;
 }
 
 }  // namespace scene

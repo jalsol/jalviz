@@ -52,7 +52,9 @@ private:
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
 
+    int m_anim_counter{};
     gui::GuiArray<int, max_size> m_array{};
+    core::Deque<gui::GuiArray<int, max_size>> m_sequence;
 
     bool m_go{};
     component::TextInput m_text_input;
@@ -69,6 +71,7 @@ private:
     void interact_import(core::Deque<int> nums);
     void interact_file_import();
     void interact_update();
+    void interact_search();
 
 public:
     ArrayScene(const ArrayScene&) = delete;

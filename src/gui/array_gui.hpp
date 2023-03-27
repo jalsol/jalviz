@@ -32,6 +32,8 @@ public:
 
     T& operator[](std::size_t idx);
     T operator[](std::size_t idx) const;
+
+    void set_color(std::size_t idx, Color color);
 };
 
 template<typename T, std::size_t N>
@@ -75,6 +77,11 @@ T& GuiArray<T, N>::operator[](std::size_t idx) {
 template<typename T, std::size_t N>
 T GuiArray<T, N>::operator[](std::size_t idx) const {
     return m_array[idx].get_value();
+}
+
+template<typename T, std::size_t N>
+void GuiArray<T, N>::set_color(std::size_t idx, Color color) {
+    m_array[idx].set_color(color);
 }
 
 }  // namespace gui
