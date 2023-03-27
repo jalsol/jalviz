@@ -16,6 +16,7 @@ private:
     int m_progress_value{};
     int m_num_steps{};
     bool m_run_all{};
+    int m_anim_counter{};
 
     bool m_prev_speed{};
     bool m_next_speed{};
@@ -32,6 +33,10 @@ public:
     bool get_run_all() const;
     int get_progress_value() const;
     float get_speed_scale() const;
+
+    void reset_anim_counter();
+    void inc_anim_counter();
+    int get_anim_counter() const;
 };
 
 }  // namespace component

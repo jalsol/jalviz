@@ -53,7 +53,6 @@ private:
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
 
-    int m_anim_counter{};
     gui::GuiArray<int, max_size> m_array{};
     core::Deque<gui::GuiArray<int, max_size>> m_sequence;
 

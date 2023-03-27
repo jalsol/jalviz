@@ -56,10 +56,10 @@ void ArrayScene::render_inputs() {
 
 void ArrayScene::render() {
     core::Deque<gui::GuiArray<int, max_size>> sequence = m_sequence;
-    ++m_anim_counter;
+    m_sequence_controller.inc_anim_counter();
 
     int frame_idx = m_sequence_controller.get_run_all()
-                        ? m_anim_counter * 2.0F *
+                        ? m_sequence_controller.get_anim_counter() * 2.0F *
                               m_sequence_controller.get_speed_scale() /
                               constants::frames_per_second
                         : m_sequence_controller.get_progress_value();
@@ -82,7 +82,7 @@ void ArrayScene::render() {
 
 void ArrayScene::interact() {
     if (m_sequence_controller.interact()) {
-        m_anim_counter = 0;
+        m_sequence_controller.reset_anim_counter();
         return;
     }
 
@@ -173,7 +173,7 @@ void ArrayScene::interact_update() {
         // undo highlight
         m_array.set_color(index, BLACK);
 
-        m_anim_counter = 0;
+        m_sequence_controller.reset_anim_counter();
         m_sequence_controller.set_max_value((int)m_sequence.size());
         m_sequence_controller.set_run_all(true);
     }
@@ -214,7 +214,7 @@ void ArrayScene::interact_search() {
         m_sequence.push_back(m_array);
     }
 
-    m_anim_counter = 0;
+    m_sequence_controller.reset_anim_counter();
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_run_all(true);
 }

@@ -24,6 +24,12 @@ float SequenceController::get_speed_scale() const {
     return (float)m_speed / speed_scale;
 }
 
+void SequenceController::reset_anim_counter() { m_anim_counter = 0; }
+
+void SequenceController::inc_anim_counter() { ++m_anim_counter; }
+
+int SequenceController::get_anim_counter() const { return m_anim_counter; }
+
 void SequenceController::render() {
     Rectangle replay_shape{button_size.x * 0.5F,
                            constants::scene_height - 1.5F * button_size.x,
