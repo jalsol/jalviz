@@ -15,6 +15,8 @@ constexpr int text_buffer_size = 512;
 constexpr int min_val = 0;
 constexpr int max_val = 999;
 
+constexpr int default_font_size = 60;
+
 }  // namespace constants
 
 #endif  // CONSTANTS_HPP_
