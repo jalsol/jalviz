@@ -30,6 +30,11 @@ void SequenceController::inc_anim_counter() { ++m_anim_counter; }
 
 int SequenceController::get_anim_counter() const { return m_anim_counter; }
 
+void SequenceController::set_rerun() {
+    reset_anim_counter();
+    set_run_all(true);
+}
+
 void SequenceController::render() {
     Rectangle replay_shape{button_size.x * 0.5F,
                            constants::scene_height - 1.5F * button_size.x,

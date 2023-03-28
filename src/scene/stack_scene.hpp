@@ -5,6 +5,7 @@
 
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
+#include "component/sequence_controller.hpp"
 #include "component/text_input.hpp"
 #include "core/stack.hpp"
 #include "gui/stack_gui.hpp"
@@ -53,10 +54,12 @@ private:
         gui::GuiNode<int>{2},
         gui::GuiNode<int>{3},
     };
+    core::Deque<gui::GuiStack<int>> m_sequence;
 
     bool m_go{};
     component::TextInput m_text_input;
     component::FileDialog m_file_dialog;
+    component::SequenceController m_sequence_controller;
 
     StackScene() = default;
 
@@ -65,8 +68,9 @@ private:
     void render_inputs() override;
 
     void interact_random();
-    void interact_import(core::Deque<int> nums, bool clear,
-                         std::size_t amount_to_take);
+    void interact_import(core::Deque<int> nums);
+    void interact_push();
+    void interact_pop();
     void interact_file_import();
 
 public:

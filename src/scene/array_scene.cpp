@@ -173,9 +173,8 @@ void ArrayScene::interact_update() {
         // undo highlight
         m_array.set_color(index, BLACK);
 
-        m_sequence_controller.reset_anim_counter();
         m_sequence_controller.set_max_value((int)m_sequence.size());
-        m_sequence_controller.set_run_all(true);
+        m_sequence_controller.set_rerun();
     }
 }
 
@@ -214,9 +213,8 @@ void ArrayScene::interact_search() {
         m_sequence.push_back(m_array);
     }
 
-    m_sequence_controller.reset_anim_counter();
     m_sequence_controller.set_max_value((int)m_sequence.size());
-    m_sequence_controller.set_run_all(true);
+    m_sequence_controller.set_rerun();
 }
 
 }  // namespace scene

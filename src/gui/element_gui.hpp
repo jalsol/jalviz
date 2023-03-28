@@ -53,27 +53,27 @@ GuiElement<T>::GuiElement(const T& value, std::size_t index)
 
 template<typename T>
 void GuiElement<T>::render() {
-    if (m_is_outdated) {
-        float diff_x = m_target_pos.x - m_current_pos.x;
-        float diff_y = m_target_pos.y - m_current_pos.y;
+    // if (m_is_outdated) {
+    //     float diff_x = m_target_pos.x - m_current_pos.x;
+    //     float diff_y = m_target_pos.y - m_current_pos.y;
 
-        if (std::fabs(diff_x) < eps) {
-            diff_x = 0;
-        }
+    //     if (std::fabs(diff_x) < eps) {
+    //         diff_x = 0;
+    //     }
 
-        if (std::fabs(diff_y) < eps) {
-            diff_y = 0;
-        }
+    //     if (std::fabs(diff_y) < eps) {
+    //         diff_y = 0;
+    //     }
 
-        if (diff_x == 0 && diff_y == 0) {
-            m_is_outdated = false;
-        } else {
-            m_current_pos.x +=
-                diff_x / constants::frames_per_second * constants::ani_speed;
-            m_current_pos.y +=
-                diff_y / constants::frames_per_second * constants::ani_speed;
-        }
-    }
+    //     if (diff_x == 0 && diff_y == 0) {
+    //         m_is_outdated = false;
+    //     } else {
+    //         m_current_pos.x +=
+    //             diff_x / constants::frames_per_second * constants::ani_speed;
+    //         m_current_pos.y +=
+    //             diff_y / constants::frames_per_second * constants::ani_speed;
+    //     }
+    // }
 
     constexpr int label_font_size = 25;
     constexpr int label_font_spacing = 2;
@@ -105,8 +105,9 @@ void GuiElement<T>::render() {
 
 template<typename T>
 void GuiElement<T>::set_target_pos(Vector2 pos) {
-    m_target_pos = pos;
-    m_is_outdated = true;
+    // m_target_pos = pos;
+    // m_is_outdated = true;
+    m_current_pos = pos;
 }
 
 template<typename T>

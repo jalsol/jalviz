@@ -67,8 +67,8 @@ void GuiStack<T>::render_link(Vector2 src, Vector2 dest) {
     Vector2 side_right{head.x + arrow_size, head.y - arrow_size};
 
     // draw both
-    DrawRectangleV(link_pos, link_size, RED);
-    DrawTriangle(head, side_right, side_left, BLUE);
+    DrawRectangleV(link_pos, link_size, GRAY);
+    DrawTriangle(head, side_right, side_left, GRAY);
 }
 
 template<typename T>

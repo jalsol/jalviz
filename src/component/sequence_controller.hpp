@@ -29,6 +29,7 @@ public:
     void set_max_value(int num);
     void set_progress_value(int value);
     void set_run_all(bool run_all);
+    void set_rerun();
 
     bool get_run_all() const;
     int get_progress_value() const;
