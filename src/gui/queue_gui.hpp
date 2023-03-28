@@ -37,6 +37,9 @@ public:
     void push(const T& elem);
     void pop();
 
+    // for animation purpose only, not for real use
+    void push_front(const T& elem);
+
     void update() override;
     void render() override;
 };
@@ -49,6 +52,11 @@ void GuiQueue<T>::push(const T& elem) {
 template<typename T>
 void GuiQueue<T>::pop() {
     Base::pop();
+}
+
+template<typename T>
+void GuiQueue<T>::push_front(const T& elem) {
+    Base::push_front(GuiNode<T>{elem});
 }
 
 template<typename T>
@@ -67,8 +75,8 @@ void GuiQueue<T>::render_link(Vector2 src, Vector2 dest) {
     Vector2 side_bot{head.x - arrow_size, head.y + arrow_size};
 
     // draw both
-    DrawRectangleV(link_pos, link_size, RED);
-    DrawTriangle(head, side_top, side_bot, BLUE);
+    DrawRectangleV(link_pos, link_size, GRAY);
+    DrawTriangle(head, side_top, side_bot, GRAY);
 }
 
 template<typename T>

@@ -19,11 +19,6 @@ StackScene& StackScene::get_instance() {
     return scene;
 }
 
-// void StackScene::render() {
-//     m_stack.render();
-//     render_options(scene_options);
-// }
-
 void StackScene::render() {
     core::Deque<gui::GuiStack<int>> sequence = m_sequence;
     m_sequence_controller.inc_anim_counter();

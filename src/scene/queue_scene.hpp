@@ -5,6 +5,7 @@
 
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
+#include "component/sequence_controller.hpp"
 #include "component/text_input.hpp"
 #include "core/queue.hpp"
 #include "gui/queue_gui.hpp"
@@ -53,10 +54,12 @@ private:
         gui::GuiNode<int>{2},
         gui::GuiNode<int>{3},
     };
+    core::Deque<gui::GuiQueue<int>> m_sequence;
 
     bool m_go{};
     component::TextInput m_text_input;
     component::FileDialog m_file_dialog;
+    component::SequenceController m_sequence_controller;
 
     QueueScene() = default;
 
@@ -64,13 +67,11 @@ private:
     using internal::BaseScene::render_options;
     void render_inputs() override;
 
-    //     void render_text_input();
-    //     void render_file_input();
-
     void interact_random();
-    void interact_import(core::Deque<int> nums, bool clear,
-                         std::size_t amount_to_take);
+    void interact_import(core::Deque<int> nums);
     void interact_file_import();
+    void interact_push();
+    void interact_pop();
 
 public:
     QueueScene(const QueueScene&) = delete;
