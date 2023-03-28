@@ -16,7 +16,7 @@ private:
 
     static constexpr const char* sidebar_labels =
         "Back to Menu\n"
-        "Static Array\n"
+        "Array\n"
         "Dynamic Array\n"
         "Linked List\n"
         "Doubly Linked List\n"

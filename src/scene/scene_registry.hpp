@@ -1,7 +1,16 @@
 #ifndef SCENE_SCENE_REGISTRY_HPP_
 #define SCENE_SCENE_REGISTRY_HPP_
 
+#include <array>
+
+#include "array_scene.hpp"
 #include "base_scene.hpp"
+#include "circular_linked_list_scene.hpp"
+#include "doubly_linked_list_scene.hpp"
+#include "linked_list_scene.hpp"
+#include "menu_scene.hpp"
+#include "queue_scene.hpp"
+#include "stack_scene.hpp"
 
 namespace scene {
 
@@ -18,11 +27,22 @@ enum SceneId {
 
 class SceneRegistry {
 private:
-    internal::BaseScene* scene_ptr{nullptr};
+    internal::BaseScene* scene_ptr{};
     SceneRegistry();
 
     bool m_should_close{};
     int m_current_scene{};
+
+    const std::array<internal::BaseScene* const, 8> m_registry{{
+        &MenuScene::get_instance(),
+        &ArrayScene::get_instance(),
+        nullptr,
+        &LinkedListScene::get_instance(),
+        &DoublyLinkedListScene::get_instance(),
+        &CircularLinkedListScene::get_instance(),
+        &StackScene::get_instance(),
+        &QueueScene::get_instance(),
+    }};
 
 public:
     SceneRegistry(const SceneRegistry&) = delete;

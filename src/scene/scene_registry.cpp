@@ -1,14 +1,5 @@
 #include "scene_registry.hpp"
 
-#include "array_scene.hpp"
-#include "circular_linked_list_scene.hpp"
-#include "doubly_linked_list_scene.hpp"
-#include "linked_list_scene.hpp"
-#include "menu_scene.hpp"
-#include "queue_scene.hpp"
-#include "stack_scene.hpp"
-#include "utils.hpp"
-
 namespace scene {
 
 SceneRegistry::SceneRegistry() { set_scene(Menu); }
@@ -20,39 +11,7 @@ SceneRegistry& SceneRegistry::get_instance() {
 
 void SceneRegistry::set_scene(int scene_type) {
     m_current_scene = scene_type;
-
-    switch (scene_type) {
-        case Menu: {
-            scene_ptr = &MenuScene::get_instance();
-        } break;
-
-        case Array: {
-            scene_ptr = &ArrayScene::get_instance();
-        } break;
-
-        case LinkedList: {
-            scene_ptr = &LinkedListScene::get_instance();
-        } break;
-
-        case DoublyLinkedList: {
-            scene_ptr = &DoublyLinkedListScene::get_instance();
-        } break;
-
-        case CircularLinkedList: {
-            scene_ptr = &CircularLinkedListScene::get_instance();
-        } break;
-
-        case Stack: {
-            scene_ptr = &StackScene::get_instance();
-        } break;
-
-        case Queue: {
-            scene_ptr = &QueueScene::get_instance();
-        } break;
-
-        default:
-            utils::unreachable();
-    }
+    scene_ptr = m_registry.at(scene_type);
 }
 
 int SceneRegistry::get_scene() const { return m_current_scene; }
