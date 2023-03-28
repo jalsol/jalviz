@@ -73,13 +73,19 @@ private:
     void interact_random();
     void interact_import(core::Deque<int> nums);
     void interact_file_import();
+
     void interact_add();
     void interact_add_head(int value);
     void interact_add_tail(int value);
     void interact_add_middle(int index, int value);
-    void interact_delete(){};
-    void interact_update(){};
-    void interact_search(){};
+
+    void interact_delete();
+    void interact_delete_head();
+    void interact_delete_tail();
+    void interact_delete_middle(int index);
+
+    void interact_update();
+    void interact_search();
 
 public:
     LinkedListScene(const LinkedListScene&) = delete;

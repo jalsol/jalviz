@@ -245,64 +245,155 @@ void LinkedListScene::interact_add_middle(int index, int value) {
     m_list.find(index + 1)->data.set_color(BLACK);
 }
 
-// void LinkedListScene::interact_push() {
-//     if (m_go && m_list.size() < scene_options.max_size) {
-//         m_sequence.clear();
-//         m_sequence.insert(m_sequence.size(), m_list);
+void LinkedListScene::interact_delete() {
+    if (m_list.empty()) {
+        return;
+    }
 
-//         auto& old_back = m_list.back();
+    int index = m_index_input.extract_values().front();
 
-//         old_back.set_color(GREEN);
-//         m_sequence.insert(m_sequence.size(), m_list);
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_list);
 
-//         m_list.push(m_text_input.extract_values().front());
-//         m_list.back().set_color(BLUE);
-//         m_sequence.insert(m_sequence.size(), m_list);
+    if (index == 0) {
+        interact_delete_head();
+    } else if (index + 1 == m_list.size()) {
+        interact_delete_tail();
+    } else {
+        interact_delete_middle(index);
+    }
 
-//         old_back.set_color(BLACK);
-//         m_list.back().set_color(GREEN);
-//         m_sequence.insert(m_sequence.size(), m_list);
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
+}
 
-//         m_list.back().set_color(BLACK);
-//         m_sequence.insert(m_sequence.size(), m_list);
+void LinkedListScene::interact_delete_head() {
+    m_list.find(0)->data.set_color(ORANGE);
+    m_sequence.insert(m_sequence.size(), m_list);
 
-//         m_sequence_controller.set_max_value((int)m_sequence.size());
-//         m_sequence_controller.set_rerun();
-//     }
-// }
+    if (m_list.size() > 1) {
+        m_list.find(1)->data.set_color(GREEN);
+        m_sequence.insert(m_sequence.size(), m_list);
+    }
 
-// void LinkedListScene::interact_pop() {
-//     if (m_go && !m_list.empty()) {
-//         m_sequence.clear();
-//         m_sequence.insert(m_sequence.size(), m_list);
+    m_list.remove(0);
+    m_sequence.insert(m_sequence.size(), m_list);
 
-//         m_list.front().set_color(RED);
-//         m_sequence.insert(m_sequence.size(), m_list);
+    if (m_list.size() > 0) {
+        m_list.find(0)->data.set_color(BLACK);
+    }
+}
 
-//         auto old_front = m_list.front();
-//         m_list.pop();
+void LinkedListScene::interact_delete_tail() {
+    int idx = 0;
+    for (; idx + 2 < m_list.size(); ++idx) {
+        m_list.find(idx)->data.set_color(ORANGE);
+        m_list.find(idx + 1)->data.set_color(GREEN);
 
-//         if (!m_list.empty()) {
-//             m_list.front().set_color(GREEN);
-//         }
+        m_sequence.insert(m_sequence.size(), m_list);
 
-//         // pls read gui::GuiQueue and core::Queue implementation for
-//         push_front m_list.push_front(old_front.get_value());
+        m_list.find(idx)->data.set_color(BLACK);
+        m_list.find(idx + 1)->data.set_color(BLACK);
+    }
 
-//         m_list.front().set_color(RED);
-//         m_sequence.insert(m_sequence.size(), m_list);
+    m_list.find(idx)->data.set_color(ORANGE);
+    m_list.find(idx + 1)->data.set_color(GREEN);
+    m_sequence.insert(m_sequence.size(), m_list);
 
-//         m_list.pop();
-//         m_sequence.insert(m_sequence.size(), m_list);
+    m_list.remove(idx + 1);
+    m_sequence.insert(m_sequence.size(), m_list);
 
-//         if (!m_list.empty()) {
-//             m_list.front().set_color(BLACK);
-//             m_sequence.insert(m_sequence.size(), m_list);
-//         }
+    m_list.find(idx)->data.set_color(GREEN);
+    m_sequence.insert(m_sequence.size(), m_list);
 
-//         m_sequence_controller.set_max_value((int)m_sequence.size());
-//         m_sequence_controller.set_rerun();
-//     }
-// }
+    m_list.find(idx)->data.set_color(BLACK);
+}
+
+void LinkedListScene::interact_delete_middle(int index) {
+    if (!(0 <= index && index < m_list.size())) {
+        return;
+    }
+
+    int idx = 0;
+    for (; idx + 1 < index; ++idx) {
+        m_list.find(idx)->data.set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_list.find(idx)->data.set_color(BLACK);
+    }
+
+    m_list.find(idx)->data.set_color(ORANGE);
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    m_list.find(idx + 1)->data.set_color(RED);
+    m_list.find(idx + 2)->data.set_color(GREEN);
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    m_list.remove(idx + 1);
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    m_list.find(idx)->data.set_color(BLACK);
+    m_list.find(idx + 1)->data.set_color(BLACK);
+}
+
+void LinkedListScene::interact_update() {
+    int index = m_index_input.extract_values().front();
+    int value = m_text_input.extract_values().front();
+
+    if (!(0 <= index && index < m_list.size())) {
+        return;
+    }
+
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    for (int i = 0; i < index; ++i) {
+        m_list.find(i)->data.set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_list.find(i)->data.set_color(BLACK);
+    }
+
+    m_list.find(index)->data.set_color(ORANGE);
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    m_list.find(index)->data.set_color(GREEN);
+    m_list.find(index)->data.set_value(value);
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    m_list.find(index)->data.set_color(BLACK);
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
+}
+
+void LinkedListScene::interact_search() {
+    int value = m_text_input.extract_values().front();
+
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_list);
+
+    int idx = 0;
+    for (; idx < m_list.size(); ++idx) {
+        if (m_list.find(idx)->data.get_value() == value) {
+            break;
+        }
+
+        m_list.find(idx)->data.set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_list.find(idx)->data.set_color(BLACK);
+    }
+
+    if (idx < m_list.size()) {
+        m_list.find(idx)->data.set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+
+        m_list.find(idx)->data.set_color(GREEN);
+        m_sequence.insert(m_sequence.size(), m_list);
+
+        m_list.find(idx)->data.set_color(BLACK);
+    }
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
+}
 
 }  // namespace scene
