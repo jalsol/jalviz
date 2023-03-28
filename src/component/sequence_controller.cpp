@@ -59,7 +59,7 @@ void SequenceController::render() {
 
     m_prev_speed = GuiButton(prev_speed_shape, "<");
     m_next_speed = GuiButton(next_speed_shape, ">");
-    GuiStatusBar(speed_shape, TextFormat("%.2f", get_speed_scale()));
+    GuiStatusBar(speed_shape, TextFormat("Speed: %.2fx", get_speed_scale()));
 
     m_replay = GuiButton(replay_shape, "R");
     m_prev_frame = GuiButton(prev_frame_shape, "<");
