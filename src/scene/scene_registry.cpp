@@ -1,6 +1,7 @@
 #include "scene_registry.hpp"
 
 #include "array_scene.hpp"
+#include "doubly_linked_list_scene.hpp"
 #include "linked_list_scene.hpp"
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
@@ -30,6 +31,10 @@ void SceneRegistry::set_scene(int scene_type) {
 
         case LinkedList: {
             scene_ptr = &LinkedListScene::get_instance();
+        } break;
+
+        case DoublyLinkedList: {
+            scene_ptr = &DoublyLinkedListScene::get_instance();
         } break;
 
         case Stack: {
