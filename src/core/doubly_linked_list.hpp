@@ -9,7 +9,7 @@ namespace core {
 
 template<typename T>
 class DoublyLinkedList : public BaseList<T> {
-private:
+protected:
     using Base = BaseList<T>;
     using Node = typename Base::Node;
     using Node_ptr = Node*;
