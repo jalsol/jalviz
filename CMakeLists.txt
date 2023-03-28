@@ -83,6 +83,7 @@ add_executable(${PROJECT_NAME}
     src/scene/queue_scene.cpp
     src/scene/linked_list_scene.cpp
     src/scene/doubly_linked_list_scene.cpp
+    src/scene/circular_linked_list_scene.cpp
 
     src/scene/scene_registry.cpp
     src/scene/scene_options.cpp
