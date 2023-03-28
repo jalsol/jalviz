@@ -38,6 +38,7 @@ public:
     void reset_anim_counter();
     void inc_anim_counter();
     int get_anim_counter() const;
+    int get_anim_frame() const;
 };
 
 }  // namespace component

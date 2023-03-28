@@ -26,13 +26,26 @@ float SequenceController::get_speed_scale() const {
 
 void SequenceController::reset_anim_counter() { m_anim_counter = 0; }
 
-void SequenceController::inc_anim_counter() { ++m_anim_counter; }
+void SequenceController::inc_anim_counter() {
+    if (get_run_all()) {
+        ++m_anim_counter;
+    }
+}
 
 int SequenceController::get_anim_counter() const { return m_anim_counter; }
 
 void SequenceController::set_rerun() {
     reset_anim_counter();
     set_run_all(true);
+}
+
+int SequenceController::get_anim_frame() const {
+    if (get_run_all()) {
+        return 2.0F * get_anim_counter() * get_speed_scale() /
+               constants::frames_per_second;
+    } else {
+        return get_progress_value();
+    }
 }
 
 void SequenceController::render() {

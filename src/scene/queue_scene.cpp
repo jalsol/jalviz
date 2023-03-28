@@ -52,22 +52,14 @@ void QueueScene::render_inputs() {
 }
 
 void QueueScene::render() {
-    core::Deque<gui::GuiQueue<int>> sequence = m_sequence;
     m_sequence_controller.inc_anim_counter();
 
-    int frame_idx = m_sequence_controller.get_run_all()
-                        ? m_sequence_controller.get_anim_counter() * 2.0F *
-                              m_sequence_controller.get_speed_scale() /
-                              constants::frames_per_second
-                        : m_sequence_controller.get_progress_value();
+    int frame_idx = m_sequence_controller.get_anim_frame();
+    auto* const frame_ptr = m_sequence.find(frame_idx);
+    m_sequence_controller.set_progress_value(frame_idx);
 
-    for (int i = 0; !sequence.empty() && i < frame_idx; ++i) {
-        sequence.pop_front();
-        m_sequence_controller.set_progress_value(i + 1);
-    }
-
-    if (!sequence.empty()) {
-        sequence.front().render();
+    if (frame_ptr != nullptr) {
+        frame_ptr->data.render();
     } else {  // end of sequence
         m_queue.render();
         m_sequence_controller.set_run_all(false);
@@ -111,16 +103,10 @@ void QueueScene::interact() {
 
         case 1: {
             interact_push();
-            // if (m_go && m_queue.size() < scene_options.max_size) {
-            //     interact_import(m_text_input.extract_values(), false, 1);
-            // }
         } break;
 
         case 2: {
             interact_pop();
-            // if (m_go && !m_queue.empty()) {
-            //     m_queue.pop();
-            // }
         } break;
 
         default:
@@ -141,10 +127,7 @@ void QueueScene::interact_random() {
 }
 
 void QueueScene::interact_import(core::Deque<int> nums) {
-    while (!m_sequence.empty()) {
-        m_sequence.pop_front();
-    }
-
+    m_sequence.clear();
     m_queue = gui::GuiQueue<int>();
 
     while (!nums.empty()) {
@@ -167,27 +150,24 @@ void QueueScene::interact_file_import() {
 
 void QueueScene::interact_push() {
     if (m_go && m_queue.size() < scene_options.max_size) {
-        while (!m_sequence.empty()) {
-            m_sequence.pop_front();
-        }
-
-        m_sequence.push_back(m_queue);
+        m_sequence.clear();
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         auto& old_back = m_queue.back();
 
         old_back.set_color(GREEN);
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         m_queue.push(m_text_input.extract_values().front());
         m_queue.back().set_color(BLUE);
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         old_back.set_color(BLACK);
         m_queue.back().set_color(GREEN);
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         m_queue.back().set_color(BLACK);
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         m_sequence_controller.set_max_value((int)m_sequence.size());
         m_sequence_controller.set_rerun();
@@ -196,14 +176,11 @@ void QueueScene::interact_push() {
 
 void QueueScene::interact_pop() {
     if (m_go && !m_queue.empty()) {
-        while (!m_sequence.empty()) {
-            m_sequence.pop_front();
-        }
-
-        m_sequence.push_back(m_queue);
+        m_sequence.clear();
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         m_queue.front().set_color(RED);
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         auto old_front = m_queue.front();
         m_queue.pop();
@@ -216,14 +193,14 @@ void QueueScene::interact_pop() {
         m_queue.push_front(old_front.get_value());
 
         m_queue.front().set_color(RED);
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         m_queue.pop();
-        m_sequence.push_back(m_queue);
+        m_sequence.insert(m_sequence.size(), m_queue);
 
         if (!m_queue.empty()) {
             m_queue.front().set_color(BLACK);
-            m_sequence.push_back(m_queue);
+            m_sequence.insert(m_sequence.size(), m_queue);
         }
 
         m_sequence_controller.set_max_value((int)m_sequence.size());

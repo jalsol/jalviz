@@ -7,6 +7,7 @@
 #include "component/file_dialog.hpp"
 #include "component/sequence_controller.hpp"
 #include "component/text_input.hpp"
+#include "core/doubly_linked_list.hpp"
 #include "core/queue.hpp"
 #include "gui/queue_gui.hpp"
 #include "raygui.h"
@@ -54,12 +55,12 @@ private:
         gui::GuiNode<int>{2},
         gui::GuiNode<int>{3},
     };
-    core::Deque<gui::GuiQueue<int>> m_sequence;
+    core::DoublyLinkedList<gui::GuiQueue<int>> m_sequence;
 
     bool m_go{};
     component::TextInput m_text_input;
     component::FileDialog m_file_dialog;
-    component::SequenceController m_sequence_controller;
+    using internal::BaseScene::m_sequence_controller;
 
     QueueScene() = default;
 

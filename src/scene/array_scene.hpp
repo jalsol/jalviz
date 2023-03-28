@@ -9,6 +9,7 @@
 #include "component/sequence_controller.hpp"
 #include "component/text_input.hpp"
 #include "constants.hpp"
+#include "core/doubly_linked_list.hpp"
 #include "gui/array_gui.hpp"
 #include "raygui.h"
 #include "raylib.h"
@@ -54,13 +55,13 @@ private:
     using internal::BaseScene::options_head;
 
     gui::GuiArray<int, max_size> m_array{};
-    core::Deque<gui::GuiArray<int, max_size>> m_sequence;
+    core::DoublyLinkedList<gui::GuiArray<int, max_size>> m_sequence;
 
     bool m_go{};
     component::TextInput m_text_input;
     component::TextInput m_index_input;
     component::FileDialog m_file_dialog;
-    component::SequenceController m_sequence_controller;
+    using internal::BaseScene::m_sequence_controller;
 
     ArrayScene() = default;
 

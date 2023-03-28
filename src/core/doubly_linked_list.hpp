@@ -36,6 +36,8 @@ public:
 
     Node_ptr insert(std::size_t index, const T& elem);
     Node_ptr remove(std::size_t index);
+
+    void clear();
 };
 
 template<typename T>
@@ -142,6 +144,13 @@ typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::remove(
     --m_size;
 
     return ret;
+}
+
+template<typename T>
+void DoublyLinkedList<T>::clear() {
+    while (!empty()) {
+        Base::pop_front();
+    }
 }
 
 }  // namespace core

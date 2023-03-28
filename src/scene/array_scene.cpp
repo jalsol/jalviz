@@ -55,22 +55,14 @@ void ArrayScene::render_inputs() {
 }
 
 void ArrayScene::render() {
-    core::Deque<gui::GuiArray<int, max_size>> sequence = m_sequence;
     m_sequence_controller.inc_anim_counter();
 
-    int frame_idx = m_sequence_controller.get_run_all()
-                        ? m_sequence_controller.get_anim_counter() * 2.0F *
-                              m_sequence_controller.get_speed_scale() /
-                              constants::frames_per_second
-                        : m_sequence_controller.get_progress_value();
+    int frame_idx = m_sequence_controller.get_anim_frame();
+    auto* const frame_ptr = m_sequence.find(frame_idx);
+    m_sequence_controller.set_progress_value(frame_idx);
 
-    for (int i = 0; !sequence.empty() && i < frame_idx; ++i) {
-        sequence.pop_front();
-        m_sequence_controller.set_progress_value(i + 1);
-    }
-
-    if (!sequence.empty()) {
-        sequence.front().render();
+    if (frame_ptr != nullptr) {
+        frame_ptr->data.render();
     } else {  // end of sequence
         m_array.render();
         m_sequence_controller.set_run_all(false);
@@ -154,21 +146,19 @@ void ArrayScene::interact_update() {
     int value = m_text_input.extract_values().front();
 
     if (0 <= index && index < max_size && utils::val_in_range(value)) {
-        while (!m_sequence.empty()) {
-            m_sequence.pop_back();
-        }
+        m_sequence.clear();
 
         // initial state (before update)
-        m_sequence.push_back(m_array);
+        m_sequence.insert(m_sequence.size(), m_array);
 
         // highlight
         m_array.set_color(index, ORANGE);
-        m_sequence.push_back(m_array);
+        m_sequence.insert(m_sequence.size(), m_array);
 
         // update
         m_array[index] = value;
         m_array.set_color(index, GREEN);
-        m_sequence.push_back(m_array);
+        m_sequence.insert(m_sequence.size(), m_array);
 
         // undo highlight
         m_array.set_color(index, BLACK);
@@ -191,26 +181,22 @@ void ArrayScene::interact_file_import() {
 void ArrayScene::interact_search() {
     int value = m_text_input.extract_values().front();
 
-    while (!m_sequence.empty()) {
-        m_sequence.pop_back();
-    }
-
-    // initial state
-    m_sequence.push_back(m_array);
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_array);
 
     for (std::size_t i = 0; i < max_size; ++i) {
         m_array.set_color(i, ORANGE);
-        m_sequence.push_back(m_array);
+        m_sequence.insert(m_sequence.size(), m_array);
 
         if (m_array[i] == value) {
             m_array.set_color(i, GREEN);
-            m_sequence.push_back(m_array);
+            m_sequence.insert(m_sequence.size(), m_array);
             m_array.set_color(i, BLACK);
             break;
         }
 
         m_array.set_color(i, BLACK);
-        m_sequence.push_back(m_array);
+        m_sequence.insert(m_sequence.size(), m_array);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());

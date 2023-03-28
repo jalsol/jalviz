@@ -20,22 +20,14 @@ StackScene& StackScene::get_instance() {
 }
 
 void StackScene::render() {
-    core::Deque<gui::GuiStack<int>> sequence = m_sequence;
     m_sequence_controller.inc_anim_counter();
 
-    int frame_idx = m_sequence_controller.get_run_all()
-                        ? m_sequence_controller.get_anim_counter() * 2.0F *
-                              m_sequence_controller.get_speed_scale() /
-                              constants::frames_per_second
-                        : m_sequence_controller.get_progress_value();
+    int frame_idx = m_sequence_controller.get_anim_frame();
+    auto* const frame_ptr = m_sequence.find(frame_idx);
+    m_sequence_controller.set_progress_value(frame_idx);
 
-    for (int i = 0; !sequence.empty() && i < frame_idx; ++i) {
-        sequence.pop_front();
-        m_sequence_controller.set_progress_value(i + 1);
-    }
-
-    if (!sequence.empty()) {
-        sequence.front().render();
+    if (frame_ptr != nullptr) {
+        frame_ptr->data.render();
     } else {  // end of sequence
         m_stack.render();
         m_sequence_controller.set_run_all(false);
@@ -135,10 +127,7 @@ void StackScene::interact_random() {
 }
 
 void StackScene::interact_import(core::Deque<int> nums) {
-    while (!m_sequence.empty()) {
-        m_sequence.pop_front();
-    }
-
+    m_sequence.clear();
     m_stack = gui::GuiStack<int>();
 
     while (!nums.empty()) {
@@ -151,18 +140,15 @@ void StackScene::interact_import(core::Deque<int> nums) {
 
 void StackScene::interact_push() {
     if (m_go && m_stack.size() < scene_options.max_size) {
-        while (!m_sequence.empty()) {
-            m_sequence.pop_front();
-        }
-
-        m_sequence.push_back(m_stack);
+        m_sequence.clear();
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         m_stack.push(m_text_input.extract_values().front());
         m_stack.top().set_color(BLUE);
-        m_sequence.push_back(m_stack);
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         m_stack.top().set_color(BLACK);
-        m_sequence.push_back(m_stack);
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         m_sequence_controller.set_max_value((int)m_sequence.size());
         m_sequence_controller.set_rerun();
@@ -171,14 +157,11 @@ void StackScene::interact_push() {
 
 void StackScene::interact_pop() {
     if (m_go && !m_stack.empty()) {
-        while (!m_sequence.empty()) {
-            m_sequence.pop_front();
-        }
-
-        m_sequence.push_back(m_stack);
+        m_sequence.clear();
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         m_stack.top().set_color(RED);
-        m_sequence.push_back(m_stack);
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         auto old_top = m_stack.top();
         m_stack.pop();
@@ -189,14 +172,14 @@ void StackScene::interact_pop() {
 
         m_stack.push(old_top.get_value());
         m_stack.top().set_color(RED);
-        m_sequence.push_back(m_stack);
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         m_stack.pop();
-        m_sequence.push_back(m_stack);
+        m_sequence.insert(m_sequence.size(), m_stack);
 
         if (!m_stack.empty()) {
             m_stack.top().set_color(BLACK);
-            m_sequence.push_back(m_stack);
+            m_sequence.insert(m_sequence.size(), m_stack);
         }
 
         m_sequence_controller.set_max_value((int)m_sequence.size());
