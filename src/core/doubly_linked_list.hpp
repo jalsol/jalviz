@@ -37,6 +37,9 @@ public:
     Node_ptr insert(std::size_t index, const T& elem);
     Node_ptr remove(std::size_t index);
 
+    T& at(std::size_t index);
+    T at(std::size_t index) const;
+
     void clear();
 };
 
@@ -144,6 +147,16 @@ typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::remove(
     --m_size;
 
     return ret;
+}
+
+template<typename T>
+T& DoublyLinkedList<T>::at(std::size_t index) {
+    return find(index)->data;
+}
+
+template<typename T>
+T DoublyLinkedList<T>::at(std::size_t index) const {
+    return find(index)->data;
 }
 
 template<typename T>

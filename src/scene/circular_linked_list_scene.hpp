@@ -1,8 +1,6 @@
 #ifndef SCENE_CIRCULAR_LINKED_LIST_SCENE_HPP_
 #define SCENE_CIRCULAR_LINKED_LIST_SCENE_HPP_
 
-#include <vector>
-
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
 #include "component/sequence_controller.hpp"
@@ -44,7 +42,7 @@ private:
         },
 
         // action_selection
-        std::vector<int>(5),
+        core::DoublyLinkedList<int>{0, 0, 0, 0, 0},
     };
 
     using internal::BaseScene::button_size;

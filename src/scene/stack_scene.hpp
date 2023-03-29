@@ -1,8 +1,6 @@
 #ifndef SCENE_STACK_SCENE_HPP_
 #define SCENE_STACK_SCENE_HPP_
 
-#include <vector>
-
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
 #include "component/sequence_controller.hpp"
@@ -43,7 +41,7 @@ private:
         },
 
         // action_selection
-        std::vector<int>(3),
+        core::DoublyLinkedList<int>{0, 0, 0},
     };
 
     using internal::BaseScene::button_size;

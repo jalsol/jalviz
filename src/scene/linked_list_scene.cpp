@@ -191,24 +191,24 @@ void LinkedListScene::interact_add() {
 void LinkedListScene::interact_add_head(int value) {
     m_list.insert(0, value);
 
-    m_list.find(0)->data.set_color(ORANGE);
+    m_list.at(0).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(0)->data.set_color(BLACK);
+    m_list.at(0).set_color(BLACK);
     m_sequence.insert(m_sequence.size(), m_list);
 }
 
 void LinkedListScene::interact_add_tail(int value) {
     std::size_t size = m_list.size();
-    m_list.find(size - 1)->data.set_color(GREEN);
+    m_list.at(size - 1).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
 
     m_list.insert(size, value);
-    m_list.find(size)->data.set_color(BLUE);
+    m_list.at(size).set_color(BLUE);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(size - 1)->data.set_color(BLACK);
-    m_list.find(size)->data.set_color(BLACK);
+    m_list.at(size - 1).set_color(BLACK);
+    m_list.at(size).set_color(BLACK);
 }
 
 void LinkedListScene::interact_add_middle(int index, int value) {
@@ -218,31 +218,31 @@ void LinkedListScene::interact_add_middle(int index, int value) {
 
     // search until index - 1
     for (int i = 0; i < index - 1; ++i) {
-        m_list.find(i)->data.set_color(ORANGE);
+        m_list.at(i).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
 
-        m_list.find(i)->data.set_color(BLACK);
+        m_list.at(i).set_color(BLACK);
         m_sequence.insert(m_sequence.size(), m_list);
     }
 
     // reaching index - 1
     // cur
-    m_list.find(index - 1)->data.set_color(ORANGE);
+    m_list.at(index - 1).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
 
     // cur->next
-    m_list.find(index)->data.set_color(BLUE);
+    m_list.at(index).set_color(BLUE);
     m_sequence.insert(m_sequence.size(), m_list);
 
     // insert between cur and cur->next
     m_list.insert(index, value);
-    m_list.find(index)->data.set_color(GREEN);
+    m_list.at(index).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
 
     // done
-    m_list.find(index - 1)->data.set_color(BLACK);
-    m_list.find(index)->data.set_color(BLACK);
-    m_list.find(index + 1)->data.set_color(BLACK);
+    m_list.at(index - 1).set_color(BLACK);
+    m_list.at(index).set_color(BLACK);
+    m_list.at(index + 1).set_color(BLACK);
 }
 
 void LinkedListScene::interact_delete() {
@@ -268,11 +268,11 @@ void LinkedListScene::interact_delete() {
 }
 
 void LinkedListScene::interact_delete_head() {
-    m_list.find(0)->data.set_color(ORANGE);
+    m_list.at(0).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
 
     if (m_list.size() > 1) {
-        m_list.find(1)->data.set_color(GREEN);
+        m_list.at(1).set_color(GREEN);
         m_sequence.insert(m_sequence.size(), m_list);
     }
 
@@ -280,33 +280,33 @@ void LinkedListScene::interact_delete_head() {
     m_sequence.insert(m_sequence.size(), m_list);
 
     if (m_list.size() > 0) {
-        m_list.find(0)->data.set_color(BLACK);
+        m_list.at(0).set_color(BLACK);
     }
 }
 
 void LinkedListScene::interact_delete_tail() {
     int idx = 0;
     for (; idx + 2 < m_list.size(); ++idx) {
-        m_list.find(idx)->data.set_color(ORANGE);
-        m_list.find(idx + 1)->data.set_color(GREEN);
+        m_list.at(idx).set_color(ORANGE);
+        m_list.at(idx + 1).set_color(GREEN);
 
         m_sequence.insert(m_sequence.size(), m_list);
 
-        m_list.find(idx)->data.set_color(BLACK);
-        m_list.find(idx + 1)->data.set_color(BLACK);
+        m_list.at(idx).set_color(BLACK);
+        m_list.at(idx + 1).set_color(BLACK);
     }
 
-    m_list.find(idx)->data.set_color(ORANGE);
-    m_list.find(idx + 1)->data.set_color(GREEN);
+    m_list.at(idx).set_color(ORANGE);
+    m_list.at(idx + 1).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
 
     m_list.remove(idx + 1);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(idx)->data.set_color(GREEN);
+    m_list.at(idx).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(idx)->data.set_color(BLACK);
+    m_list.at(idx).set_color(BLACK);
 }
 
 void LinkedListScene::interact_delete_middle(int index) {
@@ -316,23 +316,23 @@ void LinkedListScene::interact_delete_middle(int index) {
 
     int idx = 0;
     for (; idx + 1 < index; ++idx) {
-        m_list.find(idx)->data.set_color(ORANGE);
+        m_list.at(idx).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
-        m_list.find(idx)->data.set_color(BLACK);
+        m_list.at(idx).set_color(BLACK);
     }
 
-    m_list.find(idx)->data.set_color(ORANGE);
+    m_list.at(idx).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(idx + 1)->data.set_color(RED);
-    m_list.find(idx + 2)->data.set_color(GREEN);
+    m_list.at(idx + 1).set_color(RED);
+    m_list.at(idx + 2).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
 
     m_list.remove(idx + 1);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(idx)->data.set_color(BLACK);
-    m_list.find(idx + 1)->data.set_color(BLACK);
+    m_list.at(idx).set_color(BLACK);
+    m_list.at(idx + 1).set_color(BLACK);
 }
 
 void LinkedListScene::interact_update() {
@@ -347,19 +347,19 @@ void LinkedListScene::interact_update() {
     m_sequence.insert(m_sequence.size(), m_list);
 
     for (int i = 0; i < index; ++i) {
-        m_list.find(i)->data.set_color(ORANGE);
+        m_list.at(i).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
-        m_list.find(i)->data.set_color(BLACK);
+        m_list.at(i).set_color(BLACK);
     }
 
-    m_list.find(index)->data.set_color(ORANGE);
+    m_list.at(index).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(index)->data.set_color(GREEN);
-    m_list.find(index)->data.set_value(value);
+    m_list.at(index).set_color(GREEN);
+    m_list.at(index).set_value(value);
     m_sequence.insert(m_sequence.size(), m_list);
 
-    m_list.find(index)->data.set_color(BLACK);
+    m_list.at(index).set_color(BLACK);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
@@ -373,23 +373,23 @@ void LinkedListScene::interact_search() {
 
     int idx = 0;
     for (; idx < m_list.size(); ++idx) {
-        if (m_list.find(idx)->data.get_value() == value) {
+        if (m_list.at(idx).get_value() == value) {
             break;
         }
 
-        m_list.find(idx)->data.set_color(ORANGE);
+        m_list.at(idx).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
-        m_list.find(idx)->data.set_color(BLACK);
+        m_list.at(idx).set_color(BLACK);
     }
 
     if (idx < m_list.size()) {
-        m_list.find(idx)->data.set_color(ORANGE);
+        m_list.at(idx).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
 
-        m_list.find(idx)->data.set_color(GREEN);
+        m_list.at(idx).set_color(GREEN);
         m_sequence.insert(m_sequence.size(), m_list);
 
-        m_list.find(idx)->data.set_color(BLACK);
+        m_list.at(idx).set_color(BLACK);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());

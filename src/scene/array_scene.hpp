@@ -47,7 +47,7 @@ private:
         },
 
         // action_selection
-        std::vector<int>(3),
+        core::DoublyLinkedList<int>{0, 0, 0},
     };
 
     using internal::BaseScene::button_size;
