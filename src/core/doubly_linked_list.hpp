@@ -102,7 +102,7 @@ typename DoublyLinkedList<T>::Node_ptr DoublyLinkedList<T>::insert(
         return m_head;
     }
 
-    if (index + 1 >= m_size) {
+    if (index >= m_size) {
         Base::push_back(elem);
         return m_tail;
     }
