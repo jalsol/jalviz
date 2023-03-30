@@ -9,7 +9,7 @@ void CodeHighlighter::render() {
     for (int i = 0; i < m_src_code.size(); ++i) {
         Color bg_color = (i == m_highlighted_line) ? VIOLET : BLACK;
         Rectangle shape{head_pos.x, head_pos.y + i * height, width, height};
-        Vector2 text_head = {head_pos.x + 5, head_pos.y + i * height + 5};
+        Vector2 text_head = {head_pos.x + 10, head_pos.y + i * height + 5};
 
         DrawRectangleRec(shape, bg_color);
         utils::DrawText(m_src_code.at(i), text_head, WHITE, 20, 2);

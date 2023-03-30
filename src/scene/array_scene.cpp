@@ -198,11 +198,14 @@ void ArrayScene::interact_search() {
         "for (i = 0; i < 8; i++)",
         "    if (a[i] == val)",
         "        return i;",
+        "return -1",
     });
 
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(0);
+
+    bool found = false;
 
     for (std::size_t i = 0; i < max_size; ++i) {
         m_array.set_color(i, ORANGE);
@@ -210,6 +213,7 @@ void ArrayScene::interact_search() {
         m_code_highlighter.push_into_sequence(1);
 
         if (m_array[i] == value) {
+            found = true;
             m_array.set_color(i, GREEN);
             m_sequence.insert(m_sequence.size(), m_array);
             m_code_highlighter.push_into_sequence(2);
@@ -220,6 +224,11 @@ void ArrayScene::interact_search() {
         m_array.set_color(i, BLACK);
         m_sequence.insert(m_sequence.size(), m_array);
         m_code_highlighter.push_into_sequence(0);
+    }
+
+    if (!found) {
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(3);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
