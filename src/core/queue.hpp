@@ -17,6 +17,7 @@ public:
     using Base::size;
 
     // for animation purpose only, not for real use
+    using Base::pop_back;
     using Base::push_front;
 
     T& front() const;

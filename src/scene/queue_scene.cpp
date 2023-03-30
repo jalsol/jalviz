@@ -60,11 +60,13 @@ void QueueScene::render() {
 
     if (frame_ptr != nullptr) {
         frame_ptr->data.render();
+        m_code_highlighter.highlight(frame_idx);
     } else {  // end of sequence
         m_queue.render();
         m_sequence_controller.set_run_all(false);
     }
 
+    m_code_highlighter.render();
     m_sequence_controller.render();
     render_options(scene_options);
 }
@@ -149,63 +151,92 @@ void QueueScene::interact_file_import() {
 }
 
 void QueueScene::interact_push() {
-    if (m_go && m_queue.size() < scene_options.max_size) {
-        m_sequence.clear();
-        m_sequence.insert(m_sequence.size(), m_queue);
+    int value = m_text_input.extract_values().front();
 
-        auto& old_back = m_queue.back();
-
-        old_back.set_color(GREEN);
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        m_queue.push(m_text_input.extract_values().front());
-        m_queue.back().set_color(BLUE);
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        old_back.set_color(BLACK);
-        m_queue.back().set_color(GREEN);
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        m_queue.back().set_color(BLACK);
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        m_sequence_controller.set_max_value((int)m_sequence.size());
-        m_sequence_controller.set_rerun();
+    if (m_queue.size() >= scene_options.max_size) {
+        return;
     }
+
+    m_code_highlighter.set_code({
+        "Node* node = new Node(value);",
+        "tail->next = node;",
+        "tail = tail->next;",
+    });
+
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_queue.push(value);
+    m_queue.back().set_color(BLUE);
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(0);
+
+    m_queue.pop_back();
+    if (!m_queue.empty()) {
+        m_queue.back().set_color(VIOLET);
+    }
+    m_queue.push(value);
+    m_queue.back().set_color(BLUE);
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(1);
+
+    m_queue.pop_back();
+    if (!m_queue.empty()) {
+        m_queue.back().set_color(BLACK);
+    }
+    m_queue.push(value);
+    m_queue.back().set_color(GREEN);
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(2);
+
+    m_queue.back().set_color(BLACK);
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
 }
 
 void QueueScene::interact_pop() {
-    if (m_go && !m_queue.empty()) {
-        m_sequence.clear();
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        m_queue.front().set_color(RED);
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        auto old_front = m_queue.front();
-        m_queue.pop();
-
-        if (!m_queue.empty()) {
-            m_queue.front().set_color(GREEN);
-        }
-
-        // pls read gui::GuiQueue and core::Queue implementation for push_front
-        m_queue.push_front(old_front.get_value());
-
-        m_queue.front().set_color(RED);
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        m_queue.pop();
-        m_sequence.insert(m_sequence.size(), m_queue);
-
-        if (!m_queue.empty()) {
-            m_queue.front().set_color(BLACK);
-            m_sequence.insert(m_sequence.size(), m_queue);
-        }
-
-        m_sequence_controller.set_max_value((int)m_sequence.size());
-        m_sequence_controller.set_rerun();
+    if (m_queue.empty()) {
+        return;
     }
+
+    m_code_highlighter.set_code({
+        "Node* temp = head;",
+        "head = head->next;",
+        "delete temp;",
+    });
+
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_queue.front().set_color(RED);
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(0);
+
+    auto old_front = m_queue.front();
+    m_queue.pop();
+
+    if (!m_queue.empty()) {
+        m_queue.front().set_color(GREEN);
+    }
+
+    m_queue.push_front(old_front.get_value());
+    m_queue.front().set_color(RED);
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(1);
+
+    m_queue.pop();
+    m_sequence.insert(m_sequence.size(), m_queue);
+    m_code_highlighter.push_into_sequence(2);
+
+    if (!m_queue.empty()) {
+        m_queue.front().set_color(BLACK);
+    }
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
 }
 
 }  // namespace scene

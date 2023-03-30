@@ -39,6 +39,7 @@ public:
 
     // for animation purpose only, not for real use
     void push_front(const T& elem);
+    void pop_back();
 
     void update() override;
     void render() override;
@@ -57,6 +58,11 @@ void GuiQueue<T>::pop() {
 template<typename T>
 void GuiQueue<T>::push_front(const T& elem) {
     Base::push_front(GuiNode<T>{elem});
+}
+
+template<typename T>
+void GuiQueue<T>::pop_back() {
+    Base::pop_back();
 }
 
 template<typename T>
