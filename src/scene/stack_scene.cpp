@@ -147,7 +147,6 @@ void StackScene::interact_push() {
         return;
     }
 
-    m_code_highlighter.clear();
     m_code_highlighter.set_code({
         "Node* node = new Node(value);",
         "node->next = head;",

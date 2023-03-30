@@ -367,6 +367,9 @@ void DoublyLinkedListScene::interact_update() {
 
 void DoublyLinkedListScene::interact_search() {
     int value = m_text_input.extract_values().front();
+    if (!utils::val_in_range(value)) {
+        return;
+    }
 
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_list);

@@ -20,7 +20,6 @@ void TextInput::render(float& options_head, float head_offset) {
 
 core::Deque<int> TextInput::extract_values() {
     core::Deque<int> nums = utils::str_extract_data(m_text_input);  // NOLINT
-    m_text_input[0] = '\0';
     return nums;
 }
 

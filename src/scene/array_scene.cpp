@@ -151,7 +151,6 @@ void ArrayScene::interact_update() {
         return;
     }
 
-    m_code_highlighter.clear();
     m_code_highlighter.set_code({
         "a[i] = val;",
     });
@@ -192,8 +191,10 @@ void ArrayScene::interact_file_import() {
 
 void ArrayScene::interact_search() {
     int value = m_text_input.extract_values().front();
+    if (!utils::val_in_range(value)) {
+        return;
+    }
 
-    m_code_highlighter.clear();
     m_code_highlighter.set_code({
         "for (i = 0; i < 8; i++)",
         "    if (a[i] == val)",
