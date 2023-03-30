@@ -7,6 +7,7 @@
 #include "base_scene.hpp"
 #include "circular_linked_list_scene.hpp"
 #include "doubly_linked_list_scene.hpp"
+#include "dynamic_array_scene.hpp"
 #include "linked_list_scene.hpp"
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
@@ -36,7 +37,7 @@ private:
     const std::array<internal::BaseScene* const, 8> m_registry{{
         &MenuScene::get_instance(),
         &ArrayScene::get_instance(),
-        nullptr,
+        &DynamicArrayScene::get_instance(),
         &LinkedListScene::get_instance(),
         &DoublyLinkedListScene::get_instance(),
         &CircularLinkedListScene::get_instance(),

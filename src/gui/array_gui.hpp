@@ -40,6 +40,7 @@ template<typename T, std::size_t N>
 GuiArray<T, N>::GuiArray() {
     for (std::size_t i = 0; i < N; ++i) {
         m_array[i] = GuiElement<T>{0, i};
+        m_array[i].set_color(BLACK);
     }
 }
 

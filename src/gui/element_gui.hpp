@@ -22,7 +22,7 @@ private:
     Vector2 m_target_pos{};
     bool m_is_outdated{false};
     static constexpr float eps = 1e-3;
-    Color m_color{BLACK};
+    Color m_color{GRAY};
 
 public:
     static constexpr int side = 20;
@@ -45,6 +45,8 @@ public:
 
     T& get_value();
     T get_value() const;
+    void set_value(const T& value);
+    void set_index(std::size_t index);
 };
 
 template<typename T>
@@ -138,6 +140,16 @@ T& GuiElement<T>::get_value() {
 template<typename T>
 T GuiElement<T>::get_value() const {
     return m_value;
+}
+
+template<typename T>
+void GuiElement<T>::set_value(const T& value) {
+    m_value = value;
+}
+
+template<typename T>
+void GuiElement<T>::set_index(std::size_t index) {
+    m_index = index;
 }
 
 }  // namespace gui
