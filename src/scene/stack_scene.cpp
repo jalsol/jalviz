@@ -28,11 +28,13 @@ void StackScene::render() {
 
     if (frame_ptr != nullptr) {
         frame_ptr->data.render();
+        m_code_highlighter.highlight(frame_idx);
     } else {  // end of sequence
         m_stack.render();
         m_sequence_controller.set_run_all(false);
     }
 
+    m_code_highlighter.render();
     m_sequence_controller.render();
     render_options(scene_options);
 }
@@ -139,52 +141,93 @@ void StackScene::interact_import(core::Deque<int> nums) {
 }
 
 void StackScene::interact_push() {
-    if (m_go && m_stack.size() < scene_options.max_size) {
-        m_sequence.clear();
-        m_sequence.insert(m_sequence.size(), m_stack);
+    int value = m_text_input.extract_values().front();
 
-        m_stack.push(m_text_input.extract_values().front());
-        m_stack.top().set_color(BLUE);
-        m_sequence.insert(m_sequence.size(), m_stack);
-
-        m_stack.top().set_color(BLACK);
-        m_sequence.insert(m_sequence.size(), m_stack);
-
-        m_sequence_controller.set_max_value((int)m_sequence.size());
-        m_sequence_controller.set_rerun();
+    if (m_stack.size() >= scene_options.max_size) {
+        return;
     }
+
+    m_code_highlighter.clear();
+    m_code_highlighter.set_code({
+        "Node* node = new Node(value);",
+        "node->next = head;",
+        "head = node;",
+    });
+
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_stack.push(value);
+    m_stack.top().set_color(BLUE);
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(0);
+
+    m_stack.pop();
+    if (!m_stack.empty()) {
+        m_stack.top().set_color(VIOLET);
+    }
+    m_stack.push(value);
+    m_stack.top().set_color(BLUE);
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(1);
+
+    m_stack.pop();
+    if (!m_stack.empty()) {
+        m_stack.top().set_color(BLACK);
+    }
+    m_stack.push(value);
+    m_stack.top().set_color(GREEN);
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(2);
+
+    m_stack.top().set_color(BLACK);
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
 }
 
 void StackScene::interact_pop() {
-    if (m_go && !m_stack.empty()) {
-        m_sequence.clear();
-        m_sequence.insert(m_sequence.size(), m_stack);
-
-        m_stack.top().set_color(RED);
-        m_sequence.insert(m_sequence.size(), m_stack);
-
-        auto old_top = m_stack.top();
-        m_stack.pop();
-
-        if (!m_stack.empty()) {
-            m_stack.top().set_color(GREEN);
-        }
-
-        m_stack.push(old_top.get_value());
-        m_stack.top().set_color(RED);
-        m_sequence.insert(m_sequence.size(), m_stack);
-
-        m_stack.pop();
-        m_sequence.insert(m_sequence.size(), m_stack);
-
-        if (!m_stack.empty()) {
-            m_stack.top().set_color(BLACK);
-            m_sequence.insert(m_sequence.size(), m_stack);
-        }
-
-        m_sequence_controller.set_max_value((int)m_sequence.size());
-        m_sequence_controller.set_rerun();
+    if (m_stack.empty()) {
+        return;
     }
+
+    m_code_highlighter.set_code({
+        "Node* temp = head;",
+        "head = head->next;",
+        "delete temp;",
+    });
+
+    m_sequence.clear();
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_stack.top().set_color(RED);
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(0);
+
+    auto old_top = m_stack.top();
+    m_stack.pop();
+
+    if (!m_stack.empty()) {
+        m_stack.top().set_color(GREEN);
+    }
+
+    m_stack.push(old_top.get_value());
+    m_stack.top().set_color(RED);
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(1);
+
+    m_stack.pop();
+    m_sequence.insert(m_sequence.size(), m_stack);
+    m_code_highlighter.push_into_sequence(2);
+
+    if (!m_stack.empty()) {
+        m_stack.top().set_color(BLACK);
+    }
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
 }
 
 void StackScene::interact_file_import() {
