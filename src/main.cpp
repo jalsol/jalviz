@@ -15,12 +15,9 @@ int main() {
     scene::SceneRegistry& registry = scene::SceneRegistry::get_instance();
     component::SideBar sidebar;
 
-    while (true) {
-        bool should_close = registry.should_close() || WindowShouldClose();
-        if (should_close) {
-            break;
-        }
+    bool should_close = false;
 
+    do {
         if (registry.get_scene() != scene::Menu) {
             sidebar.interact();
         }
@@ -36,7 +33,9 @@ int main() {
             registry.render();
         }
         EndDrawing();
-    }
+
+        should_close = registry.should_close() || WindowShouldClose();
+    } while (!should_close);
 
     CloseWindow();
 
