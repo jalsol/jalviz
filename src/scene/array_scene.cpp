@@ -199,7 +199,7 @@ void ArrayScene::interact_search() {
         "for (i = 0; i < 8; i++)",
         "    if (a[i] == val)",
         "        return i;",
-        "return -1",
+        "return not_found",
     });
 
     m_sequence.clear();

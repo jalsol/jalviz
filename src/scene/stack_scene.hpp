@@ -2,9 +2,7 @@
 #define SCENE_STACK_SCENE_HPP_
 
 #include "base_scene.hpp"
-#include "component/code_highlighter.hpp"
 #include "component/file_dialog.hpp"
-#include "component/sequence_controller.hpp"
 #include "component/text_input.hpp"
 #include "core/doubly_linked_list.hpp"
 #include "core/stack.hpp"
@@ -59,7 +57,7 @@ private:
     bool m_go{};
     component::TextInput m_text_input;
     component::FileDialog m_file_dialog;
-    component::CodeHighlighter m_code_highlighter;
+    using internal::BaseScene::m_code_highlighter;
     using internal::BaseScene::m_sequence_controller;
 
     StackScene() = default;

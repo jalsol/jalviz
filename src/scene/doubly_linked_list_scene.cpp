@@ -72,11 +72,13 @@ void DoublyLinkedListScene::render() {
 
     if (frame_ptr != nullptr) {
         frame_ptr->data.render();
+        m_code_highlighter.highlight(frame_idx);
     } else {  // end of sequence
         m_list.render();
         m_sequence_controller.set_run_all(false);
     }
 
+    m_code_highlighter.render();
     m_sequence_controller.render();
     render_options(scene_options);
 }
@@ -173,6 +175,14 @@ void DoublyLinkedListScene::interact_add() {
     int index = m_index_input.extract_values().front();
     int value = m_text_input.extract_values().front();
 
+    if (!(0 <= index && index <= m_list.size())) {
+        return;
+    }
+
+    if (!utils::val_in_range(value)) {
+        return;
+    }
+
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_list);
 
@@ -189,55 +199,122 @@ void DoublyLinkedListScene::interact_add() {
 }
 
 void DoublyLinkedListScene::interact_add_head(int value) {
+    m_code_highlighter.set_code({
+        "Node* node = new Node(value);",
+        "node->next = head;",
+        "head = next;",
+    });
+    m_code_highlighter.push_into_sequence(-1);
+
     m_list.insert(0, value);
 
-    m_list.at(0).set_color(ORANGE);
+    m_list.at(0).set_color(BLUE);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
+
+    if (m_list.size() > 1) {
+        m_list.at(1).set_color(VIOLET);
+    }
+
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(1);
+
+    if (m_list.size() > 1) {
+        m_list.at(1).set_color(BLACK);
+    }
+
+    m_list.at(0).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(2);
 
     m_list.at(0).set_color(BLACK);
-    m_sequence.insert(m_sequence.size(), m_list);
 }
 
 void DoublyLinkedListScene::interact_add_tail(int value) {
+    m_code_highlighter.set_code({
+        "Node* node = new Node(value);",
+        "tail->next = node;",
+        "tail = tail->next;",
+    });
+    m_code_highlighter.push_into_sequence(-1);
+
     std::size_t size = m_list.size();
-    m_list.at(size - 1).set_color(GREEN);
-    m_sequence.insert(m_sequence.size(), m_list);
 
     m_list.insert(size, value);
     m_list.at(size).set_color(BLUE);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
+
+    m_list.at(size - 1).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(1);
 
     m_list.at(size - 1).set_color(BLACK);
+    m_list.at(size).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(2);
+
     m_list.at(size).set_color(BLACK);
 }
 
 void DoublyLinkedListScene::interact_add_middle(int index, int value) {
-    if (!(0 <= index && index < m_list.size())) {
-        return;
-    }
+    m_code_highlighter.set_code({
+        "Node* pre = head;",
+        "for (i = 0; i < index - 1; ++i)",
+        "    pre = pre->next;",
+        "",
+        "Node* nxt = pre->next;",
+        "Node* node = new Node(value);",
+        "node->next = nxt;",
+        "pre->next = node;",
+    });
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_list.at(0).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
 
     // search until index - 1
     for (int i = 0; i < index - 1; ++i) {
         m_list.at(i).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(1);
 
         m_list.at(i).set_color(BLACK);
+        m_list.at(i + 1).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(2);
     }
+
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(1);
 
     // reaching index - 1
     // cur
     m_list.at(index - 1).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(3);
 
     // cur->next
-    m_list.at(index).set_color(BLUE);
+    m_list.at(index).set_color(PINK);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(4);
 
     // insert between cur and cur->next
     m_list.insert(index, value);
-    m_list.at(index).set_color(GREEN);
+    m_list.at(index).set_color(BLUE);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(5);
+
+    m_list.at(index - 1).set_color(ORANGE);
+    m_list.at(index + 1).set_color(BLACK);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(6);
+
+    m_list.at(index - 1).set_color(BLACK);
+    m_list.at(index + 1).set_color(PINK);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(7);
 
     // done
     m_list.at(index - 1).set_color(BLACK);
@@ -251,6 +328,10 @@ void DoublyLinkedListScene::interact_delete() {
     }
 
     int index = m_index_input.extract_values().front();
+
+    if (!(0 <= index && index < m_list.size())) {
+        return;
+    }
 
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_list);
@@ -268,16 +349,27 @@ void DoublyLinkedListScene::interact_delete() {
 }
 
 void DoublyLinkedListScene::interact_delete_head() {
-    m_list.at(0).set_color(ORANGE);
-    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.set_code({
+        "Node* temp = head;",
+        "head = head->next;",
+        "delete temp;",
+    });
+    m_code_highlighter.push_into_sequence(-1);
 
+    m_list.at(0).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
+
+    m_list.at(0).set_color(RED);
     if (m_list.size() > 1) {
-        m_list.at(1).set_color(GREEN);
-        m_sequence.insert(m_sequence.size(), m_list);
+        m_list.at(1).set_color(VIOLET);
     }
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(1);
 
     m_list.remove(0);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(2);
 
     if (m_list.size() > 0) {
         m_list.at(0).set_color(BLACK);
@@ -285,51 +377,104 @@ void DoublyLinkedListScene::interact_delete_head() {
 }
 
 void DoublyLinkedListScene::interact_delete_tail() {
+    m_code_highlighter.set_code({
+        "Node* pre = head;",
+        "Node* nxt = pre->next;",
+        "while (nxt->next != nullptr)",
+        "    pre = pre->next, nxt = nxt->next;",
+        "",
+        "delete nxt;",
+        "tail = pre;",
+    });
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_list.at(0).set_color(ORANGE);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
+
+    m_list.at(1).set_color(GREEN);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(1);
+
     int idx = 0;
     for (; idx + 2 < m_list.size(); ++idx) {
-        m_list.at(idx).set_color(ORANGE);
-        m_list.at(idx + 1).set_color(GREEN);
-
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(2);
 
         m_list.at(idx).set_color(BLACK);
-        m_list.at(idx + 1).set_color(BLACK);
+        m_list.at(idx + 1).set_color(ORANGE);
+        m_list.at(idx + 2).set_color(GREEN);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(3);
     }
+
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(2);
 
     m_list.at(idx).set_color(ORANGE);
     m_list.at(idx + 1).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(4);
 
     m_list.remove(idx + 1);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(5);
 
-    m_list.at(idx).set_color(GREEN);
+    m_list.at(idx).set_color(VIOLET);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(6);
 
     m_list.at(idx).set_color(BLACK);
 }
 
 void DoublyLinkedListScene::interact_delete_middle(int index) {
-    if (!(0 <= index && index < m_list.size())) {
-        return;
-    }
+    m_code_highlighter.set_code({
+        "Node* pre = head;",
+        "for (i = 0; i < index - 1; i++)",
+        "    pre = pre->next;",
+        "",
+        "Node* node = pre->next;",
+        "Node* nxt = node->next;",
+        "delete node;",
+        "pre->next = nxt;",
+    });
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_list.at(0).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
 
     int idx = 0;
     for (; idx + 1 < index; ++idx) {
         m_list.at(idx).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(1);
+
         m_list.at(idx).set_color(BLACK);
+        m_list.at(idx + 1).set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(2);
     }
 
     m_list.at(idx).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(3);
 
     m_list.at(idx + 1).set_color(RED);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(4);
+
     m_list.at(idx + 2).set_color(GREEN);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(5);
 
     m_list.remove(idx + 1);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(6);
+
+    m_list.at(idx + 1).set_color(PINK);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(7);
 
     m_list.at(idx).set_color(BLACK);
     m_list.at(idx + 1).set_color(BLACK);
@@ -343,21 +488,42 @@ void DoublyLinkedListScene::interact_update() {
         return;
     }
 
+    m_code_highlighter.set_code({
+        "Node* node = head;",
+        "for (i = 0; i < index; i++)",
+        "    node = node->next;",
+        "",
+        "node->value = value;",
+    });
+
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_list.at(0).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
 
     for (int i = 0; i < index; ++i) {
         m_list.at(i).set_color(ORANGE);
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(1);
+
         m_list.at(i).set_color(BLACK);
+        m_list.at(i + 1).set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(2);
     }
 
-    m_list.at(index).set_color(ORANGE);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(1);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(3);
 
     m_list.at(index).set_color(GREEN);
     m_list.at(index).set_value(value);
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(4);
 
     m_list.at(index).set_color(BLACK);
 
@@ -371,28 +537,59 @@ void DoublyLinkedListScene::interact_search() {
         return;
     }
 
+    m_code_highlighter.set_code({
+        "Node* node = head;",
+        "while (node != nullptr) {",
+        "    if (node->value == value)",
+        "        return node;",
+        "    node = node->next;",
+        "}",
+        "return not_found",
+    });
+
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(-1);
 
-    int idx = 0;
-    for (; idx < m_list.size(); ++idx) {
+    m_list.at(0).set_color(VIOLET);
+    m_sequence.insert(m_sequence.size(), m_list);
+    m_code_highlighter.push_into_sequence(0);
+
+    std::size_t idx = 0;
+
+    while (idx < m_list.size()) {
+        m_list.at(idx).set_color(ORANGE);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(1);
+
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(2);
         if (m_list.at(idx).get_value() == value) {
+            m_list.at(idx).set_color(GREEN);
+            m_sequence.insert(m_sequence.size(), m_list);
+            m_code_highlighter.push_into_sequence(3);
+            m_list.at(idx).set_color(BLACK);
             break;
         }
 
-        m_list.at(idx).set_color(ORANGE);
-        m_sequence.insert(m_sequence.size(), m_list);
         m_list.at(idx).set_color(BLACK);
+        ++idx;
+        if (idx < m_list.size()) {
+            m_list.at(idx).set_color(ORANGE);
+        }
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(4);
     }
 
-    if (idx < m_list.size()) {
-        m_list.at(idx).set_color(ORANGE);
+    if (idx >= m_list.size()) {
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(1);
 
-        m_list.at(idx).set_color(GREEN);
         m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(5);
 
-        m_list.at(idx).set_color(BLACK);
+        m_sequence.insert(m_sequence.size(), m_list);
+        m_code_highlighter.push_into_sequence(6);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
