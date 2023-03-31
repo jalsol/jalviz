@@ -1,25 +1,121 @@
-#include "doubly_linked_list_scene.hpp"
+#ifndef SCENE_BASE_LINKED_LIST_SCENE_HPP_
+#define SCENE_BASE_LINKED_LIST_SCENE_HPP_
 
-#include <cstddef>
-#include <cstdlib>
-#include <cstring>
-#include <fstream>
-#include <iostream>
-#include <limits>
-#include <string>
-
-#include "constants.hpp"
+#include "base_scene.hpp"
+#include "component/code_highlighter.hpp"
+#include "component/file_dialog.hpp"
+#include "component/text_input.hpp"
+#include "core/doubly_linked_list.hpp"
+#include "gui/circular_linked_list_gui.hpp"
+#include "gui/doubly_linked_list_gui.hpp"
+#include "gui/linked_list_gui.hpp"
 #include "raygui.h"
-#include "utils.hpp"
 
 namespace scene {
 
-DoublyLinkedListScene& DoublyLinkedListScene::get_instance() {
-    static DoublyLinkedListScene scene;
+template<typename Con>
+class BaseLinkedListScene : public internal::BaseScene {
+private:
+    internal::SceneOptions scene_options{
+        // max_size
+        8,  // NOLINT
+
+        // mode_labels
+        "Mode: Create;"
+        "Mode: Add;"
+        "Mode: Delete;"
+        "Mode: Update;"
+        "Mode: Search",
+
+        // mode_selection
+        0,
+
+        // action_labels
+        {
+            // Mode: Create
+            "Action: Random;Action: Input;Action: File",
+            // Mode: Add
+            "",
+            // Mode: Delete
+            "",
+            // Mode: Update
+            "",
+            // Mode: Search
+            "",
+        },
+
+        // action_selection
+        core::DoublyLinkedList<int>{0, 0, 0, 0, 0},
+    };
+
+    using internal::BaseScene::button_size;
+    using internal::BaseScene::head_offset;
+    using internal::BaseScene::options_head;
+
+    Con m_list{
+        gui::GuiNode<int>{1},
+        gui::GuiNode<int>{2},
+        gui::GuiNode<int>{3},
+    };
+    core::DoublyLinkedList<Con> m_sequence;
+
+    bool m_go{};
+    component::TextInput m_text_input;
+    component::TextInput m_index_input;
+    component::FileDialog m_file_dialog;
+    using internal::BaseScene::m_code_highlighter;
+    using internal::BaseScene::m_sequence_controller;
+
+    BaseLinkedListScene() = default;
+
+    using internal::BaseScene::render_go_button;
+    using internal::BaseScene::render_options;
+    void render_inputs() override;
+
+    void interact_random();
+    void interact_import(core::Deque<int> nums);
+    void interact_file_import();
+
+    void interact_add();
+    void interact_add_head(int value);
+    void interact_add_tail(int value);
+    void interact_add_middle(int index, int value);
+
+    void interact_delete();
+    void interact_delete_head();
+    void interact_delete_tail();
+    void interact_delete_middle(int index);
+
+    void interact_update();
+    void interact_search();
+
+public:
+    BaseLinkedListScene(const BaseLinkedListScene&) = delete;
+    BaseLinkedListScene(BaseLinkedListScene&&) = delete;
+    BaseLinkedListScene& operator=(const BaseLinkedListScene&) = delete;
+    BaseLinkedListScene& operator=(BaseLinkedListScene&&) = delete;
+    ~BaseLinkedListScene() override = default;
+
+    static BaseLinkedListScene& get_instance();
+
+    void render() override;
+    void interact() override;
+};
+
+using LinkedListScene = BaseLinkedListScene<gui::GuiLinkedList<int>>;
+using DoublyLinkedListScene =
+    BaseLinkedListScene<gui::GuiDoublyLinkedList<int>>;
+using CircularLinkedListScene =
+    BaseLinkedListScene<gui::GuiCircularLinkedList<int>>;
+
+template<typename Con>
+BaseLinkedListScene<Con>& BaseLinkedListScene<Con>::get_instance() {
+    static BaseLinkedListScene scene;
     return scene;
 }
 
-void DoublyLinkedListScene::render_inputs() {
+template<typename Con>
+void BaseLinkedListScene<Con>::render_inputs() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
@@ -63,7 +159,8 @@ void DoublyLinkedListScene::render_inputs() {
     m_go |= render_go_button();
 }
 
-void DoublyLinkedListScene::render() {
+template<typename Con>
+void BaseLinkedListScene<Con>::render() {
     m_sequence_controller.inc_anim_counter();
 
     int frame_idx = m_sequence_controller.get_anim_frame();
@@ -83,7 +180,8 @@ void DoublyLinkedListScene::render() {
     render_options(scene_options);
 }
 
-void DoublyLinkedListScene::interact() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact() {
     if (m_sequence_controller.interact()) {
         m_sequence_controller.reset_anim_counter();
         return;
@@ -138,10 +236,11 @@ void DoublyLinkedListScene::interact() {
     m_go = false;
 }
 
-void DoublyLinkedListScene::interact_random() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_random() {
     std::size_t size =
         utils::get_random(std::size_t{1}, scene_options.max_size);
-    m_list = gui::GuiDoublyLinkedList<int>();
+    m_list = Con();
 
     for (auto i = 0; i < size; ++i) {
         m_list.insert(
@@ -149,9 +248,10 @@ void DoublyLinkedListScene::interact_random() {
     }
 }
 
-void DoublyLinkedListScene::interact_import(core::Deque<int> nums) {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_import(core::Deque<int> nums) {
     m_sequence.clear();
-    m_list = gui::GuiDoublyLinkedList<int>();
+    m_list = Con();
 
     while (!nums.empty()) {
         if (utils::val_in_range(nums.front())) {
@@ -161,7 +261,8 @@ void DoublyLinkedListScene::interact_import(core::Deque<int> nums) {
     }
 }
 
-void DoublyLinkedListScene::interact_file_import() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_file_import() {
     if (!m_file_dialog.is_pressed()) {
         return;
     }
@@ -171,7 +272,8 @@ void DoublyLinkedListScene::interact_file_import() {
     m_file_dialog.reset_pressed();
 }
 
-void DoublyLinkedListScene::interact_add() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_add() {
     int index = m_index_input.extract_values().front();
     int value = m_text_input.extract_values().front();
 
@@ -198,7 +300,8 @@ void DoublyLinkedListScene::interact_add() {
     m_sequence_controller.set_rerun();
 }
 
-void DoublyLinkedListScene::interact_add_head(int value) {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_add_head(int value) {
     m_code_highlighter.set_code({
         "Node* node = new Node(value);",
         "node->next = head;",
@@ -230,7 +333,8 @@ void DoublyLinkedListScene::interact_add_head(int value) {
     m_list.at(0).set_color(BLACK);
 }
 
-void DoublyLinkedListScene::interact_add_tail(int value) {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_add_tail(int value) {
     m_code_highlighter.set_code({
         "Node* node = new Node(value);",
         "tail->next = node;",
@@ -257,7 +361,8 @@ void DoublyLinkedListScene::interact_add_tail(int value) {
     m_list.at(size).set_color(BLACK);
 }
 
-void DoublyLinkedListScene::interact_add_middle(int index, int value) {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_add_middle(int index, int value) {
     m_code_highlighter.set_code({
         "Node* pre = head;",
         "for (i = 0; i < index - 1; ++i)",
@@ -322,7 +427,8 @@ void DoublyLinkedListScene::interact_add_middle(int index, int value) {
     m_list.at(index + 1).set_color(BLACK);
 }
 
-void DoublyLinkedListScene::interact_delete() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_delete() {
     if (m_list.empty()) {
         return;
     }
@@ -348,7 +454,8 @@ void DoublyLinkedListScene::interact_delete() {
     m_sequence_controller.set_rerun();
 }
 
-void DoublyLinkedListScene::interact_delete_head() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_delete_head() {
     m_code_highlighter.set_code({
         "Node* temp = head;",
         "head = head->next;",
@@ -376,7 +483,8 @@ void DoublyLinkedListScene::interact_delete_head() {
     }
 }
 
-void DoublyLinkedListScene::interact_delete_tail() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_delete_tail() {
     m_code_highlighter.set_code({
         "Node* pre = head;",
         "Node* nxt = pre->next;",
@@ -427,7 +535,8 @@ void DoublyLinkedListScene::interact_delete_tail() {
     m_list.at(idx).set_color(BLACK);
 }
 
-void DoublyLinkedListScene::interact_delete_middle(int index) {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_delete_middle(int index) {
     m_code_highlighter.set_code({
         "Node* pre = head;",
         "for (i = 0; i < index - 1; i++)",
@@ -480,7 +589,8 @@ void DoublyLinkedListScene::interact_delete_middle(int index) {
     m_list.at(idx + 1).set_color(BLACK);
 }
 
-void DoublyLinkedListScene::interact_update() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_update() {
     int index = m_index_input.extract_values().front();
     int value = m_text_input.extract_values().front();
 
@@ -531,7 +641,8 @@ void DoublyLinkedListScene::interact_update() {
     m_sequence_controller.set_rerun();
 }
 
-void DoublyLinkedListScene::interact_search() {
+template<typename Con>
+void BaseLinkedListScene<Con>::interact_search() {
     int value = m_text_input.extract_values().front();
     if (!utils::val_in_range(value)) {
         return;
@@ -597,3 +708,5 @@ void DoublyLinkedListScene::interact_search() {
 }
 
 }  // namespace scene
+
+#endif  // SCENE_BASE_LINKED_LIST_SCENE_HPP_

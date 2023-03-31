@@ -4,11 +4,9 @@
 #include <array>
 
 #include "array_scene.hpp"
+#include "base_linked_list_scene.hpp"
 #include "base_scene.hpp"
-#include "circular_linked_list_scene.hpp"
-#include "doubly_linked_list_scene.hpp"
 #include "dynamic_array_scene.hpp"
-#include "linked_list_scene.hpp"
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
 #include "stack_scene.hpp"

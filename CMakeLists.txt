@@ -80,14 +80,10 @@ add_executable(${PROJECT_NAME}
     src/scene/menu_scene.cpp
     src/scene/array_scene.cpp
     src/scene/dynamic_array_scene.cpp
-    src/scene/linked_list_scene.cpp
-    src/scene/doubly_linked_list_scene.cpp
-    src/scene/circular_linked_list_scene.cpp
     src/scene/stack_scene.cpp
     src/scene/queue_scene.cpp
 
     src/scene/scene_registry.cpp
-    src/scene/scene_options.cpp
 
     src/component/sidebar.cpp
     src/component/text_input.cpp
