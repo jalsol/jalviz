@@ -67,11 +67,13 @@ void DynamicArrayScene::render() {
 
     if (frame_ptr != nullptr) {
         frame_ptr->data.render();
+        m_code_highlighter.highlight(frame_idx);
     } else {  // end of sequence
         m_array.render();
         m_sequence_controller.set_run_all(false);
     }
 
+    m_code_highlighter.render();
     m_sequence_controller.render();
     render_options(scene_options);
 }
@@ -155,27 +157,36 @@ void DynamicArrayScene::interact_update() {
     int index = m_index_input.extract_values().front();
     int value = m_text_input.extract_values().front();
 
-    if (0 <= index && index < max_size && utils::val_in_range(value)) {
-        m_sequence.clear();
-
-        // initial state (before update)
-        m_sequence.insert(m_sequence.size(), m_array);
-
-        // highlight
-        m_array.set_color(index, ORANGE);
-        m_sequence.insert(m_sequence.size(), m_array);
-
-        // update
-        m_array[index] = value;
-        m_array.set_color(index, GREEN);
-        m_sequence.insert(m_sequence.size(), m_array);
-
-        // undo highlight
-        m_array.set_color(index, BLACK);
-
-        m_sequence_controller.set_max_value((int)m_sequence.size());
-        m_sequence_controller.set_rerun();
+    if (!(0 <= index && index < m_array.size()) || !utils::val_in_range(value)) {
+        return;
     }
+
+    m_code_highlighter.set_code({
+        "a[i] = val;",
+    });
+
+    m_sequence.clear();
+
+    // initial state (before update)
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(-1);
+
+    // highlight
+    m_array.set_color(index, ORANGE);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(0);
+
+    // update
+    m_array[index] = value;
+    m_array.set_color(index, GREEN);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(0);
+
+    // undo highlight
+    m_array.set_color(index, BLACK);
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
 }
 
 void DynamicArrayScene::interact_file_import() {
@@ -194,22 +205,41 @@ void DynamicArrayScene::interact_search() {
         return;
     }
 
+    m_code_highlighter.set_code({
+        "for (i = 0; i < size; i++)",
+        "    if (a[i] == val)",
+        "        return i;",
+        "return not_found",
+    });
+
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(0);
+
+    bool found = false;
 
     for (std::size_t i = 0; i < m_array.size(); ++i) {
         m_array.set_color(i, ORANGE);
         m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(1);
 
         if (m_array[i] == value) {
+            found = true;
             m_array.set_color(i, GREEN);
             m_sequence.insert(m_sequence.size(), m_array);
+            m_code_highlighter.push_into_sequence(2);
             m_array.set_color(i, BLACK);
             break;
         }
 
         m_array.set_color(i, BLACK);
         m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(0);
+    }
+
+    if (!found) {
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(3);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
@@ -223,21 +253,34 @@ void DynamicArrayScene::interact_push() {
         return;
     }
 
+    m_code_highlighter.set_code({
+        "if (size == capacity)",
+        "    capacity *= 2;",
+        "array[size] = value;",
+        "size++;",
+    });
+
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(-1);
+
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(0);
 
     if (m_array.size() == m_array.capacity()) {
         m_array.realloc(m_array.size() + 1);
         m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(1);
     }
-    m_array.set_color(m_array.size(), ORANGE);
-    m_sequence.insert(m_sequence.size(), m_array);
 
     m_array.push(value);
     m_array.set_color(m_array.size() - 1, GREEN);
     m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(2);
 
     m_array.set_color(m_array.size() - 1, BLACK);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(3);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
@@ -248,13 +291,22 @@ void DynamicArrayScene::interact_pop() {
         return;
     }
 
+    m_code_highlighter.set_code({
+        "array[size - 1] = 0;",
+        "size--;",
+    });
+
     m_sequence.clear();
     m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(-1);
 
     m_array.set_color(m_array.size() - 1, ORANGE);
     m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(0);
 
     m_array.pop();
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(1);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
