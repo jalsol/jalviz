@@ -132,10 +132,12 @@ void DynamicArrayScene::interact() {
 }
 
 void DynamicArrayScene::interact_random() {
+    std::size_t size =
+        utils::get_random(std::size_t{1}, scene_options.max_size);
     m_array = {};
 
-    for (std::size_t i = 0; i < max_size; ++i) {
-        m_array[i] = utils::get_random(constants::min_val, constants::max_val);
+    for (std::size_t i = 0; i < size; ++i) {
+        m_array.push(utils::get_random(constants::min_val, constants::max_val));
     }
 }
 
@@ -144,12 +146,8 @@ void DynamicArrayScene::interact_import(core::Deque<int> nums) {
     std::size_t i;  // NOLINT
 
     for (i = 0; i < max_size && !nums.empty(); ++i) {
-        m_array[i] = nums.front();
+        m_array.push(nums.front());
         nums.pop_front();
-    }
-
-    for (; i < max_size; ++i) {
-        m_array[i] = 0;
     }
 }
 

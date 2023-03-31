@@ -31,6 +31,9 @@ public:
     GuiDynamicArray();
     GuiDynamicArray(std::initializer_list<T> init_list);
     GuiDynamicArray(const GuiDynamicArray& other);
+    GuiDynamicArray(GuiDynamicArray&& other) noexcept;
+    GuiDynamicArray& operator=(const GuiDynamicArray& other);
+    GuiDynamicArray& operator=(GuiDynamicArray&& other) noexcept;
     ~GuiDynamicArray() override;
 
     void update() override;
@@ -80,7 +83,7 @@ GuiDynamicArray<T>::GuiDynamicArray() : m_ptr{new GuiElement<T>[m_capacity]} {
 
 template<typename T>
 GuiDynamicArray<T>::GuiDynamicArray(std::initializer_list<T> init_list)
-    : m_size{init_list.size()} {
+    : m_size{init_list.size()}, m_ptr{new GuiElement<T>[m_capacity]} {
     realloc(m_size);
 
     for (std::size_t idx = 0; auto elem : init_list) {
@@ -97,6 +100,44 @@ GuiDynamicArray<T>::GuiDynamicArray(const GuiDynamicArray<T>& other)
     for (auto i = 0; i < m_capacity; ++i) {
         m_ptr[i] = other.m_ptr[i];
     }
+}
+
+template<typename T>
+GuiDynamicArray<T>::GuiDynamicArray(GuiDynamicArray<T>&& other) noexcept
+    : m_capacity{other.m_capacity}, m_size{other.m_size}, m_ptr{other.m_ptr} {
+    other.m_capacity = 0;
+    other.m_size = 0;
+    other.m_ptr = nullptr;
+}
+
+template<typename T>
+GuiDynamicArray<T>& GuiDynamicArray<T>::operator=(
+    const GuiDynamicArray<T>& other) {
+    if (&other != this) {
+        m_capacity = other.m_capacity;
+        m_size = other.m_size;
+
+        m_ptr = new GuiDynamicArray<T>[m_capacity];
+        for (auto i = 0; i < m_capacity; ++i) {
+            m_ptr[i] = other.m_ptr[i];
+        }
+    }
+
+    return *this;
+}
+
+template<typename T>
+GuiDynamicArray<T>& GuiDynamicArray<T>::operator=(
+    GuiDynamicArray&& other) noexcept {
+    m_capacity = other.m_capacity;
+    m_size = other.m_size;
+    m_ptr = other.m_ptr;
+
+    other.m_capacity = 0;
+    other.m_size = 0;
+    other.m_ptr = nullptr;
+
+    return *this;
 }
 
 template<typename T>
@@ -155,7 +196,7 @@ std::size_t GuiDynamicArray<T>::size() const {
 
 template<typename T>
 void GuiDynamicArray<T>::push(const T& value) {
-    if (m_size + 1 > m_capacity) {
+    if (m_size == m_capacity) {
         realloc(m_size + 1);
     }
 
