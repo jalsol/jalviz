@@ -25,8 +25,11 @@ Vector2 MeasureText(const char* text, float font_size, float spacing) {
 
 core::Deque<int> str_extract_data(
     char str[constants::text_buffer_size]) {  // NOLINT
+    char str_copy[constants::text_buffer_size];
+    strncpy(str_copy, str, constants::text_buffer_size);
+
     char* save_ptr = nullptr;
-    char* token = utils::strtok(str, ",", &save_ptr);
+    char* token = utils::strtok(str_copy, ",", &save_ptr);
 
     if (token == nullptr) {
         return {0};
