@@ -157,7 +157,8 @@ void DynamicArrayScene::interact_update() {
     int index = m_index_input.extract_values().front();
     int value = m_text_input.extract_values().front();
 
-    if (!(0 <= index && index < m_array.size()) || !utils::val_in_range(value)) {
+    if (!(0 <= index && index < m_array.size()) ||
+        !utils::val_in_range(value)) {
         return;
     }
 
