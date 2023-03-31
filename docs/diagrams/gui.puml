@@ -1,0 +1,148 @@
+@startuml
+abstract "gui::internal::Base" as C_0000175824954716261305
+abstract C_0000175824954716261305 {
+{abstract} -render_link() = 0 : void
++Base() = default : void
++Base() = default : void
++Base() = default : void
++operator=() = default : gui::internal::Base &
++operator=() = default : gui::internal::Base &
++~Base() = default : void
+{abstract} +update() = 0 : void
+{abstract} +render() = 0 : void
+}
+class "gui::GuiElement<T>" as C_0002044747090333057839
+class C_0002044747090333057839 {
++GuiElement<T>() = default : void
++GuiElement<T>() : void
++render() : void
++set_target_pos() : void
++set_color() : void
++get_target_pos() const : Vector2
++get_current_pos() const : Vector2
++check_outdated() const : bool
++get_value() : T &
++get_value() const : T
++set_value() : void
++set_index() : void
+-m_value : T
+-m_index : std::size_t
+-m_current_pos : Vector2
+-m_target_pos : Vector2
+-m_is_outdated : bool
+-m_color : Color
+{static} -eps : const float
+{static} +side : const int
+{static} +init_pos : const Vector2
+}
+class "gui::GuiArray<T,std::size_t N>" as C_0001269788950877413692
+class C_0001269788950877413692 {
+-render_link() : void
++GuiArray<T, N>() : void
++GuiArray<T, N>() : void
++update() : void
++render() : void
++operator[]() : T &
++operator[]() const : T
++set_color() : void
+{static} -head_pos : const Vector2
+}
+class "gui::GuiDynamicArray<T>" as C_0000068279211946526198
+class C_0000068279211946526198 {
+-render_link() : void
++GuiDynamicArray<T>() : void
++GuiDynamicArray<T>() : void
++GuiDynamicArray<T>() : void
++GuiDynamicArray<T>() : void
++operator=() : GuiDynamicArray<T> &
++operator=() : GuiDynamicArray<T> &
++~GuiDynamicArray<T>() : void
++update() : void
++render() : void
++operator[]() : T &
++operator[]() const : T
++set_color() : void
++realloc() : void
++capacity() const : std::size_t
++size() const : std::size_t
++push() : void
++pop() : void
+-m_capacity : std::size_t
+-m_size : std::size_t
+{static} -head_pos : const Vector2
+}
+class "gui::GuiNode<T>" as C_0001747959826151301658
+class C_0001747959826151301658 {
++GuiNode<T>() : void
++render() : void
++set_target_pos() : void
++get_target_pos() const : Vector2
++get_current_pos() const : Vector2
++check_outdated() const : bool
++set_color() : void
++set_value() : void
++get_value() : T &
+-m_value : T
+-m_color : Color
+-m_current_pos : Vector2
+-m_target_pos : Vector2
+-m_is_outdated : bool
+{static} -eps : const float
+{static} +radius : const int
+}
+class "gui::GuiQueue<T>" as C_0000537993261370672901
+class C_0000537993261370672901 {
+-render_link() : void
++push() : void
++pop() : void
++push_front() : void
++pop_back() : void
++update() : void
++render() : void
+{static} -head_pos : const Vector2
+}
+class "gui::GuiCircularLinkedList<T>" as C_0000636823269603515495
+class C_0000636823269603515495 {
+-render_link() : void
+-render_back_link() : void
++insert() : void
++update() : void
++render() : void
+{static} -head_pos : const Vector2
+}
+class "gui::GuiDoublyLinkedList<T>" as C_0001770119980623113789
+class C_0001770119980623113789 {
+-render_link() : void
++insert() : void
++update() : void
++render() : void
+{static} -head_pos : const Vector2
+}
+class "gui::GuiLinkedList<T>" as C_0001460638568713575271
+class C_0001460638568713575271 {
+-render_link() : void
++insert() : void
++update() : void
++render() : void
+{static} -head_pos : const Vector2
+}
+class "gui::GuiStack<T>" as C_0000012620274388027065
+class C_0000012620274388027065 {
+-render_link() : void
++push() : void
++pop() : void
++update() : void
++render() : void
+{static} -head_pos : const Vector2
+}
+C_0001269788950877413692 ..> C_0002044747090333057839
+C_0001269788950877413692 o-- C_0002044747090333057839 : -m_array
+C_0000175824954716261305 <|-- C_0001269788950877413692
+C_0000068279211946526198 --> C_0002044747090333057839 : -m_ptr
+C_0000175824954716261305 <|-- C_0000068279211946526198
+C_0000175824954716261305 <|-- C_0000537993261370672901
+C_0000175824954716261305 <|-- C_0000636823269603515495
+C_0000175824954716261305 <|-- C_0001770119980623113789
+C_0000175824954716261305 <|-- C_0001460638568713575271
+C_0000175824954716261305 <|-- C_0000012620274388027065
+@enduml

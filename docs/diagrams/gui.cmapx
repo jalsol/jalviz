@@ -1,0 +1,37 @@
+<map id="gui_map" name="gui_map">
+<area shape="rect" id="id1" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L18" title="m_value" alt="" coords="49,873,138,889"/>
+<area shape="rect" id="id2" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L17" title="m_value" alt="" coords="1047,44,1136,60"/>
+<area shape="rect" id="id3" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L28" title="side" alt="" coords="49,986,154,1002"/>
+<area shape="rect" id="id4" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L25" title="m_color" alt="" coords="49,954,160,970"/>
+<area shape="rect" id="id5" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L18" title="m_color" alt="" coords="1047,60,1158,76"/>
+<area shape="rect" id="id6" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L27" title="eps" alt="" coords="1047,125,1161,141"/>
+<area shape="rect" id="id7" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L24" title="eps" alt="" coords="49,970,163,986"/>
+<area shape="rect" id="id8" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L30" title="radius" alt="" coords="1047,141,1165,157"/>
+<area shape="rect" id="id9" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/dynamic_array_gui.hpp#L25" title="m_size" alt="" coords="243,427,378,443"/>
+<area shape="rect" id="id10" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L19" title="m_index" alt="" coords="49,889,193,905"/>
+<area shape="rect" id="id11" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L26" title="m_is_outdated" alt="" coords="1047,108,1194,125"/>
+<area shape="rect" id="id12" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L23" title="m_is_outdated" alt="" coords="49,937,196,954"/>
+<area shape="rect" id="id13" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L29" title="init_pos" alt="" coords="49,1002,211,1018"/>
+<area shape="rect" id="id14" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/dynamic_array_gui.hpp#L24" title="m_capacity" alt="" coords="243,411,405,427"/>
+<area shape="rect" id="id15" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L25" title="m_target_pos" alt="" coords="1047,92,1210,108"/>
+<area shape="rect" id="id16" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L22" title="m_target_pos" alt="" coords="49,921,212,937"/>
+<area shape="rect" id="id17" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L21" title="m_current_pos" alt="" coords="49,905,220,921"/>
+<area shape="rect" id="id18" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L20" title="m_current_pos" alt="" coords="1047,76,1218,92"/>
+<area shape="rect" id="id19" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/linked_list_gui.hpp#L21" title="head_pos" alt="" coords="1236,540,1412,556"/>
+<area shape="rect" id="id20" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/stack_gui.hpp#L20" title="head_pos" alt="" coords="1459,532,1635,548"/>
+<area shape="rect" id="id21" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/array_gui.hpp#L17" title="head_pos" alt="" coords="13,508,189,524"/>
+<area shape="rect" id="id22" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/queue_gui.hpp#L20" title="head_pos" alt="" coords="537,516,713,532"/>
+<area shape="rect" id="id23" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/dynamic_array_gui.hpp#L18" title="head_pos" alt="" coords="243,443,419,459"/>
+<area shape="rect" id="id24" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/doubly_linked_list_gui.hpp#L21" title="head_pos" alt="" coords="1001,540,1177,556"/>
+<area shape="rect" id="id25" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/circular_linked_list_gui.hpp#L23" title="head_pos" alt="" coords="761,532,937,548"/>
+<area shape="rect" id="id26" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/linked_list_gui.hpp#L16" title="GuiLinkedList" alt="" coords="1230,502,1421,634"/>
+<area shape="rect" id="id27" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/doubly_linked_list_gui.hpp#L16" title="GuiDoublyLinkedList" alt="" coords="995,502,1198,634"/>
+<area shape="rect" id="id28" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/stack_gui.hpp#L16" title="GuiStack" alt="" coords="1453,494,1644,642"/>
+<area shape="rect" id="id29" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/circular_linked_list_gui.hpp#L18" title="GuiCircularLinkedList" alt="" coords="755,494,963,642"/>
+<area shape="rect" id="id30" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/queue_gui.hpp#L16" title="GuiQueue" alt="" coords="531,478,722,658"/>
+<area shape="rect" id="id31" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/array_gui.hpp#L15" title="GuiArray" alt="" coords="7,470,205,666"/>
+<area shape="rect" id="id32" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/base_gui.hpp#L8" title="Base" alt="" coords="709,66,1005,259"/>
+<area shape="rect" id="id33" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/node_gui.hpp#L15" title="GuiNode" alt="" coords="1041,6,1283,315"/>
+<area shape="rect" id="id34" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/element_gui.hpp#L16" title="GuiElement" alt="" coords="43,835,285,1225"/>
+<area shape="rect" id="id35" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/gui/dynamic_array_gui.hpp#L16" title="GuiDynamicArray" alt="" coords="237,373,499,763"/>
+</map>

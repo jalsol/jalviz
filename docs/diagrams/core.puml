@@ -1,0 +1,67 @@
+@startuml
+class "core::BaseList<T>" as C_0001210299381800214398
+class C_0001210299381800214398 {
+#init_first_element() : void
+#clean_up() : void
+#copy_data() : void
+#push_back() : void
+#push_front() : void
+#back() const : T &
+#front() const : T &
+#pop_front() : void
+#pop_back() : void
++BaseList<T>() = default : void
++BaseList<T>() : void
++BaseList<T>() : void
++operator=() : BaseList<T> &
++BaseList<T>() : void
++operator=() : BaseList<T> &
++~BaseList<T>() : void
++empty() const : bool
++size() const : std::size_t
+#m_head : core::BaseList::Node_ptr
+#m_tail : core::BaseList::Node_ptr
+#m_size : std::size_t
+}
+class "core::BaseList::Node" as C_0001587911644946356933
+class C_0001587911644946356933 {
++data : T
++prev : core::BaseList::Node_ptr
++next : core::BaseList::Node_ptr
+}
+class "core::DoublyLinkedList<T>" as C_0001119460634631637164
+class C_0001119460634631637164 {
+#internal_search() : core::DoublyLinkedList::Node_ptr
+#internal_find() : core::DoublyLinkedList::Node_ptr
++search() : core::DoublyLinkedList::Node_ptr
++find() : core::DoublyLinkedList::Node_ptr
++search() const : core::DoublyLinkedList::cNode_ptr
++find() const : core::DoublyLinkedList::cNode_ptr
++insert() : core::DoublyLinkedList::Node_ptr
++remove() : core::DoublyLinkedList::Node_ptr
++at() : T &
++at() const : T
++clear() : void
+}
+class "core::Deque<T>" as C_0000733147301305978309
+class C_0000733147301305978309 {
+}
+class "core::Queue<T>" as C_0000416676988419608080
+class C_0000416676988419608080 {
++front() const : T &
++back() const : T &
++push() : void
++pop() : void
+}
+class "core::Stack<T>" as C_0001172801259125092779
+class C_0001172801259125092779 {
++top() const : T &
++push() : void
++pop() : void
+}
+C_0001587911644946356933 --+ C_0001210299381800214398
+C_0001210299381800214398 <|-- C_0001119460634631637164
+C_0001210299381800214398 <|-- C_0000733147301305978309
+C_0001210299381800214398 <|-- C_0000416676988419608080
+C_0001210299381800214398 <|-- C_0001172801259125092779
+@enduml

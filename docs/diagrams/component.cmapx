@@ -1,0 +1,36 @@
+<map id="component_map" name="component_map">
+<area shape="rect" id="id1" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L23" title="m_speed" alt="" coords="399,186,499,202"/>
+<area shape="rect" id="id2" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L13" title="m_replay" alt="" coords="399,41,511,57"/>
+<area shape="rect" id="id3" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L12" title="width" alt="" coords="13,202,125,218"/>
+<area shape="rect" id="id4" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L18" title="m_run_all" alt="" coords="399,122,515,138"/>
+<area shape="rect" id="id5" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L13" title="height" alt="" coords="13,218,131,234"/>
+<area shape="rect" id="id6" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/text_input.hpp#L15" title="m_is_active" alt="" coords="64,584,192,600"/>
+<area shape="rect" id="id7" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L17" title="m_num_steps" alt="" coords="399,105,530,122"/>
+<area shape="rect" id="id8" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sidebar.hpp#L27" title="m_next_scene" alt="" coords="348,551,482,567"/>
+<area shape="rect" id="id9" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/file_dialog.hpp#L19" title="size" alt="" coords="671,218,809,234"/>
+<area shape="rect" id="id10" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/text_input.hpp#L18" title="size" alt="" coords="64,600,202,616"/>
+<area shape="rect" id="id11" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L15" title="m_next_frame" alt="" coords="399,73,544,89"/>
+<area shape="rect" id="id12" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L14" title="m_prev_frame" alt="" coords="399,57,545,73"/>
+<area shape="rect" id="id13" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L22" title="m_next_speed" alt="" coords="399,170,546,186"/>
+<area shape="rect" id="id14" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L21" title="m_prev_speed" alt="" coords="399,154,547,170"/>
+<area shape="rect" id="id15" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L19" title="m_anim_counter" alt="" coords="399,138,547,154"/>
+<area shape="rect" id="id16" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L11" title="speed_scale" alt="" coords="399,218,558,234"/>
+<area shape="rect" id="id17" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L16" title="m_progress_value" alt="" coords="399,89,558,105"/>
+<area shape="rect" id="id18" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L18" title="m_highlighted_line" alt="" coords="13,186,173,202"/>
+<area shape="rect" id="id19" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sidebar.hpp#L12" title="num_scenes" alt="" coords="348,567,508,583"/>
+<area shape="rect" id="id20" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/file_dialog.hpp#L16" title="m_file_input" alt="" coords="671,202,834,218"/>
+<area shape="rect" id="id21" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sidebar.hpp#L15" title="button_height" alt="" coords="348,599,514,615"/>
+<area shape="rect" id="id22" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sidebar.hpp#L14" title="sidebar_width" alt="" coords="348,583,515,599"/>
+<area shape="rect" id="id23" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/text_input.hpp#L14" title="m_text_input" alt="" coords="64,568,232,584"/>
+<area shape="rect" id="id24" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L14" title="head_pos" alt="" coords="13,234,189,250"/>
+<area shape="rect" id="id25" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L10" title="button_size" alt="" coords="399,202,585,218"/>
+<area shape="rect" id="id26" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sidebar.hpp#L17" title="sidebar_labels" alt="" coords="348,615,575,632"/>
+<area shape="rect" id="id27" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/file_dialog.hpp#L13" title="m_file_dialog_state" alt="" coords="671,186,938,202"/>
+<area shape="rect" id="id28" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L17" title="m_sequence" alt="" coords="13,170,296,186"/>
+<area shape="rect" id="id29" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L16" title="m_src_code" alt="" coords="13,154,352,170"/>
+<area shape="rect" id="id30" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/text_input.hpp#L12" title="TextInput" alt="" coords="58,533,307,661"/>
+<area shape="rect" id="id31" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sidebar.hpp#L10" title="SideBar" alt="" coords="342,517,581,677"/>
+<area shape="rect" id="id32" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/file_dialog.hpp#L11" title="FileDialog" alt="" coords="665,151,944,312"/>
+<area shape="rect" id="id33" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/code_highlighter.hpp#L10" title="CodeHighlighter" alt="" coords="7,119,358,344"/>
+<area shape="rect" id="id34" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/component/sequence_controller.hpp#L8" title="SequenceController" alt="" coords="393,7,630,457"/>
+</map>

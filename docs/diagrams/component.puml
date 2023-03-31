@@ -1,0 +1,72 @@
+@startuml
+class "component::CodeHighlighter" as C_0002054133981456560134
+class C_0002054133981456560134 {
++render() : void
++set_code() : void
++push_into_sequence() : void
++highlight() : void
++clear() : void
+-m_src_code : core::DoublyLinkedList<const char *>
+-m_sequence : core::DoublyLinkedList<int>
+-m_highlighted_line : int
+{static} -width : const int
+{static} -height : const int
+{static} -head_pos : const Vector2
+}
+class "component::SequenceController" as C_0000345155806459925692
+class C_0000345155806459925692 {
++render() : void
++interact() : bool
++set_max_value() : void
++set_progress_value() : void
++set_run_all() : void
++set_rerun() : void
++get_run_all() const : bool
++get_progress_value() const : int
++get_speed_scale() const : float
++reset_anim_counter() : void
++inc_anim_counter() : void
++get_anim_counter() const : int
++get_anim_frame() const : int
+-m_replay : bool
+-m_prev_frame : bool
+-m_next_frame : bool
+-m_progress_value : int
+-m_num_steps : int
+-m_run_all : bool
+-m_anim_counter : int
+-m_prev_speed : bool
+-m_next_speed : bool
+-m_speed : int
+{static} -button_size : const Vector2
+{static} -speed_scale : const int
+}
+class "component::FileDialog" as C_0002086019584566554074
+class C_0002086019584566554074 {
++render() : void
++extract_values() : core::Deque<int>
++is_pressed() const : bool
++reset_pressed() : void
+-m_file_dialog_state : GuiFileDialogState
+-m_file_input : char[512]
+{static} +size : const Vector2
+}
+class "component::TextInput" as C_0002253310056810959814
+class C_0002253310056810959814 {
++render() : void
++extract_values() : core::Deque<int>
+-m_text_input : char[512]
+-m_is_active : bool
+{static} +size : const Vector2
+}
+class "component::SideBar" as C_0000536568757236472708
+class C_0000536568757236472708 {
++render() : void
++interact() const : void
+-m_next_scene : int
+{static} -num_scenes : const int
+{static} -sidebar_width : const int
+{static} -button_height : const int
+{static} -sidebar_labels : const char *const
+}
+@enduml

@@ -1,0 +1,14 @@
+<map id="core_map" name="core_map">
+<area shape="rect" id="id1" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L17" title="data" alt="" coords="438,41,501,57"/>
+<area shape="rect" id="id2" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L24" title="m_size" alt="" coords="426,229,561,245"/>
+<area shape="rect" id="id3" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L19" title="next" alt="" coords="438,73,648,89"/>
+<area shape="rect" id="id4" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L18" title="prev" alt="" coords="438,57,649,73"/>
+<area shape="rect" id="id5" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L23" title="m_tail" alt="" coords="426,213,647,229"/>
+<area shape="rect" id="id6" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L22" title="m_head" alt="" coords="426,197,661,213"/>
+<area shape="rect" id="id7" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/deque.hpp#L9" title="Deque" alt="" coords="401,694,525,745"/>
+<area shape="rect" id="id8" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/stack.hpp#L9" title="Stack" alt="" coords="730,670,861,769"/>
+<area shape="rect" id="id9" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/queue.hpp#L9" title="Queue" alt="" coords="557,662,698,777"/>
+<area shape="rect" id="id10" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L16" title="BaseList##Node" alt="" coords="432,7,655,103"/>
+<area shape="rect" id="id11" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/doubly_linked_list.hpp#L11" title="DoublyLinkedList" alt="" coords="9,605,369,834"/>
+<area shape="rect" id="id12" href="https://github.com/bkryza/clang-uml/blob/e20a3fbfe86499dea0a89a956c8272d4165068f4/src/core/base_list.hpp#L11" title="BaseList" alt="" coords="420,159,670,549"/>
+</map>

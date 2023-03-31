@@ -1,0 +1,40 @@
+compilation_database_dir: build
+output_directory: docs/diagrams
+generate_method_arguments: none
+diagrams:
+  scene:
+    type: class
+    include_relations_also_as_members: false
+    include:
+      namespaces:
+        - scene
+    # plantuml:
+    #   before:
+    #     - 'scene class diagram model'
+  gui:
+    type: class
+    include_relations_also_as_members: false
+    include:
+      namespaces:
+        - gui
+    # plantuml:
+    #   before:
+    #     - 'gui class diagram model'
+  core:
+    type: class
+    include_relations_also_as_members: false
+    include:
+      namespaces:
+        - core
+    # plantuml:
+    #   before:
+    #     - 'core class diagram model'
+  component:
+    type: class
+    include_relations_also_as_members: false
+    include:
+      namespaces:
+        - component
+    # plantuml:
+    #   before:
+    #     - 'component class diagram model'

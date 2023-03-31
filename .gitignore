@@ -8,3 +8,4 @@
 build/
 *_exe
 visualgo_cpp
+docs/html
