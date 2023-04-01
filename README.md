@@ -2,11 +2,23 @@
 
 Author: 22125113 - Nguyen Quang Truong
 
-## Requirements
+## Demonstration
+
+[To be updated]
+
+## Dependencies
+
+### Application
 
 - C++20 (GNU GCC 11.3.0)
 - CMake 3.22 or above
 - [Raylib](https://github.com/raysan5/raylib) and [Raygui](https://github.com/raysan5/raygui)
+
+### Documentation
+
+- [Doxygen](https://www.doxygen.nl/)
+- [PlantUML](https://plantuml.com/)
+- [clang-uml](https://github.com/bkryza/clang-uml)
 
 ## Building
 
@@ -15,9 +27,9 @@ Author: 22125113 - Nguyen Quang Truong
 - `make -Cbuild`
 - The executable `visualgo_cpp` will appear.
 
-## Prebuilt executables
+## Releases
 
-Executables inside `release` should be moved to the root of the repo before running.
+Prebuilt executables should be moved to the root of the repo before running.
 
 ## Features
 
@@ -38,10 +50,10 @@ This project is licensed under the GNU GPL v3.0 License.
 
 ### Program structure
 
-Please refer to `docs/latex/refman.pdf`.
+For the LaTeX version, please refer to `docs/latex/refman.pdf`.
 
-To see the HTML version, please generate with Doxygen, using `Doxyfile` as the
-configuration.
+For the HTML version, please generate with Doxygen using `Doxyfile` as the
+configuration. The generated HTML is located at `docs/html/`
 
 ## Modeling structures overview
 
