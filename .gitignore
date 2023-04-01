@@ -8,4 +8,6 @@
 build/
 *_exe
 visualgo_cpp
-docs/html
+docs/html/
+docs/latex/*
+!docs/latex/refman.pdf
