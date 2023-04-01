@@ -163,7 +163,7 @@ void DynamicArrayScene::interact_update() {
     }
 
     m_code_highlighter.set_code({
-        "a[i] = val;",
+        "array[index] = value;",
     });
 
     m_sequence.clear();
@@ -208,7 +208,7 @@ void DynamicArrayScene::interact_search() {
 
     m_code_highlighter.set_code({
         "for (i = 0; i < size; i++)",
-        "    if (a[i] == val)",
+        "    if (array[i] == value)",
         "        return i;",
         "return not_found",
     });
