@@ -164,7 +164,7 @@ void GuiDynamicArray<T>::update() {
     // TODO: if not outdated then return
 
     for (std::size_t i = 0; i < m_capacity; ++i) {
-        m_ptr[i].set_target_pos(
+        m_ptr[i].set_pos(
             {head_pos.x + 4 * GuiElement<T>::side * i, head_pos.y});
     }
 }

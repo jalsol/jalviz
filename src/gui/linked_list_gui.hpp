@@ -72,8 +72,7 @@ void GuiLinkedList<T>::render() {
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
         if (ptr->next != nullptr) {
-            render_link(ptr->data.get_current_pos(),
-                        ptr->next->data.get_current_pos());
+            render_link(ptr->data.get_pos(), ptr->next->data.get_pos());
         }
 
         ptr->data.render();
@@ -87,7 +86,7 @@ void GuiLinkedList<T>::update() {
     std::size_t pos = 0;
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
-        ptr->data.set_target_pos(
+        ptr->data.set_pos(
             {head_pos.x + 4 * GuiNode<T>::radius * pos, head_pos.y});
         ++pos;
     }

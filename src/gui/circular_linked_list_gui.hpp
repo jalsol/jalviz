@@ -72,8 +72,8 @@ void GuiCircularLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
 template<typename T>
 void GuiCircularLinkedList<T>::render_back_link() {
     constexpr int num_points = 5;
-    const Vector2 head_pos = m_head->data.get_current_pos();
-    const Vector2 tail_pos = m_tail->data.get_current_pos();
+    const Vector2 head_pos = m_head->data.get_pos();
+    const Vector2 tail_pos = m_tail->data.get_pos();
     constexpr int radius = GuiNode<T>::radius;
     constexpr float scaled_len = radius / 8.0F;
 
@@ -102,8 +102,7 @@ void GuiCircularLinkedList<T>::render() {
     render_back_link();
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
         if (ptr->next != nullptr) {
-            render_link(ptr->data.get_current_pos(),
-                        ptr->next->data.get_current_pos());
+            render_link(ptr->data.get_pos(), ptr->next->data.get_pos());
         }
 
         ptr->data.render();
@@ -117,7 +116,7 @@ void GuiCircularLinkedList<T>::update() {
     std::size_t pos = 0;
 
     for (auto* ptr = m_head; ptr != nullptr; ptr = ptr->next) {
-        ptr->data.set_target_pos(
+        ptr->data.set_pos(
             {head_pos.x + 4 * GuiNode<T>::radius * pos, head_pos.y});
         ++pos;
     }

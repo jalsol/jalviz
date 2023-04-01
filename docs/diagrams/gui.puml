@@ -16,20 +16,16 @@ class C_0002044747090333057839 {
 +GuiElement<T>() = default : void
 +GuiElement<T>() : void
 +render() : void
-+set_target_pos() : void
++set_pos() : void
 +set_color() : void
-+get_target_pos() const : Vector2
-+get_current_pos() const : Vector2
-+check_outdated() const : bool
++get_pos() const : Vector2
 +get_value() : T &
 +get_value() const : T
 +set_value() : void
 +set_index() : void
 -m_value : T
 -m_index : std::size_t
--m_current_pos : Vector2
--m_target_pos : Vector2
--m_is_outdated : bool
+-m_pos : Vector2
 -m_color : Color
 {static} -eps : const float
 {static} +side : const int
@@ -75,18 +71,14 @@ class "gui::GuiNode<T>" as C_0001747959826151301658
 class C_0001747959826151301658 {
 +GuiNode<T>() : void
 +render() : void
-+set_target_pos() : void
-+get_target_pos() const : Vector2
-+get_current_pos() const : Vector2
-+check_outdated() const : bool
++set_pos() : void
++get_pos() const : Vector2
 +set_color() : void
 +set_value() : void
 +get_value() : T &
 -m_value : T
 -m_color : Color
--m_current_pos : Vector2
--m_target_pos : Vector2
--m_is_outdated : bool
+-m_pos : Vector2
 {static} -eps : const float
 {static} +radius : const int
 }

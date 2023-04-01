@@ -65,7 +65,7 @@ void GuiArray<T, N>::update() {
     // TODO: if not outdated then return
 
     for (std::size_t i = 0; i < N; ++i) {
-        m_array[i].set_target_pos(
+        m_array[i].set_pos(
             {head_pos.x + 4 * GuiElement<T>::side * i, head_pos.y});
     }
 }
