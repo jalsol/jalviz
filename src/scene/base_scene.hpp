@@ -21,6 +21,9 @@ protected:
     component::SequenceController m_sequence_controller;
     component::CodeHighlighter m_code_highlighter;
 
+    bool m_edit_mode{};
+    bool m_edit_action{};
+
 public:
     BaseScene() = default;
     BaseScene(const BaseScene&) = delete;

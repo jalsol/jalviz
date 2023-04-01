@@ -32,7 +32,7 @@ core::Deque<int> str_extract_data(
     char* token = utils::strtok(str_copy, ",", &save_ptr);
 
     if (token == nullptr) {
-        return {0};
+        return {};
     }
 
     core::Deque<int> ret;

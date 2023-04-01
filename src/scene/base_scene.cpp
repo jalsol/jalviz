@@ -14,6 +14,8 @@ bool BaseScene::render_go_button() const {
 }
 
 void BaseScene::render_options(SceneOptions& scene_config) {
+    (m_edit_mode || m_edit_action) ? GuiLock() : GuiUnlock();
+
     options_head = 2 * constants::sidebar_width;
 
     Rectangle mode_button_shape{options_head,
@@ -24,7 +26,10 @@ void BaseScene::render_options(SceneOptions& scene_config) {
 
     int& mode = scene_config.mode_selection;
 
-    mode = GuiComboBox(mode_button_shape, scene_config.mode_labels, mode);
+    if (GuiDropdownBox(mode_button_shape, scene_config.mode_labels, &mode,
+                       m_edit_mode)) {
+        m_edit_mode ^= 1;
+    }
 
     if (std::strlen(scene_config.action_labels.at(mode)) != 0) {
         Rectangle action_button_shape{options_head,
@@ -33,9 +38,17 @@ void BaseScene::render_options(SceneOptions& scene_config) {
 
         options_head += (button_size.x + head_offset);
 
-        scene_config.action_selection.at(mode) = GuiComboBox(
-            action_button_shape, scene_config.action_labels.at(mode),
-            scene_config.action_selection.at(mode));
+        int& action_selection = scene_config.action_selection.at(mode);
+
+        if (GuiDropdownBox(action_button_shape,
+                           scene_config.action_labels.at(mode),
+                           &action_selection, m_edit_action)) {
+            m_edit_action ^= 1;
+        }
+
+        // scene_config.action_selection.at(mode) = GuiComboBox(
+        //     action_button_shape, scene_config.action_labels.at(mode),
+        //     scene_config.action_selection.at(mode));
     }
 
     render_inputs();
