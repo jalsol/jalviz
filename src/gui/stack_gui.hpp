@@ -18,9 +18,7 @@ private:
     using Base = core::Stack<GuiNode<T>>;
 
     static constexpr Vector2 head_pos{
-        constants::sidebar_width +
-            (constants::scene_width - constants::sidebar_width) / 2.0F -
-            GuiNode<T>::radius / 2.0F,
+        constants::scene_width / 2.0F - GuiNode<T>::radius / 2.0F,
         GuiNode<T>::radius * 2.0F};
 
     using Base::m_head;

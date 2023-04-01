@@ -15,9 +15,7 @@ template<typename T, std::size_t N>
 class GuiArray : public internal::Base {
 private:
     static constexpr Vector2 head_pos{
-        constants::sidebar_width +
-            (constants::scene_width - constants::sidebar_width) / 2.0F -
-            15 * GuiElement<T>::side,
+        constants::scene_width / 2.0F - 15 * GuiElement<T>::side,
         constants::scene_height / 2.0F};
 
     std::array<GuiElement<T>, N> m_array{};
