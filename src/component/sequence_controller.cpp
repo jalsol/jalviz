@@ -75,16 +75,16 @@ void SequenceController::render() {
     Rectangle speed_shape{prev_speed_shape.x + 1.5F * button_size.x,
                           prev_speed_shape.y, 120, button_size.y};
 
-    m_prev_speed = GuiButton(prev_speed_shape, "<");
-    m_next_speed = GuiButton(next_speed_shape, ">");
+    m_prev_speed = GuiButton(prev_speed_shape, "#114#");
+    m_next_speed = GuiButton(next_speed_shape, "#115#");
     GuiStatusBar(speed_shape, TextFormat("Speed: %.2fx", get_speed_scale()));
 
-    m_replay = GuiButton(replay_shape, "R");
-    m_prev_frame = GuiButton(prev_frame_shape, "<");
+    m_replay = GuiButton(replay_shape, "#75#");
+    m_prev_frame = GuiButton(prev_frame_shape, "#72#");
     m_progress_value =
         (int)GuiProgressBar(progress_shape, nullptr, nullptr,
                             (float)m_progress_value, 0, (float)m_num_steps);
-    m_next_frame = GuiButton(next_frame_shape, ">");
+    m_next_frame = GuiButton(next_frame_shape, "#73#");
 }
 
 bool SequenceController::interact() {
