@@ -2,7 +2,9 @@
 #define SCENE_BASE_SCENE_HPP_
 
 #include "component/code_highlighter.hpp"
+#include "component/file_dialog.hpp"
 #include "component/sequence_controller.hpp"
+#include "component/text_input.hpp"
 #include "raylib.h"
 #include "scene_options.hpp"
 
@@ -18,6 +20,9 @@ protected:
     virtual void render_options(SceneOptions& scene_config);
     virtual void render_inputs(){};
 
+    component::TextInput m_text_input{"value"};
+    component::TextInput m_index_input{"index"};
+    component::FileDialog m_file_dialog;
     component::SequenceController m_sequence_controller;
     component::CodeHighlighter m_code_highlighter;
 

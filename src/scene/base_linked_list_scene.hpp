@@ -60,11 +60,11 @@ private:
     core::DoublyLinkedList<Con> m_sequence;
 
     bool m_go{};
-    component::TextInput m_text_input;
-    component::TextInput m_index_input;
-    component::FileDialog m_file_dialog;
     using internal::BaseScene::m_code_highlighter;
+    using internal::BaseScene::m_file_dialog;
+    using internal::BaseScene::m_index_input;
     using internal::BaseScene::m_sequence_controller;
+    using internal::BaseScene::m_text_input;
 
     BaseLinkedListScene() = default;
 

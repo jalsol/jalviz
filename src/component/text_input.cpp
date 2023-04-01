@@ -6,9 +6,15 @@
 
 namespace component {
 
+TextInput::TextInput(const char* label) : m_label{label} {}
+
 void TextInput::render(float& options_head, float head_offset) {
     Rectangle shape{options_head, constants::scene_height - size.y, size.x,
                     size.y};
+
+    utils::DrawText(m_label,
+                    {options_head, constants::scene_height - size.y - 25},
+                    BLACK, 20, 2);
 
     if (GuiTextBox(shape, static_cast<char*>(m_text_input), size.y,
                    m_is_active)) {
