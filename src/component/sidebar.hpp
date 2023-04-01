@@ -4,6 +4,7 @@
 #include <array>
 
 #include "constants.hpp"
+#include "scene/scene_registry.hpp"
 
 namespace component {
 
@@ -11,24 +12,26 @@ class SideBar {
 private:
     static constexpr int num_scenes = 8;
 
-    static constexpr int sidebar_width = constants::sidebar_width;
+    static constexpr int button_width = constants::sidebar_width;
     static constexpr int button_height = 50;
 
     static constexpr const char* sidebar_labels =
-        "Back to Menu\n"
-        "Array\n"
-        "Dynamic Array\n"
-        "Linked List\n"
-        "Doubly Linked List\n"
-        "Circular Linked List\n"
-        "Stack\n"
+        "Array;"
+        "Dynamic Array;"
+        "Linked List;"
+        "Doubly Linked List;"
+        "Circular Linked List;"
+        "Stack;"
         "Queue";
 
     int m_next_scene{};
+    bool m_edit_mode{};
+    bool m_return_menu{};
+    bool m_pressed{};
 
 public:
     void render();
-    void interact() const;
+    void interact();
 };
 
 }  // namespace component

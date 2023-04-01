@@ -14,7 +14,6 @@
 namespace scene {
 
 enum SceneId {
-    Menu,
     Array,
     DynamicArray,
     LinkedList,
@@ -22,6 +21,7 @@ enum SceneId {
     CircularLinkedList,
     Stack,
     Queue,
+    Menu,
 };
 
 class SceneRegistry {
@@ -33,7 +33,6 @@ private:
     int m_current_scene{};
 
     const std::array<internal::BaseScene* const, 8> m_registry{{
-        &MenuScene::get_instance(),
         &ArrayScene::get_instance(),
         &DynamicArrayScene::get_instance(),
         &LinkedListScene::get_instance(),
@@ -41,6 +40,7 @@ private:
         &CircularLinkedListScene::get_instance(),
         &StackScene::get_instance(),
         &QueueScene::get_instance(),
+        &MenuScene::get_instance(),
     }};
 
 public:

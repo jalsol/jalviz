@@ -26,8 +26,8 @@ void BaseScene::render_options(SceneOptions& scene_config) {
 
     int& mode = scene_config.mode_selection;
 
-    if (GuiDropdownBox(mode_button_shape, scene_config.mode_labels, &mode,
-                       m_edit_mode)) {
+    if (GuiDropupBox(mode_button_shape, scene_config.mode_labels, &mode,
+                     m_edit_mode)) {
         m_edit_mode ^= 1;
     }
 
@@ -40,9 +40,9 @@ void BaseScene::render_options(SceneOptions& scene_config) {
 
         int& action_selection = scene_config.action_selection.at(mode);
 
-        if (GuiDropdownBox(action_button_shape,
-                           scene_config.action_labels.at(mode),
-                           &action_selection, m_edit_action)) {
+        if (GuiDropupBox(action_button_shape,
+                         scene_config.action_labels.at(mode), &action_selection,
+                         m_edit_action)) {
             m_edit_action ^= 1;
         }
 

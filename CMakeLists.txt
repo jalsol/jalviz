@@ -90,6 +90,7 @@ add_executable(${PROJECT_NAME}
     src/component/file_dialog.cpp
     src/component/sequence_controller.cpp
     src/component/code_highlighter.cpp
+    src/component/menu_item.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} raylib)

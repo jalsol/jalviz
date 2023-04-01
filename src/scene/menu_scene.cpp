@@ -4,6 +4,7 @@
 
 #include "constants.hpp"
 #include "raygui.h"
+#include "raylib.h"
 #include "scene_registry.hpp"
 #include "utils.hpp"
 
@@ -12,6 +13,44 @@ namespace scene {
 MenuScene& MenuScene::get_instance() {
     static MenuScene scene;
     return scene;
+}
+
+MenuScene::MenuScene() {
+    constexpr int block_width = component::MenuItem::block_width;
+    constexpr int block_height = component::MenuItem::block_height;
+    constexpr int button_width = component::MenuItem::button_width;
+    constexpr int button_height = component::MenuItem::button_height;
+    constexpr int gap = 20;
+
+    constexpr int first_row_y =
+        constants::scene_height / 16.0F * 5 - block_height / 2.0F;
+
+    // first row
+    {
+        constexpr int row_width =
+            3 * component::MenuItem::block_width + 2 * gap;
+        constexpr int row_x = constants::scene_width / 2.0F - row_width / 2.0F;
+        constexpr int row_y = first_row_y;
+
+        for (auto i = 0; i < 3; ++i) {
+            m_menu_items[i] = component::MenuItem(
+                i, labels[i], row_x + i * (block_width + gap), row_y,
+                img_paths[i]);
+        }
+    }
+
+    // second row
+    {
+        constexpr int row_width = 4 * block_width + 3 * gap;
+        constexpr int row_x = constants::scene_width / 2.0F - row_width / 2.0F;
+        constexpr int row_y = first_row_y + block_height + gap;
+
+        for (auto i = 3; i < 7; ++i) {
+            m_menu_items[i] = component::MenuItem(
+                i, labels[i], row_x + (i - 3) * (block_width + gap), row_y,
+                img_paths[i]);
+        }
+    }
 }
 
 void MenuScene::render() {
@@ -26,7 +65,7 @@ void MenuScene::render() {
 
     const Vector2 menu_text_pos{
         constants::scene_width / 2.0F - menu_text_size.x / 2,
-        constants::scene_height / 3.0F - menu_text_size.y / 2};
+        constants::scene_height / 16.0F - menu_text_size.y / 2};
 
     utils::DrawText(menu_text, menu_text_pos, BLACK, menu_font_size,
                     menu_font_spacing);
@@ -48,20 +87,21 @@ void MenuScene::render() {
                     sub_font_spacing);
 
     // Button
-    constexpr int button_width = 256;
-    constexpr int button_height = 64;
+    constexpr int block_width = 300;
+    constexpr int block_height = 200;
+    constexpr int button_width = block_width;
+    constexpr int button_height = 50;
+    constexpr int gap = 20;
+    constexpr int first_row_y =
+        constants::scene_height / 16.0F * 5 - block_height / 2.0F;
 
-    const Rectangle start_button_shape{
-        constants::scene_width / 2.0F - button_width / 2.0F,
-        constants::scene_height / 16.0F * 9 - button_height / 2.0F,
-        button_width, button_height};
-
-    m_start = GuiButton(start_button_shape, "Start");
+    for (auto i = 0; i < 7; ++i) {
+        m_menu_items[i].render();
+    }
 
     const Rectangle quit_button_shape{
-        start_button_shape.x,
-        constants::scene_height / 16.0F * 11 - button_height / 2.0F,
-        button_width, button_height};
+        constants::scene_width / 2.0F - 128,
+        constants::scene_height / 16.0F * 15 - block_height / 2.0F, 256, 64};
 
     m_quit = GuiButton(quit_button_shape, "Quit");
 
@@ -86,12 +126,25 @@ void MenuScene::render() {
 void MenuScene::interact() {
     scene::SceneRegistry& registry = scene::SceneRegistry::get_instance();
 
-    if (m_start) {
-        registry.set_scene(Array);
-        m_start = false;
-    } else if (m_quit) {
+    if (m_quit) {
         registry.close_window();
-        m_quit = false;
+        return;
+    }
+
+    for (auto i = 0; i < 7; ++i) {
+        if (m_menu_items[i].clicked()) {
+            m_next_scene = i;
+            m_start = true;
+        }
+    }
+
+    for (auto i = 0; i < 7; ++i) {
+        m_menu_items[i].reset();
+    }
+
+    if (m_start) {
+        registry.set_scene(m_next_scene);
+        m_start = false;
     }
 }
 

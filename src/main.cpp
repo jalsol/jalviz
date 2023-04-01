@@ -27,10 +27,10 @@ int main() {
         {
             ClearBackground(WHITE);
 
+            registry.render();
             if (registry.get_scene() != scene::Menu) {
                 sidebar.render();
             }
-            registry.render();
         }
         EndDrawing();
 
