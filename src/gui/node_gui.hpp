@@ -23,6 +23,7 @@ private:
                           2,
                   0};
     static constexpr float eps = 1e-3;
+    const char* m_label{};
 
 public:
     static constexpr int radius = 20;
@@ -35,6 +36,7 @@ public:
     void set_color(Color color);
     void set_value(const T& value);
     T& get_value();
+    void set_label(const char* label);
 };
 
 template<typename T>
@@ -44,16 +46,25 @@ template<typename T>
 void GuiNode<T>::render() {
     constexpr int label_font_size = 25;
     constexpr int label_font_spacing = 2;
-    const std::string label = std::to_string(m_value);
+    const std::string value = std::to_string(m_value);
+
+    const Vector2 value_size =
+        utils::MeasureText(value.c_str(), label_font_size, label_font_spacing);
+
+    const Vector2 value_pos{m_pos.x - value_size.x / 2,
+                            m_pos.y - value_size.y / 2};
 
     const Vector2 label_size =
-        utils::MeasureText(label.c_str(), label_font_size, label_font_spacing);
+        utils::MeasureText(m_label, label_font_size, label_font_spacing);
 
     const Vector2 label_pos{m_pos.x - label_size.x / 2,
-                            m_pos.y - label_size.y / 2};
+                            m_pos.y - 2 * label_size.y};
 
     DrawCircleV(m_pos, radius, m_color);
-    utils::DrawText(label.c_str(), label_pos, WHITE, label_font_size,
+    utils::DrawText(value.c_str(), value_pos, WHITE, label_font_size,
+                    label_font_spacing);
+
+    utils::DrawText(m_label, label_pos, RED, label_font_size,
                     label_font_spacing);
 }
 
@@ -80,6 +91,11 @@ void GuiNode<T>::set_pos(Vector2 pos) {
 template<typename T>
 Vector2 GuiNode<T>::get_pos() const {
     return m_pos;
+}
+
+template<typename T>
+void GuiNode<T>::set_label(const char* label) {
+    m_label = label;
 }
 
 }  // namespace gui

@@ -126,6 +126,7 @@ void StackScene::interact_random() {
     for (auto i = 0; i < size; ++i) {
         m_stack.push(utils::get_random(constants::min_val, constants::max_val));
     }
+    m_stack.init_label();
 }
 
 void StackScene::interact_import(core::Deque<int> nums) {
@@ -138,6 +139,7 @@ void StackScene::interact_import(core::Deque<int> nums) {
         }
         nums.pop_back();
     }
+    m_stack.init_label();
 }
 
 void StackScene::interact_push() {
@@ -174,9 +176,11 @@ void StackScene::interact_push() {
     m_stack.pop();
     if (!m_stack.empty()) {
         m_stack.top().set_color(BLACK);
+        m_stack.top().set_label("");
     }
     m_stack.push(value);
     m_stack.top().set_color(GREEN);
+    m_stack.init_label();
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(2);
 
@@ -210,6 +214,7 @@ void StackScene::interact_pop() {
 
     if (!m_stack.empty()) {
         m_stack.top().set_color(GREEN);
+        m_stack.top().set_label("head");
     }
 
     m_stack.push(old_top.get_value());

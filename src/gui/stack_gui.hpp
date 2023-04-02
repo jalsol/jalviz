@@ -19,7 +19,7 @@ private:
 
     static constexpr Vector2 head_pos{
         constants::scene_width / 2.0F - GuiNode<T>::radius / 2.0F,
-        GuiNode<T>::radius * 2.0F};
+        GuiNode<T>::radius * 4.0F};
 
     using Base::m_head;
     using Base::m_tail;
@@ -32,12 +32,28 @@ public:
     using Base::empty;
     using Base::size;
 
+    GuiStack(std::initializer_list<GuiNode<T>> init_list);
+
     void push(const T& elem);
     void pop();
 
     void update() override;
     void render() override;
+    void init_label();
 };
+
+template<typename T>
+void GuiStack<T>::init_label() {
+    if (m_head != nullptr) {
+        m_head->data.set_label("head");
+    }
+}
+
+template<typename T>
+GuiStack<T>::GuiStack(std::initializer_list<GuiNode<T>> init_list)
+    : core::Stack<GuiNode<T>>(init_list) {
+    init_label();
+}
 
 template<typename T>
 void GuiStack<T>::push(const T& elem) {

@@ -33,11 +33,36 @@ public:
     using Base::empty;
     using Base::size;
 
+    GuiDoublyLinkedList(std::initializer_list<GuiNode<T>> init_list);
+
     void insert(std::size_t index, const T& elem);
 
     void update() override;
     void render() override;
+    void init_label();
 };
+
+template<typename T>
+void GuiDoublyLinkedList<T>::init_label() {
+    if (m_head != nullptr) {
+        m_head->data.set_label("head");
+    }
+
+    if (m_tail != nullptr) {
+        if (m_head == m_tail) {
+            m_tail->data.set_label("head/tail");
+        } else {
+            m_tail->data.set_label("tail");
+        }
+    }
+}
+
+template<typename T>
+GuiDoublyLinkedList<T>::GuiDoublyLinkedList(
+    std::initializer_list<GuiNode<T>> init_list)
+    : core::DoublyLinkedList<GuiNode<T>>(init_list) {
+    init_label();
+}
 
 template<typename T>
 void GuiDoublyLinkedList<T>::insert(std::size_t index, const T& elem) {

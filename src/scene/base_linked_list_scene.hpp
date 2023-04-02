@@ -246,6 +246,7 @@ void BaseLinkedListScene<Con>::interact_random() {
         m_list.insert(
             i, utils::get_random(constants::min_val, constants::max_val));
     }
+    m_list.init_label();
 }
 
 template<typename Con>
@@ -259,6 +260,7 @@ void BaseLinkedListScene<Con>::interact_import(core::Deque<int> nums) {
         }
         nums.pop_front();
     }
+    m_list.init_label();
 }
 
 template<typename Con>
@@ -312,6 +314,7 @@ void BaseLinkedListScene<Con>::interact_add_head(int value) {
     m_list.insert(0, value);
 
     m_list.at(0).set_color(BLUE);
+    m_list.at(0).set_label("node");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(0);
 
@@ -324,9 +327,11 @@ void BaseLinkedListScene<Con>::interact_add_head(int value) {
 
     if (m_list.size() > 1) {
         m_list.at(1).set_color(BLACK);
+        m_list.at(1).set_label("");
     }
 
     m_list.at(0).set_color(VIOLET);
+    m_list.at(0).set_label("head");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(2);
 
@@ -354,7 +359,9 @@ void BaseLinkedListScene<Con>::interact_add_tail(int value) {
     m_code_highlighter.push_into_sequence(1);
 
     m_list.at(size - 1).set_color(BLACK);
+    m_list.at(size - 1).set_label("");
     m_list.at(size).set_color(VIOLET);
+    m_list.at(size).set_label("tail");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(2);
 
@@ -376,6 +383,7 @@ void BaseLinkedListScene<Con>::interact_add_middle(int index, int value) {
     m_code_highlighter.push_into_sequence(-1);
 
     m_list.at(0).set_color(VIOLET);
+    m_list.at(0).set_label("head/pre");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(0);
 
@@ -386,7 +394,9 @@ void BaseLinkedListScene<Con>::interact_add_middle(int index, int value) {
         m_code_highlighter.push_into_sequence(1);
 
         m_list.at(i).set_color(BLACK);
+        m_list.at(i).set_label(i == 0 ? "head" : "");
         m_list.at(i + 1).set_color(ORANGE);
+        m_list.at(i + 1).set_label("pre");
         m_sequence.insert(m_sequence.size(), m_list);
         m_code_highlighter.push_into_sequence(2);
     }
@@ -402,12 +412,14 @@ void BaseLinkedListScene<Con>::interact_add_middle(int index, int value) {
 
     // cur->next
     m_list.at(index).set_color(PINK);
+    m_list.at(index).set_label(index + 1 == m_list.size() ? "tail/nxt" : "nxt");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(4);
 
     // insert between cur and cur->next
     m_list.insert(index, value);
     m_list.at(index).set_color(BLUE);
+    m_list.at(index).set_label("node");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(5);
 
@@ -418,13 +430,17 @@ void BaseLinkedListScene<Con>::interact_add_middle(int index, int value) {
 
     m_list.at(index - 1).set_color(BLACK);
     m_list.at(index + 1).set_color(PINK);
+    m_list.init_label();
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(7);
 
     // done
     m_list.at(index - 1).set_color(BLACK);
+    m_list.at(index - 1).set_label("");
     m_list.at(index).set_color(BLACK);
+    m_list.at(index).set_label("");
     m_list.at(index + 1).set_color(BLACK);
+    m_list.at(index + 1).set_label("");
 }
 
 template<typename Con>
@@ -468,8 +484,10 @@ void BaseLinkedListScene<Con>::interact_delete_head() {
     m_code_highlighter.push_into_sequence(0);
 
     m_list.at(0).set_color(RED);
+    m_list.at(0).set_label("");
     if (m_list.size() > 1) {
         m_list.at(1).set_color(VIOLET);
+        m_list.at(1).set_label("head");
     }
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(1);
@@ -497,10 +515,16 @@ void BaseLinkedListScene<Con>::interact_delete_tail() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_list.at(0).set_color(ORANGE);
+    m_list.at(0).set_label("head/pre");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(0);
 
     m_list.at(1).set_color(GREEN);
+    if (m_list.size() == 2) {
+        m_list.at(1).set_label("tail/nxt");
+    } else {
+        m_list.at(1).set_label("nxt");
+    }
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(1);
 
@@ -510,8 +534,21 @@ void BaseLinkedListScene<Con>::interact_delete_tail() {
         m_code_highlighter.push_into_sequence(2);
 
         m_list.at(idx).set_color(BLACK);
+        if (idx == 0) {
+            m_list.at(idx).set_label("head");
+        } else {
+            m_list.at(idx).set_label("");
+        }
+
         m_list.at(idx + 1).set_color(ORANGE);
+        m_list.at(idx + 1).set_label("pre");
         m_list.at(idx + 2).set_color(GREEN);
+        if (idx + 3 == m_list.size()) {
+            m_list.at(idx + 2).set_label("tail/nxt");
+        } else {
+            m_list.at(idx + 2).set_label("nxt");
+        }
+
         m_sequence.insert(m_sequence.size(), m_list);
         m_code_highlighter.push_into_sequence(3);
     }
@@ -520,15 +557,19 @@ void BaseLinkedListScene<Con>::interact_delete_tail() {
     m_code_highlighter.push_into_sequence(2);
 
     m_list.at(idx).set_color(ORANGE);
+    m_list.at(idx).set_label("pre");
     m_list.at(idx + 1).set_color(GREEN);
+    m_list.at(idx + 1).set_label("tail/nxt");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(4);
 
     m_list.remove(idx + 1);
+    m_list.at(idx).set_label("tail/pre");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(5);
 
     m_list.at(idx).set_color(VIOLET);
+    m_list.init_label();
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(6);
 
@@ -550,6 +591,7 @@ void BaseLinkedListScene<Con>::interact_delete_middle(int index) {
     m_code_highlighter.push_into_sequence(-1);
 
     m_list.at(0).set_color(VIOLET);
+    m_list.at(0).set_label("head/pre");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(0);
 
@@ -560,20 +602,30 @@ void BaseLinkedListScene<Con>::interact_delete_middle(int index) {
         m_code_highlighter.push_into_sequence(1);
 
         m_list.at(idx).set_color(BLACK);
+        m_list.at(idx).set_label("");
         m_list.at(idx + 1).set_color(ORANGE);
+        m_list.init_label();
+        m_list.at(idx + 1).set_label("pre");
         m_sequence.insert(m_sequence.size(), m_list);
         m_code_highlighter.push_into_sequence(2);
     }
 
     m_list.at(idx).set_color(ORANGE);
+    m_list.at(idx).set_label("pre");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(3);
 
     m_list.at(idx + 1).set_color(RED);
+    m_list.at(idx + 1).set_label("node");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(4);
 
     m_list.at(idx + 2).set_color(GREEN);
+    if (idx + 3 == m_list.size()) {
+        m_list.at(idx + 2).set_label("tail/nxt");
+    } else {
+        m_list.at(idx + 2).set_label("nxt");
+    }
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(5);
 
@@ -586,7 +638,9 @@ void BaseLinkedListScene<Con>::interact_delete_middle(int index) {
     m_code_highlighter.push_into_sequence(7);
 
     m_list.at(idx).set_color(BLACK);
+    m_list.at(idx).set_label("");
     m_list.at(idx + 1).set_color(BLACK);
+    m_list.at(idx + 1).set_label("");
 }
 
 template<typename Con>
@@ -611,6 +665,7 @@ void BaseLinkedListScene<Con>::interact_update() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_list.at(0).set_color(VIOLET);
+    m_list.at(0).set_label("head/node");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(0);
 
@@ -620,7 +675,10 @@ void BaseLinkedListScene<Con>::interact_update() {
         m_code_highlighter.push_into_sequence(1);
 
         m_list.at(i).set_color(BLACK);
+        m_list.at(i).set_label(i == 0 ? "head" : "");
         m_list.at(i + 1).set_color(ORANGE);
+        m_list.at(i + 1).set_label(i + 2 == m_list.size() ? "tail/node"
+                                                          : "node");
         m_sequence.insert(m_sequence.size(), m_list);
         m_code_highlighter.push_into_sequence(2);
     }
@@ -636,6 +694,8 @@ void BaseLinkedListScene<Con>::interact_update() {
     m_code_highlighter.push_into_sequence(4);
 
     m_list.at(index).set_color(BLACK);
+    m_list.at(index).set_label("");
+    m_list.init_label();
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
@@ -663,6 +723,7 @@ void BaseLinkedListScene<Con>::interact_search() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_list.at(0).set_color(VIOLET);
+    m_list.at(0).set_label("head/node");
     m_sequence.insert(m_sequence.size(), m_list);
     m_code_highlighter.push_into_sequence(0);
 
@@ -680,13 +741,18 @@ void BaseLinkedListScene<Con>::interact_search() {
             m_sequence.insert(m_sequence.size(), m_list);
             m_code_highlighter.push_into_sequence(3);
             m_list.at(idx).set_color(BLACK);
+            m_list.at(idx).set_label(idx + 1 == m_list.size() ? "tail" : "");
             break;
         }
 
         m_list.at(idx).set_color(BLACK);
+        m_list.at(idx).set_label("");
+        m_list.init_label();
         ++idx;
         if (idx < m_list.size()) {
             m_list.at(idx).set_color(ORANGE);
+            m_list.at(idx).set_label(idx + 1 == m_list.size() ? "tail/node"
+                                                              : "node");
         }
         m_sequence.insert(m_sequence.size(), m_list);
         m_code_highlighter.push_into_sequence(4);

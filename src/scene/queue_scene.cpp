@@ -126,6 +126,7 @@ void QueueScene::interact_random() {
     for (auto i = 0; i < size; ++i) {
         m_queue.push(utils::get_random(constants::min_val, constants::max_val));
     }
+    m_queue.init_label();
 }
 
 void QueueScene::interact_import(core::Deque<int> nums) {
@@ -138,6 +139,7 @@ void QueueScene::interact_import(core::Deque<int> nums) {
         }
         nums.pop_front();
     }
+    m_queue.init_label();
 }
 
 void QueueScene::interact_file_import() {
@@ -184,9 +186,11 @@ void QueueScene::interact_push() {
     m_queue.pop_back();
     if (!m_queue.empty()) {
         m_queue.back().set_color(BLACK);
+        m_queue.back().set_label("");
     }
     m_queue.push(value);
     m_queue.back().set_color(GREEN);
+    m_queue.init_label();
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(2);
 
@@ -220,6 +224,11 @@ void QueueScene::interact_pop() {
 
     if (!m_queue.empty()) {
         m_queue.front().set_color(GREEN);
+        if (m_queue.size() == 1) {
+            m_queue.front().set_label("head/tail");
+        } else {
+            m_queue.front().set_label("head");
+        }
     }
 
     m_queue.push_front(old_front.get_value());
@@ -228,6 +237,7 @@ void QueueScene::interact_pop() {
     m_code_highlighter.push_into_sequence(1);
 
     m_queue.pop();
+    m_queue.init_label();
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(2);
 

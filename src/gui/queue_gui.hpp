@@ -32,6 +32,8 @@ public:
     using Base::empty;
     using Base::size;
 
+    GuiQueue(std::initializer_list<GuiNode<T>> init_list);
+
     void push(const T& elem);
     void pop();
 
@@ -41,7 +43,29 @@ public:
 
     void update() override;
     void render() override;
+    void init_label();
 };
+
+template<typename T>
+void GuiQueue<T>::init_label() {
+    if (m_head != nullptr) {
+        m_head->data.set_label("head");
+    }
+
+    if (m_tail != nullptr) {
+        if (m_head == m_tail) {
+            m_tail->data.set_label("head/tail");
+        } else {
+            m_tail->data.set_label("tail");
+        }
+    }
+}
+
+template<typename T>
+GuiQueue<T>::GuiQueue(std::initializer_list<GuiNode<T>> init_list)
+    : core::Queue<GuiNode<T>>(init_list) {
+    init_label();
+}
 
 template<typename T>
 void GuiQueue<T>::push(const T& elem) {
