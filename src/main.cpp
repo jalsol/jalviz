@@ -25,7 +25,7 @@ int main() {
 
         BeginDrawing();
         {
-            ClearBackground(WHITE);
+            ClearBackground(RAYWHITE);
 
             registry.render();
             if (registry.get_scene() != scene::Menu) {
