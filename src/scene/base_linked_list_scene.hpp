@@ -276,8 +276,18 @@ void BaseLinkedListScene<Con>::interact_file_import() {
 
 template<typename Con>
 void BaseLinkedListScene<Con>::interact_add() {
-    int index = m_index_input.extract_values().front();
-    int value = m_text_input.extract_values().front();
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int index = index_container.front();
+    int value = value_container.front();
 
     if (!(0 <= index && index <= m_list.size())) {
         return;
@@ -449,7 +459,12 @@ void BaseLinkedListScene<Con>::interact_delete() {
         return;
     }
 
-    int index = m_index_input.extract_values().front();
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    int index = index_container.front();
 
     if (!(0 <= index && index < m_list.size())) {
         return;
@@ -645,8 +660,18 @@ void BaseLinkedListScene<Con>::interact_delete_middle(int index) {
 
 template<typename Con>
 void BaseLinkedListScene<Con>::interact_update() {
-    int index = m_index_input.extract_values().front();
-    int value = m_text_input.extract_values().front();
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int index = index_container.front();
+    int value = value_container.front();
 
     if (!(0 <= index && index < m_list.size())) {
         return;
@@ -703,7 +728,12 @@ void BaseLinkedListScene<Con>::interact_update() {
 
 template<typename Con>
 void BaseLinkedListScene<Con>::interact_search() {
-    int value = m_text_input.extract_values().front();
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int value = value_container.front();
     if (!utils::val_in_range(value)) {
         return;
     }

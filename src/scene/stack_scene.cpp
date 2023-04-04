@@ -143,7 +143,12 @@ void StackScene::interact_import(core::Deque<int> nums) {
 }
 
 void StackScene::interact_push() {
-    int value = m_text_input.extract_values().front();
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int value = value_container.front();
 
     if (m_stack.size() >= scene_options.max_size) {
         return;

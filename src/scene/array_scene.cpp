@@ -144,8 +144,18 @@ void ArrayScene::interact_import(core::Deque<int> nums) {
 }
 
 void ArrayScene::interact_update() {
-    int index = m_index_input.extract_values().front();
-    int value = m_text_input.extract_values().front();
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int index = index_container.front();
+    int value = value_container.front();
 
     if (!(0 <= index && index < max_size) || !utils::val_in_range(value)) {
         return;
@@ -190,7 +200,12 @@ void ArrayScene::interact_file_import() {
 }
 
 void ArrayScene::interact_search() {
-    int value = m_text_input.extract_values().front();
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int value = value_container.front();
     if (!utils::val_in_range(value)) {
         return;
     }
