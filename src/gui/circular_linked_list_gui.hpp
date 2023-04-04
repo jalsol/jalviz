@@ -94,6 +94,9 @@ void GuiCircularLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
 
 template<typename T>
 void GuiCircularLinkedList<T>::render_back_link() {
+    if (m_head == nullptr && m_tail == nullptr) {
+        return;
+    }
     constexpr int num_points = 5;
     const Vector2 head_pos = m_head->data.get_pos();
     const Vector2 tail_pos = m_tail->data.get_pos();
