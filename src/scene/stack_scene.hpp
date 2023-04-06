@@ -60,8 +60,6 @@ private:
     using internal::BaseScene::m_sequence_controller;
     using internal::BaseScene::m_text_input;
 
-    StackScene() = default;
-
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
     void render_inputs() override;
@@ -73,14 +71,6 @@ private:
     void interact_file_import();
 
 public:
-    StackScene(const StackScene&) = delete;
-    StackScene(StackScene&&) = delete;
-    StackScene& operator=(const StackScene&) = delete;
-    StackScene& operator=(StackScene&&) = delete;
-    ~StackScene() override = default;
-
-    static StackScene& get_instance();
-
     void render() override;
     void interact() override;
 };

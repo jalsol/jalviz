@@ -14,11 +14,6 @@
 
 namespace scene {
 
-ArrayScene& ArrayScene::get_instance() {
-    static ArrayScene scene;
-    return scene;
-}
-
 void ArrayScene::render_inputs() {
     int& mode = scene_options.mode_selection;
 

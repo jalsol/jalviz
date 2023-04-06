@@ -14,14 +14,6 @@ private:
     bool m_quit{};
     int m_next_scene{};
 
-    // component::MenuItem array_item;
-    // component::MenuItem dyn_array_item;
-    // component::MenuItem linked_list_item;
-    // component::MenuItem doubly_linked_list_item;
-    // component::MenuItem circular_linked_list_item;
-    // component::MenuItem stack_item;
-    // component::MenuItem queue_item;
-
     static constexpr std::array<const char*, 7> labels = {{
         "Array",
         "Dynamic Array",
@@ -44,17 +36,8 @@ private:
 
     std::array<component::MenuItem, 7> m_menu_items{};
 
-    MenuScene();
-
 public:
-    MenuScene(const MenuScene&) = delete;
-    MenuScene(MenuScene&&) = delete;
-    MenuScene& operator=(const MenuScene&) = delete;
-    MenuScene& operator=(MenuScene&&) = delete;
-    ~MenuScene() override = default;
-
-    static MenuScene& get_instance();
-
+    MenuScene();
     void render() override;
     void interact() override;
 };

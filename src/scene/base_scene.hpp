@@ -18,7 +18,7 @@ protected:
 
     virtual bool render_go_button() const;
     virtual void render_options(SceneOptions& scene_config);
-    virtual void render_inputs(){};
+    virtual void render_inputs() {}
 
     component::TextInput m_text_input{"value"};
     component::TextInput m_index_input{"index"};
@@ -39,7 +39,7 @@ public:
     virtual ~BaseScene() = default;
 
     virtual void render() {}
-    virtual void interact(){};
+    virtual void interact() {}
 };
 
 }  // namespace scene::internal

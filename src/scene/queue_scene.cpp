@@ -14,11 +14,6 @@
 
 namespace scene {
 
-QueueScene& QueueScene::get_instance() {
-    static QueueScene scene;
-    return scene;
-}
-
 void QueueScene::render_inputs() {
     int& mode = scene_options.mode_selection;
 

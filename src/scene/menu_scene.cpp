@@ -10,11 +10,6 @@
 
 namespace scene {
 
-MenuScene& MenuScene::get_instance() {
-    static MenuScene scene;
-    return scene;
-}
-
 MenuScene::MenuScene() {
     constexpr int block_width = component::MenuItem::block_width;
     constexpr int block_height = component::MenuItem::block_height;

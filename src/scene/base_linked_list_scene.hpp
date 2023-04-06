@@ -66,8 +66,6 @@ private:
     using internal::BaseScene::m_sequence_controller;
     using internal::BaseScene::m_text_input;
 
-    BaseLinkedListScene() = default;
-
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
     void render_inputs() override;
@@ -90,14 +88,6 @@ private:
     void interact_search();
 
 public:
-    BaseLinkedListScene(const BaseLinkedListScene&) = delete;
-    BaseLinkedListScene(BaseLinkedListScene&&) = delete;
-    BaseLinkedListScene& operator=(const BaseLinkedListScene&) = delete;
-    BaseLinkedListScene& operator=(BaseLinkedListScene&&) = delete;
-    ~BaseLinkedListScene() override = default;
-
-    static BaseLinkedListScene& get_instance();
-
     void render() override;
     void interact() override;
 };
@@ -107,12 +97,6 @@ using DoublyLinkedListScene =
     BaseLinkedListScene<gui::GuiDoublyLinkedList<int>>;
 using CircularLinkedListScene =
     BaseLinkedListScene<gui::GuiCircularLinkedList<int>>;
-
-template<typename Con>
-BaseLinkedListScene<Con>& BaseLinkedListScene<Con>::get_instance() {
-    static BaseLinkedListScene scene;
-    return scene;
-}
 
 template<typename Con>
 void BaseLinkedListScene<Con>::render_inputs() {

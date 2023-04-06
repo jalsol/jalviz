@@ -14,11 +14,6 @@
 
 namespace scene {
 
-DynamicArrayScene& DynamicArrayScene::get_instance() {
-    static DynamicArrayScene scene;
-    return scene;
-}
-
 void DynamicArrayScene::render_inputs() {
     int& mode = scene_options.mode_selection;
 

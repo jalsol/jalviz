@@ -68,8 +68,6 @@ private:
     using internal::BaseScene::m_sequence_controller;
     using internal::BaseScene::m_text_input;
 
-    DynamicArrayScene() = default;
-
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
     void render_inputs() override;
@@ -83,14 +81,6 @@ private:
     void interact_pop();
 
 public:
-    DynamicArrayScene(const DynamicArrayScene&) = delete;
-    DynamicArrayScene(DynamicArrayScene&&) = delete;
-    DynamicArrayScene& operator=(const DynamicArrayScene&) = delete;
-    DynamicArrayScene& operator=(DynamicArrayScene&&) = delete;
-    ~DynamicArrayScene() override = default;
-
-    static DynamicArrayScene& get_instance();
-
     void render() override;
     void interact() override;
 };

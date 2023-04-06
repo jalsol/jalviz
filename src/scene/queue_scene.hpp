@@ -62,8 +62,6 @@ private:
     using internal::BaseScene::m_sequence_controller;
     using internal::BaseScene::m_text_input;
 
-    QueueScene() = default;
-
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
     void render_inputs() override;
@@ -75,14 +73,6 @@ private:
     void interact_pop();
 
 public:
-    QueueScene(const QueueScene&) = delete;
-    QueueScene(QueueScene&&) = delete;
-    QueueScene& operator=(const QueueScene&) = delete;
-    QueueScene& operator=(QueueScene&&) = delete;
-    ~QueueScene() override = default;
-
-    static QueueScene& get_instance();
-
     void render() override;
     void interact() override;
 };

@@ -14,11 +14,6 @@
 
 namespace scene {
 
-StackScene& StackScene::get_instance() {
-    static StackScene scene;
-    return scene;
-}
-
 void StackScene::render() {
     m_sequence_controller.inc_anim_counter();
 

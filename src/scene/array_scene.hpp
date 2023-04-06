@@ -64,8 +64,6 @@ private:
     using internal::BaseScene::m_sequence_controller;
     using internal::BaseScene::m_text_input;
 
-    ArrayScene() = default;
-
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
     void render_inputs() override;
@@ -77,14 +75,6 @@ private:
     void interact_search();
 
 public:
-    ArrayScene(const ArrayScene&) = delete;
-    ArrayScene(ArrayScene&&) = delete;
-    ArrayScene& operator=(const ArrayScene&) = delete;
-    ArrayScene& operator=(ArrayScene&&) = delete;
-    ~ArrayScene() override = default;
-
-    static ArrayScene& get_instance();
-
     void render() override;
     void interact() override;
 };

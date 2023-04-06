@@ -2,6 +2,7 @@
 #define SCENE_SCENE_REGISTRY_HPP_
 
 #include <array>
+#include <memory>
 
 #include "array_scene.hpp"
 #include "base_linked_list_scene.hpp"
@@ -32,15 +33,15 @@ private:
     bool m_should_close{};
     int m_current_scene{};
 
-    const std::array<internal::BaseScene* const, 8> m_registry{{
-        &ArrayScene::get_instance(),
-        &DynamicArrayScene::get_instance(),
-        &LinkedListScene::get_instance(),
-        &DoublyLinkedListScene::get_instance(),
-        &CircularLinkedListScene::get_instance(),
-        &StackScene::get_instance(),
-        &QueueScene::get_instance(),
-        &MenuScene::get_instance(),
+    const std::array<const std::unique_ptr<internal::BaseScene>, 8> m_registry{{
+        std::make_unique<ArrayScene>(),
+        std::make_unique<DynamicArrayScene>(),
+        std::make_unique<LinkedListScene>(),
+        std::make_unique<DoublyLinkedListScene>(),
+        std::make_unique<CircularLinkedListScene>(),
+        std::make_unique<StackScene>(),
+        std::make_unique<QueueScene>(),
+        std::make_unique<MenuScene>(),
     }};
 
 public:
