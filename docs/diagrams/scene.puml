@@ -79,13 +79,20 @@ class C_0001209706248980343305 {
 }
 class "scene::SettingsScene" as C_0001338101111872396075
 class C_0001338101111872396075 {
--set_color() : void
+-set_buffer() : void
+-open_from_file() : void
 +SettingsScene() : void
 +render() : void
 +interact() : void
 -m_buffers : std::array<char[7],Settings::num_color>
 -m_edit_mode : std::array<bool,Settings::num_color>
+-m_selected : int
+-m_open_file : component::FileDialog
+-m_save_file : component::FileDialog
+-m_open : int
+-m_save : int
 {static} -input_size : const Vector2
+{static} -head_pos : const Vector2
 }
 class "scene::BaseLinkedListScene<Con>" as C_0000234618355588237115
 class C_0000234618355588237115 {
@@ -180,4 +187,7 @@ C_0002179233268072534158 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0002179233268072534158
 C_0001036623045197935261 --> C_0000658540208301571902 : -scene_ptr
 C_0001036623045197935261 o-- C_0000658540208301571902 : -m_registry
+
+'Generated with clang-uml, version 0.3.4
+'LLVM version Ubuntu clang version 15.0.6
 @enduml
