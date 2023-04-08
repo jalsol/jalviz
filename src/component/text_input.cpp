@@ -1,5 +1,8 @@
 #include "text_input.hpp"
 
+#include <cstring>
+
+#include "constants.hpp"
 #include "core/deque.hpp"
 #include "raygui.h"
 #include "utils.hpp"
@@ -16,8 +19,8 @@ void TextInput::render(float& options_head, float head_offset) {
                     {options_head, constants::scene_height - size.y - 25},
                     BLACK, 20, 2);
 
-    if (GuiTextBox(shape, static_cast<char*>(m_text_input), size.y,
-                   m_is_active)) {
+    if (GuiTextBox(shape, static_cast<char*>(m_text_input),
+                   constants::text_buffer_size, m_is_active)) {
         m_is_active ^= 1;
     }
 

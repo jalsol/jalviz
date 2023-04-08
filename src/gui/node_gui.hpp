@@ -7,6 +7,7 @@
 
 #include "constants.hpp"
 #include "raylib.h"
+#include "settings.hpp"
 #include "utils.hpp"
 
 namespace gui {
@@ -15,7 +16,7 @@ template<typename T>
 class GuiNode {
 private:
     T m_value{};
-    Color m_color{BLACK};
+    int m_color_index{0};
 
     Vector2 m_pos{constants::sidebar_width +
                       static_cast<float>(constants::scene_width -
@@ -33,7 +34,7 @@ public:
     void render();
     void set_pos(Vector2 pos);
     [[nodiscard]] Vector2 get_pos() const;
-    void set_color(Color color);
+    void set_color_index(int color_index);
     void set_value(const T& value);
     T& get_value();
     void set_label(const char* label);
@@ -60,7 +61,8 @@ void GuiNode<T>::render() {
     const Vector2 label_pos{m_pos.x - label_size.x / 2,
                             m_pos.y - 2 * label_size.y};
 
-    DrawCircleV(m_pos, radius, m_color);
+    DrawCircleV(m_pos, radius,
+                Settings::get_instance().get_color(m_color_index));
     utils::DrawText(value.c_str(), value_pos, WHITE, label_font_size,
                     label_font_spacing);
 
@@ -69,8 +71,8 @@ void GuiNode<T>::render() {
 }
 
 template<typename T>
-void GuiNode<T>::set_color(Color color) {
-    m_color = color;
+void GuiNode<T>::set_color_index(int color_index) {
+    m_color_index = color_index;
 }
 
 template<typename T>

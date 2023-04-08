@@ -15,13 +15,25 @@ private:
 
     char m_file_input[constants::text_buffer_size] = "";  // NOLINT
 
+    int m_mode{};
+    const char* m_message;
+    const char* m_title;
+
 public:
     static constexpr Vector2 size{200, 50};
 
-    void render(float& options_head, float head_offset);
+    FileDialog();
+    FileDialog(int mode, const char* title, const char* message);
+
+    int render_head(float& options_head, float head_offset);
+    int render(float x, float y);
     core::Deque<int> extract_values();
-    bool is_pressed() const;
-    void reset_pressed();
+    bool is_active() const;
+    std::string get_path();
+    void set_mode_open();
+    void set_mode_save();
+    void set_message(const char* message);
+    void set_title(const char* title);
 };
 
 }  // namespace component

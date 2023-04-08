@@ -11,6 +11,7 @@
 #include "node_gui.hpp"
 #include "raylib.h"
 #include "rlgl.h"
+#include "settings.hpp"
 
 namespace gui {
 
@@ -88,8 +89,9 @@ void GuiCircularLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
     Vector2 side_bot{head.x - arrow_size, head.y + arrow_size};
 
     // draw both
-    DrawRectangleV(link_pos, link_size, GRAY);
-    DrawTriangle(head, side_top, side_bot, GRAY);
+    const Settings& settings = Settings::get_instance();
+    DrawRectangleV(link_pos, link_size, settings.get_color(2));
+    DrawTriangle(head, side_top, side_bot, settings.get_color(2));
 }
 
 template<typename T>
@@ -97,6 +99,7 @@ void GuiCircularLinkedList<T>::render_back_link() {
     if (m_head == nullptr && m_tail == nullptr) {
         return;
     }
+
     constexpr int num_points = 5;
     const Vector2 head_pos = m_head->data.get_pos();
     const Vector2 tail_pos = m_tail->data.get_pos();
@@ -116,9 +119,10 @@ void GuiCircularLinkedList<T>::render_back_link() {
     Vector2 side_left{head.x - arrow_size, head.y + arrow_size};
     Vector2 side_right{head.x + arrow_size, head.y + arrow_size};
 
+    const Settings& settings = Settings::get_instance();
     rlSetLineWidth(2 * scaled_len);
-    DrawLineStrip(points.data(), num_points, GRAY);
-    DrawTriangle(head, side_left, side_right, GRAY);
+    DrawLineStrip(points.data(), num_points, settings.get_color(2));
+    DrawTriangle(head, side_left, side_right, settings.get_color(2));
 }
 
 template<typename T>

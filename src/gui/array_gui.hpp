@@ -8,6 +8,7 @@
 #include "base_gui.hpp"
 #include "element_gui.hpp"
 #include "raylib.h"
+#include "settings.hpp"
 
 namespace gui {
 
@@ -31,14 +32,14 @@ public:
     T& operator[](std::size_t idx);
     T operator[](std::size_t idx) const;
 
-    void set_color(std::size_t idx, Color color);
+    void set_color_index(std::size_t idx, int color_index);
 };
 
 template<typename T, std::size_t N>
 GuiArray<T, N>::GuiArray() {
     for (std::size_t i = 0; i < N; ++i) {
         m_array[i] = GuiElement<T>{0, i};
-        m_array[i].set_color(BLACK);
+        m_array[i].set_color_index(0);
     }
 }
 
@@ -79,8 +80,8 @@ T GuiArray<T, N>::operator[](std::size_t idx) const {
 }
 
 template<typename T, std::size_t N>
-void GuiArray<T, N>::set_color(std::size_t idx, Color color) {
-    m_array[idx].set_color(color);
+void GuiArray<T, N>::set_color_index(std::size_t idx, int color_index) {
+    m_array[idx].set_color_index(color_index);
 }
 
 }  // namespace gui

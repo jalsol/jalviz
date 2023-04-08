@@ -46,7 +46,9 @@ void StackScene::render_inputs() {
                     m_text_input.render(options_head, head_offset);
                 } break;
                 case 2: {
-                    m_file_dialog.render(options_head, head_offset);
+                    m_go = (m_file_dialog.render_head(options_head,
+                                                      head_offset) > 0);
+                    return;
                 } break;
                 default:
                     utils::unreachable();
@@ -160,31 +162,31 @@ void StackScene::interact_push() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_stack.push(value);
-    m_stack.top().set_color(BLUE);
+    m_stack.top().set_color_index(7);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(0);
 
     m_stack.pop();
     if (!m_stack.empty()) {
-        m_stack.top().set_color(VIOLET);
+        m_stack.top().set_color_index(5);
     }
     m_stack.push(value);
-    m_stack.top().set_color(BLUE);
+    m_stack.top().set_color_index(7);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(1);
 
     m_stack.pop();
     if (!m_stack.empty()) {
-        m_stack.top().set_color(BLACK);
+        m_stack.top().set_color_index(0);
         m_stack.top().set_label("");
     }
     m_stack.push(value);
-    m_stack.top().set_color(GREEN);
+    m_stack.top().set_color_index(4);
     m_stack.init_label();
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(2);
 
-    m_stack.top().set_color(BLACK);
+    m_stack.top().set_color_index(0);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
@@ -205,7 +207,7 @@ void StackScene::interact_pop() {
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(-1);
 
-    m_stack.top().set_color(RED);
+    m_stack.top().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(0);
 
@@ -213,12 +215,12 @@ void StackScene::interact_pop() {
     m_stack.pop();
 
     if (!m_stack.empty()) {
-        m_stack.top().set_color(GREEN);
+        m_stack.top().set_color_index(4);
         m_stack.top().set_label("head");
     }
 
     m_stack.push(old_top.get_value());
-    m_stack.top().set_color(RED);
+    m_stack.top().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(1);
 
@@ -227,7 +229,7 @@ void StackScene::interact_pop() {
     m_code_highlighter.push_into_sequence(2);
 
     if (!m_stack.empty()) {
-        m_stack.top().set_color(BLACK);
+        m_stack.top().set_color_index(0);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
@@ -235,13 +237,7 @@ void StackScene::interact_pop() {
 }
 
 void StackScene::interact_file_import() {
-    if (!m_file_dialog.is_pressed()) {
-        return;
-    }
-
     interact_import(m_file_dialog.extract_values());
-
-    m_file_dialog.reset_pressed();
 }
 
 }  // namespace scene

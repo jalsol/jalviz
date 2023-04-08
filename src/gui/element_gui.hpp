@@ -8,6 +8,7 @@
 
 #include "constants.hpp"
 #include "raylib.h"
+#include "settings.hpp"
 #include "utils.hpp"
 
 namespace gui {
@@ -20,7 +21,7 @@ private:
 
     Vector2 m_pos{init_pos};
     static constexpr float eps = 1e-3;
-    Color m_color{GRAY};
+    int m_color_index{2};
 
 public:
     static constexpr int side = 20;
@@ -36,7 +37,7 @@ public:
 
     void render();
     void set_pos(Vector2 pos);
-    void set_color(Color color);
+    void set_color_index(int color_index);
     [[nodiscard]] Vector2 get_pos() const;
 
     T& get_value();
@@ -70,7 +71,8 @@ void GuiElement<T>::render() {
 
     DrawRectangle(m_pos.x - side,  // NOLINT
                   m_pos.y - side,  // NOLINT
-                  2 * side, 2 * side, m_color);
+                  2 * side, 2 * side,
+                  Settings::get_instance().get_color(m_color_index));
 
     utils::DrawText(label.c_str(), label_pos, WHITE, label_font_size,
                     label_font_spacing);
@@ -85,8 +87,8 @@ void GuiElement<T>::set_pos(Vector2 pos) {
 }
 
 template<typename T>
-void GuiElement<T>::set_color(Color color) {
-    m_color = color;
+void GuiElement<T>::set_color_index(int color_index) {
+    m_color_index = color_index;
 }
 
 template<typename T>

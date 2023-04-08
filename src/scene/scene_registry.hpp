@@ -10,6 +10,7 @@
 #include "dynamic_array_scene.hpp"
 #include "menu_scene.hpp"
 #include "queue_scene.hpp"
+#include "settings_scene.hpp"
 #include "stack_scene.hpp"
 
 namespace scene {
@@ -23,6 +24,7 @@ enum SceneId {
     Stack,
     Queue,
     Menu,
+    Settings,
 };
 
 class SceneRegistry {
@@ -33,7 +35,7 @@ private:
     bool m_should_close{};
     int m_current_scene{};
 
-    const std::array<const std::unique_ptr<internal::BaseScene>, 8> m_registry{{
+    const std::array<const std::unique_ptr<internal::BaseScene>, 9> m_registry{{
         std::make_unique<ArrayScene>(),
         std::make_unique<DynamicArrayScene>(),
         std::make_unique<LinkedListScene>(),
@@ -42,6 +44,7 @@ private:
         std::make_unique<StackScene>(),
         std::make_unique<QueueScene>(),
         std::make_unique<MenuScene>(),
+        std::make_unique<SettingsScene>(),
     }};
 
 public:

@@ -27,6 +27,8 @@ private:
     int m_next_scene{};
     bool m_edit_mode{};
     bool m_return_menu{};
+    bool m_return_settings{};
+    int m_scene_before_settings{};
     bool m_pressed{};
 
 public:

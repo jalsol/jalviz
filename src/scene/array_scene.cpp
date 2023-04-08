@@ -26,7 +26,9 @@ void ArrayScene::render_inputs() {
                     m_text_input.render(options_head, head_offset);
                 } break;
                 case 2: {
-                    m_file_dialog.render(options_head, head_offset);
+                    m_go = (m_file_dialog.render_head(options_head,
+                                                      head_offset) > 0);
+                    return;
                 } break;
                 default:
                     utils::unreachable();
@@ -167,31 +169,25 @@ void ArrayScene::interact_update() {
     m_code_highlighter.push_into_sequence(-1);
 
     // highlight
-    m_array.set_color(index, ORANGE);
+    m_array.set_color_index(index, 3);
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(0);
 
     // update
     m_array[index] = value;
-    m_array.set_color(index, GREEN);
+    m_array.set_color_index(index, 4);
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(0);
 
     // undo highlight
-    m_array.set_color(index, BLACK);
+    m_array.set_color_index(index, 0);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
 }
 
 void ArrayScene::interact_file_import() {
-    if (!m_file_dialog.is_pressed()) {
-        return;
-    }
-
     interact_import(m_file_dialog.extract_values());
-
-    m_file_dialog.reset_pressed();
 }
 
 void ArrayScene::interact_search() {
@@ -219,20 +215,20 @@ void ArrayScene::interact_search() {
     bool found = false;
 
     for (std::size_t i = 0; i < max_size; ++i) {
-        m_array.set_color(i, ORANGE);
+        m_array.set_color_index(i, 3);
         m_sequence.insert(m_sequence.size(), m_array);
         m_code_highlighter.push_into_sequence(1);
 
         if (m_array[i] == value) {
             found = true;
-            m_array.set_color(i, GREEN);
+            m_array.set_color_index(i, 4);
             m_sequence.insert(m_sequence.size(), m_array);
             m_code_highlighter.push_into_sequence(2);
-            m_array.set_color(i, BLACK);
+            m_array.set_color_index(i, 0);
             break;
         }
 
-        m_array.set_color(i, BLACK);
+        m_array.set_color_index(i, 0);
         m_sequence.insert(m_sequence.size(), m_array);
         m_code_highlighter.push_into_sequence(0);
     }

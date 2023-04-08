@@ -26,7 +26,9 @@ void QueueScene::render_inputs() {
                     m_text_input.render(options_head, head_offset);
                 } break;
                 case 2: {
-                    m_file_dialog.render(options_head, head_offset);
+                    m_go = (m_file_dialog.render_head(options_head,
+                                                      head_offset) > 0);
+                    return;
                 } break;
                 default:
                     utils::unreachable();
@@ -138,13 +140,7 @@ void QueueScene::interact_import(core::Deque<int> nums) {
 }
 
 void QueueScene::interact_file_import() {
-    if (!m_file_dialog.is_pressed()) {
-        return;
-    }
-
     interact_import(m_file_dialog.extract_values());
-
-    m_file_dialog.reset_pressed();
 }
 
 void QueueScene::interact_push() {
@@ -170,31 +166,31 @@ void QueueScene::interact_push() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_queue.push(value);
-    m_queue.back().set_color(BLUE);
+    m_queue.back().set_color_index(7);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(0);
 
     m_queue.pop_back();
     if (!m_queue.empty()) {
-        m_queue.back().set_color(VIOLET);
+        m_queue.back().set_color_index(5);
     }
     m_queue.push(value);
-    m_queue.back().set_color(BLUE);
+    m_queue.back().set_color_index(7);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(1);
 
     m_queue.pop_back();
     if (!m_queue.empty()) {
-        m_queue.back().set_color(BLACK);
+        m_queue.back().set_color_index(0);
         m_queue.back().set_label("");
     }
     m_queue.push(value);
-    m_queue.back().set_color(GREEN);
+    m_queue.back().set_color_index(4);
     m_queue.init_label();
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(2);
 
-    m_queue.back().set_color(BLACK);
+    m_queue.back().set_color_index(0);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
@@ -215,7 +211,7 @@ void QueueScene::interact_pop() {
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(-1);
 
-    m_queue.front().set_color(RED);
+    m_queue.front().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(0);
 
@@ -223,7 +219,7 @@ void QueueScene::interact_pop() {
     m_queue.pop();
 
     if (!m_queue.empty()) {
-        m_queue.front().set_color(GREEN);
+        m_queue.front().set_color_index(4);
         if (m_queue.size() == 1) {
             m_queue.front().set_label("head/tail");
         } else {
@@ -232,7 +228,7 @@ void QueueScene::interact_pop() {
     }
 
     m_queue.push_front(old_front.get_value());
-    m_queue.front().set_color(RED);
+    m_queue.front().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(1);
 
@@ -242,7 +238,7 @@ void QueueScene::interact_pop() {
     m_code_highlighter.push_into_sequence(2);
 
     if (!m_queue.empty()) {
-        m_queue.front().set_color(BLACK);
+        m_queue.front().set_color_index(0);
     }
 
     m_sequence_controller.set_max_value((int)m_sequence.size());

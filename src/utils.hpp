@@ -32,6 +32,8 @@ void unreachable();
 
 char* strtok(char* str, const char* delim, char** save_ptr);
 
+Color color_from_hex(const std::string& hex);
+
 }  // namespace utils
 
 #endif  // UTILS_HPP_

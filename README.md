@@ -13,6 +13,7 @@ Author: 22125113 - Nguyen Quang Truong
 - C++20 (GNU GCC 11.3.0)
 - CMake 3.22 or above
 - [Raylib](https://github.com/raysan5/raylib) and [Raygui](https://github.com/raysan5/raygui)
+(modified)
 
 ### Documentation
 

@@ -1,6 +1,8 @@
 #include "utils.hpp"
 
 #include <cstring>
+#include <ios>
+#include <sstream>
 
 #include "constants.hpp"
 #include "raylib.h"
@@ -73,6 +75,13 @@ char* strtok(char* str, const char* delim, char** save_ptr) {
 #else
         strtok_r(str, delim, save_ptr);
 #endif
+}
+
+Color color_from_hex(const std::string& hex) {
+    std::stringstream stream(hex + "ff");
+    unsigned int value;
+    stream >> std::hex >> value;
+    return GetColor(value);
 }
 
 }  // namespace utils

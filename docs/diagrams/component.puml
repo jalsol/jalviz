@@ -1,4 +1,24 @@
 @startuml
+class "component::MenuItem" as C_0000838521297003920901
+class C_0000838521297003920901 {
++MenuItem() = default : void
++MenuItem() : void
++x() const : int
++y() const : int
++render() : void
++clicked() const : bool
++reset() : void
+-m_scene : int
+-m_x : int
+-m_y : int
+-m_texture : Texture2D
+-m_text : const char *
+-m_clicked : bool
+{static} +block_width : const int
+{static} +block_height : const int
+{static} +button_width : const int
+{static} +button_height : const int
+}
 class "component::CodeHighlighter" as C_0002054133981456560134
 class C_0002054133981456560134 {
 +render() : void
@@ -12,6 +32,16 @@ class C_0002054133981456560134 {
 {static} -width : const int
 {static} -height : const int
 {static} -head_pos : const Vector2
+}
+class "component::FileDialog" as C_0002086019584566554074
+class C_0002086019584566554074 {
++render() : void
++extract_values() : core::Deque<int>
++is_pressed() const : bool
++reset_pressed() : void
+-m_file_dialog_state : GuiFileDialogState
+-m_file_input : char[512]
+{static} +size : const Vector2
 }
 class "component::SequenceController" as C_0000345155806459925692
 class C_0000345155806459925692 {
@@ -41,31 +71,29 @@ class C_0000345155806459925692 {
 {static} -button_size : const Vector2
 {static} -speed_scale : const int
 }
-class "component::FileDialog" as C_0002086019584566554074
-class C_0002086019584566554074 {
-+render() : void
-+extract_values() : core::Deque<int>
-+is_pressed() const : bool
-+reset_pressed() : void
--m_file_dialog_state : GuiFileDialogState
--m_file_input : char[512]
-{static} +size : const Vector2
-}
 class "component::TextInput" as C_0002253310056810959814
 class C_0002253310056810959814 {
++TextInput() = default : void
++TextInput() : void
 +render() : void
 +extract_values() : core::Deque<int>
 -m_text_input : char[512]
 -m_is_active : bool
+-m_label : const char *
 {static} +size : const Vector2
 }
 class "component::SideBar" as C_0000536568757236472708
 class C_0000536568757236472708 {
 +render() : void
-+interact() const : void
++interact() : void
 -m_next_scene : int
+-m_edit_mode : bool
+-m_return_menu : bool
+-m_return_settings : bool
+-m_scene_before_settings : int
+-m_pressed : bool
 {static} -num_scenes : const int
-{static} -sidebar_width : const int
+{static} -button_width : const int
 {static} -button_height : const int
 {static} -sidebar_labels : const char *const
 }

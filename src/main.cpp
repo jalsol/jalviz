@@ -18,19 +18,17 @@ int main() {
     bool should_close = false;
 
     do {
-        if (registry.get_scene() != scene::Menu) {
-            sidebar.interact();
-        }
+        // NOTE: The order is important
+        sidebar.interact();
         registry.interact();
 
         BeginDrawing();
         {
             ClearBackground(RAYWHITE);
 
+            // NOTE: The order is important
             registry.render();
-            if (registry.get_scene() != scene::Menu) {
-                sidebar.render();
-            }
+            sidebar.render();
         }
         EndDrawing();
 

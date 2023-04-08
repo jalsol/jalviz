@@ -9,6 +9,7 @@
 #include "core/doubly_linked_list.hpp"
 #include "node_gui.hpp"
 #include "raylib.h"
+#include "settings.hpp"
 
 namespace gui {
 
@@ -92,9 +93,12 @@ void GuiDoublyLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
     Vector2 left_side_bot{left_head.x + arrow_size, left_head.y + arrow_size};
 
     // draw all
-    DrawRectangleV(link_pos, link_size, GRAY);
-    DrawTriangle(right_head, right_side_top, right_side_bot, GRAY);
-    DrawTriangle(left_head, left_side_bot, left_side_top, GRAY);
+    const Settings& settings = Settings::get_instance();
+    DrawRectangleV(link_pos, link_size, settings.get_color(2));
+    DrawTriangle(right_head, right_side_top, right_side_bot,
+                 settings.get_color(2));
+    DrawTriangle(left_head, left_side_bot, left_side_top,
+                 settings.get_color(2));
 }
 
 template<typename T>

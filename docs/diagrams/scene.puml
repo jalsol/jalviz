@@ -21,39 +21,33 @@ class C_0000658540208301571902 {
 +render() : void
 +interact() : void
 #options_head : float
+#m_text_input : component::TextInput
+#m_index_input : component::TextInput
+#m_file_dialog : component::FileDialog
 #m_sequence_controller : component::SequenceController
 #m_code_highlighter : component::CodeHighlighter
+#m_edit_mode : bool
+#m_edit_action : bool
 {static} #button_size : const Vector2
 {static} #head_offset : const int
 }
 class "scene::ArrayScene" as C_0000317546188476051030
 class C_0000317546188476051030 {
--ArrayScene() = default : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
 -interact_file_import() : void
 -interact_update() : void
 -interact_search() : void
-+ArrayScene() : void
-+ArrayScene() : void
-+operator=() : scene::ArrayScene &
-+operator=() : scene::ArrayScene &
-+~ArrayScene() = default : void
-{static} +get_instance() : scene::ArrayScene &
 +render() : void
 +interact() : void
 -m_array : gui::GuiArray<int,max_size>
 -m_sequence : core::DoublyLinkedList<gui::GuiArray<int,max_size>>
 -m_go : bool
--m_text_input : component::TextInput
--m_index_input : component::TextInput
--m_file_dialog : component::FileDialog
 {static} -max_size : const std::size_t
 }
 class "scene::DynamicArrayScene" as C_0000993933600604625070
 class C_0000993933600604625070 {
--DynamicArrayScene() = default : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
@@ -62,48 +56,39 @@ class C_0000993933600604625070 {
 -interact_search() : void
 -interact_push() : void
 -interact_pop() : void
-+DynamicArrayScene() : void
-+DynamicArrayScene() : void
-+operator=() : scene::DynamicArrayScene &
-+operator=() : scene::DynamicArrayScene &
-+~DynamicArrayScene() = default : void
-{static} +get_instance() : scene::DynamicArrayScene &
 +render() : void
 +interact() : void
 -m_array : gui::GuiDynamicArray<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiDynamicArray<int>>
 -m_go : bool
--m_text_input : component::TextInput
--m_index_input : component::TextInput
--m_file_dialog : component::FileDialog
 {static} -max_size : const std::size_t
 }
 class "scene::QueueScene" as C_0001209706248980343305
 class C_0001209706248980343305 {
--QueueScene() = default : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
 -interact_file_import() : void
 -interact_push() : void
 -interact_pop() : void
-+QueueScene() : void
-+QueueScene() : void
-+operator=() : scene::QueueScene &
-+operator=() : scene::QueueScene &
-+~QueueScene() = default : void
-{static} +get_instance() : scene::QueueScene &
 +render() : void
 +interact() : void
 -m_queue : gui::GuiQueue<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiQueue<int>>
 -m_go : bool
--m_text_input : component::TextInput
--m_file_dialog : component::FileDialog
+}
+class "scene::SettingsScene" as C_0001338101111872396075
+class C_0001338101111872396075 {
+-set_color() : void
++SettingsScene() : void
++render() : void
++interact() : void
+-m_buffers : std::array<char[7],Settings::num_color>
+-m_edit_mode : std::array<bool,Settings::num_color>
+{static} -input_size : const Vector2
 }
 class "scene::BaseLinkedListScene<Con>" as C_0000234618355588237115
 class C_0000234618355588237115 {
--BaseLinkedListScene<Con>() = default : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
@@ -118,61 +103,40 @@ class C_0000234618355588237115 {
 -interact_delete_middle() : void
 -interact_update() : void
 -interact_search() : void
-+BaseLinkedListScene<Con>() : void
-+BaseLinkedListScene<Con>() : void
-+operator=() : BaseLinkedListScene<Con> &
-+operator=() : BaseLinkedListScene<Con> &
-+~BaseLinkedListScene<Con>() = default : void
-{static} +get_instance() : BaseLinkedListScene<Con> &
 +render() : void
 +interact() : void
 -m_list : Con
 -m_sequence : core::DoublyLinkedList<Con>
 -m_go : bool
--m_text_input : component::TextInput
--m_index_input : component::TextInput
--m_file_dialog : component::FileDialog
 }
 class "scene::MenuScene" as C_0001808605444978889323
 class C_0001808605444978889323 {
--MenuScene() = default : void
 +MenuScene() : void
-+MenuScene() : void
-+operator=() : scene::MenuScene &
-+operator=() : scene::MenuScene &
-+~MenuScene() = default : void
-{static} +get_instance() : scene::MenuScene &
 +render() : void
 +interact() : void
 -m_start : bool
 -m_quit : bool
+-m_next_scene : int
+-m_menu_items : std::array<component::MenuItem,7>
+{static} -labels : const std::array<const char *,7>
+{static} -img_paths : const std::array<const char *,7>
 }
 class "scene::StackScene" as C_0002179233268072534158
 class C_0002179233268072534158 {
--StackScene() = default : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
 -interact_push() : void
 -interact_pop() : void
 -interact_file_import() : void
-+StackScene() : void
-+StackScene() : void
-+operator=() : scene::StackScene &
-+operator=() : scene::StackScene &
-+~StackScene() = default : void
-{static} +get_instance() : scene::StackScene &
 +render() : void
 +interact() : void
 -m_stack : gui::GuiStack<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiStack<int>>
 -m_go : bool
--m_text_input : component::TextInput
--m_file_dialog : component::FileDialog
 }
 enum "scene::SceneId" as C_0001841753511386152581
 enum C_0001841753511386152581 {
-Menu
 Array
 DynamicArray
 LinkedList
@@ -180,6 +144,8 @@ DoublyLinkedList
 CircularLinkedList
 Stack
 Queue
+Menu
+Settings
 }
 class "scene::SceneRegistry" as C_0001036623045197935261
 class C_0001036623045197935261 {
@@ -206,11 +172,12 @@ C_0000993933600604625070 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0000993933600604625070
 C_0001209706248980343305 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0001209706248980343305
+C_0000658540208301571902 <|-- C_0001338101111872396075
 C_0000234618355588237115 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0000234618355588237115
 C_0000658540208301571902 <|-- C_0001808605444978889323
 C_0002179233268072534158 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0002179233268072534158
 C_0001036623045197935261 --> C_0000658540208301571902 : -scene_ptr
-C_0001036623045197935261 --> C_0000658540208301571902 : -m_registry
+C_0001036623045197935261 o-- C_0000658540208301571902 : -m_registry
 @enduml

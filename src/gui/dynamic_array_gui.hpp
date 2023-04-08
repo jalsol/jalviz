@@ -9,6 +9,7 @@
 #include "base_gui.hpp"
 #include "element_gui.hpp"
 #include "raylib.h"
+#include "settings.hpp"
 
 namespace gui {
 
@@ -40,7 +41,7 @@ public:
     T& operator[](std::size_t idx);
     T operator[](std::size_t idx) const;
 
-    void set_color(std::size_t idx, Color color);
+    void set_color_index(std::size_t idx, int color_index);
     void realloc(std::size_t capacity);
 
     std::size_t capacity() const;
@@ -86,7 +87,7 @@ GuiDynamicArray<T>::GuiDynamicArray(std::initializer_list<T> init_list)
 
     for (std::size_t idx = 0; auto elem : init_list) {
         *(m_ptr + idx).set_value(elem);
-        *(m_ptr + idx).set_color(BLACK);
+        *(m_ptr + idx).set_color(Settings::get_instance().get_color(0));
     }
 }
 
@@ -178,8 +179,8 @@ T GuiDynamicArray<T>::operator[](std::size_t idx) const {
 }
 
 template<typename T>
-void GuiDynamicArray<T>::set_color(std::size_t idx, Color color) {
-    m_ptr[idx].set_color(color);
+void GuiDynamicArray<T>::set_color_index(std::size_t idx, int color_index) {
+    m_ptr[idx].set_color_index(color_index);
 }
 
 template<typename T>
@@ -198,7 +199,7 @@ void GuiDynamicArray<T>::push(const T& value) {
         realloc(m_size + 1);
     }
 
-    m_ptr[m_size].set_color(BLACK);
+    m_ptr[m_size].set_color_index(0);
     m_ptr[m_size].set_value(value);
     ++m_size;
 }
@@ -206,7 +207,7 @@ void GuiDynamicArray<T>::push(const T& value) {
 template<typename T>
 void GuiDynamicArray<T>::pop() {
     if (m_size >= 1) {
-        m_ptr[m_size - 1].set_color(GRAY);
+        m_ptr[m_size - 1].set_color_index(2);
         m_ptr[m_size - 1].set_value(0);
         --m_size;
     }

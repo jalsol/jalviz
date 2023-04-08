@@ -11,7 +11,8 @@ class CodeHighlighter {
 private:
     static constexpr int width = 400;
     static constexpr int height = 30;
-    static constexpr Vector2 head_pos{constants::scene_width - width, height};
+    static constexpr Vector2 head_pos{constants::scene_width - width,
+                                      2.5F * height};
 
     core::DoublyLinkedList<const char*> m_src_code;
     core::DoublyLinkedList<int> m_sequence;

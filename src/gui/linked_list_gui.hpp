@@ -10,6 +10,7 @@
 #include "core/doubly_linked_list.hpp"
 #include "node_gui.hpp"
 #include "raylib.h"
+#include "settings.hpp"
 
 namespace gui {
 
@@ -85,8 +86,9 @@ void GuiLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
     Vector2 side_bot{head.x - arrow_size, head.y + arrow_size};
 
     // draw both
-    DrawRectangleV(link_pos, link_size, GRAY);
-    DrawTriangle(head, side_top, side_bot, GRAY);
+    DrawRectangleV(link_pos, link_size, Settings::get_instance().get_color(2));
+    DrawTriangle(head, side_top, side_bot,
+                 Settings::get_instance().get_color(2));
 }
 
 template<typename T>

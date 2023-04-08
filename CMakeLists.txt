@@ -74,10 +74,13 @@ include_directories(src)
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/utils.cpp
+    src/settings.cpp
     src/raygui_impl.cpp
+    external/tinyfiledialogs.c
 
     src/scene/base_scene.cpp
     src/scene/menu_scene.cpp
+    src/scene/settings_scene.cpp
     src/scene/array_scene.cpp
     src/scene/dynamic_array_scene.cpp
     src/scene/stack_scene.cpp

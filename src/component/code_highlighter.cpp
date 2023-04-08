@@ -1,13 +1,17 @@
 #include "code_highlighter.hpp"
 
 #include "raylib.h"
+#include "settings.hpp"
 #include "utils.hpp"
 
 namespace component {
 
 void CodeHighlighter::render() {
     for (int i = 0; i < m_src_code.size(); ++i) {
-        Color bg_color = (i == m_highlighted_line) ? VIOLET : BLACK;
+        const Settings& settings = Settings::get_instance();
+
+        Color bg_color = (i == m_highlighted_line) ? settings.get_color(5)
+                                                   : settings.get_color(0);
         Rectangle shape{head_pos.x, head_pos.y + i * height, width, height};
         Vector2 text_head = {head_pos.x + 10, head_pos.y + i * height + 5};
 
