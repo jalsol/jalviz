@@ -39,6 +39,7 @@ Notable features include:
 - CMake 3.22 or above
 - [Raylib](https://github.com/raysan5/raylib) and [Raygui](https://github.com/raysan5/raygui)
 (modified)
+- [tiny file dialog](https://sourceforge.net/projects/tinyfiledialogs/)
 
 ### Documentation
 
