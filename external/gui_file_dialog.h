@@ -135,10 +135,7 @@ int GuiFileDialog(GuiFileDialogState *state);
 
 #include <string.h>     // Required for: strcpy()
 
-#ifndef PLATFORM_DESKTOP
-#define PLATFORM_DESKTOP
 #include "tinyfiledialogs.h"
-#endif // PLATFORM_DESKTOP
 
 //----------------------------------------------------------------------------------
 // Defines and Macros
