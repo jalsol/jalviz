@@ -59,6 +59,13 @@ void SettingsScene::set_buffer() {
     }
 }
 
+void SettingsScene::set_color() {
+    for (auto i = 0; i < Settings::num_color; ++i) {
+        Settings::get_instance().get_color(i) =
+            utils::color_from_hex(m_buffers.at(i));
+    }
+}
+
 void SettingsScene::render() {
     Settings& settings = Settings::get_instance();
     constexpr int second_col_x = constants::scene_width / 2 + head_pos.y;
@@ -89,9 +96,14 @@ void SettingsScene::render() {
         }
 
         Color& color = settings.get_color(m_selected);
-        color = GuiColorPicker({second_col_x, (float)second_col_y,
+        auto new_color = GuiColorPicker({second_col_x, (float)second_col_y,
                                 4 * input_size.y, 4 * input_size.y},
                                nullptr, color);
+
+        if (ColorToInt(color) != ColorToInt(new_color)) {
+            color = new_color;
+            set_buffer();
+        }
 
         head_y += input_size.y + vertical_gap;
     }
@@ -137,7 +149,7 @@ void SettingsScene::interact() {
         }
     }
 
-    set_buffer();
+    set_color();
 }
 
 }  // namespace scene

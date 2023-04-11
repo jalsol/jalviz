@@ -27,6 +27,7 @@ private:
     int m_save{};
 
     void set_buffer();
+    void set_color();
     void open_from_file(const std::string& path);
 
 public:
