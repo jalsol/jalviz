@@ -98,14 +98,14 @@ void SettingsScene::render() {
 
     {
         second_col_y += 4 * input_size.y;
-        utils::DrawText("Open config", {second_col_x + 10, (float)second_col_y},
-                        BLACK, 20, 2);
+        utils::DrawText("Import config",
+                        {second_col_x + 10, (float)second_col_y}, BLACK, 20, 2);
         m_open = m_open_file.render(second_col_x, (float)second_col_y + 25);
     }
     {
         second_col_y += component::FileDialog::size.y + vertical_gap;
-        utils::DrawText("Save config", {second_col_x + 10, (float)second_col_y},
-                        BLACK, 20, 2);
+        utils::DrawText("Export config",
+                        {second_col_x + 10, (float)second_col_y}, BLACK, 20, 2);
         m_save = m_save_file.render(second_col_x, (float)second_col_y + 25);
     }
 }
