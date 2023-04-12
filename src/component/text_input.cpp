@@ -1,6 +1,7 @@
 #include "text_input.hpp"
 
 #include <cstring>
+#include <iostream>
 
 #include "constants.hpp"
 #include "core/deque.hpp"
@@ -10,6 +11,10 @@
 namespace component {
 
 TextInput::TextInput(const char* label) : m_label{label} {}
+
+void TextInput::set_random_min(int value) { m_random_min = value; }
+
+void TextInput::set_random_max(int value) { m_random_max = value; }
 
 void TextInput::render(float& options_head, float head_offset) {
     Rectangle shape{options_head, constants::scene_height - size.y, size.x,
@@ -24,7 +29,25 @@ void TextInput::render(float& options_head, float head_offset) {
         m_is_active ^= 1;
     }
 
-    options_head += (size.x + head_offset);
+    options_head += (shape.width + head_offset);
+
+    shape = {options_head, constants::scene_height - size.y, size.y, size.y};
+
+    m_set_random = GuiButton(shape, "#78#");
+
+    options_head += (shape.width + head_offset);
+}
+
+bool TextInput::interact() {
+    if (m_set_random) {
+        auto value = utils::get_random(m_random_min, m_random_max);
+        m_set_random = false;
+        std::strncpy(m_text_input, std::to_string(value).c_str(),
+                     constants::text_buffer_size);
+        return true;
+    }
+
+    return false;
 }
 
 core::Deque<int> TextInput::extract_values() {

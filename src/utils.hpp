@@ -17,9 +17,13 @@ Vector2 MeasureText(const char* text, float font_size, float spacing);
 
 template<typename T>
 T get_random(T low, T high) {
+    if (low > high) {
+        return low;
+    }
+
     static std::random_device ran_dev;
     static std::mt19937 prng(ran_dev());
-    static std::uniform_int_distribution<T> dist{low, high};
+    std::uniform_int_distribution<T> dist{low, high};
     return dist(prng);
 }
 

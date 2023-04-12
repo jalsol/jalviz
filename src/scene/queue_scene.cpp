@@ -74,6 +74,12 @@ void QueueScene::interact() {
         return;
     }
 
+    m_index_input.set_random_max((int)m_queue.size() - 1);
+
+    if (m_text_input.interact() || m_index_input.interact()) {
+        return;
+    }
+
     if (!m_go) {
         return;
     }
