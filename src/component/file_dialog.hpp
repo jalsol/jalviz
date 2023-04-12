@@ -1,6 +1,8 @@
 #ifndef COMPONENT_FILE_DIALOG_HPP_
 #define COMPONENT_FILE_DIALOG_HPP_
 
+#include <string>
+
 #include "constants.hpp"
 #include "core/deque.hpp"
 #include "gui_file_dialog.h"
