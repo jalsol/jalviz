@@ -34,6 +34,8 @@ char* strtok(char* str, const char* delim, char** save_ptr);
 
 Color color_from_hex(const std::string& hex);
 
+Color adaptive_text_color(Color bg_color);
+
 }  // namespace utils
 
 #endif  // UTILS_HPP_

@@ -69,15 +69,20 @@ void GuiElement<T>::render() {
     const Vector2 index_pos{m_pos.x - index_size.x / 2,
                             m_pos.y - 2 * side - index_size.y / 2};
 
+    const Color value_color =
+        utils::adaptive_text_color(Settings::get_instance().get_color(0));
+    const Color index_color = utils::adaptive_text_color(
+        Settings::get_instance().get_color(Settings::num_color - 1));
+
     DrawRectangle(m_pos.x - side,  // NOLINT
                   m_pos.y - side,  // NOLINT
                   2 * side, 2 * side,
                   Settings::get_instance().get_color(m_color_index));
 
-    utils::DrawText(label.c_str(), label_pos, WHITE, label_font_size,
+    utils::DrawText(label.c_str(), label_pos, value_color, label_font_size,
                     label_font_spacing);
 
-    utils::DrawText(index.c_str(), index_pos, BLACK, label_font_size,
+    utils::DrawText(index.c_str(), index_pos, index_color, label_font_size,
                     label_font_spacing);
 }
 

@@ -14,7 +14,7 @@ Settings& Settings::get_instance() {
 void Settings::save_to_file(const std::string& path) {
     std::ofstream file_out(path);
 
-    for (auto i = 0; i < m_colors.size(); ++i) {
+    for (auto i = 0; i < num_color; ++i) {
         file_out << std::setfill('0') << std::setw(6) << std::hex
                  << ((unsigned)(ColorToInt(m_colors.at(i))) >> 8) << '\n';
     }

@@ -23,6 +23,7 @@ void MenuItem::render() {
                                (float)m_y + block_height - button_height,
                                button_width - 20, button_height};
 
+    DrawRectangleRec(bound, RAYWHITE);
     DrawTexture(m_texture, m_x, m_y, WHITE);
     GuiLabelButton(text_bound, m_text);
     DrawRectangleLinesEx(bound, 2, BLACK);

@@ -1,5 +1,7 @@
 #include "utils.hpp"
 
+#include <array>
+#include <cmath>
 #include <cstring>
 #include <ios>
 #include <sstream>
@@ -82,6 +84,26 @@ Color color_from_hex(const std::string& hex) {
     unsigned int value;
     stream >> std::hex >> value;
     return GetColor(value);
+}
+
+// https://stackoverflow.com/a/3943023
+Color adaptive_text_color(Color bg_color) {
+    constexpr std::array<float, 3> threshold{{0.2126, 0.7152, 0.0722}};
+    const std::array<int, 3> colors = {{bg_color.r, bg_color.g, bg_color.b}};
+    float sum = 0;
+
+    for (auto i = 0; i < 3; ++i) {
+        float value = (float)colors.at(i) / 255.0F;
+        if (value <= 0.04045) {
+            value /= 12.92;
+        } else {
+            value = std::pow(((value + 0.055) / 1.055), 2.4);
+        }
+
+        sum += value;
+    }
+
+    return (sum > 0.179) ? BLACK : WHITE;
 }
 
 }  // namespace utils

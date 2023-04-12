@@ -29,7 +29,8 @@ void SettingsScene::open_from_file(const std::string& path) {
                     "873cbe\n"
                     "e62937\n"
                     "0079f1\n"
-                    "ff6dc2\n";
+                    "ff6dc2\n"
+                    "f5f5f5";
         file_out.close();
         file_in.close();
         file_in.open(path);
@@ -71,14 +72,28 @@ void SettingsScene::render() {
     constexpr int second_col_x = constants::scene_width / 2 + head_pos.y;
     int second_col_y = 100;
     constexpr int vertical_gap = 30;
+    const Color text_color =
+        utils::adaptive_text_color(settings.get_color(Settings::num_color - 1));
 
     auto [head_x, head_y] = head_pos;
 
     for (auto i = 0; i < m_buffers.size(); ++i) {
-        const Rectangle input_shape{(float)head_x, (float)head_y, input_size.x,
-                                    input_size.y};
-        utils::DrawText(TextFormat("Color %d", i + 1),
-                        {(float)head_x, (float)head_y - 25}, BLACK, 20, 2);
+        Rectangle input_shape;
+        const char* text = nullptr;
+
+        if (i + 1 != m_buffers.size()) {
+            input_shape = {(float)head_x, (float)head_y, input_size.x,
+                           input_size.y};
+            text = TextFormat("Color %d", i + 1);
+        } else {
+            input_shape = {(float)second_col_x, (float)second_col_y + 400,
+                           input_size.x, input_size.y};
+            text = "Background color";
+        }
+
+        utils::DrawText(text, {(float)input_shape.x, (float)input_shape.y - 25},
+                        text_color, 20, 2);
+        DrawRectangleRec(input_shape, RAYWHITE);
         if (GuiTextBox(input_shape, m_buffers.at(i), 7, m_edit_mode.at(i))) {
             m_edit_mode.at(i) ^= 1;
         }
@@ -92,32 +107,37 @@ void SettingsScene::render() {
         if (m_selected == i) {
             DrawRectangleLinesEx(preview_shape, 3, RED);
         } else {
-            DrawRectangleLinesEx(preview_shape, 2, BLACK);
-        }
-
-        Color& color = settings.get_color(m_selected);
-        auto new_color = GuiColorPicker({second_col_x, (float)second_col_y,
-                                4 * input_size.y, 4 * input_size.y},
-                               nullptr, color);
-
-        if (ColorToInt(color) != ColorToInt(new_color)) {
-            color = new_color;
-            set_buffer();
+            DrawRectangleLinesEx(preview_shape, 2, text_color);
         }
 
         head_y += input_size.y + vertical_gap;
     }
 
     {
+        Color& color = settings.get_color(m_selected);
+        auto new_color = GuiColorPicker({second_col_x, (float)second_col_y,
+                                         4 * input_size.y, 4 * input_size.y},
+                                        nullptr, color);
+
+        if (ColorToInt(color) != ColorToInt(new_color)) {
+            color = new_color;
+            set_buffer();
+        }
+    }
+
+    {
         second_col_y += 4 * input_size.y;
         utils::DrawText("Import config",
-                        {second_col_x + 10, (float)second_col_y}, BLACK, 20, 2);
+                        {second_col_x + 10, (float)second_col_y}, text_color,
+                        20, 2);
         m_open = m_open_file.render(second_col_x, (float)second_col_y + 25);
     }
+
     {
         second_col_y += component::FileDialog::size.y + vertical_gap;
         utils::DrawText("Export config",
-                        {second_col_x + 10, (float)second_col_y}, BLACK, 20, 2);
+                        {second_col_x + 10, (float)second_col_y}, text_color,
+                        20, 2);
         m_save = m_save_file.render(second_col_x, (float)second_col_y + 25);
     }
 }

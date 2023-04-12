@@ -9,7 +9,7 @@
 
 class Settings {
 public:
-    static constexpr int num_color = 9;
+    static constexpr int num_color = 10;
 
 private:
     Settings() = default;

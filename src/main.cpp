@@ -4,6 +4,7 @@
 #include "constants.hpp"
 #include "raygui.h"
 #include "scene/scene_registry.hpp"
+#include "settings.hpp"
 
 int main() {
     InitWindow(constants::scene_width, constants::scene_height,
@@ -24,7 +25,8 @@ int main() {
 
         BeginDrawing();
         {
-            ClearBackground(RAYWHITE);
+            ClearBackground(
+                Settings::get_instance().get_color(Settings::num_color - 1));
 
             // NOTE: The order is important
             registry.render();

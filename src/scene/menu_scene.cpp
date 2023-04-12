@@ -6,6 +6,7 @@
 #include "raygui.h"
 #include "raylib.h"
 #include "scene_registry.hpp"
+#include "settings.hpp"
 #include "utils.hpp"
 
 namespace scene {
@@ -49,6 +50,9 @@ MenuScene::MenuScene() {
 }
 
 void MenuScene::render() {
+    const Color text_color = utils::adaptive_text_color(
+        Settings::get_instance().get_color(Settings::num_color - 1));
+
     // Menu text
     constexpr int menu_font_size = 60;
     constexpr int menu_font_spacing = 5;
@@ -62,7 +66,7 @@ void MenuScene::render() {
         constants::scene_width / 2.0F - menu_text_size.x / 2,
         constants::scene_height / 16.0F - menu_text_size.y / 2};
 
-    utils::DrawText(menu_text, menu_text_pos, BLACK, menu_font_size,
+    utils::DrawText(menu_text, menu_text_pos, text_color, menu_font_size,
                     menu_font_spacing);
 
     // Sub text
@@ -78,7 +82,7 @@ void MenuScene::render() {
         constants::scene_width / 2.0F - sub_text_size.x / 2,
         menu_text_pos.y + menu_text_size.y / 2 + sub_text_size.y};
 
-    utils::DrawText(sub_text, sub_text_pos, BLACK, sub_font_size,
+    utils::DrawText(sub_text, sub_text_pos, text_color, sub_font_size,
                     sub_font_spacing);
 
     // Button
@@ -114,7 +118,7 @@ void MenuScene::render() {
         constants::scene_width / 2.0F - bot_text_size.x / 2,
         constants::scene_height - 1.5F * bot_text_size.y};
 
-    utils::DrawText(bot_text, bot_text_pos, BLACK, bot_font_size,
+    utils::DrawText(bot_text, bot_text_pos, text_color, bot_font_size,
                     bot_font_spacing);
 }
 
