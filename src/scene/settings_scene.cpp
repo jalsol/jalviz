@@ -105,7 +105,7 @@ void SettingsScene::render() {
         DrawRectangleRec(preview_shape, settings.get_color(i));
 
         if (m_selected == i) {
-            DrawRectangleLinesEx(preview_shape, 3, RED);
+            DrawRectangleLinesEx(preview_shape, 3, settings.get_color(5));
         } else {
             DrawRectangleLinesEx(preview_shape, 2, text_color);
         }

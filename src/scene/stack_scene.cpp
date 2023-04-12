@@ -167,16 +167,16 @@ void StackScene::interact_push() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_stack.push(value);
-    m_stack.top().set_color_index(7);
+    m_stack.top().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(0);
 
     m_stack.pop();
     if (!m_stack.empty()) {
-        m_stack.top().set_color_index(5);
+        m_stack.top().set_color_index(4);
     }
     m_stack.push(value);
-    m_stack.top().set_color_index(7);
+    m_stack.top().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(1);
 
@@ -186,7 +186,7 @@ void StackScene::interact_push() {
         m_stack.top().set_label("");
     }
     m_stack.push(value);
-    m_stack.top().set_color_index(4);
+    m_stack.top().set_color_index(3);
     m_stack.init_label();
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(2);
@@ -212,7 +212,7 @@ void StackScene::interact_pop() {
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(-1);
 
-    m_stack.top().set_color_index(6);
+    m_stack.top().set_color_index(5);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(0);
 
@@ -220,12 +220,12 @@ void StackScene::interact_pop() {
     m_stack.pop();
 
     if (!m_stack.empty()) {
-        m_stack.top().set_color_index(4);
+        m_stack.top().set_color_index(3);
         m_stack.top().set_label("head");
     }
 
     m_stack.push(old_top.get_value());
-    m_stack.top().set_color_index(6);
+    m_stack.top().set_color_index(5);
     m_sequence.insert(m_sequence.size(), m_stack);
     m_code_highlighter.push_into_sequence(1);
 

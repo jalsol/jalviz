@@ -172,16 +172,16 @@ void QueueScene::interact_push() {
     m_code_highlighter.push_into_sequence(-1);
 
     m_queue.push(value);
-    m_queue.back().set_color_index(7);
+    m_queue.back().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(0);
 
     m_queue.pop_back();
     if (!m_queue.empty()) {
-        m_queue.back().set_color_index(5);
+        m_queue.back().set_color_index(4);
     }
     m_queue.push(value);
-    m_queue.back().set_color_index(7);
+    m_queue.back().set_color_index(6);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(1);
 
@@ -191,7 +191,7 @@ void QueueScene::interact_push() {
         m_queue.back().set_label("");
     }
     m_queue.push(value);
-    m_queue.back().set_color_index(4);
+    m_queue.back().set_color_index(3);
     m_queue.init_label();
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(2);
@@ -217,7 +217,7 @@ void QueueScene::interact_pop() {
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(-1);
 
-    m_queue.front().set_color_index(6);
+    m_queue.front().set_color_index(5);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(0);
 
@@ -225,7 +225,7 @@ void QueueScene::interact_pop() {
     m_queue.pop();
 
     if (!m_queue.empty()) {
-        m_queue.front().set_color_index(4);
+        m_queue.front().set_color_index(3);
         if (m_queue.size() == 1) {
             m_queue.front().set_label("head/tail");
         } else {
@@ -234,7 +234,7 @@ void QueueScene::interact_pop() {
     }
 
     m_queue.push_front(old_front.get_value());
-    m_queue.front().set_color_index(6);
+    m_queue.front().set_color_index(5);
     m_sequence.insert(m_sequence.size(), m_queue);
     m_code_highlighter.push_into_sequence(1);
 

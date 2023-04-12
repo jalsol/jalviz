@@ -21,7 +21,7 @@ private:
 
     Vector2 m_pos{init_pos};
     static constexpr float eps = 1e-3;
-    int m_color_index{2};
+    int m_color_index{1};
 
 public:
     static constexpr int side = 20;

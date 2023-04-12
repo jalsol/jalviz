@@ -207,7 +207,7 @@ void GuiDynamicArray<T>::push(const T& value) {
 template<typename T>
 void GuiDynamicArray<T>::pop() {
     if (m_size >= 1) {
-        m_ptr[m_size - 1].set_color_index(2);
+        m_ptr[m_size - 1].set_color_index(1);
         m_ptr[m_size - 1].set_value(0);
         --m_size;
     }

@@ -48,6 +48,7 @@ void GuiNode<T>::render() {
     constexpr int label_font_size = 25;
     constexpr int label_font_spacing = 2;
     const std::string value = std::to_string(m_value);
+    const Settings& settings = Settings::get_instance();
 
     const Vector2 value_size =
         utils::MeasureText(value.c_str(), label_font_size, label_font_spacing);
@@ -64,12 +65,11 @@ void GuiNode<T>::render() {
     const Color value_color =
         utils::adaptive_text_color(Settings::get_instance().get_color(0));
 
-    DrawCircleV(m_pos, radius,
-                Settings::get_instance().get_color(m_color_index));
+    DrawCircleV(m_pos, radius, settings.get_color(m_color_index));
     utils::DrawText(value.c_str(), value_pos, value_color, label_font_size,
                     label_font_spacing);
 
-    utils::DrawText(m_label, label_pos, RED, label_font_size,
+    utils::DrawText(m_label, label_pos, settings.get_color(5), label_font_size,
                     label_font_spacing);
 }
 

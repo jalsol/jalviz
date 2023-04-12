@@ -94,11 +94,11 @@ void GuiDoublyLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
 
     // draw all
     const Settings& settings = Settings::get_instance();
-    DrawRectangleV(link_pos, link_size, settings.get_color(2));
+    DrawRectangleV(link_pos, link_size, settings.get_color(1));
     DrawTriangle(right_head, right_side_top, right_side_bot,
-                 settings.get_color(2));
+                 settings.get_color(1));
     DrawTriangle(left_head, left_side_bot, left_side_top,
-                 settings.get_color(2));
+                 settings.get_color(1));
 }
 
 template<typename T>

@@ -90,8 +90,8 @@ void GuiCircularLinkedList<T>::render_link(Vector2 src, Vector2 dest) {
 
     // draw both
     const Settings& settings = Settings::get_instance();
-    DrawRectangleV(link_pos, link_size, settings.get_color(2));
-    DrawTriangle(head, side_top, side_bot, settings.get_color(2));
+    DrawRectangleV(link_pos, link_size, settings.get_color(1));
+    DrawTriangle(head, side_top, side_bot, settings.get_color(1));
 }
 
 template<typename T>
@@ -121,8 +121,8 @@ void GuiCircularLinkedList<T>::render_back_link() {
 
     const Settings& settings = Settings::get_instance();
     rlSetLineWidth(2 * scaled_len);
-    DrawLineStrip(points.data(), num_points, settings.get_color(2));
-    DrawTriangle(head, side_left, side_right, settings.get_color(2));
+    DrawLineStrip(points.data(), num_points, settings.get_color(1));
+    DrawTriangle(head, side_left, side_right, settings.get_color(1));
 }
 
 template<typename T>

@@ -175,13 +175,13 @@ void ArrayScene::interact_update() {
     m_code_highlighter.push_into_sequence(-1);
 
     // highlight
-    m_array.set_color_index(index, 3);
+    m_array.set_color_index(index, 2);
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(0);
 
     // update
     m_array[index] = value;
-    m_array.set_color_index(index, 4);
+    m_array.set_color_index(index, 3);
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(0);
 

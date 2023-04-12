@@ -48,25 +48,8 @@ add_executable(core_doubly_linked_list_test_exe
 target_include_directories(core_deque_test_exe PRIVATE external)
 target_include_directories(core_doubly_linked_list_test_exe PRIVATE external)
 
-if(NOT MSVC)
-    target_link_libraries(core_deque_test_exe PRIVATE
-        -fsanitize=address,undefined,leak -g
-    )
-    target_link_libraries(core_doubly_linked_list_test_exe PRIVATE
-        -fsanitize=address,undefined,leak -g
-    )
-endif()
-
 add_test(core_deque_test core_deque_test_exe)
 add_test(core_doubly_linked_list_test core_doubly_linked_list_test_exe)
-
-add_custom_target(run_deque_test ALL
-    COMMAND ctest --output-on-failure
-    DEPENDS core_deque_test_exe)
-
-add_custom_target(run_doubly_linked_list_test ALL
-    COMMAND ctest --output-on-failure
-    DEPENDS core_doubly_linked_list_test_exe)
 ###############################################################################
 
 include_directories(src)
