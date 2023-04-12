@@ -15,7 +15,7 @@ namespace scene {
 class SettingsScene : public internal::BaseScene {
 private:
     static constexpr Vector2 input_size{200, 50};
-    static constexpr Vector2 head_pos{400, 50};
+    static constexpr Vector2 head_pos{400, 70};
     std::array<char[7], Settings::num_color> m_buffers{};
     std::array<bool, Settings::num_color> m_edit_mode{};
 
