@@ -17,6 +17,8 @@ constexpr int max_val = 999;
 
 constexpr int default_font_size = 60;
 
+constexpr const char* default_color_path = "data/color.bin";
+
 }  // namespace constants
 
 #endif  // CONSTANTS_HPP_

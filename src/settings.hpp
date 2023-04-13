@@ -10,6 +10,17 @@
 class Settings {
 public:
     static constexpr int num_color = 9;
+    static constexpr std::array<unsigned, num_color> default_color{{
+        0x00000000,
+        0x82828200,
+        0xffa10000,
+        0x00e43000,
+        0x873cbe00,
+        0xe6293700,
+        0x0079f100,
+        0xff6dc200,
+        0xf5f5f500,
+    }};
 
 private:
     Settings() = default;

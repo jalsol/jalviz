@@ -18,35 +18,35 @@ namespace scene {
 
 void SettingsScene::open_from_file(const std::string& path) {
     Settings& settings = Settings::get_instance();
-    std::ifstream file_in(path);
+    std::ifstream file_in(path, std::ios::binary);
 
     if (!file_in.is_open()) {
-        std::ofstream file_out(path);
-        file_out << "000000\n"
-                    "828282\n"
-                    "ffa100\n"
-                    "00e430\n"
-                    "873cbe\n"
-                    "e62937\n"
-                    "0079f1\n"
-                    "ff6dc2\n"
-                    "f5f5f5";
+        std::ofstream file_out(path, std::ios::binary);
+
+        for (auto i = 0; i < Settings::num_color; ++i) {
+            unsigned value = Settings::default_color.at(i);
+            file_out.write(reinterpret_cast<const char*>(&value),
+                           sizeof(value));
+        }
+
         file_out.close();
+
         file_in.close();
-        file_in.open(path);
+        file_in.open(path, std::ios::binary);
     }
 
-    unsigned int hex_value;
+    unsigned hex_value;
     for (auto i = 0; i < Settings::num_color; ++i) {
-        file_in >> std::hex >> hex_value;
-        hex_value = (hex_value << 8) | 0xff;
+        file_in.read(reinterpret_cast<char*>(&hex_value), sizeof(hex_value));
         settings.get_color(i) = GetColor(hex_value);
     }
 
     set_buffer();
 }
 
-SettingsScene::SettingsScene() { open_from_file("data/color.txt"); }
+SettingsScene::SettingsScene() {
+    open_from_file(constants::default_color_path);
+}
 
 void SettingsScene::set_buffer() {
     std::stringstream sstr;

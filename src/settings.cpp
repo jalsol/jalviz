@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <iostream>
 
+#include "constants.hpp"
 #include "raylib.h"
 
 Settings& Settings::get_instance() {
@@ -12,15 +13,15 @@ Settings& Settings::get_instance() {
 }
 
 void Settings::save_to_file(const std::string& path) {
-    std::ofstream file_out(path);
+    std::ofstream file_out(path, std::ios::binary);
 
     for (auto i = 0; i < num_color; ++i) {
-        file_out << std::setfill('0') << std::setw(6) << std::hex
-                 << ((unsigned)(ColorToInt(m_colors.at(i))) >> 8) << '\n';
+        unsigned value = ColorToInt(m_colors.at(i));
+        file_out.write(reinterpret_cast<const char*>(&value), sizeof(value));
     }
 }
 
-Settings::~Settings() { save_to_file("data/color.txt"); }
+Settings::~Settings() { save_to_file(constants::default_color_path); }
 
 Color& Settings::get_color(std::size_t index) { return m_colors.at(index); }
 

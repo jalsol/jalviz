@@ -11,4 +11,4 @@ visualgo_cpp
 docs/html/
 docs/latex/*
 !docs/latex/refman.pdf
-data/color.txt
+data/color.bin
