@@ -6,6 +6,7 @@
 #include "constants.hpp"
 #include "core/deque.hpp"
 #include "raygui.h"
+#include "settings.hpp"
 #include "utils.hpp"
 
 namespace component {
@@ -20,9 +21,13 @@ void TextInput::render(float& options_head, float head_offset) {
     Rectangle shape{options_head, constants::scene_height - size.y, size.x,
                     size.y};
 
-    utils::DrawText(m_label,
-                    {options_head, constants::scene_height - size.y - 25},
-                    BLACK, 20, 2);
+    utils::DrawText(
+        m_label, {options_head, constants::scene_height - size.y - 25},
+        utils::adaptive_text_color(
+            Settings::get_instance().get_color(Settings::num_color - 1)),
+        20, 2);
+
+    DrawRectangleRec(shape, RAYWHITE);
 
     if (GuiTextBox(shape, static_cast<char*>(m_text_input),
                    constants::text_buffer_size, m_is_active)) {

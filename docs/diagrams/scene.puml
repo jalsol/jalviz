@@ -80,6 +80,7 @@ class C_0001209706248980343305 {
 class "scene::SettingsScene" as C_0001338101111872396075
 class C_0001338101111872396075 {
 -set_buffer() : void
+-set_color() : void
 -open_from_file() : void
 +SettingsScene() : void
 +render() : void
