@@ -24,7 +24,7 @@ It currently supports the following data structures:
 Notable features include:
 - Visualization of initialization and CRUD operations of different data structures
 - Step-by-step code highlight
-- Color customization
+- Super customizable color settings (with presets included)
 - ... and more to come!
 
 ## Demonstration
@@ -39,7 +39,7 @@ Notable features include:
 - CMake 3.22 or above
 - [Raylib](https://github.com/raysan5/raylib) and [Raygui](https://github.com/raysan5/raygui)
 (modified)
-- [tiny file dialog](https://sourceforge.net/projects/tinyfiledialogs/)
+- [tiny file dialogs](https://sourceforge.net/projects/tinyfiledialogs/)
 
 ### Documentation
 
@@ -53,6 +53,13 @@ Notable features include:
 - `cmake -S. -Bbuild`
 - `make -Cbuild`
 - The executable `visualgo_cpp` will appear.
+
+### Extra building notes
+
+- If CMake does not choose the correct build system generator, please read the
+manual by running `cmake -h` and read the options for the `-G` flag;
+- You can use the `-j` flag for Make to enable multithreaded compiling (for example,
+my laptop has 4 cores, so I usually run `make -Cbuild -j4`).
 
 ## Releases
 

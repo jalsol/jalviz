@@ -190,5 +190,5 @@ C_0001036623045197935261 --> C_0000658540208301571902 : -scene_ptr
 C_0001036623045197935261 o-- C_0000658540208301571902 : -m_registry
 
 'Generated with clang-uml, version 0.3.4
-'LLVM version Ubuntu clang version 15.0.6
+'LLVM version Ubuntu clang version 15.0.7
 @enduml
