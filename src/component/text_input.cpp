@@ -34,7 +34,7 @@ void TextInput::render(float& options_head, float head_offset) {
         m_is_active ^= 1;
     }
 
-    options_head += (shape.width + head_offset);
+    options_head += shape.width;
 
     shape = {options_head, constants::scene_height - size.y, size.y, size.y};
 
