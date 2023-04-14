@@ -29,7 +29,7 @@ Notable features include:
 
 ## Demonstration
 
-[To be updated]
+[Here is the demonstration on YouTube.](https://youtu.be/9E_ZE9IUF1Q)
 
 ## Dependencies
 
