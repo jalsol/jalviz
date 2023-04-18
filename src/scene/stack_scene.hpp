@@ -3,7 +3,6 @@
 
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
-#include "component/text_input.hpp"
 #include "core/doubly_linked_list.hpp"
 #include "core/stack.hpp"
 #include "gui/stack_gui.hpp"

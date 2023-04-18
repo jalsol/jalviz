@@ -55,7 +55,7 @@ void SettingsScene::set_buffer() {
         sstr << std::setfill('0') << std::setw(6) << std::hex
              << ((unsigned)ColorToInt(Settings::get_instance().get_color(i)) >>
                  8);
-        std::strncpy(m_buffers.at(i), sstr.str().c_str(), 7);
+        m_inputs.at(i).set_input(sstr.str().c_str(), 7);
         sstr.str(std::string());
     }
 }
@@ -63,7 +63,7 @@ void SettingsScene::set_buffer() {
 void SettingsScene::set_color() {
     for (auto i = 0; i < Settings::num_color; ++i) {
         Settings::get_instance().get_color(i) =
-            utils::color_from_hex(m_buffers.at(i));
+            utils::color_from_hex(m_inputs.at(i).get_input());
     }
 }
 
@@ -76,31 +76,30 @@ void SettingsScene::render() {
         utils::adaptive_text_color(settings.get_color(Settings::num_color - 1));
 
     auto [head_x, head_y] = head_pos;
+    const auto input_size = component::TextInput::size;
 
-    for (auto i = 0; i < m_buffers.size(); ++i) {
-        Rectangle input_shape;
-        const char* text = nullptr;
+    for (auto i = 0; i < m_inputs.size(); ++i) {
+        Vector2 input_head;
 
-        if (i + 1 != m_buffers.size()) {
-            input_shape = {(float)head_x, (float)head_y, input_size.x,
-                           input_size.y};
-            text = TextFormat("Color %d", i + 1);
+        if (i + 1 != m_inputs.size()) {
+            input_head = {(float)head_x, (float)head_y};
         } else {
-            input_shape = {(float)second_col_x, (float)second_col_y + 400,
-                           input_size.x, input_size.y};
-            text = "Background color";
+            input_head = {(float)second_col_x, (float)second_col_y + 400};
         }
 
-        utils::DrawText(text, {(float)input_shape.x, (float)input_shape.y - 25},
-                        text_color, 20, 2);
-        DrawRectangleRec(input_shape, RAYWHITE);
-        if (GuiTextBox(input_shape, m_buffers.at(i), 7, m_edit_mode.at(i))) {
-            m_edit_mode.at(i) ^= 1;
+        // to be honest, I don't exactly know how TextFormat works
+        // there are some bizarre behaviors which make me call set_label
+        // every frame
+        if (i + 1 != m_inputs.size()) {
+            m_inputs.at(i).set_label(TextFormat("Color %d", i + 1));
+        } else {
+            m_inputs.at(i).set_label("Background color");
         }
 
-        const Rectangle preview_shape{input_shape.x + input_size.x + 10,
-                                      input_shape.y, input_size.y,
-                                      input_size.y};
+        m_inputs.at(i).render(input_head.x, input_head.y);
+
+        const Rectangle preview_shape{input_head.x + input_size.x + 10,
+                                      input_head.y, input_size.y, input_size.y};
 
         DrawRectangleRec(preview_shape, settings.get_color(i));
 
@@ -157,14 +156,8 @@ void SettingsScene::interact() {
     const bool left_clicked = IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
     auto [head_x, head_y] = head_pos;
 
-    for (auto i = 0; i < m_buffers.size(); ++i) {
-        const Rectangle input_shape{(float)head_x, (float)head_y, input_size.x,
-                                    input_size.y};
-        const Rectangle preview_shape{input_shape.x + input_size.x + 10,
-                                      input_shape.y, input_size.y,
-                                      input_size.y};
-
-        if (m_edit_mode.at(i)) {
+    for (auto i = 0; i < m_inputs.size(); ++i) {
+        if (m_inputs.at(i).is_active()) {
             m_selected = i;
         }
     }

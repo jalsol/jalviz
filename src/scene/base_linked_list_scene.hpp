@@ -4,7 +4,6 @@
 #include "base_scene.hpp"
 #include "component/code_highlighter.hpp"
 #include "component/file_dialog.hpp"
-#include "component/text_input.hpp"
 #include "core/doubly_linked_list.hpp"
 #include "gui/circular_linked_list_gui.hpp"
 #include "gui/doubly_linked_list_gui.hpp"
@@ -108,7 +107,7 @@ void BaseLinkedListScene<Con>::render_inputs() {
                 case 0:
                     break;
                 case 1: {
-                    m_text_input.render(options_head, head_offset);
+                    m_text_input.render_head(options_head, head_offset);
                 } break;
                 case 2: {
                     m_go = (m_file_dialog.render_head(options_head,
@@ -121,21 +120,21 @@ void BaseLinkedListScene<Con>::render_inputs() {
         } break;
 
         case 1: {
-            m_index_input.render(options_head, head_offset);
-            m_text_input.render(options_head, head_offset);
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 2: {
-            m_index_input.render(options_head, head_offset);
+            m_index_input.render_head(options_head, head_offset);
         } break;
 
         case 3: {
-            m_index_input.render(options_head, head_offset);
-            m_text_input.render(options_head, head_offset);
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 4: {
-            m_text_input.render(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
         } break;
 
         default:

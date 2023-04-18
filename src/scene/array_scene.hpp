@@ -6,7 +6,6 @@
 
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
-#include "component/text_input.hpp"
 #include "constants.hpp"
 #include "core/doubly_linked_list.hpp"
 #include "gui/array_gui.hpp"

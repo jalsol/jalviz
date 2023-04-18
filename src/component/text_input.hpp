@@ -10,14 +10,10 @@
 namespace component {
 
 class TextInput {
-private:
+protected:
     char m_text_input[constants::text_buffer_size] = "";  // NOLINT
     bool m_is_active{};
     const char* m_label{};
-
-    int m_random_min{constants::min_val};
-    int m_random_max{constants::max_val};
-    bool m_set_random{};
 
 public:
     static constexpr Vector2 size{200, 50};
@@ -25,11 +21,13 @@ public:
     TextInput() = default;
     TextInput(const char* label);
 
-    void render(float& options_head, float head_offset);
-    bool interact();
+    void render(float x, float y);
+    void render_head(float& options_head, float head_offset);
+    std::string get_input() const;
+    bool is_active() const;
+    void set_input(const char* input, int len);
+    void set_label(const char* const label);
     core::Deque<int> extract_values();
-    void set_random_min(int value);
-    void set_random_max(int value);
 };
 
 }  // namespace component

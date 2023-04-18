@@ -73,6 +73,7 @@ add_executable(${PROJECT_NAME}
 
     src/component/sidebar.cpp
     src/component/text_input.cpp
+    src/component/random_text_input.cpp
     src/component/file_dialog.cpp
     src/component/sequence_controller.cpp
     src/component/code_highlighter.cpp

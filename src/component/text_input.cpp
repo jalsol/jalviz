@@ -13,16 +13,11 @@ namespace component {
 
 TextInput::TextInput(const char* label) : m_label{label} {}
 
-void TextInput::set_random_min(int value) { m_random_min = value; }
-
-void TextInput::set_random_max(int value) { m_random_max = value; }
-
-void TextInput::render(float& options_head, float head_offset) {
-    Rectangle shape{options_head, constants::scene_height - size.y, size.x,
-                    size.y};
+void TextInput::render(float x, float y) {
+    Rectangle shape{x, y, size.x, size.y};
 
     utils::DrawText(
-        m_label, {options_head, constants::scene_height - size.y - 25},
+        m_label, {x, y - 25},
         utils::adaptive_text_color(
             Settings::get_instance().get_color(Settings::num_color - 1)),
         20, 2);
@@ -33,26 +28,21 @@ void TextInput::render(float& options_head, float head_offset) {
                    constants::text_buffer_size, m_is_active)) {
         m_is_active ^= 1;
     }
-
-    options_head += shape.width;
-
-    shape = {options_head, constants::scene_height - size.y, size.y, size.y};
-
-    m_set_random = GuiButton(shape, "#78#");
-
-    options_head += (shape.width + head_offset);
 }
 
-bool TextInput::interact() {
-    if (m_set_random) {
-        auto value = utils::get_random(m_random_min, m_random_max);
-        m_set_random = false;
-        std::strncpy(m_text_input, std::to_string(value).c_str(),
-                     constants::text_buffer_size);
-        return true;
-    }
+void TextInput::render_head(float& options_head, float head_offset) {
+    render(options_head, constants::scene_height - size.y);
+    options_head += (size.x + head_offset);
+}
 
-    return false;
+std::string TextInput::get_input() const { return {m_text_input}; }
+
+bool TextInput::is_active() const { return m_is_active; }
+
+void TextInput::set_label(const char* const label) { m_label = label; }
+
+void TextInput::set_input(const char* input, int len) {
+    std::strncpy(static_cast<char*>(m_text_input), input, len);
 }
 
 core::Deque<int> TextInput::extract_values() {

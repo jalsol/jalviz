@@ -5,7 +5,6 @@
 
 #include "base_scene.hpp"
 #include "component/file_dialog.hpp"
-#include "component/text_input.hpp"
 #include "core/doubly_linked_list.hpp"
 #include "core/queue.hpp"
 #include "gui/queue_gui.hpp"

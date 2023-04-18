@@ -23,7 +23,7 @@ void DynamicArrayScene::render_inputs() {
                 case 0:
                     break;
                 case 1: {
-                    m_text_input.render(options_head, head_offset);
+                    m_text_input.render_head(options_head, head_offset);
                 } break;
                 case 2: {
                     m_go = (m_file_dialog.render_head(options_head,
@@ -36,13 +36,13 @@ void DynamicArrayScene::render_inputs() {
         } break;
 
         case 1: {
-            m_index_input.render(options_head, head_offset);
-            m_text_input.render(options_head, head_offset);
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 2:
         case 3: {
-            m_text_input.render(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 4:
