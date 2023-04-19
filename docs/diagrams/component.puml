@@ -53,6 +53,34 @@ class C_0002086019584566554074 {
 -m_title : const char *
 {static} +size : const Vector2
 }
+class "component::TextInput" as C_0002253310056810959814
+class C_0002253310056810959814 {
++TextInput() = default : void
++TextInput() : void
++render() : void
++render_head() : void
++get_input() const : std::string
++is_active() const : bool
++set_input() : void
++set_label() : void
++extract_values() : core::Deque<int>
+#m_text_input : char[512]
+#m_is_active : bool
+#m_label : const char *
+{static} +size : const Vector2
+}
+class "component::RandomTextInput" as C_0001164472522979595617
+class C_0001164472522979595617 {
++RandomTextInput() = default : void
++RandomTextInput() : void
++render_head() : void
++interact() : bool
++set_random_min() : void
++set_random_max() : void
+-m_random_min : int
+-m_random_max : int
+-m_set_random : bool
+}
 class "component::SequenceController" as C_0000345155806459925692
 class C_0000345155806459925692 {
 +render() : void
@@ -81,23 +109,6 @@ class C_0000345155806459925692 {
 {static} -button_size : const Vector2
 {static} -speed_scale : const int
 }
-class "component::TextInput" as C_0002253310056810959814
-class C_0002253310056810959814 {
-+TextInput() = default : void
-+TextInput() : void
-+render() : void
-+interact() : bool
-+extract_values() : core::Deque<int>
-+set_random_min() : void
-+set_random_max() : void
--m_text_input : char[512]
--m_is_active : bool
--m_label : const char *
--m_random_min : int
--m_random_max : int
--m_set_random : bool
-{static} +size : const Vector2
-}
 class "component::SideBar" as C_0000536568757236472708
 class C_0000536568757236472708 {
 +render() : void
@@ -113,6 +124,7 @@ class C_0000536568757236472708 {
 {static} -button_height : const int
 {static} -sidebar_labels : const char *const
 }
+C_0002253310056810959814 <|-- C_0001164472522979595617
 
 'Generated with clang-uml, version 0.3.4
 'LLVM version Ubuntu clang version 15.0.7

@@ -21,8 +21,8 @@ class C_0000658540208301571902 {
 +render() : void
 +interact() : void
 #options_head : float
-#m_text_input : component::TextInput
-#m_index_input : component::TextInput
+#m_text_input : component::RandomTextInput
+#m_index_input : component::RandomTextInput
 #m_file_dialog : component::FileDialog
 #m_sequence_controller : component::SequenceController
 #m_code_highlighter : component::CodeHighlighter
@@ -85,14 +85,12 @@ class C_0001338101111872396075 {
 +SettingsScene() : void
 +render() : void
 +interact() : void
--m_buffers : std::array<char[7],Settings::num_color>
--m_edit_mode : std::array<bool,Settings::num_color>
+-m_inputs : std::array<component::TextInput,Settings::num_color>
 -m_selected : int
 -m_open_file : component::FileDialog
 -m_save_file : component::FileDialog
 -m_open : int
 -m_save : int
-{static} -input_size : const Vector2
 {static} -head_pos : const Vector2
 }
 class "scene::BaseLinkedListScene<Con>" as C_0000234618355588237115
