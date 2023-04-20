@@ -1,0 +1,21 @@
+@startuml
+class "Settings" as C_0000005549272920610915
+class C_0000005549272920610915 {
+-Settings() = default : void
++Settings() : void
++Settings() : void
++operator=() : Settings &
++operator=() : Settings &
++~Settings() : void
+{static} +get_instance() : Settings &
++get_color() : Color &
++get_color() const : Color
++save_to_file() : void
+-m_colors : std::array<Color,num_color>
+{static} +num_color : const int
+{static} +default_color : const std::array<unsigned int,num_color>
+}
+
+'Generated with clang-uml, version 0.3.4
+'LLVM version Ubuntu clang version 15.0.7
+@enduml

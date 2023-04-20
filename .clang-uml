@@ -26,3 +26,9 @@ diagrams:
     include:
       namespaces:
         - component
+  settings:
+    type: class
+    include_relations_also_as_members: false
+    include:
+      elements:
+        - Settings
