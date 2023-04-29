@@ -144,6 +144,8 @@ void DynamicArrayScene::interact_random() {
     for (std::size_t i = 0; i < size; ++i) {
         m_array.push(utils::get_random(constants::min_val, constants::max_val));
     }
+
+    m_array.shrink_to_fit();
 }
 
 void DynamicArrayScene::interact_import(core::Deque<int> nums) {
@@ -281,7 +283,7 @@ void DynamicArrayScene::interact_push() {
     m_code_highlighter.push_into_sequence(0);
 
     if (m_array.size() == m_array.capacity()) {
-        m_array.realloc(m_array.size() + 1);
+        m_array.reserve(m_array.size() * 2);
         m_sequence.insert(m_sequence.size(), m_array);
         m_code_highlighter.push_into_sequence(1);
     }

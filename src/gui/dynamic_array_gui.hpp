@@ -42,7 +42,8 @@ public:
     T operator[](std::size_t idx) const;
 
     void set_color_index(std::size_t idx, int color_index);
-    void realloc(std::size_t capacity);
+    void reserve(std::size_t capacity);
+    void shrink_to_fit();
 
     std::size_t capacity() const;
     std::size_t size() const;
@@ -52,25 +53,45 @@ public:
 };
 
 template<typename T>
-void GuiDynamicArray<T>::realloc(std::size_t capacity) {
+void GuiDynamicArray<T>::reserve(std::size_t capacity) {
     if (m_capacity > capacity) {
         return;
     }
 
-    while (m_capacity < capacity) {
-        m_capacity *= 2;
-    }
-
-    auto* new_ptr = new GuiElement<T>[m_capacity];
+    auto* new_ptr = static_cast<GuiElement<T>*>(
+        ::operator new[](capacity * sizeof(GuiElement<T>)));
     for (auto i = 0; i < m_size; ++i) {
-        new_ptr[i] = m_ptr[i];
+        ::new (&new_ptr[i]) GuiElement<T>(std::move(m_ptr[i]));
+        m_ptr[i].~GuiElement<T>();
     }
-    for (auto i = m_size; i < m_capacity; ++i) {
+    for (auto i = m_size; i < capacity; ++i) {
+        ::new (&new_ptr[i]) GuiElement<T>();
         new_ptr[i].set_index(i);
     }
 
-    delete[] m_ptr;
+    ::operator delete[](m_ptr);
     m_ptr = new_ptr;
+    m_capacity = capacity;
+}
+
+template<typename T>
+void GuiDynamicArray<T>::shrink_to_fit() {
+    if (m_capacity == m_size) {
+        return;
+    }
+
+    auto* new_ptr = static_cast<GuiElement<T>*>(
+        ::operator new[](m_size * sizeof(GuiElement<T>)));
+    for (auto i = 0; i < m_size; ++i) {
+        ::new (&new_ptr[i]) GuiElement<T>(std::move(m_ptr[i]));
+    }
+    for (auto i = 0; i < m_capacity; ++i) {
+        m_ptr[i].~GuiElement<T>();
+    }
+
+    ::operator delete[](m_ptr);
+    m_ptr = new_ptr;
+    m_capacity = m_size;
 }
 
 template<typename T>
@@ -83,7 +104,7 @@ GuiDynamicArray<T>::GuiDynamicArray() : m_ptr{new GuiElement<T>[m_capacity]} {
 template<typename T>
 GuiDynamicArray<T>::GuiDynamicArray(std::initializer_list<T> init_list)
     : m_size{init_list.size()}, m_ptr{new GuiElement<T>[m_capacity]} {
-    realloc(m_size);
+    reserve(m_size);
 
     for (std::size_t idx = 0; auto elem : init_list) {
         *(m_ptr + idx).set_value(elem);
@@ -196,7 +217,7 @@ std::size_t GuiDynamicArray<T>::size() const {
 template<typename T>
 void GuiDynamicArray<T>::push(const T& value) {
     if (m_size == m_capacity) {
-        realloc(m_size + 1);
+        reserve(m_size * 2);
     }
 
     m_ptr[m_size].set_color_index(0);
