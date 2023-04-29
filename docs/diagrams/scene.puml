@@ -39,10 +39,14 @@ class C_0000317546188476051030 {
 -interact_file_import() : void
 -interact_update() : void
 -interact_search() : void
+-interact_insert() : void
+-interact_delete() : void
+-interact_access() : void
++ArrayScene() : void
 +render() : void
 +interact() : void
--m_array : gui::GuiArray<int,max_size>
--m_sequence : core::DoublyLinkedList<gui::GuiArray<int,max_size>>
+-m_array : gui::GuiDynamicArray<int>
+-m_sequence : core::DoublyLinkedList<gui::GuiDynamicArray<int>>
 -m_go : bool
 {static} -max_size : const std::size_t
 }
@@ -54,8 +58,11 @@ class C_0000993933600604625070 {
 -interact_file_import() : void
 -interact_update() : void
 -interact_search() : void
--interact_push() : void
--interact_pop() : void
+-interact_insert() : void
+-interact_delete() : void
+-interact_reserve() : void
+-interact_shrink() : void
+-interact_access() : void
 +render() : void
 +interact() : void
 -m_array : gui::GuiDynamicArray<int>

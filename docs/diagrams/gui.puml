@@ -31,18 +31,6 @@ class C_0002044747090333057839 {
 {static} +side : const int
 {static} +init_pos : const Vector2
 }
-class "gui::GuiArray<T,std::size_t N>" as C_0001269788950877413692
-class C_0001269788950877413692 {
--render_link() : void
-+GuiArray<T, N>() : void
-+GuiArray<T, N>() : void
-+update() : void
-+render() : void
-+operator[]() : T &
-+operator[]() const : T
-+set_color_index() : void
-{static} -head_pos : const Vector2
-}
 class "gui::GuiDynamicArray<T>" as C_0000068279211946526198
 class C_0000068279211946526198 {
 -render_link() : void
@@ -58,7 +46,8 @@ class C_0000068279211946526198 {
 +operator[]() : T &
 +operator[]() const : T
 +set_color_index() : void
-+realloc() : void
++reserve() : void
++shrink_to_fit() : void
 +capacity() const : std::size_t
 +size() const : std::size_t
 +push() : void
@@ -139,9 +128,6 @@ class C_0000012620274388027065 {
 +init_label() : void
 {static} -head_pos : const Vector2
 }
-C_0001269788950877413692 ..> C_0002044747090333057839
-C_0001269788950877413692 o-- C_0002044747090333057839 : -m_array
-C_0000175824954716261305 <|-- C_0001269788950877413692
 C_0000068279211946526198 --> C_0002044747090333057839 : -m_ptr
 C_0000175824954716261305 <|-- C_0000068279211946526198
 C_0000175824954716261305 <|-- C_0000537993261370672901
