@@ -24,6 +24,7 @@ private:
 
         // mode_labels
         "Mode: Create;"
+        "Mode: Access;"
         "Mode: Allocate;"
         "Mode: Update;"
         "Mode: Search;"
@@ -37,6 +38,9 @@ private:
         {
             // Mode: Create
             "Action: Random;Action: Input;Action: File",
+
+            // Mode: Access
+            "",
 
             // Mode: Allocate
             "Action: Reserve;Action: Shrink",
@@ -55,7 +59,7 @@ private:
         },
 
         // action_selection
-        core::DoublyLinkedList<int>{0, 0, 0, 0, 0},
+        core::DoublyLinkedList<int>{0, 0, 0, 0, 0, 0},
     };
 
     using internal::BaseScene::button_size;
@@ -84,6 +88,7 @@ private:
     void interact_delete();
     void interact_reserve();
     void interact_shrink();
+    void interact_access();
 
 public:
     void render() override;

@@ -36,6 +36,10 @@ void DynamicArrayScene::render_inputs() {
         } break;
 
         case 1: {
+            m_index_input.render_head(options_head, head_offset);
+        } break;
+
+        case 2: {
             switch (scene_options.action_selection.at(mode)) {
                 case 0: {
                     m_text_input.render_head(options_head, head_offset);
@@ -47,21 +51,21 @@ void DynamicArrayScene::render_inputs() {
             }
         } break;
 
-        case 2: {
-            m_index_input.render_head(options_head, head_offset);
-            m_text_input.render_head(options_head, head_offset);
-        } break;
-
         case 3: {
+            m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 4: {
-            m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 5: {
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
+        } break;
+
+        case 6: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
@@ -131,6 +135,10 @@ void DynamicArrayScene::interact() {
         } break;
 
         case 1: {
+            interact_access();
+        } break;
+
+        case 2: {
             switch (scene_options.action_selection.at(mode)) {
                 case 0: {
                     interact_reserve();
@@ -145,19 +153,19 @@ void DynamicArrayScene::interact() {
             }
         } break;
 
-        case 2: {
+        case 3: {
             interact_update();
         } break;
 
-        case 3: {
+        case 4: {
             interact_search();
         } break;
 
-        case 4: {
+        case 5: {
             interact_insert();
         } break;
 
-        case 5: {
+        case 6: {
             interact_delete();
         } break;
 
@@ -168,9 +176,41 @@ void DynamicArrayScene::interact() {
     m_go = false;
 }
 
+void DynamicArrayScene::interact_access() {
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    std::size_t index = index_container.front();
+    if (index >= m_array.size()) {
+        return;
+    }
+
+    m_code_highlighter.set_code({
+        "return m_array[index];"
+    });
+
+    m_sequence.clear();
+
+    m_array.set_color_index(index, 3);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(0);
+
+    m_array.set_color_index(index, 0);
+
+    m_sequence_controller.set_max_value((int)m_sequence.size());
+    m_sequence_controller.set_rerun();
+}
+
 void DynamicArrayScene::interact_reserve() {
-    int value = m_text_input.extract_values().front();
-    m_array.reserve(value);
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    std::size_t size = value_container.front();
+    m_array.reserve(size);
 }
 
 void DynamicArrayScene::interact_shrink() { m_array.shrink_to_fit(); }
