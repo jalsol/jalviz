@@ -40,13 +40,18 @@ void DynamicArrayScene::render_inputs() {
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 2:
-        case 3: {
+        case 2: {
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 4:
-            break;
+        case 3: {
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
+        } break;
+
+        case 4: {
+            m_index_input.render_head(options_head, head_offset);
+        } break;
 
         default:
             utils::unreachable();
@@ -122,11 +127,11 @@ void DynamicArrayScene::interact() {
         } break;
 
         case 3: {
-            interact_push();
+            interact_insert();
         } break;
 
         case 4: {
-            interact_pop();
+            interact_delete();
         } break;
 
         default:
@@ -156,6 +161,8 @@ void DynamicArrayScene::interact_import(core::Deque<int> nums) {
         m_array.push(nums.front());
         nums.pop_front();
     }
+
+    m_array.shrink_to_fit();
 }
 
 void DynamicArrayScene::interact_update() {
@@ -261,8 +268,19 @@ void DynamicArrayScene::interact_search() {
     m_sequence_controller.set_rerun();
 }
 
-void DynamicArrayScene::interact_push() {
-    int value = m_text_input.extract_values().front();
+void DynamicArrayScene::interact_insert() {
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    auto value_container = m_text_input.extract_values();
+    if (value_container.empty()) {
+        return;
+    }
+
+    int index = index_container.front();
+    int value = value_container.front();
 
     if (m_array.size() >= max_size) {
         return;
@@ -270,9 +288,11 @@ void DynamicArrayScene::interact_push() {
 
     m_code_highlighter.set_code({
         "if (size == capacity)",
-        "    capacity *= 2;",
-        "array[size] = value;",
+        "    capacity = max(capacity * 2, 1);",
         "size++;",
+        "for (i = size - 1; i > index; i--)",
+        "    array[i] = array[i - 1];",
+        "array[index] = value;",
     });
 
     m_sequence.clear();
@@ -288,26 +308,58 @@ void DynamicArrayScene::interact_push() {
         m_code_highlighter.push_into_sequence(1);
     }
 
-    m_array.push(value);
-    m_array.set_color_index(m_array.size() - 1, 4);
+    m_array.push(0);
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(2);
 
-    m_array.set_color_index(m_array.size() - 1, 0);
+    for (std::size_t i = m_array.size() - 1; i > index; --i) {
+        m_array.set_color_index(i - 1, 2);
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(3);
+
+        m_array[i] = m_array[i - 1];
+        m_array.set_color_index(i, 3);
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(4);
+
+        m_array.set_color_index(i - 1, 0);
+        m_array.set_color_index(i, 0);
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(3);
+    }
+
+    m_array.set_color_index(index, 2);
     m_sequence.insert(m_sequence.size(), m_array);
-    m_code_highlighter.push_into_sequence(3);
+    m_code_highlighter.push_into_sequence(5);
+
+    m_array[index] = value;
+    m_array.set_color_index(index, 3);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(5);
+
+    m_array.set_color_index(index, 0);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(-1);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();
 }
 
-void DynamicArrayScene::interact_pop() {
+void DynamicArrayScene::interact_delete() {
+    auto index_container = m_index_input.extract_values();
+    if (index_container.empty()) {
+        return;
+    }
+
+    int index = index_container.front();
+
     if (m_array.size() == 0) {
         return;
     }
 
     m_code_highlighter.set_code({
-        "array[size - 1] = 0;",
+        "for (i = index; i < size - 1; i++)",
+        "    array[i] = array[i + 1];",
         "size--;",
     });
 
@@ -315,13 +367,32 @@ void DynamicArrayScene::interact_pop() {
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(-1);
 
-    m_array.set_color_index(m_array.size() - 1, 3);
     m_sequence.insert(m_sequence.size(), m_array);
     m_code_highlighter.push_into_sequence(0);
 
+    for (std::size_t i = index; i < m_array.size() - 1; ++i) {
+        m_array.set_color_index(i, 3);
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(1);
+
+        m_array[i] = m_array[i + 1];
+        m_array.set_color_index(i + 1, 2);
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(1);
+
+        m_array.set_color_index(i, 0);
+        m_array.set_color_index(i + 1, 0);
+        m_sequence.insert(m_sequence.size(), m_array);
+        m_code_highlighter.push_into_sequence(1);
+    }
+
+    m_array.set_color_index(m_array.size() - 1, 2);
+    m_sequence.insert(m_sequence.size(), m_array);
+    m_code_highlighter.push_into_sequence(2);
+
     m_array.pop();
     m_sequence.insert(m_sequence.size(), m_array);
-    m_code_highlighter.push_into_sequence(1);
+    m_code_highlighter.push_into_sequence(-1);
 
     m_sequence_controller.set_max_value((int)m_sequence.size());
     m_sequence_controller.set_rerun();

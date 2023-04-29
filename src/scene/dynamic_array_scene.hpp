@@ -26,8 +26,8 @@ private:
         "Mode: Create;"
         "Mode: Update;"
         "Mode: Search;"
-        "Mode: Push;"
-        "Mode: Pop",
+        "Mode: Insert;"
+        "Mode: Delete",
 
         // mode_selection
         0,
@@ -43,10 +43,10 @@ private:
             // Mode: Search
             "",
 
-            // Mode: Push
+            // Mode: Insert
             "",
 
-            // Mode: Pop
+            // Mode: Delete
             "",
         },
 
@@ -76,8 +76,8 @@ private:
     void interact_file_import();
     void interact_update();
     void interact_search();
-    void interact_push();
-    void interact_pop();
+    void interact_insert();
+    void interact_delete();
 
 public:
     void render() override;

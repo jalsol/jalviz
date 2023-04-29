@@ -54,6 +54,7 @@ public:
 
 template<typename T>
 void GuiDynamicArray<T>::reserve(std::size_t capacity) {
+    capacity = std::min(capacity, static_cast<std::size_t>(8));
     if (m_capacity > capacity) {
         return;
     }
@@ -217,7 +218,7 @@ std::size_t GuiDynamicArray<T>::size() const {
 template<typename T>
 void GuiDynamicArray<T>::push(const T& value) {
     if (m_size == m_capacity) {
-        reserve(m_size * 2);
+        reserve(std::max(m_capacity * 2, static_cast<std::size_t>(1)));
     }
 
     m_ptr[m_size].set_color_index(0);
