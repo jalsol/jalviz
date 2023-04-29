@@ -8,7 +8,7 @@
 #include "component/file_dialog.hpp"
 #include "constants.hpp"
 #include "core/doubly_linked_list.hpp"
-#include "gui/array_gui.hpp"
+#include "gui/dynamic_array_gui.hpp"
 #include "raygui.h"
 #include "raylib.h"
 
@@ -24,8 +24,11 @@ private:
 
         // mode_labels
         "Mode: Create;"
+        "Mode: Access;"
         "Mode: Update;"
-        "Mode: Search",
+        "Mode: Search;"
+        "Mode: Insert;"
+        "Mode: Delete",
 
         // mode_selection
         0,
@@ -33,31 +36,36 @@ private:
         // action_labels
         {
             // Mode: Create
-            "Action: Random;"
-            "Action: Input;"
-            "Action: File",
+            "Action: Random;Action: Input;Action: File",
+
+            // Mode: Access
+            "",
 
             // Mode: Update
             "",
 
             // Mode: Search
             "",
+
+            // Mode: Insert
+            "",
+
+            // Mode: Delete
+            "",
         },
 
         // action_selection
-        core::DoublyLinkedList<int>{0, 0, 0},
+        core::DoublyLinkedList<int>{0, 0, 0, 0, 0},
     };
 
     using internal::BaseScene::button_size;
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
 
-    gui::GuiArray<int, max_size> m_array{};
-    core::DoublyLinkedList<gui::GuiArray<int, max_size>> m_sequence;
+    gui::GuiDynamicArray<int> m_array{};
+    core::DoublyLinkedList<gui::GuiDynamicArray<int>> m_sequence;
 
     bool m_go{};
-
-    using internal::BaseScene::m_code_highlighter;
     using internal::BaseScene::m_file_dialog;
     using internal::BaseScene::m_index_input;
     using internal::BaseScene::m_sequence_controller;
@@ -72,8 +80,12 @@ private:
     void interact_file_import();
     void interact_update();
     void interact_search();
+    void interact_insert();
+    void interact_delete();
+    void interact_access();
 
 public:
+    ArrayScene();
     void render() override;
     void interact() override;
 };
