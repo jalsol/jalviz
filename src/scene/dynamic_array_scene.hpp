@@ -24,6 +24,7 @@ private:
 
         // mode_labels
         "Mode: Create;"
+        "Mode: Allocate;"
         "Mode: Update;"
         "Mode: Search;"
         "Mode: Insert;"
@@ -36,6 +37,9 @@ private:
         {
             // Mode: Create
             "Action: Random;Action: Input;Action: File",
+
+            // Mode: Allocate
+            "Action: Reserve;Action: Shrink",
 
             // Mode: Update
             "",
@@ -78,6 +82,8 @@ private:
     void interact_search();
     void interact_insert();
     void interact_delete();
+    void interact_reserve();
+    void interact_shrink();
 
 public:
     void render() override;

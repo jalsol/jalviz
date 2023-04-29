@@ -36,20 +36,32 @@ void DynamicArrayScene::render_inputs() {
         } break;
 
         case 1: {
-            m_index_input.render_head(options_head, head_offset);
-            m_text_input.render_head(options_head, head_offset);
+            switch (scene_options.action_selection.at(mode)) {
+                case 0: {
+                    m_text_input.render_head(options_head, head_offset);
+                } break;
+                case 1:
+                    break;
+                default:
+                    utils::unreachable();
+            }
         } break;
 
         case 2: {
+            m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 3: {
-            m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
         case 4: {
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
+        } break;
+
+        case 5: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
@@ -119,18 +131,33 @@ void DynamicArrayScene::interact() {
         } break;
 
         case 1: {
-            interact_update();
+            switch (scene_options.action_selection.at(mode)) {
+                case 0: {
+                    interact_reserve();
+                } break;
+
+                case 1: {
+                    interact_shrink();
+                } break;
+
+                default:
+                    utils::unreachable();
+            }
         } break;
 
         case 2: {
-            interact_search();
+            interact_update();
         } break;
 
         case 3: {
-            interact_insert();
+            interact_search();
         } break;
 
         case 4: {
+            interact_insert();
+        } break;
+
+        case 5: {
             interact_delete();
         } break;
 
@@ -139,6 +166,15 @@ void DynamicArrayScene::interact() {
     }
 
     m_go = false;
+}
+
+void DynamicArrayScene::interact_reserve() {
+    int value = m_text_input.extract_values().front();
+    m_array.reserve(value);
+}
+
+void DynamicArrayScene::interact_shrink() {
+    m_array.shrink_to_fit();
 }
 
 void DynamicArrayScene::interact_random() {
