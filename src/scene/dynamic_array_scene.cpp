@@ -173,9 +173,7 @@ void DynamicArrayScene::interact_reserve() {
     m_array.reserve(value);
 }
 
-void DynamicArrayScene::interact_shrink() {
-    m_array.shrink_to_fit();
-}
+void DynamicArrayScene::interact_shrink() { m_array.shrink_to_fit(); }
 
 void DynamicArrayScene::interact_random() {
     std::size_t size =
@@ -322,6 +320,11 @@ void DynamicArrayScene::interact_insert() {
         return;
     }
 
+    if (!(0 <= index && index <= m_array.size()) ||
+        !utils::val_in_range(value)) {
+        return;
+    }
+
     m_code_highlighter.set_code({
         "if (size == capacity)",
         "    capacity = max(capacity * 2, 1);",
@@ -393,6 +396,10 @@ void DynamicArrayScene::interact_delete() {
         return;
     }
 
+    if (!(0 <= index && index < m_array.size())) {
+        return;
+    }
+
     m_code_highlighter.set_code({
         "for (i = index; i < size - 1; i++)",
         "    array[i] = array[i + 1];",
@@ -419,7 +426,7 @@ void DynamicArrayScene::interact_delete() {
         m_array.set_color_index(i, 0);
         m_array.set_color_index(i + 1, 0);
         m_sequence.insert(m_sequence.size(), m_array);
-        m_code_highlighter.push_into_sequence(1);
+        m_code_highlighter.push_into_sequence(0);
     }
 
     m_array.set_color_index(m_array.size() - 1, 2);
