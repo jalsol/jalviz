@@ -187,9 +187,7 @@ void DynamicArrayScene::interact_access() {
         return;
     }
 
-    m_code_highlighter.set_code({
-        "return m_array[index];"
-    });
+    m_code_highlighter.set_code({"return m_array[index];"});
 
     m_sequence.clear();
 

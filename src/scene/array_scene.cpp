@@ -14,9 +14,7 @@
 
 namespace scene {
 
-ArrayScene::ArrayScene() {
-    m_array.reserve(scene_options.max_size);
-}
+ArrayScene::ArrayScene() { m_array.reserve(scene_options.max_size); }
 
 void ArrayScene::render_inputs() {
     int& mode = scene_options.mode_selection;
@@ -164,9 +162,7 @@ void ArrayScene::interact_access() {
         return;
     }
 
-    m_code_highlighter.set_code({
-        "return m_array[index];"
-    });
+    m_code_highlighter.set_code({"return m_array[index];"});
 
     m_sequence.clear();
 
