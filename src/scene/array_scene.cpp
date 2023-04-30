@@ -137,6 +137,7 @@ void ArrayScene::interact() {
         } break;
 
         case 4: {
+            m_index_input.set_random_max((int)m_array.size());
             interact_insert();
         } break;
 

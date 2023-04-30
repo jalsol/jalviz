@@ -162,6 +162,7 @@ void DynamicArrayScene::interact() {
         } break;
 
         case 5: {
+            m_index_input.set_random_max((int)m_array.size());
             interact_insert();
         } break;
 
