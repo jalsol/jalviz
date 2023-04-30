@@ -12,8 +12,26 @@
 
 namespace scene {
 
+/**
+ * @brief The queue scene
+ */
+
 class QueueScene : public internal::BaseScene {
+public:
+    /**
+     * @brief Renders the scene
+     */
+    void render() override;
+
+    /**
+     * @brief Interacts with the scene
+     */
+    void interact() override;
+
 private:
+    /**
+     * @brief The scene options
+     */
     internal::SceneOptions scene_options{
         // max_size
         8,  // NOLINT
@@ -48,13 +66,23 @@ private:
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
 
+    /**
+     * @brief The queue
+     */
     gui::GuiQueue<int> m_queue{
         gui::GuiNode<int>{1},
         gui::GuiNode<int>{2},
         gui::GuiNode<int>{3},
     };
+
+    /**
+     * @brief The sequence of queues to be rendered
+     */
     core::DoublyLinkedList<gui::GuiQueue<int>> m_sequence;
 
+    /**
+     * @brief Whether the go button is pressed
+     */
     bool m_go{};
     using internal::BaseScene::m_code_highlighter;
     using internal::BaseScene::m_file_dialog;
@@ -63,17 +91,36 @@ private:
 
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
+
+    /**
+     * @brief Renders the inputs
+     */
     void render_inputs() override;
 
+    /**
+     * @brief Interacts with random mode
+     */
     void interact_random();
-    void interact_import(core::Deque<int> nums);
-    void interact_file_import();
-    void interact_push();
-    void interact_pop();
 
-public:
-    void render() override;
-    void interact() override;
+    /**
+     * @brief Interacts with import mode
+     */
+    void interact_import(core::Deque<int> nums);
+
+    /**
+     * @brief Interacts with file import mode
+     */
+    void interact_file_import();
+
+    /**
+     * @brief Interacts with push mode
+     */
+    void interact_push();
+
+    /**
+     * @brief Interacts with pop mode
+     */
+    void interact_pop();
 };
 
 }  // namespace scene

@@ -3,6 +3,7 @@
 #include "constants.hpp"
 #include "raygui.h"
 #include "raylib.h"
+#include "scene/scene_id.hpp"
 #include "scene/scene_registry.hpp"
 #include "utils.hpp"
 
@@ -34,13 +35,17 @@ void SideBar::render() {
         m_return_menu = GuiButton(menu_button_shape, "#118#Menu");
     }
 
+    int next_scene = m_next_scene;
+
     if (!menu_is_next && !settings_is_next) {
-        if (GuiDropdownBox(selection_shape, sidebar_labels, &m_next_scene,
+        if (GuiDropdownBox(selection_shape, sidebar_labels, &next_scene,
                            m_edit_mode)) {
             m_pressed = true;
             m_edit_mode ^= 1;
         }
     }
+
+    m_next_scene = scene::SceneId(next_scene);
 
     m_return_settings = GuiButton(settings_button_shape, "#142#");
 }
@@ -68,7 +73,7 @@ void SideBar::interact() {
 
     if (m_return_settings) {
         if (settings_is_current) {
-            registry.set_scene(m_scene_before_settings);
+            registry.set_scene(scene::SceneId(m_scene_before_settings));
         } else {
             m_scene_before_settings = registry.get_scene();
             registry.set_scene(scene::Settings);

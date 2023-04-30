@@ -4,7 +4,7 @@
 #include <array>
 
 #include "constants.hpp"
-#include "scene/scene_registry.hpp"
+#include "scene/scene_id.hpp"
 
 namespace component {
 
@@ -56,7 +56,7 @@ private:
     /**
      * @brief The index of the scene to be navigated to
      */
-    int m_next_scene{};
+    scene::SceneId m_next_scene{};
 
     /**
      * @brief Whether the edit mode is on

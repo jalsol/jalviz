@@ -14,10 +14,31 @@
 
 namespace scene {
 
+/**
+ * @brief The dynamic array scene
+ */
+
 class DynamicArrayScene : public internal::BaseScene {
+public:
+    /**
+     * @brief Renders the scene
+     */
+    void render() override;
+
+    /**
+     * @brief Interacts with the scene
+     */
+    void interact() override;
+
 private:
+    /**
+     * @brief The maximum size of the array
+     */
     static constexpr std::size_t max_size = 8;
 
+    /**
+     * @brief The scene options
+     */
     internal::SceneOptions scene_options{
         // max_size
         max_size,
@@ -66,10 +87,21 @@ private:
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
 
+    /**
+     * @brief The dynamic array
+     */
     gui::GuiDynamicArray<int> m_array{};
+
+    /**
+     * @brief The sequence of arrays to be rendered
+     */
     core::DoublyLinkedList<gui::GuiDynamicArray<int>> m_sequence;
 
+    /**
+     * @brief Whether the go button has been pressed
+     */
     bool m_go{};
+
     using internal::BaseScene::m_file_dialog;
     using internal::BaseScene::m_index_input;
     using internal::BaseScene::m_sequence_controller;
@@ -77,22 +109,61 @@ private:
 
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
+
+    /**
+     * @brief Renders the inputs
+     */
     void render_inputs() override;
 
+    /**
+     * @brief Interacts with random mode
+     */
     void interact_random();
-    void interact_import(core::Deque<int> nums);
-    void interact_file_import();
-    void interact_update();
-    void interact_search();
-    void interact_insert();
-    void interact_delete();
-    void interact_reserve();
-    void interact_shrink();
-    void interact_access();
 
-public:
-    void render() override;
-    void interact() override;
+    /**
+     * @brief Interacts with import mode
+     */
+    void interact_import(core::Deque<int> nums);
+
+    /**
+     * @brief Interacts with file import mode
+     */
+    void interact_file_import();
+
+    /**
+     * @brief Interacts with update mode
+     */
+    void interact_update();
+
+    /**
+     * @brief Interacts with search mode
+     */
+    void interact_search();
+
+    /**
+     * @brief Interacts with insert mode
+     */
+    void interact_insert();
+
+    /**
+     * @brief Interacts with delete mode
+     */
+    void interact_delete();
+
+    /**
+     * @brief Interacts with reserve mode
+     */
+    void interact_reserve();
+
+    /**
+     * @brief Interacts with shrink mode
+     */
+    void interact_shrink();
+
+    /**
+     * @brief Interacts with access mode
+     */
+    void interact_access();
 };
 
 }  // namespace scene

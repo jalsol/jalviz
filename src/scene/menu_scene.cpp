@@ -132,7 +132,7 @@ void MenuScene::interact() {
 
     for (auto i = 0; i < 7; ++i) {
         if (m_menu_items[i].clicked()) {
-            m_next_scene = i;
+            m_next_scene = SceneId(i);
             m_start = true;
         }
     }

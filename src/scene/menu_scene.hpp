@@ -5,15 +5,50 @@
 
 #include "base_scene.hpp"
 #include "component/menu_item.hpp"
+#include "scene_id.hpp"
 
 namespace scene {
 
-class MenuScene : public internal::BaseScene {
-private:
-    bool m_start{};
-    bool m_quit{};
-    int m_next_scene{};
+/**
+ * @brief The menu scene
+ */
 
+class MenuScene : public internal::BaseScene {
+public:
+    /**
+     * @brief Construct a new MenuScene object
+     */
+    MenuScene();
+
+    /**
+     * @brief Renders the scene
+     */
+    void render() override;
+
+    /**
+     * @brief Interacts with the scene
+     */
+    void interact() override;
+
+private:
+    /**
+     * @brief Whether a next scene is selected
+     */
+    bool m_start{};
+
+    /**
+     * @brief Whether to quit the program
+     */
+    bool m_quit{};
+
+    /**
+     * @brief The next scene to be rendered
+     */
+    SceneId m_next_scene{};
+
+    /**
+     * @brief The labels for the menu items
+     */
     static constexpr std::array<const char*, 7> labels = {{
         "Array",
         "Dynamic Array",
@@ -24,6 +59,9 @@ private:
         "Queue",
     }};
 
+    /**
+     * @brief The image paths for the menu items
+     */
     static constexpr std::array<const char*, 7> img_paths = {{
         "data/preview/array.png",
         "data/preview/dynamic_array.png",
@@ -34,12 +72,10 @@ private:
         "data/preview/queue.png",
     }};
 
+    /**
+     * @brief The menu items
+     */
     std::array<component::MenuItem, 7> m_menu_items{};
-
-public:
-    MenuScene();
-    void render() override;
-    void interact() override;
 };
 
 }  // namespace scene

@@ -12,9 +12,28 @@
 
 namespace scene {
 
+/**
+ * @brief The base linked list scene
+ * @tparam Con the container type
+ */
+
 template<typename Con>
 class BaseLinkedListScene : public internal::BaseScene {
+public:
+    /**
+     * @brief Renders the scene
+     */
+    void render() override;
+
+    /**
+     * @brief Interacts with the scene
+     */
+    void interact() override;
+
 private:
+    /**
+     * @brief The scene options
+     */
     internal::SceneOptions scene_options{
         // max_size
         8,  // NOLINT
@@ -51,14 +70,25 @@ private:
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
 
+    /**
+     * @brief The container
+     */
     Con m_list{
         gui::GuiNode<int>{1},
         gui::GuiNode<int>{2},
         gui::GuiNode<int>{3},
     };
+
+    /**
+     * @brief The sequence of containers to be rendered
+     */
     core::DoublyLinkedList<Con> m_sequence;
 
+    /**
+     * @brief Whether the go button was pressed
+     */
     bool m_go{};
+
     using internal::BaseScene::m_code_highlighter;
     using internal::BaseScene::m_file_dialog;
     using internal::BaseScene::m_index_input;
@@ -67,28 +97,76 @@ private:
 
     using internal::BaseScene::render_go_button;
     using internal::BaseScene::render_options;
+
+    /**
+     * @brief Renders the inputs
+     */
     void render_inputs() override;
 
+    /**
+     * @brief Interacts with random mode
+     */
     void interact_random();
+
+    /**
+     * @brief Interacts with import mode
+     */
     void interact_import(core::Deque<int> nums);
+
+    /**
+     * @brief Interacts with file import mode
+     */
     void interact_file_import();
 
+    /**
+     * @brief Interacts with add mode
+     */
     void interact_add();
+
+    /**
+     * @brief Interacts with add mode by adding to the head
+     */
     void interact_add_head(int value);
+
+    /**
+     * @brief Interacts with add mode by adding to the tail
+     */
     void interact_add_tail(int value);
+
+    /**
+     * @brief Interacts with add mode by adding to the middle
+     */
     void interact_add_middle(int index, int value);
 
+    /**
+     * @brief Interacts with delete mode
+     */
     void interact_delete();
+
+    /**
+     * @brief Interacts with delete mode by deleting the head
+     */
     void interact_delete_head();
+
+    /**
+     * @brief Interacts with delete mode by deleting the tail
+     */
     void interact_delete_tail();
+
+    /**
+     * @brief Interacts with delete mode by deleting the middle
+     */
     void interact_delete_middle(int index);
 
+    /**
+     * @brief Interacts with update mode
+     */
     void interact_update();
-    void interact_search();
 
-public:
-    void render() override;
-    void interact() override;
+    /**
+     * @brief Interacts with search mode
+     */
+    void interact_search();
 };
 
 using LinkedListScene = BaseLinkedListScene<gui::GuiLinkedList<int>>;

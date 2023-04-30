@@ -9,12 +9,12 @@ SceneRegistry& SceneRegistry::get_instance() {
     return registry;
 }
 
-void SceneRegistry::set_scene(int scene_type) {
+void SceneRegistry::set_scene(SceneId scene_type) {
     m_current_scene = scene_type;
     scene_ptr = m_registry.at(scene_type).get();
 }
 
-int SceneRegistry::get_scene() const { return m_current_scene; }
+SceneId SceneRegistry::get_scene() const { return m_current_scene; }
 
 void SceneRegistry::render() { scene_ptr->render(); }
 
