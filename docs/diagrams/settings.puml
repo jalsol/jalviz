@@ -1,7 +1,6 @@
 @startuml
 class "Settings" as C_0000005549272920610915
 class C_0000005549272920610915 {
--Settings() = default : void
 +Settings() : void
 +Settings() : void
 +operator=() : Settings &
@@ -11,6 +10,7 @@ class C_0000005549272920610915 {
 +get_color() : Color &
 +get_color() const : Color
 +save_to_file() : void
+-Settings() = default : void
 -m_colors : std::array<Color,num_color>
 {static} +num_color : const int
 {static} +default_color : const std::array<unsigned int,num_color>

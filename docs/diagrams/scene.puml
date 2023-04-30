@@ -9,9 +9,6 @@ class C_0000784469365298937445 {
 }
 class "scene::internal::BaseScene" as C_0000658540208301571902
 class C_0000658540208301571902 {
-#render_go_button() const : bool
-#render_options() : void
-#render_inputs() : void
 +BaseScene() = default : void
 +BaseScene() : void
 +BaseScene() : void
@@ -20,6 +17,9 @@ class C_0000658540208301571902 {
 +~BaseScene() = default : void
 +render() : void
 +interact() : void
+#render_go_button() const : bool
+#render_options() : void
+#render_inputs() : void
 #options_head : float
 #m_text_input : component::RandomTextInput
 #m_index_input : component::RandomTextInput
@@ -33,6 +33,9 @@ class C_0000658540208301571902 {
 }
 class "scene::ArrayScene" as C_0000317546188476051030
 class C_0000317546188476051030 {
++ArrayScene() : void
++render() : void
++interact() : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
@@ -42,9 +45,6 @@ class C_0000317546188476051030 {
 -interact_insert() : void
 -interact_delete() : void
 -interact_access() : void
-+ArrayScene() : void
-+render() : void
-+interact() : void
 -m_array : gui::GuiDynamicArray<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiDynamicArray<int>>
 -m_go : bool
@@ -52,6 +52,8 @@ class C_0000317546188476051030 {
 }
 class "scene::DynamicArrayScene" as C_0000993933600604625070
 class C_0000993933600604625070 {
++render() : void
++interact() : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
@@ -63,8 +65,6 @@ class C_0000993933600604625070 {
 -interact_reserve() : void
 -interact_shrink() : void
 -interact_access() : void
-+render() : void
-+interact() : void
 -m_array : gui::GuiDynamicArray<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiDynamicArray<int>>
 -m_go : bool
@@ -72,26 +72,27 @@ class C_0000993933600604625070 {
 }
 class "scene::QueueScene" as C_0001209706248980343305
 class C_0001209706248980343305 {
++render() : void
++interact() : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
 -interact_file_import() : void
 -interact_push() : void
 -interact_pop() : void
-+render() : void
-+interact() : void
+-interact_clear() : void
 -m_queue : gui::GuiQueue<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiQueue<int>>
 -m_go : bool
 }
 class "scene::SettingsScene" as C_0001338101111872396075
 class C_0001338101111872396075 {
--set_buffer() : void
--set_color() : void
--open_from_file() : void
 +SettingsScene() : void
 +render() : void
 +interact() : void
+-set_buffer() : void
+-set_color() : void
+-open_from_file() : void
 -m_inputs : std::array<component::TextInput,Settings::num_color>
 -m_selected : int
 -m_open_file : component::FileDialog
@@ -100,8 +101,22 @@ class C_0001338101111872396075 {
 -m_save : int
 {static} -head_pos : const Vector2
 }
+enum "scene::SceneId" as C_0001841753511386152581
+enum C_0001841753511386152581 {
+Array
+DynamicArray
+LinkedList
+DoublyLinkedList
+CircularLinkedList
+Stack
+Queue
+Menu
+Settings
+}
 class "scene::BaseLinkedListScene<Con>" as C_0000234618355588237115
 class C_0000234618355588237115 {
++render() : void
++interact() : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
@@ -116,8 +131,6 @@ class C_0000234618355588237115 {
 -interact_delete_middle() : void
 -interact_update() : void
 -interact_search() : void
-+render() : void
-+interact() : void
 -m_list : Con
 -m_sequence : core::DoublyLinkedList<Con>
 -m_go : bool
@@ -129,40 +142,27 @@ class C_0001808605444978889323 {
 +interact() : void
 -m_start : bool
 -m_quit : bool
--m_next_scene : int
 -m_menu_items : std::array<component::MenuItem,7>
 {static} -labels : const std::array<const char *,7>
 {static} -img_paths : const std::array<const char *,7>
 }
 class "scene::StackScene" as C_0002179233268072534158
 class C_0002179233268072534158 {
++render() : void
++interact() : void
 -render_inputs() : void
 -interact_random() : void
 -interact_import() : void
 -interact_push() : void
 -interact_pop() : void
 -interact_file_import() : void
-+render() : void
-+interact() : void
+-interact_clear() : void
 -m_stack : gui::GuiStack<int>
 -m_sequence : core::DoublyLinkedList<gui::GuiStack<int>>
 -m_go : bool
 }
-enum "scene::SceneId" as C_0001841753511386152581
-enum C_0001841753511386152581 {
-Array
-DynamicArray
-LinkedList
-DoublyLinkedList
-CircularLinkedList
-Stack
-Queue
-Menu
-Settings
-}
 class "scene::SceneRegistry" as C_0001036623045197935261
 class C_0001036623045197935261 {
--SceneRegistry() : void
 +SceneRegistry() : void
 +SceneRegistry() : void
 +operator=() : scene::SceneRegistry &
@@ -170,13 +170,13 @@ class C_0001036623045197935261 {
 +~SceneRegistry() = default : void
 {static} +get_instance() : scene::SceneRegistry &
 +set_scene() : void
-+get_scene() const : int
++get_scene() const : scene::SceneId
 +render() : void
 +interact() : void
 +should_close() const : bool
 +close_window() : void
+-SceneRegistry() : void
 -m_should_close : bool
--m_current_scene : int
 }
 C_0000658540208301571902 ..> C_0000784469365298937445
 C_0000317546188476051030 o-- C_0000784469365298937445 : -scene_options
@@ -188,10 +188,13 @@ C_0000658540208301571902 <|-- C_0001209706248980343305
 C_0000658540208301571902 <|-- C_0001338101111872396075
 C_0000234618355588237115 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0000234618355588237115
+C_0001808605444978889323 o-- C_0001841753511386152581 : -m_next_scene
 C_0000658540208301571902 <|-- C_0001808605444978889323
 C_0002179233268072534158 o-- C_0000784469365298937445 : -scene_options
 C_0000658540208301571902 <|-- C_0002179233268072534158
+C_0001036623045197935261 ..> C_0001841753511386152581
 C_0001036623045197935261 --> C_0000658540208301571902 : -scene_ptr
+C_0001036623045197935261 o-- C_0001841753511386152581 : -m_current_scene
 C_0001036623045197935261 o-- C_0000658540208301571902 : -m_registry
 
 'Generated with clang-uml, version 0.3.4

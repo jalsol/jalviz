@@ -8,7 +8,6 @@ class C_0000838521297003920901 {
 +render() : void
 +clicked() const : bool
 +reset() : void
--m_scene : int
 -m_x : int
 -m_y : int
 -m_texture : Texture2D
@@ -113,7 +112,7 @@ class "component::SideBar" as C_0000536568757236472708
 class C_0000536568757236472708 {
 +render() : void
 +interact() : void
--m_next_scene : int
+-m_next_scene : scene::SceneId
 -m_edit_mode : bool
 -m_return_menu : bool
 -m_return_settings : bool

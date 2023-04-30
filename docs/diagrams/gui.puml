@@ -1,7 +1,6 @@
 @startuml
 abstract "gui::internal::Base" as C_0000175824954716261305
 abstract C_0000175824954716261305 {
-{abstract} -render_link() = 0 : void
 +Base() = default : void
 +Base() = default : void
 +Base() = default : void
@@ -10,6 +9,7 @@ abstract C_0000175824954716261305 {
 +~Base() = default : void
 {abstract} +update() = 0 : void
 {abstract} +render() = 0 : void
+{abstract} -render_link() = 0 : void
 }
 class "gui::GuiElement<T>" as C_0002044747090333057839
 class C_0002044747090333057839 {
@@ -27,13 +27,12 @@ class C_0002044747090333057839 {
 -m_index : std::size_t
 -m_pos : Vector2
 -m_color_index : int
-{static} -eps : const float
 {static} +side : const int
 {static} +init_pos : const Vector2
+{static} -eps : const float
 }
 class "gui::GuiDynamicArray<T>" as C_0000068279211946526198
 class C_0000068279211946526198 {
--render_link() : void
 +GuiDynamicArray<T>() : void
 +GuiDynamicArray<T>() : void
 +GuiDynamicArray<T>() : void
@@ -52,6 +51,7 @@ class C_0000068279211946526198 {
 +size() const : std::size_t
 +push() : void
 +pop() : void
+-render_link() : void
 -m_capacity : std::size_t
 -m_size : std::size_t
 {static} -head_pos : const Vector2
@@ -70,12 +70,11 @@ class C_0001747959826151301658 {
 -m_color_index : int
 -m_pos : Vector2
 -m_label : const char *
-{static} -eps : const float
 {static} +radius : const int
+{static} -eps : const float
 }
 class "gui::GuiQueue<T>" as C_0000537993261370672901
 class C_0000537993261370672901 {
--render_link() : void
 +GuiQueue<T>() : void
 +push() : void
 +pop() : void
@@ -84,48 +83,49 @@ class C_0000537993261370672901 {
 +update() : void
 +render() : void
 +init_label() : void
+-render_link() : void
 {static} -head_pos : const Vector2
 }
 class "gui::GuiCircularLinkedList<T>" as C_0000636823269603515495
 class C_0000636823269603515495 {
--render_link() : void
--render_back_link() : void
 +GuiCircularLinkedList<T>() : void
 +insert() : void
 +update() : void
 +render() : void
 +init_label() : void
+-render_link() : void
+-render_back_link() : void
 {static} -head_pos : const Vector2
 }
 class "gui::GuiDoublyLinkedList<T>" as C_0001770119980623113789
 class C_0001770119980623113789 {
--render_link() : void
 +GuiDoublyLinkedList<T>() : void
 +insert() : void
 +update() : void
 +render() : void
 +init_label() : void
+-render_link() : void
 {static} -head_pos : const Vector2
 }
 class "gui::GuiLinkedList<T>" as C_0001460638568713575271
 class C_0001460638568713575271 {
--render_link() : void
 +GuiLinkedList<T>() : void
 +insert() : void
 +update() : void
 +render() : void
 +init_label() : void
+-render_link() : void
 {static} -head_pos : const Vector2
 }
 class "gui::GuiStack<T>" as C_0000012620274388027065
 class C_0000012620274388027065 {
--render_link() : void
 +GuiStack<T>() : void
 +push() : void
 +pop() : void
 +update() : void
 +render() : void
 +init_label() : void
+-render_link() : void
 {static} -head_pos : const Vector2
 }
 C_0000068279211946526198 --> C_0002044747090333057839 : -m_ptr
