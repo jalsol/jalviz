@@ -7,6 +7,11 @@
 
 namespace core {
 
+/**
+ * @brief The doubly linked list container
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class DoublyLinkedList : public BaseList<T> {
 protected:
@@ -15,32 +20,92 @@ protected:
     using Node_ptr = Node*;
     using cNode_ptr = const Node*;
 
-    using Base::m_head;
-    using Base::m_size;
-    using Base::m_tail;
-
-    Node_ptr internal_search(const T& elem);
-    Node_ptr internal_find(std::size_t index);
-
 public:
     using Base::Base;
 
     using Base::empty;
     using Base::size;
 
+    /**
+     * @brief Searches for the element in the container
+     * @param elem The element to search for
+     * @return The pointer to the element if found, nullptr otherwise
+     */
     Node_ptr search(const T& elem);
+
+    /**
+     * @brief Finds the element at the specified index
+     * @param index The index of the element
+     * @return The pointer to the element if found, nullptr otherwise
+     */
     Node_ptr find(std::size_t index);
 
+    /**
+     * @brief Searches for the element in the container
+     * @param elem The element to search for
+     * @return The const pointer to the element if found, nullptr otherwise
+     */
     cNode_ptr search(const T& elem) const;
+
+    /**
+     * @brief Finds the element at the specified index
+     * @param index The index of the element
+     * @return The const pointer to the element if found, nullptr otherwise
+     */
     cNode_ptr find(std::size_t index) const;
 
+    /**
+     * @brief Inserts the element at the specified index
+     * @param index The index of the element
+     * @param elem The element to insert
+     * @return The pointer to the inserted element
+     */
     Node_ptr insert(std::size_t index, const T& elem);
+
+    /**
+     * @brief Removes the element at the specified index
+     * @param index The index of the element
+     * @return The pointer to the removed element
+     */
     Node_ptr remove(std::size_t index);
 
+    /**
+     * @brief Gets the element at the specified index
+     * @param index The index of the element
+     * @return T& The reference to the element
+     */
     T& at(std::size_t index);
+
+    /**
+     * @brief Gets the element at the specified index
+     * @param index The index of the element
+     * @return T The copy of the element
+     */
     T at(std::size_t index) const;
 
+    /**
+     * @brief Clears the container
+     */
     void clear();
+
+protected:
+    using Base::m_head;
+    using Base::m_size;
+    using Base::m_tail;
+
+    /**
+     * @brief Internal method to search for the element in the container
+     * @param elem The element to search for
+     * @return The pointer to the element if found, nullptr otherwise
+     */
+    Node_ptr internal_search(const T& elem);
+
+    /**
+     * @brief Internal method to find the element at the specified index
+     * @param index The index of the element
+     * @return The pointer to the element if found, nullptr otherwise
+     */
+    Node_ptr internal_find(std::size_t index);
 };
 
 template<typename T>

@@ -7,46 +7,147 @@
 
 namespace core {
 
+/**
+ * @brief The base container for implementing other data structures
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class BaseList {
+public:
+    /**
+     * @brief Default constructor
+     */
+    BaseList() = default;
+
+    /**
+     * @brief Constructs the container with the contents of the initializer list
+     * @param init_list The initializer list
+     */
+    BaseList(std::initializer_list<T> init_list);
+
+    /**
+     * @brief Copy constructor
+     * @param rhs The other container
+     */
+    BaseList(const BaseList& rhs);
+
+    /**
+     * @brief Copy assignment operator
+     * @param rhs The other container
+     */
+    BaseList& operator=(const BaseList& rhs);
+
+    /**
+     * @brief Move constructor
+     * @param rhs The other container
+     */
+    BaseList(BaseList&& rhs) noexcept;
+
+    /**
+     * @brief Move assignment operator
+     * @param rhs The other container
+     */
+    BaseList& operator=(BaseList&& rhs) noexcept;
+
+    /**
+     * @brief Destructor
+     */
+    ~BaseList();
+
+    /**
+     * @brief Check whether the container is empty
+     * @retval true The container is empty
+     * @retval false The container is not empty
+     */
+    [[nodiscard]] bool empty() const;
+
+    /**
+     * @brief Returns the size of the container
+     * @return The size of the container
+     */
+    [[nodiscard]] std::size_t size() const;
+
 protected:
-    struct Node;
+    struct Node;  // Forward declaration
     using Node_ptr = Node*;
 
+    /**
+     * @brief The node of the list
+     */
     struct Node {
         T data{};
         Node_ptr prev{};
         Node_ptr next{};
     };
 
+    /**
+     * @brief The head of the list
+     */
     Node_ptr m_head{nullptr};
+
+    /**
+     * @brief The tail of the list
+     */
     Node_ptr m_tail{nullptr};
+
+    /**
+     * @brief The size of the list
+     */
     std::size_t m_size{};
 
+    /**
+     * @brief Initializes the first element of the container
+     * @param elem The first element of the container
+     */
     void init_first_element(const T& elem);
+
+    /**
+     * @brief Frees all elements in the container
+     *
+     */
     void clean_up();
+
+    /**
+     * @brief Copies data from another container
+     *
+     * @param rhs Tnother container
+     */
     void copy_data(const BaseList& rhs);
 
+    /**
+     * @brief Pushes the element to the back of the container
+     * @param elem The element to be pushed into the back
+     */
     void push_back(const T& elem);
+
+    /**
+     * @brief Pushes the element to the front of the container
+     * @param elem The element to be pushed into the front
+     */
     void push_front(const T& elem);
 
+    /**
+     * @brief Returns the reference to the element at the back of the container
+     * @return T& The reference to the element at the back of the container
+     */
     T& back() const;
+
+    /**
+     * @brief Returns the reference to the element at the front of the container
+     * @return T& The reference to the element at the front of the container
+     */
     T& front() const;
 
+    /**
+     * @brief Removes the element at the back of the container
+     */
     void pop_front();
+
+    /**
+     * @brief Removes the element at the front of the container
+     */
     void pop_back();
-
-public:
-    BaseList() = default;
-    BaseList(std::initializer_list<T> init_list);
-    BaseList(const BaseList& rhs);
-    BaseList& operator=(const BaseList& rhs);
-    BaseList(BaseList&& rhs) noexcept;
-    BaseList& operator=(BaseList&& rhs) noexcept;
-    ~BaseList();
-
-    [[nodiscard]] bool empty() const;
-    [[nodiscard]] std::size_t size() const;
 };
 
 template<typename T>

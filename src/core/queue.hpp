@@ -5,6 +5,11 @@
 
 namespace core {
 
+/**
+ * @brief The queue container
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class Queue : public BaseList<T> {
 private:
@@ -16,14 +21,33 @@ public:
     using Base::empty;
     using Base::size;
 
-    // for animation purpose only, not for real use
+    /**
+     * @note For animation purpose only, not for real use
+     */
     using Base::pop_back;
     using Base::push_front;
 
+    /**
+     * @brief Returns the reference to the front element of the queue
+     * @return T& the reference to the front element of the queue
+     */
     T& front() const;
+
+    /**
+     * @brief Returns the reference to the back element of the queue
+     * @return T& the reference to the back element of the queue
+     */
     T& back() const;
 
+    /**
+     * @brief Inserts the element at the back of the queue
+     * @param elem The element to insert
+     */
     void push(const T& elem);
+
+    /**
+     * @brief Removes the front element of the queue
+     */
     void pop();
 };
 

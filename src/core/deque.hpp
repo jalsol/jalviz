@@ -5,6 +5,11 @@
 
 namespace core {
 
+/**
+ * @brief The deque container
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class Deque : public BaseList<T> {
 private:
