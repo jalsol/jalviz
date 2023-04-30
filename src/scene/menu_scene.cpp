@@ -29,9 +29,9 @@ MenuScene::MenuScene() {
         constexpr int row_y = first_row_y;
 
         for (auto i = 0; i < 3; ++i) {
-            m_menu_items[i] = component::MenuItem(
-                i, labels[i], row_x + i * (block_width + gap), row_y,
-                img_paths[i]);
+            m_menu_items[i] =
+                component::MenuItem(labels[i], row_x + i * (block_width + gap),
+                                    row_y, img_paths[i]);
         }
     }
 
@@ -43,7 +43,7 @@ MenuScene::MenuScene() {
 
         for (auto i = 3; i < 7; ++i) {
             m_menu_items[i] = component::MenuItem(
-                i, labels[i], row_x + (i - 3) * (block_width + gap), row_y,
+                labels[i], row_x + (i - 3) * (block_width + gap), row_y,
                 img_paths[i]);
         }
     }

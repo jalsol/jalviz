@@ -5,10 +5,8 @@
 
 namespace component {
 
-MenuItem::MenuItem(int scene, const char* text, int x, int y,
-                   const char* img_path)
-    : m_scene{scene},
-      m_text{text},
+MenuItem::MenuItem(const char* text, int x, int y, const char* img_path)
+    : m_text{text},
       m_x{x},
       m_y{y},
       m_texture{LoadTextureFromImage(LoadImage(img_path))} {}
