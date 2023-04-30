@@ -60,6 +60,7 @@ void StackScene::render_inputs() {
         } break;
 
         case 2:
+        case 3:
             break;
         default:
             utils::unreachable();
@@ -111,6 +112,10 @@ void StackScene::interact() {
 
         case 2: {
             interact_pop();
+        } break;
+
+        case 3: {
+            interact_clear();
         } break;
 
         default:
@@ -243,6 +248,13 @@ void StackScene::interact_pop() {
 
 void StackScene::interact_file_import() {
     interact_import(m_file_dialog.extract_values());
+}
+
+void StackScene::interact_clear() {
+    m_stack = gui::GuiStack<int>();
+    m_sequence.clear();
+    m_code_highlighter.set_code({});
+    m_sequence_controller.set_max_value(0);
 }
 
 }  // namespace scene

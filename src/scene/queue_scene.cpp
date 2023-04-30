@@ -251,4 +251,11 @@ void QueueScene::interact_pop() {
     m_sequence_controller.set_rerun();
 }
 
+void QueueScene::interact_clear() {
+    m_queue = gui::GuiQueue<int>();
+    m_sequence.clear();
+    m_code_highlighter.clear();
+    m_sequence_controller.set_max_value(0);
+}
+
 }  // namespace scene

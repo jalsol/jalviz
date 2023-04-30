@@ -39,7 +39,8 @@ private:
         // mode_labels
         "Mode: Create;"
         "Mode: Push;"
-        "Mode: Pop",
+        "Mode: Pop;"
+        "Mode: Clear",
 
         // mode_selection
         0,
@@ -56,10 +57,13 @@ private:
 
             // Mode: Pop
             "",
+
+            // Mode: Clear
+            "",
         },
 
         // action_selection
-        core::DoublyLinkedList<int>{0, 0, 0},
+        core::DoublyLinkedList<int>{0, 0, 0, 0},
     };
 
     using internal::BaseScene::button_size;
@@ -121,6 +125,11 @@ private:
      * @brief Interacts with pop mode
      */
     void interact_pop();
+
+    /**
+     * @brief Interacts with clear mode
+     */
+    void interact_clear();
 };
 
 }  // namespace scene
