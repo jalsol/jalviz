@@ -31,6 +31,13 @@ Notable features include:
 
 [Here is the demonstration on YouTube.](https://youtu.be/9E_ZE9IUF1Q)
 
+## Repository
+[Here is the repository of the project on GitHub.](https://github.com/jalsol/cs162-visualgo)
+
+## License
+
+This project is licensed under the **GNU GPL v3.0 License**.
+
 ## Dependencies
 
 ### Application
@@ -49,40 +56,72 @@ Notable features include:
 
 ## Building
 
+### Manually
+
 - Clone this repository
 - `cmake -S. -Bbuild`
-- `make -Cbuild`
-- The executable `visualgo_cpp` will appear.
+- `make -Cbuild` (or any similar command depending on your build system)
+- The executable `visualgo_cpp` in the directory `build/` will appear.
+
+### IDEs with automatic configuration from CMake
+
+These IDEs (e.g. Visual Studio, CLion) can automatically set up the project from the CMake configurations.
+
+Simply open/clone the project from the GitHub repository, configure the project from CMake and build.
+
+### Other IDEs
+Please run `cmake -G` to see which are supported by CMake. **The following example will use CodeBlocks on Windows (MinGW). You can replace CodeBlocks with your IDE.**
+
+- Clone this repository
+- `cmake -S. -Bbuild -G "CodeBlocks - MinGW Makefiles"`
+- The project `visualgo_cpp.cbp` in the directory `build/` will appear
+- Launch the project and build inside CodeBlocks.
 
 ### Extra building notes
+- If you can’t build the project, please make sure the dependencies are correctly applied;
+- If CMake chooses the wrong build system, please run `cmake -G` and read the options;
+- You can use the `-j` flag for Make to enable multithreaded compiling (for example, my laptop has 4 cores, so I usually run `make -Cbuild -j4`).
 
-- If CMake does not choose the correct build system generator, please read the
-manual by running `cmake -h` and read the options for the `-G` flag;
-- You can use the `-j` flag for Make to enable multithreaded compiling (for example,
-my laptop has 4 cores, so I usually run `make -Cbuild -j4`).
+## Project Structure
 
-## Releases
+This project follows [the Pitchfork Layout for modern C++ projects.](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs)
 
-Prebuilt executables should be moved to the root of the repo before running.
-
-## License
-
-This project is licensed under the GNU GPL v3.0 License.
+- `data/`: Application assets and preset configurations
+- `docs/`: Documentation of the project implementation
+    - `diagrams/`: PlantUML scripts and generated diagrams
+    - `images/`: Images for the user manual
+    - `html/`: The deployable HTML version of the documentation
+    - `latex/`: The LaTeX version of the documentation
+- `examples/`: Examples of the format for file inputs
+- `external/`: External dependencies (which are not fetched by CMake)
+- `src/`: Source code of the project implementation
+    - `component/`: Common modules that are used in different scenes
+    - `core/`: **General-purpose** implementations of data structures (can be extended to the GUI version; can replace standard containers in the project itself) and their unit tests
+    - `gui/`: GUI versions of the core data structures
+    - `scene/`: Scenes to display the GUI data structures, the menu, and the settings
 
 ## Documentation
 
 ### User manual
 
-[To be updated]
+Please refer to [`USER_MANUAL.md`](./USER_MANUAL.md).
 
 ### Program structure
 
-For the LaTeX version, please refer to `docs/latex/refman.pdf`.
+For the LaTeX version, please refer to [`docs/latex/refman.pdf`](./docs/latex/refman.pdf).
 
-For the HTML version, please generate with Doxygen using `Doxyfile` as the
-configuration. The generated HTML is located at `docs/html/`
+For the HTML version, please see [this webpage](https://jalsol.github.io/cs162-visualgo).
 
 ## Modeling structures overview
+
+For a more detailed overview, please refer to the [documentation](#documentation-1).
+
+### Examples of design patterns in this project
+
+- The GUI version of each data structure is designed with the Composite pattern (combining the core version and a GUI base);
+- The classes of the `scene` namespace are designed using the Strategy pattern so that the scenes are interchangeable during runtime;
+- The rendering and event polling mechanism apply the Chain of Responsibility pattern;
+- The `Settings` class is a singleton, as it’s accessible everywhere in the application and there should only exist only one instance of it.
 
 ![core](docs/diagrams/core.png)
 
@@ -92,3 +131,4 @@ configuration. The generated HTML is located at `docs/html/`
 
 ![component](docs/diagrams/component.png)
 
+![settings](docs/diagrams/settings.png)
