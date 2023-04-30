@@ -64,7 +64,8 @@ public:
 
     /**
      * @brief Checks if the menu item was clicked
-     * @return true if the menu item was clicked, false otherwise
+     * @retval true The menu item was clicked
+     * @retval false The menu item was not clicked
      */
     bool clicked() const;
 

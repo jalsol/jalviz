@@ -38,7 +38,9 @@ public:
      * @brief Renders the file dialog, updates the head position with offset
      * @param options_head the head position of the options
      * @param head_offset the offset of the head position
-     * @return -1 if the file dialog is not active, 0/1 if a file was selected
+     * @retval -1 The file dialog is not active
+     * @retval 0 A file was not selected
+     * @retval 1 A file was selected
      */
     int render_head(float& options_head, float head_offset);
 
@@ -46,7 +48,9 @@ public:
      * @brief Renders the file dialog
      * @param x the x position of the file dialog
      * @param y the y position of the file dialog
-     * @return -1 if the file dialog is not active, 0/1 if a file was selected
+     * @retval -1 The file dialog is not active
+     * @retval 0 A file was not selected
+     * @retval 1 A file was selected
      */
     int render(float x, float y);
 
@@ -58,7 +62,8 @@ public:
 
     /**
      * @brief Checks if the file dialog is active
-     * @return true if the file dialog is active, false otherwise
+     * @retval true The file dialog is active
+     * @retval false The file dialog is not active
      */
     bool is_active() const;
 

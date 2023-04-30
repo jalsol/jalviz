@@ -41,7 +41,8 @@ public:
 
     /**
      * @brief Checks if the random text input is interacted with
-     * @return true if the random text input is interacted with, false otherwise
+     * @retval true The random text input is interacted with
+     * @retval false The random text input is not interacted with
      */
     bool interact();
 

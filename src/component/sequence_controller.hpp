@@ -18,8 +18,8 @@ public:
 
     /**
      * @brief Checks if the sequence controller was interacted with
-     * @return true if the sequence controller was interacted with, false
-     * otherwise
+     * @retval true The sequence controller was interacted with
+     * @retval false The sequence controller was not interacted with
      */
     bool interact();
 
@@ -49,8 +49,8 @@ public:
 
     /**
      * @brief Check if the sequence is in the run-all-at-once mode
-     * @return true if the sequence is in the run-all-at-once mode, false
-     * otherwise
+     * @retval true The sequence is in the run-all-at-once mode
+     * @retval false The sequence is not in the run-all-at-once mode
      */
     bool get_run_all() const;
 

@@ -53,7 +53,8 @@ public:
 
     /**
      * @brief Checks if the text input is active
-     * @return true if the text input is active, false otherwise
+     * @retval true The text input is active
+     * @retval false The text input is not active
      */
     bool is_active() const;
 
