@@ -122,6 +122,10 @@ void ArrayScene::interact() {
                 default:
                     utils::unreachable();
             }
+
+            m_code_highlighter.set_code({});
+            m_sequence.clear();
+            m_sequence_controller.set_max_value(0);
         } break;
 
         case 1: {
