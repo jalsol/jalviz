@@ -12,32 +12,94 @@
 
 namespace gui {
 
+/**
+ * @brief The GUI node (used in linked lists)
+ * @tparam T the type of the node
+ */
+
 template<typename T>
 class GuiNode {
+public:
+    /**
+     * @brief The radius of the node
+     */
+    static constexpr int radius = 20;
+
+    /**
+     * @brief Construct a new GuiNode object with the specified value
+     */
+    explicit GuiNode(const T& value);
+
+    /**
+     * @brief Renders the node
+     */
+    void render();
+
+    /**
+     * @brief Sets the position of the node
+     * @param pos The position of the node
+     */
+    void set_pos(Vector2 pos);
+
+    /**
+     * @brief Gets the position of the node
+     * @return The position of the node
+     */
+    [[nodiscard]] Vector2 get_pos() const;
+
+    /**
+     * @brief Sets the color index of the node
+     * @param color_index The color index of the node in the settings
+     */
+    void set_color_index(int color_index);
+
+    /**
+     * @brief Sets the value of the node
+     * @param value The value of the node
+     */
+    void set_value(const T& value);
+
+    /**
+     * @brief Returns the reference to the value of the node
+     * @return T& The reference to the value of the node
+     */
+    T& get_value();
+
+    /**
+     * @brief Sets the label of the node
+     * @param label The label of the node
+     */
+    void set_label(const char* label);
+
 private:
+    /**
+     * @brief The value of the node
+     */
     T m_value{};
+
+    /**
+     * @brief The color index of the node in the settings
+     */
     int m_color_index{0};
 
+    /**
+     * @brief The position of the node
+     */
     Vector2 m_pos{constants::sidebar_width +
                       static_cast<float>(constants::scene_width -
                                          constants::sidebar_width) /
                           2,
                   0};
+
+    /**
+     * @brief The epsilon used for comparing floats
+     */
     static constexpr float eps = 1e-3;
+
+    /**
+     * @brief The label of the node
+     */
     const char* m_label{};
-
-public:
-    static constexpr int radius = 20;
-
-    explicit GuiNode(const T& value);
-
-    void render();
-    void set_pos(Vector2 pos);
-    [[nodiscard]] Vector2 get_pos() const;
-    void set_color_index(int color_index);
-    void set_value(const T& value);
-    T& get_value();
-    void set_label(const char* label);
 };
 
 template<typename T>

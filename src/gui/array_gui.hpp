@@ -12,27 +12,77 @@
 
 namespace gui {
 
+/**
+ * @brief The GUI array container
+ * @tparam T the type of the elements
+ * @tparam N the number of elements
+ */
+
 template<typename T, std::size_t N>
 class GuiArray : public internal::Base {
+public:
+    /**
+     * @brief Constructs a GUI array with the specified number of elements
+     */
+    GuiArray();
+
+    /**
+     * @brief Constructs a GUI array with the specified initializer list
+     * @param init_list The initializer list
+     */
+    GuiArray(std::array<GuiElement<T>, N>&& init_list);
+
+    /**
+     * @brief Updates the GUI array
+     */
+    void update() override;
+
+    /**
+     * @brief Renders the GUI array
+     */
+    void render() override;
+
+    /**
+     * @brief Returns the reference to the element at the specified index
+     * @param idx The index of the element
+     * @return The reference to the element at the specified index
+     */
+    T& operator[](std::size_t idx);
+
+    /**
+     * @brief Returns the value to the element at the specified index
+     * @param idx The index of the element
+     * @return The value to the element at the specified index
+     */
+    T operator[](std::size_t idx) const;
+
+    /**
+     * @brief Set the color index object
+     *
+     * @param idx The index of the element to color
+     * @param color_index The index of the color in the settings
+     */
+    void set_color_index(std::size_t idx, int color_index);
+
 private:
+    /**
+     * @brief The position of the head
+     */
     static constexpr Vector2 head_pos{
         constants::scene_width / 2.0F - 15 * GuiElement<T>::side,
         constants::scene_height / 2.0F};
 
+    /**
+     * @brief The array of elements
+     */
     std::array<GuiElement<T>, N> m_array{};
 
+    /**
+     * @brief Renders the link between the source and destination
+     * @param src The source position
+     * @param dest The destination position
+     */
     void render_link(Vector2 src, Vector2 dest) override;
-
-public:
-    GuiArray();
-    GuiArray(std::array<GuiElement<T>, N>&& init_list);
-    void update() override;
-    void render() override;
-
-    T& operator[](std::size_t idx);
-    T operator[](std::size_t idx) const;
-
-    void set_color_index(std::size_t idx, int color_index);
 };
 
 template<typename T, std::size_t N>

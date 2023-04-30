@@ -15,21 +15,16 @@
 
 namespace gui {
 
+/**
+ * @brief The GUI circular linked list container
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class GuiCircularLinkedList : public core::DoublyLinkedList<GuiNode<T>>,
                               public internal::Base {
 private:
     using Base = core::DoublyLinkedList<GuiNode<T>>;
-
-    static constexpr Vector2 head_pos{
-        constants::scene_width / 2.0F - 15 * GuiNode<T>::radius,
-        constants::scene_height / 2.0F};
-
-    using Base::m_head;
-    using Base::m_tail;
-
-    void render_link(Vector2 src, Vector2 dest) override;
-    void render_back_link();
 
 public:
     using Base::Base;
@@ -37,13 +32,56 @@ public:
     using Base::empty;
     using Base::size;
 
+    /**
+     * @brief Construct a new Gui Circular Linked List object
+     * @param init_list The initializer list
+     */
     GuiCircularLinkedList(std::initializer_list<GuiNode<T>> init_list);
 
+    /**
+     * @brief Inserts an element at the specified index
+     * @param index The index
+     * @param elem The element
+     */
     void insert(std::size_t index, const T& elem);
 
+    /**
+     * @brief Updates the GUI circular linked list
+     */
     void update() override;
+
+    /**
+     * @brief Renders the GUI circular linked list
+     */
     void render() override;
+
+    /**
+     * @brief Initializes the labels
+     */
     void init_label();
+
+private:
+    /**
+     * @brief The position of the head
+     */
+    static constexpr Vector2 head_pos{
+        constants::scene_width / 2.0F - 15 * GuiNode<T>::radius,
+        constants::scene_height / 2.0F};
+
+    using Base::m_head;
+    using Base::m_tail;
+
+    /**
+     * @brief Renders the link between two nodes
+     * @param src The source node
+     * @param dest The destination node
+     */
+    void render_link(Vector2 src, Vector2 dest) override;
+
+    /**
+     * @brief Renders the back link
+     */
+    void render_back_link();
 };
 
 template<typename T>

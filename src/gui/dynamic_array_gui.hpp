@@ -13,43 +13,152 @@
 
 namespace gui {
 
+/**
+ * @brief The GUI dynamic array container
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class GuiDynamicArray : public internal::Base {
+public:
+    /**
+     * @brief Constructs a GUI dynamic array
+     */
+    GuiDynamicArray();
+
+    /**
+     * @brief Constructs a GUI dynamic array with the specified initializer list
+     * @param init_list The initializer list
+     */
+    GuiDynamicArray(std::initializer_list<T> init_list);
+
+    /**
+     * @brief Constructs a GUI dynamic array by coping another GUI dynamic array
+     * @param other The other GUI dynamic array
+     */
+    GuiDynamicArray(const GuiDynamicArray& other);
+
+    /**
+     * @brief Constructs a GUI dynamic array by moving another GUI dynamic array
+     * @param other The other GUI dynamic array
+     */
+    GuiDynamicArray(GuiDynamicArray&& other) noexcept;
+
+    /**
+     * @brief Assigns another GUI dynamic array to this GUI dynamic array by
+     * copying
+     * @param other The other GUI dynamic array
+     * @return This GUI dynamic array
+     */
+    GuiDynamicArray& operator=(const GuiDynamicArray& other);
+
+    /**
+     * @brief Assigns another GUI dynamic array to this GUI dynamic array by
+     * moving
+     * @param other The other GUI dynamic array
+     * @return This GUI dynamic array
+     */
+    GuiDynamicArray& operator=(GuiDynamicArray&& other) noexcept;
+
+    /**
+     * @brief Destructs the GUI dynamic array
+     */
+    ~GuiDynamicArray() override;
+
+    /**
+     * @brief Updates the GUI dynamic array
+     */
+    void update() override;
+
+    /**
+     * @brief Renders the GUI dynamic array
+     */
+    void render() override;
+
+    /**
+     * @brief Returns the reference to the element at the specified index
+     * @param idx The index of the element
+     * @return The reference to the element at the specified index
+     */
+    T& operator[](std::size_t idx);
+
+    /**
+     * @brief Returns the value to the element at the specified index
+     * @param idx The index of the element
+     * @return The value to the element at the specified index
+     */
+    T operator[](std::size_t idx) const;
+
+    /**
+     * @brief Set the color index object
+     * @param idx The index of the element
+     * @param color_index The index of the color in the settings
+     */
+    void set_color_index(std::size_t idx, int color_index);
+
+    /**
+     * @brief Reserves the array with specified capacity
+     * @param capacity The capacity
+     */
+    void reserve(std::size_t capacity);
+
+    /**
+     * @brief Resizes the array capacity to the current size
+     */
+    void shrink_to_fit();
+
+    /**
+     * @brief Returns the capacity of the array
+     * @return The capacity of the array
+     */
+    std::size_t capacity() const;
+
+    /**
+     * @brief Returns the size of the array
+     * @return The size of the array
+     */
+    std::size_t size() const;
+
+    /**
+     * @brief Pushes the value to the end of the array
+     * @param value The value to push
+     */
+    void push(const T& value);
+
+    /**
+     * @brief Pops the value from the end of the array
+     */
+    void pop();
+
 private:
+    /**
+     * @brief The head position
+     */
     static constexpr Vector2 head_pos{
         constants::scene_width / 2.0F - 15 * GuiElement<T>::side,
         constants::scene_height / 2.0F};
 
+    /**
+     * @brief The capacity of the array
+     */
     std::size_t m_capacity{2};
+
+    /**
+     * @brief The size of the array
+     */
     std::size_t m_size{};
+
+    /**
+     * @brief The pointer to the array
+     */
     GuiElement<T>* m_ptr{nullptr};
 
+    /**
+     * @brief Renders the link between the specified elements
+     * @param src The source position
+     * @param dest The destination position
+     */
     void render_link(Vector2 src, Vector2 dest) override;
-
-public:
-    GuiDynamicArray();
-    GuiDynamicArray(std::initializer_list<T> init_list);
-    GuiDynamicArray(const GuiDynamicArray& other);
-    GuiDynamicArray(GuiDynamicArray&& other) noexcept;
-    GuiDynamicArray& operator=(const GuiDynamicArray& other);
-    GuiDynamicArray& operator=(GuiDynamicArray&& other) noexcept;
-    ~GuiDynamicArray() override;
-
-    void update() override;
-    void render() override;
-
-    T& operator[](std::size_t idx);
-    T operator[](std::size_t idx) const;
-
-    void set_color_index(std::size_t idx, int color_index);
-    void reserve(std::size_t capacity);
-    void shrink_to_fit();
-
-    std::size_t capacity() const;
-    std::size_t size() const;
-
-    void push(const T& value);
-    void pop();
 };
 
 template<typename T>

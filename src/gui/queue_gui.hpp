@@ -13,19 +13,15 @@
 
 namespace gui {
 
+/**
+ * @brief The GUI queue container
+ * @tparam T the type of the elements
+ */
+
 template<typename T>
 class GuiQueue : public core::Queue<GuiNode<T>>, public internal::Base {
 private:
     using Base = core::Queue<GuiNode<T>>;
-
-    static constexpr Vector2 head_pos{
-        constants::scene_width / 2.0F - 15 * GuiNode<T>::radius,
-        constants::scene_height / 2.0F};
-
-    using Base::m_head;
-    using Base::m_tail;
-
-    void render_link(Vector2 src, Vector2 dest) override;
 
 public:
     using Base::Base;
@@ -33,18 +29,67 @@ public:
     using Base::empty;
     using Base::size;
 
+    /**
+     * @brief Construct a new Gui Queue object
+     * @param init_list The initializer list
+     */
     GuiQueue(std::initializer_list<GuiNode<T>> init_list);
 
+    /**
+     * @brief Pushes an element to the back of the queue
+     * @param elem The element
+     */
     void push(const T& elem);
+
+    /**
+     * @brief Pops an element from the front of the queue
+     */
     void pop();
 
-    // for animation purpose only, not for real use
+    /**
+     * @brief Pushes an element to the front of the queue
+     * @param elem The element
+     * @note This is for demonstration purposes only
+     */
     void push_front(const T& elem);
+
+    /**
+     * @brief Pops an element from the back of the queue
+     */
     void pop_back();
 
+    /**
+     * @brief Updates the GUI queue
+     */
     void update() override;
+
+    /**
+     * @brief Renders the GUI queue
+     */
     void render() override;
+
+    /**
+     * @brief Initializes the labels
+     */
     void init_label();
+
+private:
+    /**
+     * @brief The position of the head
+     */
+    static constexpr Vector2 head_pos{
+        constants::scene_width / 2.0F - 15 * GuiNode<T>::radius,
+        constants::scene_height / 2.0F};
+
+    using Base::m_head;
+    using Base::m_tail;
+
+    /**
+     * @brief Renders the link between two nodes
+     * @param src The source node
+     * @param dest The destination node
+     */
+    void render_link(Vector2 src, Vector2 dest) override;
 };
 
 template<typename T>
