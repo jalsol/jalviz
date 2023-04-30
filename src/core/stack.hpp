@@ -14,6 +14,7 @@ template<typename T>
 class Stack : public BaseList<T> {
 private:
     using Base = BaseList<T>;
+
 public:
     using Base::Base;
 
