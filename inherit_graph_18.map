@@ -1,0 +1,29 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classgui_1_1internal_1_1Base.html" title="The base class for all GUI classes." alt="" coords="237,153,377,179"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiDynamicArray.html" title=" " alt="" coords="489,203,654,243"/>
+<area shape="rect" id="node3" href="$classgui_1_1GuiQueue.html" title=" " alt="" coords="491,5,652,31"/>
+<area shape="rect" id="node4" href="$classgui_1_1GuiStack.html" title=" " alt="" coords="494,835,649,860"/>
+<area shape="rect" id="node5" href="$classgui_1_1GuiArray.html" title="The GUI array container." alt="" coords="490,268,653,293"/>
+<area shape="rect" id="node6" href="$classgui_1_1GuiCircularLinkedList.html" title="The GUI circular linked list container." alt="" coords="459,55,684,80"/>
+<area shape="rect" id="node7" href="$classgui_1_1GuiDoublyLinkedList.html" title="The GUI doubly linked list container." alt="" coords="461,104,682,129"/>
+<area shape="rect" id="node8" href="$classgui_1_1GuiDynamicArray.html" title="The GUI dynamic array container." alt="" coords="470,317,673,343"/>
+<area shape="rect" id="node9" href="$classgui_1_1GuiLinkedList.html" title="The GUI linked list container." alt="" coords="484,153,659,179"/>
+<area shape="rect" id="node10" href="$classgui_1_1GuiQueue.html" title="The GUI queue container." alt="" coords="495,489,647,515"/>
+<area shape="rect" id="node11" href="$classgui_1_1GuiStack.html" title="The GUI stack container." alt="" coords="498,700,645,725"/>
+<area shape="rect" id="node12" href="$classcore_1_1BaseList.html" title="The base container for implementing other data structures." alt="" coords="5,547,156,572"/>
+<area shape="rect" id="node13" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="223,89,392,129"/>
+<area shape="rect" id="node14" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="223,203,392,243"/>
+<area shape="rect" id="node15" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="223,267,392,307"/>
+<area shape="rect" id="node16" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="217,332,397,387"/>
+<area shape="rect" id="node17" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="223,411,392,451"/>
+<area shape="rect" id="node18" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="212,475,403,515"/>
+<area shape="rect" id="node19" href="$classcore_1_1DoublyLinkedList.html" title=" " alt="" coords="215,539,400,579"/>
+<area shape="rect" id="node20" href="$classcore_1_1Queue.html" title=" " alt="" coords="222,603,393,643"/>
+<area shape="rect" id="node21" href="$classcore_1_1Queue.html" title=" " alt="" coords="222,667,393,707"/>
+<area shape="rect" id="node22" href="$classcore_1_1Stack.html" title=" " alt="" coords="225,731,390,771"/>
+<area shape="rect" id="node23" href="$classcore_1_1Stack.html" title=" " alt="" coords="225,795,390,835"/>
+<area shape="rect" id="node24" href="$classcore_1_1Deque.html" title="The deque container." alt="" coords="238,860,377,885"/>
+<area shape="rect" id="node25" href="$classcore_1_1DoublyLinkedList.html" title="The doubly linked list container." alt="" coords="204,909,411,935"/>
+<area shape="rect" id="node26" href="$classcore_1_1Queue.html" title="The queue container." alt="" coords="238,21,377,47"/>
+<area shape="rect" id="node27" href="$classcore_1_1Stack.html" title="The stack container." alt="" coords="241,959,373,984"/>
+</map>

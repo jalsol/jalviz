@@ -1,0 +1,5 @@
+<map id="core::DoublyLinkedList&lt; T &gt;" name="core::DoublyLinkedList&lt; T &gt;">
+<area shape="rect" id="node1" title="The doubly linked list container." alt="" coords="5,551,212,833"/>
+<area shape="rect" id="node2" href="$classcore_1_1BaseList.html" title="The base container for implementing other data structures." alt="" coords="28,175,189,501"/>
+<area shape="rect" id="node3" href="$structcore_1_1BaseList_1_1Node.html" title="The node of the list." alt="" coords="33,5,184,97"/>
+</map>

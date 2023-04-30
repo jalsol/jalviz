@@ -1,0 +1,4 @@
+<map id="gui::GuiDoublyLinkedList::init_label" name="gui::GuiDoublyLinkedList::init_label">
+<area shape="rect" id="node1" title="Initializes the labels." alt="" coords="236,5,419,45"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiDoublyLinkedList.html#ace659972fb9256c100441bca3fdf72d9" title="Construct a new Gui Doubly Linked List object." alt="" coords="5,5,188,45"/>
+</map>

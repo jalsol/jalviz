@@ -1,0 +1,4 @@
+<map id="gui::GuiQueue::render" name="gui::GuiQueue::render">
+<area shape="rect" id="node1" title="Renders the GUI queue." alt="" coords="211,13,375,38"/>
+<area shape="rect" id="node2" href="$classscene_1_1QueueScene.html#a1c894aab23b8245d22882d0689e679dc" title="Renders the scene." alt="" coords="5,5,163,45"/>
+</map>

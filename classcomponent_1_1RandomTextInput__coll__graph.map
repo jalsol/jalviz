@@ -1,0 +1,4 @@
+<map id="component::RandomTextInput" name="component::RandomTextInput">
+<area shape="rect" id="node1" title="Text input that supports random values." alt="" coords="5,292,223,457"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1TextInput.html" title="Input for entering text." alt="" coords="33,5,195,244"/>
+</map>

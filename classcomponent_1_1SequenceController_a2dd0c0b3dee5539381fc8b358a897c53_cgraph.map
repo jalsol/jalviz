@@ -1,0 +1,7 @@
+<map id="component::SequenceController::get_anim_frame" name="component::SequenceController::get_anim_frame">
+<area shape="rect" id="node1" title="Gets the animated frame." alt="" coords="5,101,236,141"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SequenceController.html#a4997739260f0e7128f4d9239de336a26" title="Gets the animation counter." alt="" coords="284,5,515,45"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1SequenceController.html#adeb5aa0762f6d51497222ce073be0ccd" title="Gets the value of the progress bar." alt="" coords="284,69,515,109"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1SequenceController.html#a8a847cf36fbb035861eccfa18169b2bf" title="Check if the sequence is in the run&#45;all&#45;at&#45;once mode." alt="" coords="284,133,515,173"/>
+<area shape="rect" id="node5" href="$classcomponent_1_1SequenceController.html#a9b272016745807a631c10d50644b38dc" title="Gets the speed scale of the sequence." alt="" coords="284,197,515,237"/>
+</map>

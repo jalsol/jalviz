@@ -1,0 +1,5 @@
+<map id="gui::GuiDynamicArray::reserve" name="gui::GuiDynamicArray::reserve">
+<area shape="rect" id="node1" title="Reserves the array with specified capacity." alt="" coords="219,37,384,77"/>
+<area shape="rect" id="node2" href="$classscene_1_1ArrayScene.html#a9fad49adc6953dac74f5fc3f4e4dacc4" title="Construct a new ArrayScene object." alt="" coords="13,5,163,45"/>
+<area shape="rect" id="node3" href="$classgui_1_1GuiDynamicArray.html#a6b8a23127eb38d092f4c8cae9d3e9540" title="Constructs a GUI dynamic array with the specified initializer list." alt="" coords="5,69,171,109"/>
+</map>

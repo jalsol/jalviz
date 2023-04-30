@@ -1,0 +1,4 @@
+<map id="scene::SceneRegistry::render" name="scene::SceneRegistry::render">
+<area shape="rect" id="node1" title="Renders the scene." alt="" coords="5,5,167,45"/>
+<area shape="rect" id="node2" href="$classscene_1_1internal_1_1BaseScene.html#a7c8e67187c9d93adccc55b57110b611f" title="Renders the scene." alt="" coords="215,5,412,45"/>
+</map>

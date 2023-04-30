@@ -1,0 +1,4 @@
+<map id="gui::GuiQueue::GuiQueue" name="gui::GuiQueue::GuiQueue">
+<area shape="rect" id="node1" title="Construct a new Gui Queue object." alt="" coords="5,13,192,38"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiQueue.html#aa14706e8cf8752273d61b8bc0b3e88dd" title="Initializes the labels." alt="" coords="240,5,383,45"/>
+</map>

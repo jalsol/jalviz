@@ -1,0 +1,4 @@
+<map id="scene::BaseLinkedListScene::interact" name="scene::BaseLinkedListScene::interact">
+<area shape="rect" id="node1" title="Interacts with the scene." alt="" coords="5,5,209,45"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#ae2c2f6e955e00e4ffe1733071e966713" title="Tells the compiler that this branch is unreachable." alt="" coords="257,13,396,38"/>
+</map>

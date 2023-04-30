@@ -1,0 +1,5 @@
+<map id="component::CodeHighlighter::set_code" name="component::CodeHighlighter::set_code">
+<area shape="rect" id="node1" title="Set the source code to be highlighted." alt="" coords="5,5,213,45"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1CodeHighlighter.html#a490b675f158e7d53951f3584c66e14a5" title="Clears the code highlighter." alt="" coords="261,5,469,45"/>
+<area shape="rect" id="node3" href="$classcore_1_1DoublyLinkedList.html#a8f3f123a7c731ec651410b4ccaacc793" title="Clears the container." alt="" coords="517,5,687,45"/>
+</map>

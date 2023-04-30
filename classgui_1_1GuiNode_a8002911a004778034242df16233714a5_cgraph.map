@@ -1,0 +1,8 @@
+<map id="gui::GuiNode::render" name="gui::GuiNode::render">
+<area shape="rect" id="node1" title="Renders the node." alt="" coords="5,119,161,145"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="219,5,367,45"/>
+<area shape="rect" id="node3" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="233,70,352,95"/>
+<area shape="rect" id="node4" href="$classSettings.html#a4e26ceaf30ab2c06c9925abc0c96a107" title="Gets the color." alt="" coords="221,119,364,145"/>
+<area shape="rect" id="node5" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="209,169,376,194"/>
+<area shape="rect" id="node6" href="$namespaceutils.html#ad76832663b435c875440e42a5f9ed35d" title="Measures the text with custom font size and spacing." alt="" coords="222,218,363,243"/>
+</map>

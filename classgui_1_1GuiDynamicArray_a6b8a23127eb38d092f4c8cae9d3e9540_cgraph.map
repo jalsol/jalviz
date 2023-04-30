@@ -1,0 +1,6 @@
+<map id="gui::GuiDynamicArray::GuiDynamicArray" name="gui::GuiDynamicArray::GuiDynamicArray">
+<area shape="rect" id="node1" title="Constructs a GUI dynamic array with the specified initializer list." alt="" coords="5,47,171,87"/>
+<area shape="rect" id="node2" href="$classSettings.html#a4e26ceaf30ab2c06c9925abc0c96a107" title="Gets the color." alt="" coords="231,5,373,31"/>
+<area shape="rect" id="node3" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="219,55,385,80"/>
+<area shape="rect" id="node4" href="$classgui_1_1GuiDynamicArray.html#a3a4bd816618164359bc115db32e08387" title="Reserves the array with specified capacity." alt="" coords="219,105,385,145"/>
+</map>

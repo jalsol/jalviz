@@ -1,0 +1,4 @@
+<map id="scene::SceneRegistry::interact" name="scene::SceneRegistry::interact">
+<area shape="rect" id="node1" title="Interacts with the scene." alt="" coords="5,5,167,45"/>
+<area shape="rect" id="node2" href="$classscene_1_1internal_1_1BaseScene.html#a542a3ea4952993d693733c954f6f168f" title="Interacts with the scene." alt="" coords="215,5,412,45"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="utils::MeasureText" name="utils::MeasureText">
+<area shape="rect" id="node1" title="Measures the text with custom font size and spacing." alt="" coords="247,55,388,80"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiElement.html#aef6388bc04b60fa23bb5e967db2f516b" title="Renders the element." alt="" coords="14,5,190,31"/>
+<area shape="rect" id="node3" href="$classgui_1_1GuiNode.html#a8002911a004778034242df16233714a5" title="Renders the node." alt="" coords="24,55,180,80"/>
+<area shape="rect" id="node4" href="$classscene_1_1MenuScene.html#a6934dce53c5721bb8fc59028838ed742" title="Renders the scene." alt="" coords="5,104,199,129"/>
+</map>

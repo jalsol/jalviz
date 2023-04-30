@@ -1,0 +1,5 @@
+<map id="Settings::save_to_file" name="Settings::save_to_file">
+<area shape="rect" id="node1" title="Saves the settings to a file." alt="" coords="213,42,375,67"/>
+<area shape="rect" id="node2" href="$classscene_1_1SettingsScene.html#a9b4ac9224a8ca917335220bc3e61e1ec" title="Interacts with the scene." alt="" coords="5,5,165,45"/>
+<area shape="rect" id="node3" href="$classSettings.html#a4a65be5921dfc9fddc476e5320541d89" title="Destructor." alt="" coords="12,70,159,95"/>
+</map>

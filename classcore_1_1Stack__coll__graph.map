@@ -1,0 +1,5 @@
+<map id="core::Stack&lt; T &gt;" name="core::Stack&lt; T &gt;">
+<area shape="rect" id="node1" title="The stack container." alt="" coords="20,551,152,701"/>
+<area shape="rect" id="node2" href="$classcore_1_1BaseList.html" title="The base container for implementing other data structures." alt="" coords="5,175,167,501"/>
+<area shape="rect" id="node3" href="$structcore_1_1BaseList_1_1Node.html" title="The node of the list." alt="" coords="11,5,161,97"/>
+</map>

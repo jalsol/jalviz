@@ -1,0 +1,4 @@
+<map id="gui::GuiCircularLinkedList::init_label" name="gui::GuiCircularLinkedList::init_label">
+<area shape="rect" id="node1" title="Initializes the labels." alt="" coords="240,5,427,45"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiCircularLinkedList.html#ad4ece166793dfb70bd62d348cabb852b" title="Construct a new Gui Circular Linked List object." alt="" coords="5,5,192,45"/>
+</map>

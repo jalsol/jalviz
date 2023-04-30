@@ -1,0 +1,4 @@
+<map id="component::RandomTextInput::interact" name="component::RandomTextInput::interact">
+<area shape="rect" id="node1" title="Checks if the random text input is interacted with." alt="" coords="5,5,223,45"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#a0e22f00f6018ab07372cf8e990ca2f91" title="Get a random number in the range [low, high]." alt="" coords="271,13,407,38"/>
+</map>

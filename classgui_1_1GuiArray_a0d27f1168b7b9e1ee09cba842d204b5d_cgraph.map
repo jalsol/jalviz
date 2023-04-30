@@ -1,0 +1,4 @@
+<map id="gui::GuiArray::GuiArray" name="gui::GuiArray::GuiArray">
+<area shape="rect" id="node1" title="Constructs a GUI array with the specified number of elements." alt="" coords="5,13,176,38"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiElement.html#a191304c869c73db15ec8b8f8eb863db8" title="Sets the color index of the element." alt="" coords="224,5,379,45"/>
+</map>

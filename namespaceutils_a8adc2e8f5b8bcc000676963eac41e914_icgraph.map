@@ -1,0 +1,6 @@
+<map id="utils::strtok" name="utils::strtok">
+<area shape="rect" id="node1" title="Splits a string into tokens." alt="" coords="433,45,529,70"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#ad4cb7453a4726e24e32feec82a1a802c" title="Extracts integers from a string separated by commas." alt="" coords="221,45,385,70"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1FileDialog.html#a1f83c75ea4939ba696d5bd3ad2120b52" title="Extracts the values from the file." alt="" coords="5,5,173,45"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1TextInput.html#a0127193011b1062010ca2e0736fff6f8" title="Extracts the values from the text input." alt="" coords="8,69,171,109"/>
+</map>

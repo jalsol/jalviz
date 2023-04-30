@@ -1,0 +1,7 @@
+<map id="scene::MenuScene::render" name="scene::MenuScene::render">
+<area shape="rect" id="node1" title="Renders the scene." alt="" coords="5,95,199,121"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="256,5,404,45"/>
+<area shape="rect" id="node3" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="271,70,389,95"/>
+<area shape="rect" id="node4" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="247,119,413,145"/>
+<area shape="rect" id="node5" href="$namespaceutils.html#ad76832663b435c875440e42a5f9ed35d" title="Measures the text with custom font size and spacing." alt="" coords="259,169,401,194"/>
+</map>

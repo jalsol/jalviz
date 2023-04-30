@@ -1,0 +1,7 @@
+<map id="component::TextInput::render_head" name="component::TextInput::render_head">
+<area shape="rect" id="node1" title="Renders the text input, updates the head position with offset." alt="" coords="5,63,168,103"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1TextInput.html#ac12a9b97dd04ba1162f64dd47c6b5c9c" title="Renders the text input." alt="" coords="216,63,379,103"/>
+<area shape="rect" id="node3" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="436,5,584,45"/>
+<area shape="rect" id="node4" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="451,70,569,95"/>
+<area shape="rect" id="node5" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="427,119,593,145"/>
+</map>

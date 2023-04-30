@@ -1,0 +1,13 @@
+<map id="gui::internal::Base" name="gui::internal::Base">
+<area shape="rect" id="node1" title="The base class for all GUI classes." alt="" coords="922,5,1062,185"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiDynamicArray.html" title=" " alt="" coords="5,233,179,472"/>
+<area shape="rect" id="node3" href="$classgui_1_1GuiQueue.html" title=" " alt="" coords="203,263,365,443"/>
+<area shape="rect" id="node4" href="$classgui_1_1GuiStack.html" title=" " alt="" coords="389,277,544,428"/>
+<area shape="rect" id="node5" href="$classgui_1_1GuiArray.html" title="The GUI array container." alt="" coords="568,270,731,435"/>
+<area shape="rect" id="node6" href="$classgui_1_1GuiCircularLinkedList.html" title="The GUI circular linked list container." alt="" coords="755,285,981,421"/>
+<area shape="rect" id="node7" href="$classgui_1_1GuiDoublyLinkedList.html" title="The GUI doubly linked list container." alt="" coords="1005,285,1227,421"/>
+<area shape="rect" id="node8" href="$classgui_1_1GuiDynamicArray.html" title="The GUI dynamic array container." alt="" coords="1251,241,1453,465"/>
+<area shape="rect" id="node9" href="$classgui_1_1GuiLinkedList.html" title="The GUI linked list container." alt="" coords="1478,285,1653,421"/>
+<area shape="rect" id="node10" href="$classgui_1_1GuiQueue.html" title="The GUI queue container." alt="" coords="1677,263,1829,443"/>
+<area shape="rect" id="node11" href="$classgui_1_1GuiStack.html" title="The GUI stack container." alt="" coords="1853,277,2000,428"/>
+</map>

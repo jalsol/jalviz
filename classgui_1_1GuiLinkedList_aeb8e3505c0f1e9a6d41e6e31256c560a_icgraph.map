@@ -1,0 +1,4 @@
+<map id="gui::GuiLinkedList::init_label" name="gui::GuiLinkedList::init_label">
+<area shape="rect" id="node1" title="Initializes the labels." alt="" coords="191,5,328,45"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiLinkedList.html#a8607ba925e420108dfa5e8f4e7399acf" title="Construct a new Gui Linked List object." alt="" coords="5,5,143,45"/>
+</map>

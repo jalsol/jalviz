@@ -1,0 +1,4 @@
+<map id="scene::MenuScene" name="scene::MenuScene">
+<area shape="rect" id="node1" title="The menu scene." alt="" coords="33,409,175,516"/>
+<area shape="rect" id="node2" href="$classscene_1_1internal_1_1BaseScene.html" title="The base scene class." alt="" coords="5,5,203,361"/>
+</map>

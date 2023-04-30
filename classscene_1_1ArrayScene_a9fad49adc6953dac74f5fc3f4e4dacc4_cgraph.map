@@ -1,0 +1,4 @@
+<map id="scene::ArrayScene::ArrayScene" name="scene::ArrayScene::ArrayScene">
+<area shape="rect" id="node1" title="Construct a new ArrayScene object." alt="" coords="5,5,156,45"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiDynamicArray.html#a3a4bd816618164359bc115db32e08387" title="Reserves the array with specified capacity." alt="" coords="204,5,369,45"/>
+</map>

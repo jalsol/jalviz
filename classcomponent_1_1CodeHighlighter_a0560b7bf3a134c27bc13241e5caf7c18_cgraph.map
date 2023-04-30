@@ -1,0 +1,9 @@
+<map id="component::CodeHighlighter::render" name="component::CodeHighlighter::render">
+<area shape="rect" id="node1" title="Renders the code highlighter." alt="" coords="5,137,213,177"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="283,5,431,45"/>
+<area shape="rect" id="node3" href="$classcore_1_1DoublyLinkedList.html#ab3de2fda8dc0a65847d3b71e15d18431" title="Gets the element at the specified index." alt="" coords="261,70,452,95"/>
+<area shape="rect" id="node4" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="297,119,416,145"/>
+<area shape="rect" id="node5" href="$classSettings.html#a4e26ceaf30ab2c06c9925abc0c96a107" title="Gets the color." alt="" coords="285,169,428,194"/>
+<area shape="rect" id="node6" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="273,218,440,243"/>
+<area shape="rect" id="node7" href="$classcore_1_1DoublyLinkedList.html#a3b97d048a971a89bb37731c49f612f0b" title="Returns the size of the container." alt="" coords="272,268,441,308"/>
+</map>

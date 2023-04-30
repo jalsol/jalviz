@@ -1,0 +1,7 @@
+<map id="gui::GuiQueue&lt; T &gt;" name="gui::GuiQueue&lt; T &gt;">
+<area shape="rect" id="node1" title="The GUI queue container." alt="" coords="104,795,256,975"/>
+<area shape="rect" id="node2" href="$classcore_1_1Queue.html" title=" " alt="" coords="5,551,176,745"/>
+<area shape="rect" id="node3" href="$classcore_1_1BaseList.html" title="The base container for implementing other data structures." alt="" coords="10,175,171,501"/>
+<area shape="rect" id="node4" href="$structcore_1_1BaseList_1_1Node.html" title="The node of the list." alt="" coords="15,5,166,97"/>
+<area shape="rect" id="node5" href="$classgui_1_1internal_1_1Base.html" title="The base class for all GUI classes." alt="" coords="201,558,341,738"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="scene::internal::BaseScene::render_options" name="scene::internal::BaseScene::render_options">
+<area shape="rect" id="node1" title="Renders the options." alt="" coords="5,27,203,67"/>
+<area shape="rect" id="node2" href="$classcore_1_1DoublyLinkedList.html#ab3de2fda8dc0a65847d3b71e15d18431" title="Gets the element at the specified index." alt="" coords="254,5,445,31"/>
+<area shape="rect" id="node3" href="$classscene_1_1internal_1_1BaseScene.html#a150a268dbe1db18dca9af30a436765eb" title="Renders the inputs." alt="" coords="251,55,448,95"/>
+</map>

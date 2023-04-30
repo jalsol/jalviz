@@ -1,0 +1,5 @@
+<map id="utils::str_extract_data" name="utils::str_extract_data">
+<area shape="rect" id="node1" title="Extracts integers from a string separated by commas." alt="" coords="221,45,385,70"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1FileDialog.html#a1f83c75ea4939ba696d5bd3ad2120b52" title="Extracts the values from the file." alt="" coords="5,5,173,45"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1TextInput.html#a0127193011b1062010ca2e0736fff6f8" title="Extracts the values from the text input." alt="" coords="8,69,171,109"/>
+</map>

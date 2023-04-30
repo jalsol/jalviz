@@ -1,0 +1,4 @@
+<map id="gui::GuiStack::render" name="gui::GuiStack::render">
+<area shape="rect" id="node1" title="Renders the GUI stack." alt="" coords="204,13,363,38"/>
+<area shape="rect" id="node2" href="$classscene_1_1StackScene.html#af4d1475f4e447111bf5c150d9ea5bb5f" title="Renders the scene." alt="" coords="5,5,156,45"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="component::TextInput::render" name="component::TextInput::render">
+<area shape="rect" id="node1" title="Renders the text input." alt="" coords="5,63,168,103"/>
+<area shape="rect" id="node2" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="225,5,373,45"/>
+<area shape="rect" id="node3" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="240,70,359,95"/>
+<area shape="rect" id="node4" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="216,119,383,145"/>
+</map>

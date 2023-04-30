@@ -1,0 +1,19 @@
+<map id="scene::StackScene::interact" name="scene::StackScene::interact">
+<area shape="rect" id="node1" title="Interacts with the scene." alt="" coords="5,298,156,338"/>
+<area shape="rect" id="node2" href="$classcore_1_1DoublyLinkedList.html#ab3de2fda8dc0a65847d3b71e15d18431" title="Gets the element at the specified index." alt="" coords="224,5,415,31"/>
+<area shape="rect" id="node3" href="$classcore_1_1DoublyLinkedList.html#a8f3f123a7c731ec651410b4ccaacc793" title="Clears the container." alt="" coords="761,206,931,246"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1RandomTextInput.html#a0127193011b1062010ca2e0736fff6f8" title="Extracts the values from the text input." alt="" coords="211,106,428,146"/>
+<area shape="rect" id="node5" href="$classcomponent_1_1RandomTextInput.html#ae946b88b289248cae8a302108200bec8" title="Checks if the random text input is interacted with." alt="" coords="211,170,428,210"/>
+<area shape="rect" id="node7" href="$classcomponent_1_1SequenceController.html#a769580a662dccd97447a70c03ba16179" title="Checks if the sequence controller was interacted with." alt="" coords="204,234,435,274"/>
+<area shape="rect" id="node11" href="$classcomponent_1_1SequenceController.html#a7328821322a24e2c0752d40f3fdee518" title="Resets the animation counter." alt="" coords="204,298,435,338"/>
+<area shape="rect" id="node12" href="$classcomponent_1_1CodeHighlighter.html#ab1a2c141aa97219201f0189993358eb5" title="Set the source code to be highlighted." alt="" coords="215,362,423,402"/>
+<area shape="rect" id="node14" href="$classcomponent_1_1SequenceController.html#a568dc09f8d98fb3d88fcdcd38601a153" title="Sets the maximum number of steps that can be accessed." alt="" coords="204,426,435,466"/>
+<area shape="rect" id="node15" href="$classcomponent_1_1RandomTextInput.html#a3e8cd14adb8216e84b8bfb28439eb35e" title="Sets the max value of the random text input." alt="" coords="211,490,428,530"/>
+<area shape="rect" id="node16" href="$classcore_1_1Stack.html#a3b97d048a971a89bb37731c49f612f0b" title="Returns the size of the container." alt="" coords="255,555,383,580"/>
+<area shape="rect" id="node17" href="$namespaceutils.html#ae2c2f6e955e00e4ffe1733071e966713" title="Tells the compiler that this branch is unreachable." alt="" coords="250,604,389,629"/>
+<area shape="rect" id="node6" href="$namespaceutils.html#a0e22f00f6018ab07372cf8e990ca2f91" title="Get a random number in the range [low, high]." alt="" coords="530,120,666,145"/>
+<area shape="rect" id="node8" href="$classcomponent_1_1SequenceController.html#adeb5aa0762f6d51497222ce073be0ccd" title="Gets the value of the progress bar." alt="" coords="483,170,713,210"/>
+<area shape="rect" id="node9" href="$classcomponent_1_1SequenceController.html#ad11a6acdea1dba202a5bebc80530a7fa" title="Sets the value of the progress bar." alt="" coords="483,234,713,274"/>
+<area shape="rect" id="node10" href="$classcomponent_1_1SequenceController.html#adbf90b3d2bfecea902f0dc50f860c308" title="Sets the sequence to be in the run&#45;all&#45;at&#45;once mode." alt="" coords="483,298,713,338"/>
+<area shape="rect" id="node13" href="$classcomponent_1_1CodeHighlighter.html#a490b675f158e7d53951f3584c66e14a5" title="Clears the code highlighter." alt="" coords="494,362,702,402"/>
+</map>

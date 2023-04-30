@@ -1,0 +1,24 @@
+<map id="scene::QueueScene::render" name="scene::QueueScene::render">
+<area shape="rect" id="node1" title="Renders the scene." alt="" coords="5,408,163,448"/>
+<area shape="rect" id="node2" href="$classcore_1_1DoublyLinkedList.html#a13fd2db8a16bae01df9a5803ff3eab11" title="Finds the element at the specified index." alt="" coords="241,76,411,116"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1SequenceController.html#a2dd0c0b3dee5539381fc8b358a897c53" title="Gets the animated frame." alt="" coords="211,140,441,180"/>
+<area shape="rect" id="node8" href="$classcomponent_1_1CodeHighlighter.html#a2ffc469b3c27cfd4e2e0dbddb475a7b9" title="Highlights the line number at the given frame index." alt="" coords="222,440,430,480"/>
+<area shape="rect" id="node10" href="$classcomponent_1_1SequenceController.html#a85d1d3bd7bb52ef81bb06441d04c08ca" title="Increments the animation counter." alt="" coords="211,211,441,251"/>
+<area shape="rect" id="node11" href="$classcomponent_1_1CodeHighlighter.html#a0560b7bf3a134c27bc13241e5caf7c18" title="Renders the code highlighter." alt="" coords="222,376,430,416"/>
+<area shape="rect" id="node17" href="$classcomponent_1_1SequenceController.html#a53fd59288af696c5887b1e3dc57a87d0" title="Renders the sequence controller." alt="" coords="211,287,441,327"/>
+<area shape="rect" id="node18" href="$classgui_1_1GuiQueue.html#a47df24ffed7f46c073b8c01f76e8423d" title="Renders the GUI queue." alt="" coords="244,569,408,594"/>
+<area shape="rect" id="node19" href="$classscene_1_1internal_1_1BaseScene.html#ae3cfa344acf94f17bbe7124d5234a717" title="Renders the options." alt="" coords="227,504,425,544"/>
+<area shape="rect" id="node21" href="$classcomponent_1_1SequenceController.html#ad11a6acdea1dba202a5bebc80530a7fa" title="Sets the value of the progress bar." alt="" coords="211,619,441,659"/>
+<area shape="rect" id="node22" href="$classcomponent_1_1SequenceController.html#adbf90b3d2bfecea902f0dc50f860c308" title="Sets the sequence to be in the run&#45;all&#45;at&#45;once mode." alt="" coords="211,683,441,723"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1SequenceController.html#a4997739260f0e7128f4d9239de336a26" title="Gets the animation counter." alt="" coords="489,69,720,109"/>
+<area shape="rect" id="node5" href="$classcomponent_1_1SequenceController.html#adeb5aa0762f6d51497222ce073be0ccd" title="Gets the value of the progress bar." alt="" coords="489,5,720,45"/>
+<area shape="rect" id="node6" href="$classcomponent_1_1SequenceController.html#a8a847cf36fbb035861eccfa18169b2bf" title="Check if the sequence is in the run&#45;all&#45;at&#45;once mode." alt="" coords="489,133,720,173"/>
+<area shape="rect" id="node7" href="$classcomponent_1_1SequenceController.html#a9b272016745807a631c10d50644b38dc" title="Gets the speed scale of the sequence." alt="" coords="489,197,720,237"/>
+<area shape="rect" id="node9" href="$classcore_1_1DoublyLinkedList.html#ab3de2fda8dc0a65847d3b71e15d18431" title="Gets the element at the specified index." alt="" coords="509,539,700,565"/>
+<area shape="rect" id="node12" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="531,376,679,416"/>
+<area shape="rect" id="node13" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="545,441,664,466"/>
+<area shape="rect" id="node14" href="$classSettings.html#a4e26ceaf30ab2c06c9925abc0c96a107" title="Gets the color." alt="" coords="533,490,676,515"/>
+<area shape="rect" id="node15" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="521,262,688,287"/>
+<area shape="rect" id="node16" href="$classcore_1_1DoublyLinkedList.html#a3b97d048a971a89bb37731c49f612f0b" title="Returns the size of the container." alt="" coords="520,312,689,352"/>
+<area shape="rect" id="node20" href="$classscene_1_1internal_1_1BaseScene.html#a150a268dbe1db18dca9af30a436765eb" title="Renders the inputs." alt="" coords="506,589,703,629"/>
+</map>

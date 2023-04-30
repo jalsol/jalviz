@@ -1,0 +1,5 @@
+<map id="component::SideBar::render" name="component::SideBar::render">
+<area shape="rect" id="node1" title="Constructs a SideBar object." alt="" coords="5,37,159,77"/>
+<area shape="rect" id="node2" href="$classscene_1_1SceneRegistry.html#ae0726c853a57671c9752e21d67ad937e" title="Get the instance object." alt="" coords="207,5,368,45"/>
+<area shape="rect" id="node3" href="$classscene_1_1SceneRegistry.html#aa02611ff671e12f791f65b4b21054650" title="Gets the scene." alt="" coords="207,69,368,109"/>
+</map>

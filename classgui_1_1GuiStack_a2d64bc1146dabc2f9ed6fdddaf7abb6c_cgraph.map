@@ -1,0 +1,4 @@
+<map id="gui::GuiStack::GuiStack" name="gui::GuiStack::GuiStack">
+<area shape="rect" id="node1" title="Construct a new Gui Stack object." alt="" coords="5,13,180,38"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiStack.html#ab563a3c665c30f90e711db9aa23dd66c" title="Initializes the labels." alt="" coords="228,5,365,45"/>
+</map>

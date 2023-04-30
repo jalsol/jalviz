@@ -1,0 +1,9 @@
+<map id="component::SequenceController::get_speed_scale" name="component::SequenceController::get_speed_scale">
+<area shape="rect" id="node1" title="Gets the speed scale of the sequence." alt="" coords="532,101,763,141"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SequenceController.html#a2dd0c0b3dee5539381fc8b358a897c53" title="Gets the animated frame." alt="" coords="253,69,484,109"/>
+<area shape="rect" id="node7" href="$classcomponent_1_1SequenceController.html#a53fd59288af696c5887b1e3dc57a87d0" title="Renders the sequence controller." alt="" coords="253,133,484,173"/>
+<area shape="rect" id="node3" href="$classscene_1_1ArrayScene.html#a0b5551ab35abe658f8b447031cff2c2f" title="Renders the scene." alt="" coords="30,133,181,173"/>
+<area shape="rect" id="node4" href="$classscene_1_1DynamicArrayScene.html#a7a12caf68a07ea470266f55fa7648c37" title="Renders the scene." alt="" coords="5,197,205,237"/>
+<area shape="rect" id="node5" href="$classscene_1_1QueueScene.html#a1c894aab23b8245d22882d0689e679dc" title="Renders the scene." alt="" coords="27,5,184,45"/>
+<area shape="rect" id="node6" href="$classscene_1_1StackScene.html#af4d1475f4e447111bf5c150d9ea5bb5f" title="Renders the scene." alt="" coords="30,69,181,109"/>
+</map>

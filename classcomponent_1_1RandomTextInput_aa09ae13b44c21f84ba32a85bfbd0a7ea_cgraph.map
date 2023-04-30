@@ -1,0 +1,8 @@
+<map id="component::RandomTextInput::render_head" name="component::RandomTextInput::render_head">
+<area shape="rect" id="node1" title="Renders the random text input, updates the head position with offset." alt="" coords="5,63,223,103"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1TextInput.html#ac5a771864178c1c98c81c2815d2ba32e" title="Renders the text input, updates the head position with offset." alt="" coords="271,63,433,103"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1TextInput.html#ac12a9b97dd04ba1162f64dd47c6b5c9c" title="Renders the text input." alt="" coords="481,63,644,103"/>
+<area shape="rect" id="node4" href="$namespaceutils.html#a896b481be4c77ea4cab2abd3e9e25f76" title="Returns the color of the text based on the background color." alt="" coords="701,5,849,45"/>
+<area shape="rect" id="node5" href="$namespaceutils.html#a733e889abe0159beb23d52d0c665b785" title="Draws text with custom font size and spacing." alt="" coords="716,70,835,95"/>
+<area shape="rect" id="node6" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="692,119,859,145"/>
+</map>

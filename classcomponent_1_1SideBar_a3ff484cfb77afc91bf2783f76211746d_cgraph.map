@@ -1,0 +1,6 @@
+<map id="component::SideBar::interact" name="component::SideBar::interact">
+<area shape="rect" id="node1" title="Interacts with the SideBar object." alt="" coords="5,69,159,109"/>
+<area shape="rect" id="node2" href="$classscene_1_1SceneRegistry.html#ae0726c853a57671c9752e21d67ad937e" title="Get the instance object." alt="" coords="207,5,368,45"/>
+<area shape="rect" id="node3" href="$classscene_1_1SceneRegistry.html#aa02611ff671e12f791f65b4b21054650" title="Gets the scene." alt="" coords="207,69,368,109"/>
+<area shape="rect" id="node4" href="$classscene_1_1SceneRegistry.html#a446027ec93f7b35af8d118e2cec74440" title="Sets the scene." alt="" coords="207,133,368,173"/>
+</map>

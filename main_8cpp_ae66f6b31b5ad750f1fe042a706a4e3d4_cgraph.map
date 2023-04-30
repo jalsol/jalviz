@@ -1,0 +1,14 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,180,60,206"/>
+<area shape="rect" id="node2" href="$classscene_1_1SceneRegistry.html#ae0726c853a57671c9752e21d67ad937e" title="Get the instance object." alt="" coords="341,17,502,57"/>
+<area shape="rect" id="node3" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="108,180,275,206"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1SideBar.html#a3ff484cfb77afc91bf2783f76211746d" title="Interacts with the SideBar object." alt="" coords="115,116,268,156"/>
+<area shape="rect" id="node7" href="$classscene_1_1SceneRegistry.html#a98027884ccda5361230735481ed120a1" title="Interacts with the scene." alt="" coords="111,230,272,270"/>
+<area shape="rect" id="node9" href="$classcomponent_1_1SideBar.html#abc018214f18d9d436599725e4ca9729b" title="Constructs a SideBar object." alt="" coords="115,52,268,92"/>
+<area shape="rect" id="node10" href="$classscene_1_1SceneRegistry.html#a14ac399edd9368ed8ba9bbaf38ce5ea1" title="Renders the scene." alt="" coords="111,294,272,334"/>
+<area shape="rect" id="node12" href="$classscene_1_1SceneRegistry.html#addda7e32f365e9301f1271fbd6690b88" title="Checks if the window should close." alt="" coords="111,358,272,398"/>
+<area shape="rect" id="node5" href="$classscene_1_1SceneRegistry.html#aa02611ff671e12f791f65b4b21054650" title="Gets the scene." alt="" coords="341,81,502,121"/>
+<area shape="rect" id="node6" href="$classscene_1_1SceneRegistry.html#a446027ec93f7b35af8d118e2cec74440" title="Sets the scene." alt="" coords="341,145,502,185"/>
+<area shape="rect" id="node8" href="$classscene_1_1internal_1_1BaseScene.html#a542a3ea4952993d693733c954f6f168f" title="Interacts with the scene." alt="" coords="323,230,520,270"/>
+<area shape="rect" id="node11" href="$classscene_1_1internal_1_1BaseScene.html#a7c8e67187c9d93adccc55b57110b611f" title="Renders the scene." alt="" coords="323,294,520,334"/>
+</map>

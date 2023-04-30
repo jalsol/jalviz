@@ -1,0 +1,8 @@
+<map id="scene::internal::BaseScene" name="scene::internal::BaseScene">
+<area shape="rect" id="node1" title="The base scene class." alt="" coords="345,624,542,907"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1RandomTextInput.html" title="Text input that supports random values." alt="" coords="5,337,223,503"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1TextInput.html" title="Input for entering text." alt="" coords="33,5,195,244"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1FileDialog.html" title="File Dialog for opening and saving files." alt="" coords="247,308,415,532"/>
+<area shape="rect" id="node5" href="$classcomponent_1_1SequenceController.html" title="Controls the display of frames of the animation sequence." alt="" coords="440,293,671,547"/>
+<area shape="rect" id="node6" href="$classcomponent_1_1CodeHighlighter.html" title="Code highlighter that highlights the source code on each step." alt="" coords="695,352,903,488"/>
+</map>

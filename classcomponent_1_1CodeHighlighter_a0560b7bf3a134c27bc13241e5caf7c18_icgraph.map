@@ -1,0 +1,7 @@
+<map id="component::CodeHighlighter::render" name="component::CodeHighlighter::render">
+<area shape="rect" id="node1" title="Renders the code highlighter." alt="" coords="253,101,461,141"/>
+<area shape="rect" id="node2" href="$classscene_1_1ArrayScene.html#a0b5551ab35abe658f8b447031cff2c2f" title="Renders the scene." alt="" coords="30,5,181,45"/>
+<area shape="rect" id="node3" href="$classscene_1_1DynamicArrayScene.html#a7a12caf68a07ea470266f55fa7648c37" title="Renders the scene." alt="" coords="5,69,205,109"/>
+<area shape="rect" id="node4" href="$classscene_1_1QueueScene.html#a1c894aab23b8245d22882d0689e679dc" title="Renders the scene." alt="" coords="27,133,184,173"/>
+<area shape="rect" id="node5" href="$classscene_1_1StackScene.html#af4d1475f4e447111bf5c150d9ea5bb5f" title="Renders the scene." alt="" coords="30,197,181,237"/>
+</map>

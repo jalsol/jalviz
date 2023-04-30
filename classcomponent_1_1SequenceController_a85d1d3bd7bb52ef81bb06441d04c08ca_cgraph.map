@@ -1,0 +1,4 @@
+<map id="component::SequenceController::inc_anim_counter" name="component::SequenceController::inc_anim_counter">
+<area shape="rect" id="node1" title="Increments the animation counter." alt="" coords="5,5,236,45"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SequenceController.html#a8a847cf36fbb035861eccfa18169b2bf" title="Check if the sequence is in the run&#45;all&#45;at&#45;once mode." alt="" coords="284,5,515,45"/>
+</map>

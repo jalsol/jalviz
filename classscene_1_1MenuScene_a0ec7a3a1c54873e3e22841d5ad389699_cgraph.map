@@ -1,0 +1,6 @@
+<map id="scene::MenuScene::interact" name="scene::MenuScene::interact">
+<area shape="rect" id="node1" title="Interacts with the scene." alt="" coords="5,77,207,102"/>
+<area shape="rect" id="node2" href="$classscene_1_1SceneRegistry.html#a8bba8f32a95e0b6603c7b4cfae67d0b6" title="Closes the window." alt="" coords="255,5,416,45"/>
+<area shape="rect" id="node3" href="$classscene_1_1SceneRegistry.html#ae0726c853a57671c9752e21d67ad937e" title="Get the instance object." alt="" coords="255,69,416,109"/>
+<area shape="rect" id="node4" href="$classscene_1_1SceneRegistry.html#a446027ec93f7b35af8d118e2cec74440" title="Sets the scene." alt="" coords="255,133,416,173"/>
+</map>

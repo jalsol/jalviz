@@ -1,0 +1,6 @@
+<map id="component::SequenceController::interact" name="component::SequenceController::interact">
+<area shape="rect" id="node1" title="Checks if the sequence controller was interacted with." alt="" coords="5,69,236,109"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SequenceController.html#adeb5aa0762f6d51497222ce073be0ccd" title="Gets the value of the progress bar." alt="" coords="284,5,515,45"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1SequenceController.html#ad11a6acdea1dba202a5bebc80530a7fa" title="Sets the value of the progress bar." alt="" coords="284,69,515,109"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1SequenceController.html#adbf90b3d2bfecea902f0dc50f860c308" title="Sets the sequence to be in the run&#45;all&#45;at&#45;once mode." alt="" coords="284,133,515,173"/>
+</map>

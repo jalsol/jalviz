@@ -1,0 +1,13 @@
+<map id="component::SequenceController::get_progress_value" name="component::SequenceController::get_progress_value">
+<area shape="rect" id="node1" title="Gets the value of the progress bar." alt="" coords="532,229,763,269"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SequenceController.html#a2dd0c0b3dee5539381fc8b358a897c53" title="Gets the animated frame." alt="" coords="253,133,484,173"/>
+<area shape="rect" id="node7" href="$classcomponent_1_1SequenceController.html#a769580a662dccd97447a70c03ba16179" title="Checks if the sequence controller was interacted with." alt="" coords="253,325,484,365"/>
+<area shape="rect" id="node3" href="$classscene_1_1ArrayScene.html#a0b5551ab35abe658f8b447031cff2c2f" title="Renders the scene." alt="" coords="30,5,181,45"/>
+<area shape="rect" id="node4" href="$classscene_1_1DynamicArrayScene.html#a7a12caf68a07ea470266f55fa7648c37" title="Renders the scene." alt="" coords="5,69,205,109"/>
+<area shape="rect" id="node5" href="$classscene_1_1QueueScene.html#a1c894aab23b8245d22882d0689e679dc" title="Renders the scene." alt="" coords="27,133,184,173"/>
+<area shape="rect" id="node6" href="$classscene_1_1StackScene.html#af4d1475f4e447111bf5c150d9ea5bb5f" title="Renders the scene." alt="" coords="30,197,181,237"/>
+<area shape="rect" id="node8" href="$classscene_1_1ArrayScene.html#aed099c6b907e23f6022387c80a2398fe" title="Interacts with the scene." alt="" coords="30,261,181,301"/>
+<area shape="rect" id="node9" href="$classscene_1_1DynamicArrayScene.html#a48a032e7a6e371fbcb4b317520747b35" title="Interacts with the scene." alt="" coords="5,325,205,365"/>
+<area shape="rect" id="node10" href="$classscene_1_1QueueScene.html#a6a582a82ef42652ecf420666127bff65" title="Interacts with the scene." alt="" coords="27,389,184,429"/>
+<area shape="rect" id="node11" href="$classscene_1_1StackScene.html#abf45968669e4661d9d79b33193e03b96" title="Interacts with the scene." alt="" coords="30,453,181,493"/>
+</map>

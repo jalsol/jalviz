@@ -1,0 +1,18 @@
+<map id="Settings::get_instance" name="Settings::get_instance">
+<area shape="rect" id="node1" title="Gets the instance." alt="" coords="775,249,941,274"/>
+<area shape="rect" id="node2" href="$classgui_1_1GuiDynamicArray.html#a6b8a23127eb38d092f4c8cae9d3e9540" title="Constructs a GUI dynamic array with the specified initializer list." alt="" coords="540,5,705,45"/>
+<area shape="rect" id="node3" href="$classscene_1_1SettingsScene.html#a9b4ac9224a8ca917335220bc3e61e1ec" title="Interacts with the scene." alt="" coords="543,69,703,109"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="595,134,650,159"/>
+<area shape="rect" id="node5" href="$classcomponent_1_1CodeHighlighter.html#a0560b7bf3a134c27bc13241e5caf7c18" title="Renders the code highlighter." alt="" coords="519,184,727,224"/>
+<area shape="rect" id="node10" href="$classgui_1_1GuiElement.html#aef6388bc04b60fa23bb5e967db2f516b" title="Renders the element." alt="" coords="535,249,711,274"/>
+<area shape="rect" id="node11" href="$classgui_1_1GuiNode.html#a8002911a004778034242df16233714a5" title="Renders the node." alt="" coords="545,298,701,323"/>
+<area shape="rect" id="node12" href="$classscene_1_1MenuScene.html#a6934dce53c5721bb8fc59028838ed742" title="Renders the scene." alt="" coords="526,347,719,373"/>
+<area shape="rect" id="node13" href="$classscene_1_1SettingsScene.html#a67f969ae537e942e37e143e874bc7b40" title="Renders the scene." alt="" coords="543,397,703,437"/>
+<area shape="rect" id="node14" href="$classcomponent_1_1TextInput.html#ac12a9b97dd04ba1162f64dd47c6b5c9c" title="Renders the text input." alt="" coords="541,461,704,501"/>
+<area shape="rect" id="node6" href="$classscene_1_1ArrayScene.html#a0b5551ab35abe658f8b447031cff2c2f" title="Renders the scene." alt="" coords="295,88,446,128"/>
+<area shape="rect" id="node7" href="$classscene_1_1DynamicArrayScene.html#a7a12caf68a07ea470266f55fa7648c37" title="Renders the scene." alt="" coords="271,152,471,192"/>
+<area shape="rect" id="node8" href="$classscene_1_1QueueScene.html#a1c894aab23b8245d22882d0689e679dc" title="Renders the scene." alt="" coords="292,216,449,256"/>
+<area shape="rect" id="node9" href="$classscene_1_1StackScene.html#af4d1475f4e447111bf5c150d9ea5bb5f" title="Renders the scene." alt="" coords="295,280,446,320"/>
+<area shape="rect" id="node15" href="$classcomponent_1_1TextInput.html#ac5a771864178c1c98c81c2815d2ba32e" title="Renders the text input, updates the head position with offset." alt="" coords="289,461,452,501"/>
+<area shape="rect" id="node16" href="$classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea" title="Renders the random text input, updates the head position with offset." alt="" coords="5,461,223,501"/>
+</map>

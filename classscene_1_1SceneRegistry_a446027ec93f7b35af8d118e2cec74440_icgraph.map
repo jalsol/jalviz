@@ -1,0 +1,6 @@
+<map id="scene::SceneRegistry::set_scene" name="scene::SceneRegistry::set_scene">
+<area shape="rect" id="node1" title="Sets the scene." alt="" coords="357,35,519,75"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SideBar.html#a3ff484cfb77afc91bf2783f76211746d" title="Interacts with the SideBar object." alt="" coords="132,5,285,45"/>
+<area shape="rect" id="node4" href="$classscene_1_1MenuScene.html#a0ec7a3a1c54873e3e22841d5ad389699" title="Interacts with the scene." alt="" coords="108,70,309,95"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,60,38"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="component::FileDialog::render_head" name="component::FileDialog::render_head">
+<area shape="rect" id="node1" title="Renders the file dialog, updates the head position with offset." alt="" coords="5,5,173,45"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1FileDialog.html#a89e29ebdbcf450ddf952349199178613" title="Renders the file dialog." alt="" coords="221,5,389,45"/>
+</map>

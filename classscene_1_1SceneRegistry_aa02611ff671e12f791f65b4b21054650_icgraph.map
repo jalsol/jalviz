@@ -1,0 +1,6 @@
+<map id="scene::SceneRegistry::get_scene" name="scene::SceneRegistry::get_scene">
+<area shape="rect" id="node1" title="Gets the scene." alt="" coords="309,37,471,77"/>
+<area shape="rect" id="node2" href="$classcomponent_1_1SideBar.html#a3ff484cfb77afc91bf2783f76211746d" title="Interacts with the SideBar object." alt="" coords="108,5,261,45"/>
+<area shape="rect" id="node4" href="$classcomponent_1_1SideBar.html#abc018214f18d9d436599725e4ca9729b" title="Constructs a SideBar object." alt="" coords="108,69,261,109"/>
+<area shape="rect" id="node3" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,45,60,70"/>
+</map>

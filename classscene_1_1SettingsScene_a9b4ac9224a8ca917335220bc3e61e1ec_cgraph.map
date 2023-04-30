@@ -1,0 +1,6 @@
+<map id="scene::SettingsScene::interact" name="scene::SettingsScene::interact">
+<area shape="rect" id="node1" title="Interacts with the scene." alt="" coords="5,55,165,95"/>
+<area shape="rect" id="node2" href="$classSettings.html#a664381e11ab9a5024ef815629e734597" title="Gets the instance." alt="" coords="214,5,381,31"/>
+<area shape="rect" id="node3" href="$classcomponent_1_1FileDialog.html#aa12373a1a6ab45eed4bc7fc3d01e1ec3" title="Gets the path of the file." alt="" coords="213,55,381,95"/>
+<area shape="rect" id="node4" href="$classSettings.html#a955e9fa28a9be7850f834d7713c67551" title="Saves the settings to a file." alt="" coords="217,120,378,145"/>
+</map>
