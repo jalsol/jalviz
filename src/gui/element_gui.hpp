@@ -56,6 +56,7 @@ void GuiElement<T>::render() {
     constexpr int label_font_spacing = 2;
     const std::string label = std::to_string(m_value);
     const std::string index = std::to_string(m_index);
+    const Settings& settings = Settings::get_instance();
 
     const Vector2 label_size =
         utils::MeasureText(label.c_str(), label_font_size, label_font_spacing);
@@ -70,14 +71,13 @@ void GuiElement<T>::render() {
                             m_pos.y - 2 * side - index_size.y / 2};
 
     const Color value_color =
-        utils::adaptive_text_color(Settings::get_instance().get_color(0));
-    const Color index_color = utils::adaptive_text_color(
-        Settings::get_instance().get_color(Settings::num_color - 1));
+        utils::adaptive_text_color(settings.get_color(m_color_index));
+    const Color index_color =
+        utils::adaptive_text_color(settings.get_color(Settings::num_color - 1));
 
     DrawRectangle(m_pos.x - side,  // NOLINT
                   m_pos.y - side,  // NOLINT
-                  2 * side, 2 * side,
-                  Settings::get_instance().get_color(m_color_index));
+                  2 * side, 2 * side, settings.get_color(m_color_index));
 
     utils::DrawText(label.c_str(), label_pos, value_color, label_font_size,
                     label_font_spacing);

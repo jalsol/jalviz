@@ -63,7 +63,7 @@ void GuiNode<T>::render() {
                             m_pos.y - 2 * label_size.y};
 
     const Color value_color =
-        utils::adaptive_text_color(Settings::get_instance().get_color(0));
+        utils::adaptive_text_color(settings.get_color(m_color_index));
 
     DrawCircleV(m_pos, radius, settings.get_color(m_color_index));
     utils::DrawText(value.c_str(), value_pos, value_color, label_font_size,
