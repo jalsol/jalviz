@@ -124,7 +124,7 @@ void SettingsScene::render() {
         }
     }
 
-    {
+    if (m_save != 0) {
         second_col_y += 4 * input_size.y;
         utils::DrawText("Import config",
                         {second_col_x + 10, (float)second_col_y}, text_color,
@@ -132,7 +132,7 @@ void SettingsScene::render() {
         m_open = m_open_file.render(second_col_x, (float)second_col_y + 25);
     }
 
-    {
+    if (m_open != 0) {
         second_col_y += component::FileDialog::size.y + vertical_gap;
         utils::DrawText("Export config",
                         {second_col_x + 10, (float)second_col_y}, text_color,

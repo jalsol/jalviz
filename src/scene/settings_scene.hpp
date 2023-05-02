@@ -63,12 +63,12 @@ private:
     /**
      * @brief The state of the open file dialog
      */
-    int m_open{};
+    int m_open{-1};
 
     /**
      * @brief The state of the save file dialog
      */
-    int m_save{};
+    int m_save{-1};
 
     /**
      * @brief Sets the buffer for the text inputs

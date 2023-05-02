@@ -77,6 +77,13 @@ Please run `cmake -G` to see which are supported by CMake. **The following examp
 - The project `visualgo_cpp.cbp` in the directory `build/` will appear
 - Launch the project and build inside CodeBlocks.
 
+### WebAssembly and HTML5
+
+- Install Emscripten
+- `emcmake cmake -S. -Bbuild -G "Unix Makefiles"`
+- `make -Cbuild`
+- `emrun build/visualgo_cpp.html` to test run.
+
 ### Extra building notes
 - If you can’t build the project, please make sure the dependencies are correctly applied;
 - If CMake chooses the wrong build system, please run `cmake -G` and read the options;
