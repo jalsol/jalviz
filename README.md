@@ -27,6 +27,12 @@ Notable features include:
 - Super customizable color settings (with presets included)
 - ... and more to come!
 
+## Releases
+
+The application is [live on the web!](https://jalsol.itch.io/cs162-visualizer) Yes. It is compiled into WebAssembly, and runs natively on the web! More info can be found on the [`html5`](https://github.com/jalsol/cs162-visualgo/tree/html5) branch of the repository.
+
+If you still like the desktop version, the application is cross-platform. There are the Windows version and the Debian version. If you want to run on MacOS or Arch Linux, you can build the application with the guides below.
+
 ## Demonstration
 
 [Here is the demonstration on YouTube.](https://youtu.be/9E_ZE9IUF1Q)
