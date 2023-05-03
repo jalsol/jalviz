@@ -126,6 +126,7 @@ For a more detailed overview, please refer to the [documentation](#documentation
 
 - The GUI version of each data structure is designed with the Composite pattern (combining the core version and a GUI base);
 - The classes of the `scene` namespace are designed using the Strategy pattern so that the scenes are interchangeable during runtime;
+- Scenes are controlled by a `SceneRegistry` (which is a Finite State Machine), applying the State pattern;
 - The rendering and event polling mechanism apply the Chain of Responsibility pattern;
 - The `Settings` class is a singleton, as it’s accessible everywhere in the application and there should only exist only one instance of it.
 
