@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('array__scene_8hpp_source.html',''); in
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">// action_labels</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        {</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="comment">// Mode: Create</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="stringliteral">&quot;Action: Random;Action: Input;Action: File&quot;</span>,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="stringliteral">&quot;Action: CreateRandom;Action: Input;Action: File&quot;</span>,</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="comment">// Mode: Access</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="stringliteral">&quot;&quot;</span>,</div>
@@ -159,46 +159,61 @@ $(document).ready(function(){initNavTree('array__scene_8hpp_source.html',''); in
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <a class="code hl_class" href="classcore_1_1DoublyLinkedList.html">core::DoublyLinkedList&lt;int&gt;</a>{0, 0, 0, 0, 0},</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    };</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a3724d4e76bd847d74fc5795b16f45944">internal::BaseScene::button_size</a>;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">internal::BaseScene::head_offset</a>;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">internal::BaseScene::options_head</a>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_class" href="classgui_1_1GuiDynamicArray.html">gui::GuiDynamicArray&lt;int&gt;</a> m_array{};</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_class" href="classcore_1_1DoublyLinkedList.html">core::DoublyLinkedList&lt;gui::GuiDynamicArray&lt;int&gt;</a>&gt; m_sequence;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">bool</span> m_go{};</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a9fd1951bc9fbe46493af70514f8ef8bc">internal::BaseScene::m_file_dialog</a>;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">internal::BaseScene::m_index_input</a>;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a383387b3a758bbfad397ff5fee6e24a0">internal::BaseScene::m_sequence_controller</a>;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">internal::BaseScene::m_text_input</a>;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">using </span><a class="code hl_function" href="classscene_1_1internal_1_1BaseScene.html#a463d45225c1b0332b2872e2255c4ca26">internal::BaseScene::render_go_button</a>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keyword">using </span><a class="code hl_function" href="classscene_1_1internal_1_1BaseScene.html#ae3cfa344acf94f17bbe7124d5234a717">internal::BaseScene::render_options</a>;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">void</span> render_inputs() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordtype">void</span> interact_random();</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">void</span> interact_import(<a class="code hl_class" href="classcore_1_1Deque.html">core::Deque&lt;int&gt;</a> nums);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span> interact_file_import();</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">void</span> interact_update();</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="keywordtype">void</span> interact_search();</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span> interact_insert();</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">void</span> interact_delete();</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">void</span> interact_access();</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">enum</span> ModeId {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        Create,</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        Access,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        Update,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        Search,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        Insert,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        Delete,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    };</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">enum</span> CreateActionId {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        CreateRandom,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        CreateInput,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        CreateFile,</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    };</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a3724d4e76bd847d74fc5795b16f45944">internal::BaseScene::button_size</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">internal::BaseScene::head_offset</a>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">internal::BaseScene::options_head</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <a class="code hl_class" href="classgui_1_1GuiDynamicArray.html">gui::GuiDynamicArray&lt;int&gt;</a> m_array{};</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <a class="code hl_class" href="classcore_1_1DoublyLinkedList.html">core::DoublyLinkedList&lt;gui::GuiDynamicArray&lt;int&gt;</a>&gt; m_sequence;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordtype">bool</span> m_go{};</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a9fd1951bc9fbe46493af70514f8ef8bc">internal::BaseScene::m_file_dialog</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">internal::BaseScene::m_index_input</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a383387b3a758bbfad397ff5fee6e24a0">internal::BaseScene::m_sequence_controller</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keyword">using </span><a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">internal::BaseScene::m_text_input</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">using </span><a class="code hl_function" href="classscene_1_1internal_1_1BaseScene.html#a463d45225c1b0332b2872e2255c4ca26">internal::BaseScene::render_go_button</a>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">using </span><a class="code hl_function" href="classscene_1_1internal_1_1BaseScene.html#ae3cfa344acf94f17bbe7124d5234a717">internal::BaseScene::render_options</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">void</span> render_inputs() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">void</span> interact_random();</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordtype">void</span> interact_import(<a class="code hl_class" href="classcore_1_1Deque.html">core::Deque&lt;int&gt;</a> nums);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span> interact_file_import();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span> interact_update();</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>}  <span class="comment">// namespace scene</span></div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#endif  </span><span class="comment">// SCENE_ARRAY_SCENE_HPP_</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordtype">void</span> interact_search();</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> interact_insert();</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">void</span> interact_delete();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">void</span> interact_access();</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}  <span class="comment">// namespace scene</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">#endif  </span><span class="comment">// SCENE_ARRAY_SCENE_HPP_</span></div>
 <div class="ttc" id="abase__scene_8hpp_html"><div class="ttname"><a href="base__scene_8hpp.html">base_scene.hpp</a></div></div>
 <div class="ttc" id="aclasscore_1_1Deque_html"><div class="ttname"><a href="classcore_1_1Deque.html">core::Deque</a></div><div class="ttdoc">The deque container.</div><div class="ttdef"><b>Definition:</b> <a href="deque_8hpp_source.html#l00014">deque.hpp:14</a></div></div>
 <div class="ttc" id="aclasscore_1_1DoublyLinkedList_html"><div class="ttname"><a href="classcore_1_1DoublyLinkedList.html">core::DoublyLinkedList</a></div><div class="ttdoc">The doubly linked list container.</div><div class="ttdef"><b>Definition:</b> <a href="doubly__linked__list_8hpp_source.html#l00016">doubly_linked_list.hpp:16</a></div></div>

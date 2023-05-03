@@ -114,14 +114,14 @@ $(document).ready(function(){initNavTree('array__scene_8cpp_source.html',''); in
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">int</span>&amp; mode = scene_options.<a class="code hl_variable" href="structscene_1_1internal_1_1SceneOptions.html#a1a4ff4725e5cfb593de82584b1e4fa4e">mode_selection</a>;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">switch</span> (mode) {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">case</span> 0: {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">case</span> Create: {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="keywordflow">switch</span> (scene_options.<a class="code hl_variable" href="structscene_1_1internal_1_1SceneOptions.html#a0e65d14daf8cc7af1bc3dea2717f5c25">action_selection</a>.<a class="code hl_function" href="classcore_1_1DoublyLinkedList.html#ab3de2fda8dc0a65847d3b71e15d18431">at</a>(mode)) {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                <span class="keywordflow">case</span> CreateRandom:</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                <span class="keywordflow">case</span> 1: {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                <span class="keywordflow">case</span> CreateInput: {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                    <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">m_text_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                } <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                <span class="keywordflow">case</span> 2: {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                <span class="keywordflow">case</span> CreateFile: {</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                    m_go = (<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a9fd1951bc9fbe46493af70514f8ef8bc">m_file_dialog</a>.<a class="code hl_function" href="classcomponent_1_1FileDialog.html#ac6f21cb79a35e43bbb5e267ada228584">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>,</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                                                      <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>) &gt; 0);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                    <span class="keywordflow">return</span>;</div>
@@ -131,25 +131,25 @@ $(document).ready(function(){initNavTree('array__scene_8cpp_source.html',''); in
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            }</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">case</span> 1: {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">case</span> Access: {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">m_index_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">case</span> 2: {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">case</span> Update: {</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">m_index_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">m_text_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">case</span> 3: {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">case</span> Search: {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">m_text_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">case</span> 4: {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">case</span> Insert: {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">m_index_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">m_text_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">case</span> 5: {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">case</span> Delete: {</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">m_index_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#aa09ae13b44c21f84ba32a85bfbd0a7ea">render_head</a>(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#abe8d0b8e3c6bdb895f1c7857ec3b967d">options_head</a>, <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a41f8ae912cb22ae4dc159bfcb43cd6c2">head_offset</a>);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
@@ -199,17 +199,17 @@ $(document).ready(function(){initNavTree('array__scene_8cpp_source.html',''); in
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">int</span>&amp; mode = scene_options.<a class="code hl_variable" href="structscene_1_1internal_1_1SceneOptions.html#a1a4ff4725e5cfb593de82584b1e4fa4e">mode_selection</a>;</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">switch</span> (mode) {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">case</span> 0: {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">case</span> Create: {</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            <span class="keywordflow">switch</span> (scene_options.<a class="code hl_variable" href="structscene_1_1internal_1_1SceneOptions.html#a0e65d14daf8cc7af1bc3dea2717f5c25">action_selection</a>.<a class="code hl_function" href="classcore_1_1DoublyLinkedList.html#ab3de2fda8dc0a65847d3b71e15d18431">at</a>(mode)) {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordflow">case</span> 0: {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                <span class="keywordflow">case</span> CreateRandom: {</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                    interact_random();</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                <span class="keywordflow">case</span> 1: {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                <span class="keywordflow">case</span> CreateInput: {</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                    interact_import(<a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a797e3752dd8351b8689ae4cae0922a50">m_text_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#a0127193011b1062010ca2e0736fff6f8">extract_values</a>());</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                <span class="keywordflow">case</span> 2: {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                <span class="keywordflow">case</span> CreateFile: {</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                    interact_file_import();</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
@@ -222,24 +222,24 @@ $(document).ready(function(){initNavTree('array__scene_8cpp_source.html',''); in
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#a383387b3a758bbfad397ff5fee6e24a0">m_sequence_controller</a>.<a class="code hl_function" href="classcomponent_1_1SequenceController.html#a568dc09f8d98fb3d88fcdcd38601a153">set_max_value</a>(0);</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">case</span> 1: {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">case</span> Access: {</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            interact_access();</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">case</span> 2: {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">case</span> Update: {</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            interact_update();</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">case</span> 3: {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordflow">case</span> Search: {</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            interact_search();</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">case</span> 4: {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">case</span> Insert: {</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            <a class="code hl_variable" href="classscene_1_1internal_1_1BaseScene.html#ab33c0a3258d38339ded8c060f5e6c9db">m_index_input</a>.<a class="code hl_function" href="classcomponent_1_1RandomTextInput.html#a3e8cd14adb8216e84b8bfb28439eb35e">set_random_max</a>((<span class="keywordtype">int</span>)m_array.<a class="code hl_function" href="classgui_1_1GuiDynamicArray.html#a1bc4f9c002b6d8ee145a7229bf4b812d">size</a>());</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            interact_insert();</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">case</span> 5: {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">case</span> Delete: {</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            interact_delete();</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        } <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
