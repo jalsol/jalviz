@@ -18,14 +18,14 @@ void QueueScene::render_inputs() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0:
+                case CreateRandom:
                     break;
-                case 1: {
+                case CreateInput: {
                     m_text_input.render_head(options_head, head_offset);
                 } break;
-                case 2: {
+                case CreateFile: {
                     m_go = (m_file_dialog.render_head(options_head,
                                                       head_offset) > 0);
                     return;
@@ -35,12 +35,14 @@ void QueueScene::render_inputs() {
             }
         } break;
 
-        case 1: {
+        case Push: {
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 2:
+        case Pop:
+        case Clear:
             break;
+
         default:
             utils::unreachable();
     }
@@ -87,17 +89,17 @@ void QueueScene::interact() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0: {
+                case CreateRandom: {
                     interact_random();
                 } break;
 
-                case 1: {
+                case CreateInput: {
                     interact_import(m_text_input.extract_values());
                 } break;
 
-                case 2: {
+                case CreateFile: {
                     interact_file_import();
                 } break;
 
@@ -109,12 +111,16 @@ void QueueScene::interact() {
             m_sequence_controller.set_max_value(0);
         } break;
 
-        case 1: {
+        case Push: {
             interact_push();
         } break;
 
-        case 2: {
+        case Pop: {
             interact_pop();
+        } break;
+
+        case Clear: {
+            interact_clear();
         } break;
 
         default:

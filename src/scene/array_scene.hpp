@@ -62,7 +62,7 @@ private:
         // action_labels
         {
             // Mode: Create
-            "Action: Random;Action: Input;Action: File",
+            "Action: CreateRandom;Action: Input;Action: File",
 
             // Mode: Access
             "",
@@ -82,6 +82,27 @@ private:
 
         // action_selection
         core::DoublyLinkedList<int>{0, 0, 0, 0, 0},
+    };
+
+    /**
+     * @brief The mode ids
+     */
+    enum ModeId {
+        Create,
+        Access,
+        Update,
+        Search,
+        Insert,
+        Delete,
+    };
+
+    /**
+     * @brief The "Create" action ids
+     */
+    enum CreateActionId {
+        CreateRandom,
+        CreateInput,
+        CreateFile,
     };
 
     using internal::BaseScene::button_size;
@@ -117,7 +138,7 @@ private:
     void render_inputs() override;
 
     /**
-     * @brief Interacts with random mode
+     * @brief Interacts with Createrandom mode
      */
     void interact_random();
 

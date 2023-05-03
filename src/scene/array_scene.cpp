@@ -20,14 +20,14 @@ void ArrayScene::render_inputs() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0:
+                case CreateRandom:
                     break;
-                case 1: {
+                case CreateInput: {
                     m_text_input.render_head(options_head, head_offset);
                 } break;
-                case 2: {
+                case CreateFile: {
                     m_go = (m_file_dialog.render_head(options_head,
                                                       head_offset) > 0);
                     return;
@@ -37,25 +37,25 @@ void ArrayScene::render_inputs() {
             }
         } break;
 
-        case 1: {
+        case Access: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
-        case 2: {
-            m_index_input.render_head(options_head, head_offset);
-            m_text_input.render_head(options_head, head_offset);
-        } break;
-
-        case 3: {
-            m_text_input.render_head(options_head, head_offset);
-        } break;
-
-        case 4: {
+        case Update: {
             m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 5: {
+        case Search: {
+            m_text_input.render_head(options_head, head_offset);
+        } break;
+
+        case Insert: {
+            m_index_input.render_head(options_head, head_offset);
+            m_text_input.render_head(options_head, head_offset);
+        } break;
+
+        case Delete: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
@@ -105,17 +105,17 @@ void ArrayScene::interact() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0: {
+                case CreateRandom: {
                     interact_random();
                 } break;
 
-                case 1: {
+                case CreateInput: {
                     interact_import(m_text_input.extract_values());
                 } break;
 
-                case 2: {
+                case CreateFile: {
                     interact_file_import();
                 } break;
 
@@ -128,24 +128,24 @@ void ArrayScene::interact() {
             m_sequence_controller.set_max_value(0);
         } break;
 
-        case 1: {
+        case Access: {
             interact_access();
         } break;
 
-        case 2: {
+        case Update: {
             interact_update();
         } break;
 
-        case 3: {
+        case Search: {
             interact_search();
         } break;
 
-        case 4: {
+        case Insert: {
             m_index_input.set_random_max((int)m_array.size());
             interact_insert();
         } break;
 
-        case 5: {
+        case Delete: {
             interact_delete();
         } break;
 

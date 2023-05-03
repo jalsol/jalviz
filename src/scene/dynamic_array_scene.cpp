@@ -18,14 +18,14 @@ void DynamicArrayScene::render_inputs() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0:
+                case CreateRandom:
                     break;
-                case 1: {
+                case CreateInput: {
                     m_text_input.render_head(options_head, head_offset);
                 } break;
-                case 2: {
+                case CreateFile: {
                     m_go = (m_file_dialog.render_head(options_head,
                                                       head_offset) > 0);
                     return;
@@ -35,37 +35,37 @@ void DynamicArrayScene::render_inputs() {
             }
         } break;
 
-        case 1: {
+        case Access: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
-        case 2: {
+        case Allocate: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0: {
+                case AllocateReserve: {
                     m_text_input.render_head(options_head, head_offset);
                 } break;
-                case 1:
+                case AllocateShrink:
                     break;
                 default:
                     utils::unreachable();
             }
         } break;
 
-        case 3: {
+        case Update: {
             m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 4: {
+        case Search: {
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 5: {
+        case Insert: {
             m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 6: {
+        case Delete: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
@@ -115,17 +115,17 @@ void DynamicArrayScene::interact() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0: {
+                case CreateRandom: {
                     interact_random();
                 } break;
 
-                case 1: {
+                case CreateInput: {
                     interact_import(m_text_input.extract_values());
                 } break;
 
-                case 2: {
+                case CreateFile: {
                     interact_file_import();
                 } break;
 
@@ -138,17 +138,17 @@ void DynamicArrayScene::interact() {
             m_sequence_controller.set_max_value(0);
         } break;
 
-        case 1: {
+        case Access: {
             interact_access();
         } break;
 
-        case 2: {
+        case Allocate: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0: {
+                case AllocateReserve: {
                     interact_reserve();
                 } break;
 
-                case 1: {
+                case AllocateShrink: {
                     interact_shrink();
                 } break;
 
@@ -157,20 +157,20 @@ void DynamicArrayScene::interact() {
             }
         } break;
 
-        case 3: {
+        case Update: {
             interact_update();
         } break;
 
-        case 4: {
+        case Search: {
             interact_search();
         } break;
 
-        case 5: {
+        case Insert: {
             m_index_input.set_random_max((int)m_array.size());
             interact_insert();
         } break;
 
-        case 6: {
+        case Delete: {
             interact_delete();
         } break;
 

@@ -64,6 +64,25 @@ private:
         core::DoublyLinkedList<int>{0, 0, 0, 0},
     };
 
+    /**
+     * @brief The mode ids
+     */
+    enum ModeId {
+        Create,
+        Push,
+        Pop,
+        Clear,
+    };
+
+    /**
+     * @brief The "Create" action ids
+     */
+    enum CreateActionId {
+        CreateRandom,
+        CreateInput,
+        CreateFile,
+    };
+
     using internal::BaseScene::button_size;
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;

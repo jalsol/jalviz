@@ -66,6 +66,26 @@ private:
         core::DoublyLinkedList<int>{0, 0, 0, 0, 0},
     };
 
+    /**
+     * @brief The mode ids
+     */
+    enum ModeId {
+        Create,
+        Add,
+        Delete,
+        Update,
+        Search,
+    };
+
+    /**
+     * @brief The "Create" action ids
+     */
+    enum CreateActionId {
+        CreateRandom,
+        CreateInput,
+        CreateFile,
+    };
+
     using internal::BaseScene::button_size;
     using internal::BaseScene::head_offset;
     using internal::BaseScene::options_head;
@@ -180,14 +200,14 @@ void BaseLinkedListScene<Con>::render_inputs() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0:
+                case CreateRandom:
                     break;
-                case 1: {
+                case CreateInput: {
                     m_text_input.render_head(options_head, head_offset);
                 } break;
-                case 2: {
+                case CreateFile: {
                     m_go = (m_file_dialog.render_head(options_head,
                                                       head_offset) > 0);
                     return;
@@ -197,21 +217,21 @@ void BaseLinkedListScene<Con>::render_inputs() {
             }
         } break;
 
-        case 1: {
+        case Add: {
             m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 2: {
+        case Delete: {
             m_index_input.render_head(options_head, head_offset);
         } break;
 
-        case 3: {
+        case Update: {
             m_index_input.render_head(options_head, head_offset);
             m_text_input.render_head(options_head, head_offset);
         } break;
 
-        case 4: {
+        case Search: {
             m_text_input.render_head(options_head, head_offset);
         } break;
 
@@ -263,17 +283,17 @@ void BaseLinkedListScene<Con>::interact() {
     int& mode = scene_options.mode_selection;
 
     switch (mode) {
-        case 0: {
+        case Create: {
             switch (scene_options.action_selection.at(mode)) {
-                case 0: {
+                case CreateRandom: {
                     interact_random();
                 } break;
 
-                case 1: {
+                case CreateInput: {
                     interact_import(m_text_input.extract_values());
                 } break;
 
-                case 2: {
+                case CreateFile: {
                     interact_file_import();
                 } break;
 
@@ -285,20 +305,20 @@ void BaseLinkedListScene<Con>::interact() {
             m_sequence_controller.set_max_value(0);
         } break;
 
-        case 1: {
+        case Add: {
             m_index_input.set_random_max((int)m_list.size());
             interact_add();
         } break;
 
-        case 2: {
+        case Delete: {
             interact_delete();
         } break;
 
-        case 3: {
+        case Update: {
             interact_update();
         } break;
 
-        case 4: {
+        case Search: {
             interact_search();
         } break;
 
