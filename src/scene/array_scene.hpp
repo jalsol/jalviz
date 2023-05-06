@@ -62,7 +62,7 @@ private:
         // action_labels
         {
             // Mode: Create
-            "Action: CreateRandom;Action: Input;Action: File",
+            "Action: Random;Action: Input;Action: File",
 
             // Mode: Access
             "",
