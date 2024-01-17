@@ -1,14 +1,11 @@
-# CS162 (and CS202?) Project: VisuAlgo clone
+# CS162 Project: jalviz - VisuAlgo clone
+
+![jalviz screenshot](data/screenshot.png)
 
 Author: 22125113 - Nguyen Quang Truong
 
 This is an application that tries to replicate what [VisuAlgo.net](https://visualgo.net)
 does, with basic data structures.
-
-Initially, this was a project for the course CS162 - Introduction to Programming
-II. However, as I become more ambitious (or even delusional? who cares!), I also
-want to pass the lab of CS202 - Programming Systems with this project, despite
-it being a future course and not yet available to me - a freshman.
 
 ## Features
 
